@@ -1,0 +1,53 @@
+﻿.music-store-pagination{text-align:center;position:relative;clear:both;}
+.music-store-pagination .page-link{margin:0 5px;}
+.music-store-pagination .page-selected{font-weight:bold;}
+
+.music-store-item {float:left;}
+.music-store-items{position:relative;clear:both;}
+
+.music-store-header{width:100%;position:relative;clear:both;}
+.music-store-filters{float:left;}
+.music-store-ordering{float:right;}
+
+.music-store-song .song-cover{width:150px;}
+
+.music-store-song .song-cover.single{width:250px;}
+
+.music-store-song .song-cover img{width:100%;}
+
+/** COLUMNS ON MULTIPLE PAGES **/
+.music-store-song .left-column{float:left;}
+.music-store-song .right-column{	float:left; padding-left:10px; width:-moz-calc(100% - 260px); width:-webkit-calc(100% - 260px);	width:calc(100% - 160px);}
+
+/** COLUMNS ON SINGLE PAGES **/
+.music-store-song .left-column{float:left;}
+.music-store-song .right-column{	float:left; padding-left:10px; width:-moz-calc(100% - 260px); width:-webkit-calc(100% - 260px);	width:calc(100% - 260px);}
+
+.music-store-song .song-title{font-weight:bold;}
+
+.music-store-song .song-title.single{font-weight:normal; font-size:1.7em;}
+.music-store-song .label{font-weight:normal; font-style:italic;}
+
+.music-store-song .song-artist ul,
+.music-store-song .song-album ul,
+.music-store-song .song-genre ul{padding:0; margin:0;}
+
+.music-store-song .song-artist li,
+.music-store-song .song-album li,
+.music-store-song .song-genre li{padding:0; margin:0 5px 0 0; display:inline-block;font-size:90%;}
+
+.music-store-song .song-artist li .arrow,
+.music-store-song .song-album li .arrow,
+.music-store-song .song-genre li .arrow{color: #E47911; font-size: 120%; font-weight: bold; margin-right: 0.2em;}
+
+.music-store-song a{text-decoration:none;}
+
+.music-store-song .song-price{color: #990000; text-transform:lowercase;}
+
+.music-store-song .song-price.single{font-size:0.75em;color: #999;display:inline-block;background-color:#DDD;padding:0 10px;-webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; text-shadow: 1px 1px #EEE;}
+
+.music-store-song .song-description{
+	border:1px dashed #CCCCCC;padding:5px;
+}
+
+.explain-text{font-style:italic;font-size:0.9em;}

@@ -1,0 +1,4 @@
+﻿<FilesMatch "\.(mp3|wav|oga|ogg)$">
+  ForceType application/octet-stream
+  Header set Content-Disposition attachment
+</FilesMatch>
