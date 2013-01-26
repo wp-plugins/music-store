@@ -1,0 +1,117 @@
+﻿<div class="music-store-song">
+	<div class="left-column single">
+		<!-- SONG COVER -->
+		<tpl ifset="song.cover">
+		<div class="song-cover single">
+			<img src="{song.cover}">
+		</div>
+		</tpl ifset="song.cover">
+		
+		<!-- SONG DEMO -->
+		<tpl ifset="song.demo">
+			<div class="ms-player single">
+			{song.demo}	
+			</div>
+		</tpl ifset="song.demo">
+		
+		<!-- EXPLAIN SAFE PLAYBACK -->
+		<tpl ifset="song.explain_text">
+			<div class="explain-text">
+			{song.explain_text}	
+			</div>
+		</tpl ifset="song.explain_text">
+		
+		<!-- SONG SALES BUTTONS -->
+		<tpl ifset="song.salesbutton">
+			<div class="song-payment-buttons">
+			{song.salesbutton}
+			</div>
+		</tpl ifset="song.salesbutton">
+		
+		<!-- MUSIC STORE LINK -->
+		<tpl ifset="song.store_page">
+			<div class="music-store-link">
+				<a href="{song.store_page}"> Go to the store page </a>
+			</div>
+		</tpl ifset="song.store_page">
+	</div>		
+	
+	<div class="right-column single">
+		
+		<!-- SONG TITLE -->
+		<tpl ifset="song.title">
+			<div class="song-title single">
+			{song.title}
+			
+			<!-- SONG PRICE -->
+			<tpl ifset="song.price">
+				<span class="song-price single">
+					{song.price}
+				</span>
+			</tpl ifset="song.price">
+	
+			</div>
+		</tpl ifset="song.title">
+		
+		<!-- SONG ARTIST -->
+		<tpl ifset="song.has_artists">
+			<div class="song-artist">
+				<ul>
+				<tpl loop="artists">
+					<li><span class="arrow">›</span>{artists.data}</li>
+				</tpl loop="artists">	
+				</ul>
+			</div>
+		</tpl ifset="song.has_artists">
+		
+		<!-- SONG GENRE -->
+		<tpl ifset="song.has_genres">
+			<div class="song-genre">
+				<span class="label">Genre(s): </span>
+				<ul>
+				<tpl loop="genres">
+					<li><span class="arrow">›</span>{genres.data}</li>
+				</tpl loop="genres">	
+				</ul>
+			</div>
+		</tpl ifset="song.has_genres">
+		
+		<!-- SONG ALBUM -->
+		<tpl ifset="song.has_albums">
+			<div class="song-album">
+				<span class="label">Album(s): </span>
+				<ul>
+				<tpl loop="albums">
+					<li><span class="arrow">›</span>{albums.data}</li>
+				</tpl loop="albums">	
+				</ul>
+			</div>
+		</tpl ifset="song.has_albums">
+		
+		<!-- SONG TIME -->
+		<tpl ifset="song.time">
+		<span class="label">Time: </span>
+		<b>{song.time}</b>
+		</tpl ifset="song.time">
+		
+		<!-- SONG YEAR -->
+		<tpl ifset="song.year">
+		<span class="label">Year: </span>
+		<b>{song.year}</b>
+		</tpl ifset="song.year">
+		
+		<!-- SONG DESCRIPTION -->
+		<tpl ifset="song.description">
+			<div class="song-description">
+			{song.description}
+			</div>
+		</tpl ifset="song.description">
+		
+		<!-- SONG MORE INFO -->
+		<tpl ifset="song.info">
+			<div class="song-info">
+			<a href="{song.info}" target="_blank">More Info[+]</a>
+			</div>
+		</tpl ifset="song.info">
+	</div>
+</div>

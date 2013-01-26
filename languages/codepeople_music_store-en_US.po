@@ -1,0 +1,664 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: codepeople_music_store\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-01-24 19:10+0100\n"
+"PO-Revision-Date: 2013-01-24 19:11+0100\n"
+"Last-Translator: Erick Olivera <olivera.erick@gmail.com>\n"
+"Language-Team: CodePeople <onlinesupport@hotdreamweaver.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: d:\\02_www\\www.wp35.com\\wp-content\\plugins\\music-store\\\n"
+"X-Poedit-Language: English\n"
+"X-Poedit-Country: UNITED STATES\n"
+"X-Poedit-SearchPath-0: d:\\02_www\\www.wp35.com\\wp-content\\plugins\\music-store\n"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:121
+msgid "Song's data"
+msgstr "Song's data"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:122
+msgid "Collection's data"
+msgstr "Collection's data"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:227
+msgid "This is where you can add new song to your music store."
+msgstr "This is where you can add new song to your music store."
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:236
+msgid "Songs"
+msgstr "Songs"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:237
+msgid "Song"
+msgstr "Song"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:238
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:273
+msgid "Add New"
+msgstr "Add New"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:239
+msgid "Add New Song"
+msgstr "Add New Song"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:240
+msgid "Edit Song"
+msgstr "Edit Song"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:241
+msgid "New Song"
+msgstr "New Song"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:242
+msgid "View Song"
+msgstr "View Song"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:243
+msgid "Search Songs"
+msgstr "Search Songs"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:244
+msgid "No songs found"
+msgstr "No songs found"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:245
+msgid "No songs found in Trash"
+msgstr "No songs found in Trash"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:246
+msgid "Music Store Songs"
+msgstr "Music Store Songs"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:271
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:833
+msgid "Collections"
+msgstr "Collections"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:272
+msgid "Collection"
+msgstr "Collection"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:274
+msgid "Add New Collection"
+msgstr "Add New Collection"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:275
+msgid "Edit Collection"
+msgstr "Edit Collection"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:276
+msgid "New Collection"
+msgstr "New Collection"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:277
+msgid "View Collection"
+msgstr "View Collection"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:278
+msgid "Search Collections"
+msgstr "Search Collections"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:279
+msgid "No collections found"
+msgstr "No collections found"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:280
+msgid "No collections found in Trash"
+msgstr "No collections found in Trash"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:281
+msgid "Music Store Collections"
+msgstr "Music Store Collections"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:316
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:318
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:326
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:376
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:411
+msgid "Genres"
+msgstr "Genres"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:319
+msgid "Genre"
+msgstr "Genre"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:320
+msgid "Search Genres"
+msgstr "Search Genres"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:321
+msgid "All Genres"
+msgstr "All Genres"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:322
+msgid "Edit Genre"
+msgstr "Edit Genre"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:323
+msgid "Update Genre"
+msgstr "Update Genre"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:324
+msgid "Add New Genre"
+msgstr "Add New Genre"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:325
+msgid "New Genre Name"
+msgstr "New Genre Name"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:344
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:346
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:354
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:409
+msgid "Artists"
+msgstr "Artists"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:347
+msgid "Artist"
+msgstr "Artist"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:348
+msgid "Search Artists"
+msgstr "Search Artists"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:349
+msgid "All Artists"
+msgstr "All Artists"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:350
+msgid "Edit Artist"
+msgstr "Edit Artist"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:351
+msgid "Update Artist"
+msgstr "Update Artist"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:352
+msgid "Add New Artist"
+msgstr "Add New Artist"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:353
+msgid "New Artist Name"
+msgstr "New Artist Name"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:372
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:374
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:382
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:410
+msgid "Albums"
+msgstr "Albums"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:375
+msgid "Album"
+msgstr "Album"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:376
+msgid "Search Albums"
+msgstr "Search Albums"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:377
+msgid "All Albums"
+msgstr "All Albums"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:378
+msgid "Edit Album"
+msgstr "Edit Album"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:379
+msgid "Update Album"
+msgstr "Update Album"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:380
+msgid "Add New Album"
+msgstr "Add New Album"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:381
+msgid "New Album Name"
+msgstr "New Album Name"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:498
+msgid "Settings Updated"
+msgstr "Settings Updated"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:514
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:714
+msgid "Store page config"
+msgstr "Store page config"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:518
+msgid "URL of store page"
+msgstr "URL of store page"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:522
+msgid "Set the URL of page where the music store was inserted"
+msgstr "Set the URL of page where the music store was inserted"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:526
+msgid "Allow to filter by type"
+msgstr "Allow to filter by type"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:530
+msgid "Allow to filter by genre"
+msgstr "Allow to filter by genre"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:534
+msgid "Allow multiple pages"
+msgstr "Allow multiple pages"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:538
+msgid "Items for page"
+msgstr "Items for page"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:542
+msgid "Percent of audio used for protected playbacks"
+msgstr "Percent of audio used for protected playbacks"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:545
+msgid "To prevent unauthorized copying of audio files, the files will be partially accessible."
+msgstr "To prevent unauthorized copying of audio files, the files will be partially accessible."
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:550
+msgid "Explain text for protected playbacks"
+msgstr "Explain text for protected playbacks"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:553
+msgid "The text will be shown below of the music player when secure playback is checked"
+msgstr "The text will be shown below of the music player when secure playback is checked"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:563
+msgid "Paypal Payment Configuration"
+msgstr "Paypal Payment Configuration"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:568
+msgid "Enable Paypal Payments?"
+msgstr "Enable Paypal Payments?"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:573
+msgid "Paypal email"
+msgstr "Paypal email"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:578
+msgid "Currency"
+msgstr "Currency"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:583
+msgid "Paypal language"
+msgstr "Paypal language"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:588
+msgid "Download link valid for"
+msgstr "Download link valid for"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:589
+msgid "day(s)"
+msgstr "day(s)"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:597
+msgid "Notification Settings"
+msgstr "Notification Settings"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:602
+msgid "Notification \"from\" email"
+msgstr "Notification \"from\" email"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:607
+msgid "Send notification to email"
+msgstr "Send notification to email"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:612
+msgid "Email subject confirmation to user"
+msgstr "Email subject confirmation to user"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:617
+msgid "Email confirmation to user"
+msgstr "Email confirmation to user"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:622
+msgid "Email subject notification to admin"
+msgstr "Email subject notification to admin"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:627
+msgid "Email notification to admin"
+msgstr "Email notification to admin"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:634
+msgid "Update Settings"
+msgstr "Update Settings"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:665
+msgid "Filter from date"
+msgstr "Filter from date"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:669
+msgid "January"
+msgstr "January"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:670
+msgid "February"
+msgstr "February"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:671
+msgid "March"
+msgstr "March"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:672
+msgid "April"
+msgstr "April"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:673
+msgid "May"
+msgstr "May"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:674
+msgid "June"
+msgstr "June"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:675
+msgid "July"
+msgstr "July"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:676
+msgid "August"
+msgstr "August"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:677
+msgid "September"
+msgstr "September"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:678
+msgid "October"
+msgstr "October"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:679
+msgid "November"
+msgstr "November"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:680
+msgid "December"
+msgstr "December"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:683
+msgid "From: "
+msgstr "From: "
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:696
+msgid "To: "
+msgstr "To: "
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:709
+msgid "Search"
+msgstr "Search"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:751
+msgid "No sales yet"
+msgstr "No sales yet"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:825
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:1154
+msgid "Insert Music Store"
+msgstr "Insert Music Store"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:830
+msgid "Filter results by products type:"
+msgstr "Filter results by products type:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:832
+msgid "All types"
+msgstr "All types"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:834
+msgid "Singles"
+msgstr "Singles"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:838
+msgid "Columns:"
+msgstr "Columns:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:844
+msgid "Filter results by genre:"
+msgstr "Filter results by genre:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:845
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:1074
+msgid "All genres"
+msgstr "All genres"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:852
+msgid "-or- filter results by artist:"
+msgstr "-or- filter results by artist:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:853
+msgid "All artists"
+msgstr "All artists"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:862
+msgid "-or- filter results by album:"
+msgstr "-or- filter results by album:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:863
+msgid "All albums"
+msgstr "All albums"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:1060
+msgid "Filter by"
+msgstr "Filter by"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:1062
+msgid " type: "
+msgstr " type: "
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:1064
+msgid "All products"
+msgstr "All products"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:1065
+msgid "Only collections"
+msgstr "Only collections"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:1066
+msgid "Only singles"
+msgstr "Only singles"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:1072
+msgid " genre: "
+msgstr " genre: "
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:1087
+msgid "Order by: "
+msgstr "Order by: "
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:1089
+msgid "Popularity"
+msgstr "Popularity"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/music-store.php:1090
+msgid "Price"
+msgstr "Price"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:116
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:119
+msgid "Buy Now"
+msgstr "Buy Now"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:201
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:197
+msgid "Sales price:"
+msgstr "Sales price:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:212
+msgid "Songs of collection:"
+msgstr "Songs of collection:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:222
+msgid "Select a Song"
+msgstr "Select a Song"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:232
+msgid "Select a Song from the list. It is possible to select songs with status \"publish\"."
+msgstr "Select a Song from the list. It is possible to select songs with status \"publish\"."
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:238
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:232
+msgid "Artist:"
+msgstr "Artist:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:247
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:242
+msgid "Select an Artist"
+msgstr "Select an Artist"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:255
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:250
+msgid "Enter a new artist"
+msgstr "Enter a new artist"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:256
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:251
+msgid "Add artist"
+msgstr "Add artist"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:257
+msgid "Select an Artist from the list or enter new one. If you leave empty the artists fields, then the artists is determined from songs in collection"
+msgstr "Select an Artist from the list or enter new one. If you leave empty the artists fields, then the artists is determined from songs in collection"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:263
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:284
+msgid "Cover:"
+msgstr "Cover:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:266
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:217
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:225
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:287
+msgid "File path/URL"
+msgstr "File path/URL"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:266
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:217
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:225
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:287
+msgid "Upload a file"
+msgstr "Upload a file"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:271
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:300
+msgid "Publication Year:"
+msgstr "Publication Year:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:274
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:303
+msgid "For example 1999"
+msgstr "For example 1999"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:279
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:308
+msgid "Additional information:"
+msgstr "Additional information:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:282
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:311
+msgid "Page URL"
+msgstr "Page URL"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:282
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:311
+msgid "Different webpage with additional information"
+msgstr "Different webpage with additional information"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:374
+msgid "Collection Title"
+msgstr "Collection Title"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:375
+msgid "Songs List"
+msgstr "Songs List"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:377
+msgid "Visits"
+msgstr "Visits"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:378
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:413
+msgid "Purchases"
+msgstr "Purchases"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-collection.php:379
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:414
+msgid "Date"
+msgstr "Date"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-download.php:82
+msgid "The list of purchased products is empty"
+msgstr "The list of purchased products is empty"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-download.php:100
+msgid "Download the purchased products"
+msgstr "Download the purchased products"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:206
+msgid "Sale as a single:"
+msgstr "Sale as a single:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:214
+msgid "Audio file for sale:"
+msgstr "Audio file for sale:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:222
+msgid "Audio file for demo:"
+msgstr "Audio file for demo:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:227
+msgid "Protect the file"
+msgstr "Protect the file"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:252
+msgid "Select an Artist from the list or enter new one"
+msgstr "Select an Artist from the list or enter new one"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:258
+msgid "Album including the song:"
+msgstr "Album including the song:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:267
+msgid "Select an Album"
+msgstr "Select an Album"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:276
+msgid "Enter a new album"
+msgstr "Enter a new album"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:277
+msgid "Add album"
+msgstr "Add album"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:278
+msgid "Select an Album from the list or enter new one"
+msgstr "Select an Album from the list or enter new one"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:292
+msgid "Duration:"
+msgstr "Duration:"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:295
+msgid "For example 00:00"
+msgstr "For example 00:00"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:408
+msgid "Song Name"
+msgstr "Song Name"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-core/ms-song.php:412
+msgid "Plays"
+msgstr "Plays"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-templates/ms-donwload-page-template.php:9
+msgid "Downloads the purchased products"
+msgstr "Downloads the purchased products"
+
+#: d:\02_www\www.wp35.com\wp-content\plugins\music-store/ms-templates/ms-donwload-page-template.php:13
+msgid "Products List:"
+msgstr "Products List:"
+
