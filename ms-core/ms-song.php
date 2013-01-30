@@ -116,7 +116,8 @@ if(!class_exists('MSSong')){
 			}
 				
 			if(get_option('ms_paypal_enabled') && get_option('ms_paypal_email') && !empty($this->file) && !empty($this->price)){
-				$song_arr['salesbutton'] = '<form action="'.$action.'" method="post"><input type="hidden" name="ms_product_type" value="single" /><input type="hidden" name="ms_product_id" value="'.$this->id.'" /><input type="submit" value="'.__('Buy Now', MS_TEXT_DOMAIN).'" /></form>';
+				$paypal_button = MS_URL.'/paypal_buttons/'.get_option('ms_paypal_button', MS_PAYPAL_BUTTON);
+				$song_arr['salesbutton'] = '<form action="'.$action.'" method="post"><input type="hidden" name="ms_product_type" value="single" /><input type="hidden" name="ms_product_id" value="'.$this->id.'" /><input type="image" src="'.$paypal_button.'" style="padding-top:5px;" /></form>';
 			}
 			
 			if($mode == 'store' || $mode == 'multiple'){
