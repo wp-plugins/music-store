@@ -38,9 +38,11 @@
 		}
 		
 		window ['open_insertion_music_store_window'] = function(){
-			var c = $(music_store.tags);
 		
-			c.dialog({
+			var tags = music_store.tags,
+				cont = $(tags.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"'));
+			
+			cont.dialog({
 				dialogClass: 'wp-dialog',
 				modal: true,
 				closeOnEscape: true,

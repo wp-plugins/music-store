@@ -65,18 +65,20 @@ Description: Music Store is an online store for selling audio files: music, spee
 	 */
 		
 	class MusicStore{
+		
+		var $music_store_slug = 'music-store-menu';
+		
 		/**
 		* MusicStore constructor
 		*
 		* @access public
 		* @return void	
 		*/
-		
 		function __construct(){
 			add_action('init', array(&$this, 'init'), 0);
 			add_action('admin_init', array(&$this, 'admin_init'), 0);
 			// Set the menu link
-			add_action('admin_menu', array(&$this, 'settings_link'));
+			add_action('admin_menu', array(&$this, 'menu_links'), 10);
 		} // End __constructor
 
 /** INITIALIZE PLUGIN FOR PUBLIC WORDPRESS AND ADMIN SECTION **/
@@ -221,7 +223,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 					'public'               => true,
 					'show_ui'              => true,
 					'show_in_nav_menus'    => true,
-					'menu_icon'            => MS_CORE_IMAGES_URL . "/song-icon.png",
+					'show_in_menu'    	   => $this->music_store_slug,
 					'labels'               => array(
 						'name'               => __( 'Songs', MS_TEXT_DOMAIN),
 						'singular_name'      => __( 'Song', MS_TEXT_DOMAIN),
@@ -233,7 +235,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 						'search_items'       => __( 'Search Songs', MS_TEXT_DOMAIN),
 						'not_found'          => __( 'No songs found', MS_TEXT_DOMAIN),
 						'not_found_in_trash' => __( 'No songs found in Trash', MS_TEXT_DOMAIN),
-						'menu_name'          => __( 'Music Store Songs', MS_TEXT_DOMAIN),
+						'menu_name'          => __( 'Songs for Sale', MS_TEXT_DOMAIN),
 						'parent_item_colon'  => '',
 					),
 					'query_var'            => true,
@@ -387,15 +389,42 @@ Description: Music Store is an online store for selling audio files: music, spee
 			
 		} // End metabox_form
 		
-/** SETTINGS PAGE FOR MUSIC STORE CONFIGURATION **/		
+/** SETTINGS PAGE FOR MUSIC STORE CONFIGURATION AND SUBMENUS**/		
+		
+		// highlight the proper top level menu for taxonomies submenus
+		function tax_menu_correction($parent_file) {
+			global $current_screen;
+			$taxonomy = $current_screen->taxonomy;
+			if ($taxonomy == 'ms_genre' || $taxonomy == 'ms_artist' || $taxonomy == 'ms_album')
+				$parent_file = $this->music_store_slug;
+			return $parent_file;
+		} // End tax_menu_correction
 		
 		/*
-		* Create the link for music store settings
+		* Create the link for music store menu, submenus and settings page
 		*
 		*/
-		function settings_link(){
-			add_options_page('Music Store', 'Music Store', 'manage_options', basename(__FILE__), array(&$this, 'settings_page'));
-		} // End settings_link
+		function menu_links(){
+			if(is_admin()){
+				add_options_page('Music Store', 'Music Store', 'manage_options', $this->music_store_slug.'-settings1', array(&$this, 'settings_page'));
+				
+				add_menu_page('Music Store', 'Music Store', 'edit_pages', $this->music_store_slug, null, MS_CORE_IMAGES_URL."/music-store-menu-icon.png", 4.55555555555555);
+				
+				//Submenu for taxonomies
+				add_submenu_page($this->music_store_slug, __( 'Genres', MS_TEXT_DOMAIN), __( 'Set Genres', MS_TEXT_DOMAIN), 'edit_pages', 'edit-tags.php?taxonomy=ms_genre');
+				add_submenu_page($this->music_store_slug, __( 'Artists', MS_TEXT_DOMAIN), __( 'Set Artists', MS_TEXT_DOMAIN), 'edit_pages', 'edit-tags.php?taxonomy=ms_artist');
+				add_submenu_page($this->music_store_slug, __( 'Albums', MS_TEXT_DOMAIN), __( 'Set Albums', MS_TEXT_DOMAIN), 'edit_pages', 'edit-tags.php?taxonomy=ms_album');
+				
+				add_action('parent_file', array(&$this, 'tax_menu_correction'));
+				
+				// Settings Submenu
+				add_submenu_page($this->music_store_slug, 'Music Store Settings', 'Store Settings', 'edit_pages', $this->music_store_slug.'-settings', array(&$this, 'settings_page'));
+				
+				// Sales report submenu
+				add_submenu_page($this->music_store_slug, 'Music Store Sales Report', 'Sales Report', 'edit_pages', $this->music_store_slug.'-reports', array(&$this, 'settings_page'));
+				
+			}	
+		} // End menu_links
 		
 		/*
 		*	Create tabs for setting page and payment stats
@@ -410,7 +439,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 				elseif($tab == 'collection')
 					echo "<a class='nav-tab$class' href='javascript:void(0);' onclick='window.alert(\"Collections only available for commercial version of plugin\")'>$name</a>";
 				else
-					echo "<a class='nav-tab$class' href='?page=music-store.php&tab=$tab'>$name</a>";
+					echo "<a class='nav-tab$class' href='admin.php?page={$this->music_store_slug}-$tab&tab=$tab'>$name</a>";
 
 			}
 			echo '</h2>';
@@ -445,7 +474,8 @@ Description: Music Store is an online store for selling audio files: music, spee
 <?php				
 			}
 			
-			$current_tab = (isset($_REQUEST['tab'])) ? $_REQUEST['tab'] : 'settings';
+			$current_tab = (isset($_REQUEST['tab'])) ? $_REQUEST['tab'] : (($_REQUEST['page'] == 'music-store-menu-reports') ? 'reports' : 'settings');
+			
 			$this->settings_tabs( 
 				$current_tab
 			);
@@ -782,56 +812,27 @@ Description: Music Store is an online store for selling audio files: music, spee
 					// Album
 					$album_list = get_terms('ms_album', array( 'hide_empty' => 0 ));
 					
-					$tags .= '
-						<div title="'.__('Insert Music Store', MS_TEXT_DOMAIN).'">
-							<div style="padding:20px;">
-							';
-					$tags .= '
-								<div>
-									'.__('Filter results by products type:', MS_TEXT_DOMAIN).'<br />
-									<select id="load" name="load" style="width:100%">
-										<option value="all">'.__('All types', MS_TEXT_DOMAIN).'</option>
-									</select>	
-									<br />
-									<em style="color:#FF0000;">'.__('Filter by product types is only available for commercial version of plugin').'</em>
-								</div>
-								<div>
-									'.__('Columns:', MS_TEXT_DOMAIN).' <br />
-									<input type="text" name="columns" id="columns" style="width:100%" value="1" />
-								</div>
-					';		
-					$tags .= '		
-								<div>
-									'.__('Filter results by genre:', MS_TEXT_DOMAIN).'<br />
-									<select id="genre" name="genre" style="width:100%"><option value="all">'.__('All genres', MS_TEXT_DOMAIN).'</option>';
+					$tags .= '<div title="'.__('Insert Music Store', MS_TEXT_DOMAIN).'"><div style="padding:20px;">';
+					
+					$tags .= '<div>'.__('Filter results by products type:', MS_TEXT_DOMAIN).'<br /><select id="load" name="load" style="width:100%"><option value="all">'.__('All types', MS_TEXT_DOMAIN).'</option></select><br /><em style="color:#FF0000;">'.__('Filter by product types is only available for commercial version of plugin').'</em></div><div>'.__('Columns:', MS_TEXT_DOMAIN).' <br /><input type="text" name="columns" id="columns" style="width:100%" value="1" /></div>';
+					
+					$tags .= '<div>'.__('Filter results by genre:', MS_TEXT_DOMAIN).'<br /><select id="genre" name="genre" style="width:100%"><option value="all">'.__('All genres', MS_TEXT_DOMAIN).'</option>';
+					
 					foreach($genre_list as $genre){
 							$tags .= '<option value="'.$genre->term_id.'">'.$genre->name.'</option>';
 					}
-					$tags .= '		</select>
-								</div>
-								<div>
-									'.__('-or- filter results by artist:', MS_TEXT_DOMAIN).'<br />
-									<select id="artist" name="artis" style="width:100%"><option value="all">'.__('All artists', MS_TEXT_DOMAIN).'</option>
-							 ';
+					
+					$tags .= '</select></div><div>'.__('-or- filter results by artist:', MS_TEXT_DOMAIN).'<br /><select id="artist" name="artis" style="width:100%"><option value="all">'.__('All artists', MS_TEXT_DOMAIN).'</option>';
 					
 					foreach($artist_list as $artist){
 							$tags .= '<option value="'.$artist->term_id.'">'.$artist->name.'</option>';
 					}
-					$tags .= '		</select>
-								</div>
-								<div>
-									'.__('-or- filter results by album:', MS_TEXT_DOMAIN).'<br />
-									<select id="album" name="album" style="width:100%"><option value="all">'.__('All albums', MS_TEXT_DOMAIN).'</option>
-							 ';
+					$tags .= '</select></div><div>'.__('-or- filter results by album:', MS_TEXT_DOMAIN).'<br /><select id="album" name="album" style="width:100%"><option value="all">'.__('All albums', MS_TEXT_DOMAIN).'</option>';
 					
 					foreach($album_list as $album){
 							$tags .= '<option value="'.$album->term_id.'">'.$album->name.'</option>';
 					}
-					$tags .= '		</select>
-								</div>
-							</div>
-						</div>	
-					';
+					$tags .= '</select></div></div></div>';
 					
 					wp_localize_script('ms-admin-script', 'music_store', array('tags' => $tags));	
 				}	
