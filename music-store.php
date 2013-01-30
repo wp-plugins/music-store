@@ -23,6 +23,7 @@ Description: Music Store is an online store for selling audio files: music, spee
  define( 'MS_PAYPAL_ENABLED', true );
  define( 'MS_PAYPAL_CURRENCY', 'USD' );
  define( 'MS_PAYPAL_LANGUAGE', 'EN' );
+ define( 'MS_PAYPAL_BUTTON', 'button_d.gif' );
  
  // NOTIFICATION CONSTANTS
  define( 'MS_NOTIFICATION_FROM_EMAIL', 'put_your@email_here.com' );
@@ -445,6 +446,22 @@ Description: Music Store is an online store for selling audio files: music, spee
 			echo '</h2>';
 		} // End settings_tabs 	
 		
+		/**
+		* Get the list of possible paypal butt
+		*/
+		function _paypal_buttons(){
+			$b = get_option('ms_paypal_button', MS_PAYPAL_BUTTON);
+			$p = MS_FILE_PATH.'/paypal_buttons';
+			$d = dir($p);
+			$str = "";
+			while (false !== ($entry = $d->read())) {
+				if($entry != "." && $entry != ".." && is_file("$p/$entry"))
+					$str .= "<input type='radio' name='ms_paypal_button' value='$entry' ".(($b == $entry) ? "checked" : "")." />&nbsp;<img src='".MS_URL."/paypal_buttons/$entry'/>&nbsp;&nbsp;";
+			}
+			$d->close();
+			return $str;
+		} // End _paypal_buttons
+		
 		/*
 		* Set the music store settings
 		*/
@@ -457,6 +474,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 				update_option('ms_items_page_selector', ((isset($_POST['ms_items_page_selector'])) ? true : false));
 				update_option('ms_items_page', $_POST['ms_items_page']);
 				update_option('ms_paypal_email', $_POST['ms_paypal_email']);
+				update_option('ms_paypal_button', $_POST['ms_paypal_button']);
 				update_option('ms_paypal_currency', $_POST['ms_paypal_currency']);
 				update_option('ms_paypal_language', $_POST['ms_paypal_language']);
 				update_option('ms_paypal_enabled', ((isset($_POST['ms_paypal_enabled'])) ? true : false));
@@ -574,6 +592,12 @@ Description: Music Store is an online store for selling audio files: music, spee
 							<th scope="row"><?php _e('Paypal language', MS_TEXT_DOMAIN); ?></th>
 							<td><input type="text" name="ms_paypal_language" value="<?php echo esc_attr(get_option('ms_paypal_language', MS_PAYPAL_LANGUAGE)); ?>" /></td>
 							</tr>  
+							
+							<tr valign="top">
+							<th scope="row"><?php _e('Paypal button', MS_TEXT_DOMAIN); ?></th>
+							<td><?php print $this->_paypal_buttons(); ?></td>
+							</tr>  
+							
 							
 							<tr valign="top">
 							<th scope="row"><?php _e('Download link valid for', MS_TEXT_DOMAIN); ?></th>
