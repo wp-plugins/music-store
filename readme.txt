@@ -56,13 +56,15 @@ The setup interface  includes the following fields:
 *   Allow to filter by genre: Inserts a field into the Music Store webpage that allows to filter products by their genre.
 *   Allow multiple pages: Allows paging of music store products.
 *   Items per page: Defines the number of products per page in the Music Store.
+*   Player style: Select the audio player style from the list.
 
 **Payment gateway data**
 
 *   Enable PayPal Payments: Allows the sale of products through PayPal.
 *   PayPal email: Enter the email address associated with the PayPal account.
 *   Currency: Symbol of the currency in which payments are accepted.
-*   PayPal Language: Preferred language of the PayPal interface. 
+*   PayPal language: Preferred language of the PayPal interface. 
+*   PayPal button: Select the PayPal button design. 
 
 **Notification Settings**, both for buyers to complete a payment, and the store manager
  
@@ -79,11 +81,11 @@ Two types of products can be sold through the Music Store: songs or collections.
 
 **Creating songs**
 
-To enter a song in the store please press the menu option "Music Store Song" to open the relevant section. Initially it displays the list of songs entered previously and a set of data associated with the song (screenshot-1)
+To enter a song in the store please press the menu option "Music Store Song" to open the relevant section. Initially it displays the list of songs entered previously and a set of data associated with the song (screenshot-2)
 
 To enter a new song press "Add New".
 
-The interface for entering data pertaining to a song is described below (screenshot-2):
+The interface for entering data pertaining to a song is described below (screenshot-3):
 
 *   Enter Title Here: Enter the title of the song.
 *   Description: Description of the song. This field is optional, but offers the opportunity to provide additional information about the song or the authors.
@@ -109,11 +111,11 @@ The column on the right includes a form to enter the song's genre.
 
 **Creating collections**
 
-To enter a song in the store, please press the menu option "Music Store Collection" to open the relevant section. It initially displays the list of collections entered previously, as well as a set of data associated with the track (screenshot-3)
+To enter a song in the store, please press the menu option "Music Store Collection" to open the relevant section. It initially displays the list of collections entered previously, as well as a set of data associated with the track (screenshot-4)
 
 To enter a new song press the "Add New".
 
-Collection setup interface: (screenshot-4):
+Collection setup interface: (screenshot-5):
 
 *   Enter Title Here: Enter the title of the collection.
 *   Description: Description of the collection. This field is optional, but provides the opportunity to enter additional information on the collection or authors.
@@ -130,7 +132,7 @@ The column on the right includes a form to enter the collection’s genre.
 
 The Music Store can be posted on a page or post of WordPress. To insert the Music Store go to the relevant section (page or post) and select where you want the Music Store, or create a new page / post.
 
-In the editing section of the page/post, press the Music Store insertion button (screenshot-5), the action displays a setup screen (screenshot-6)
+In the editing section of the page/post, press the Music Store insertion button (screenshot-6), the action displays a setup screen (screenshot-7)
 
 **Interface for insertion dialog**
 
@@ -146,17 +148,17 @@ Note: After inserting the store on a page of your WordPress, it is advisable to 
 
 **Sale Statistics**
 
-When a sale takes place, a notification email is sent to the Music Store administrator. However, sales can also be reviewed in Sales Reports. To do this, go to the stores' setup page: "Settings / Music Store" and once there, open the section "Sales Reports" (screenshot-7)
+When a sale takes place, a notification email is sent to the Music Store administrator. However, sales can also be reviewed in Sales Reports. To do this, go to the stores' setup page: "Settings / Music Store" and once there, open the section "Sales Reports" (screenshot-8)
 
-The Reports section allows you to filter sales reports over a specific period, by default it shows the current day's sales. It also shows sales' totals for the selected period and the currency of the sales (screenshot-8)
+The Reports section allows you to filter sales reports over a specific period, by default it shows the current day's sales. It also shows sales' totals for the selected period and the currency of the sales (screenshot-9)
 
-You can delete a sales report from the list of sales. This may be useful in case of a refund granted to a buyer, and allows to keep your sales statistics updated with the actual figures.
+You can delete a sales report from the list of sales. This may be useful in case of a refund granted to a buyer, and allows to keep your sales statistics updated with the actual purchases.
 
 == Frequently Asked Questions ==
 
 = Q: Why the sales button don't show? =
 
-A: First, go to the settings page of music store and be sure the PayPal checkbox is checked, and has defined the seller's email. Second, in case of collections, be sure the collection has a price defined and songs assigned. Third, in case of songs, be sure the song has a price defined and a audio file assigned.
+A: First, go to the settings page of music store and be sure the PayPal checkbox is checked, and has defined the seller's email. Second, in case of collections, be sure the collection has a price defined and songs associated. Third, in case of songs, be sure the song has a price defined and a audio file associated.
 
 = Q: Why the song don't displays on music store? =
 
@@ -167,12 +169,12 @@ A: If you want to sale a song as a single, it is required to check the "Sale as 
 A: If you decide to protect the audio file, the audio file is played partially in demo to avoid its copy by users and softwares unauthorized.
 
 == Screenshots ==
-
-1. Music Store Song Section
-2. Song Edition Interface
-3. Music Store Collection Section
-4. Collection Edition Interface
-5. Music Store Insertion Button
-6. Music Store Insertion Interface
-7. Sales Reports
-8. Filtering Sales Report
+1. Music Store Item
+2. Music Store Song Section
+3. Song Edition Interface
+4. Music Store Collection Section
+5. Collection Edition Interface
+6. Music Store Insertion Button
+7. Music Store Insertion Interface
+8. Sales Reports
+9. Filtering Sales Report

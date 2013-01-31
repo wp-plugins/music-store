@@ -537,8 +537,30 @@ Description: Music Store is an online store for selling audio files: music, spee
 									<td><input type="checkbox" name="ms_items_page_selector" size="40" value="1" <?php if (get_option('ms_items_page_selector', MS_ITEMS_PAGE_SELECTOR)) echo 'checked'; ?> /></td>
 								</tr>
 								<tr valign="top">
-									<th><?php _e('Items for page', MS_TEXT_DOMAIN); ?></th>
+									<th><?php _e('Items per page', MS_TEXT_DOMAIN); ?></th>
 									<td><input type="text" name="ms_items_page" value="<?php echo esc_attr(get_option('ms_items_page', MS_ITEMS_PAGE)); ?>" /></td>
+								</tr>
+								<tr valign="top">
+									<th><?php _e('Player style', MS_TEXT_DOMAIN); ?></th>
+									<td>
+										<table>
+											<tr>
+												<td><input name="ms_player_style" type="radio" value="mejs-classic" DISABLED CHECKED /></td>
+												<td><img src="<?php print MS_URL; ?>/ms-core/images/skin1.png" /> <em style="color:#FF0000;"><?php _e('Only available for commercial version of plugin', MS_TEXT_DOMAIN); ?></em></td>
+											</tr>
+											
+											<tr>
+												<td><input name="ms_player_style" type="radio" value="mejs-ted" DISABLED /></td>
+												<td><img src="<?php print MS_URL; ?>/ms-core/images/skin2.png" /></td>
+											</tr>
+											
+											<tr>
+												<td><input name="ms_player_style" type="radio" value="mejs-wmp" DISABLED /></td>
+												<td><img src="<?php print MS_URL; ?>/ms-core/images/skin3.png" /></td>
+											</tr>
+										</table>
+										<input type="text" name="ms_items_page" value="<?php echo esc_attr(get_option('ms_items_page', MS_ITEMS_PAGE)); ?>" />
+									</td>
 								</tr>
 								<tr valign="top">
 									<th><?php _e('Percent of audio used for protected playbacks', MS_TEXT_DOMAIN); ?></th>
@@ -935,7 +957,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 			$allow_filter_by_genre = get_option('ms_filter_by_genre', MS_FILTER_BY_GENRE);
 			
  
-			// Items for page
+			// Items per page
 			$items_page 			= max(get_option('ms_items_page', MS_ITEMS_PAGE), 1);
 			// Display pagination
 			$items_page_selector 	= get_option('ms_items_page_selector', MS_ITEMS_PAGE_SELECTOR);
