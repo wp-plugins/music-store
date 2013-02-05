@@ -130,9 +130,20 @@ Description: Music Store is an online store for selling audio files: music, spee
 			// Set a new media button for music store insertion
 			add_action('media_buttons', array(&$this, 'set_music_store_button'), 100);
 			
+			$plugin = plugin_basename(__FILE__);
+			add_filter('plugin_action_links_'.$plugin, array(&$this, 'customizationLink'));
+			
 			// Init action
 			do_action( 'musicstore_admin_init' );
 		} // End init
+		
+		function customizationLink($links){
+			$settings_link = '<a href="http://wordpress.dwbooster.com/contact-us" target="_blank">'.__('Request custom changes').'</a>'; 
+			array_unshift($links, $settings_link); 
+			$settings_link = '<a href="admin.php?page=music-store-menu-settings">'.__('Settings').'</a>'; 
+			array_unshift($links, $settings_link); 
+			return $links; 
+		} // End customizationLink
 		
 /** MANAGE DATABASES FOR ADITIONAL POST DATA **/
 		

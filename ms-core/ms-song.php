@@ -198,7 +198,7 @@ if(!class_exists('MSSong')){
 					</tr>
 					<tr>
 						<td>
-							'.__('Sale as a single:', MS_TEXT_DOMAIN).'
+							'.__('Sell as a single:', MS_TEXT_DOMAIN).'
 						</td>
 						<td>
 							<input type="checkbox" name="ms_as_single" id="ms_as_price" CHECKED DISABLED /> <em style="color:#FF0000;">The commercial version of the plugin allows the sale of audio as a single, or only as part of a collection</em>
