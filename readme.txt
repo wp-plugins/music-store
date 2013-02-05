@@ -162,7 +162,7 @@ A: First, go to the settings page of music store and be sure the PayPal checkbox
 
 = Q: Why the song don't displays on music store? =
 
-A: If you want to sale a song as a single, it is required to check the "Sale as a single" checkbox in the song data form.
+A: If you want to sale a song as a single, it is required to check the "Sell as a single" checkbox in the song data form.
 
 = Q: Why the audio file is played partially? =
 
