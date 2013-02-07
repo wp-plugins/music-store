@@ -960,7 +960,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 			if(isset($_REQUEST['ordering_by']) && in_array($_REQUEST['ordering_by'], array('plays', 'price'))){
 				$_SESSION['ms_ordering'] = $_REQUEST['ordering_by'];
 			}else{
-				$_SESSION['ms_ordering'] = "plays";
+				$_SESSION['ms_ordering'] = "post_title";
 			}
 			
 			// Extract info from music_store options
@@ -977,7 +977,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 			$_select 	= "SELECT DISTINCT posts.ID, posts.post_type";
 			$_from 		= "FROM ".$wpdb->prefix."posts as posts,".$wpdb->prefix.MSDB_POST_DATA." as posts_data"; 
 			$_where 	= "WHERE posts.post_status='publish'";
-			$_order_by 	= "ORDER BY posts_data.".$_SESSION['ms_ordering']." ".(($_SESSION['ms_ordering'] == 'plays') ? "DESC" : "ASC");
+			$_order_by 	= "ORDER BY ".(($_SESSION['ms_ordering'] == "post_title") ? "posts" : "posts_data").".".$_SESSION['ms_ordering']." ".(($_SESSION['ms_ordering'] == 'plays') ? "DESC" : "ASC");
 			$_limit 	= "";
 			
 			
@@ -1053,10 +1053,15 @@ Description: Music Store is an online store for selling audio files: music, spee
 			
 			$width = floor(100/min($columns, max(count($results),1)));
 			$music_store .= "<div class='music-store-items'>";
+			$item_counter = 0;
 			foreach($results as $result){
 				$obj = new MSSong($result->ID);
 				$music_store .= "<div style='width:{$width}%;' class='music-store-item'>".$obj->display_content('store', $tpl, 'return')."</div>";
+				$item_counter++;
+				if($item_counter % $columns == 0)
+					$music_store .= "<div style='clear:both;'></div>";
 			}
+			$music_store .= "<div style='clear:both;'></div>";
 			$music_store .= "</div>";
 			$header .= "
 						<form method='post'>
@@ -1084,6 +1089,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 			$header .= "<div class='music-store-ordering'>".
 							__('Order by: ', MS_TEXT_DOMAIN).
 							"<select id='ordering_by' name='ordering_by' onchange='this.form.submit();'>
+								<option value='post_title' ".(($_SESSION['ms_ordering'] == 'post_title') ? "SELECTED" : "").">".__('Title', MS_TEXT_DOMAIN)."</option>
 								<option value='plays' ".(($_SESSION['ms_ordering'] == 'plays') ? "SELECTED" : "").">".__('Popularity', MS_TEXT_DOMAIN)."</option>
 								<option value='price' ".(($_SESSION['ms_ordering'] == 'price') ? "SELECTED" : "").">".__('Price', MS_TEXT_DOMAIN)."</option>
 							</select>
