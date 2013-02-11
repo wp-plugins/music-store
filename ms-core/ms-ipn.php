@@ -2,7 +2,8 @@
 	/* Short and sweet */
 	define('WP_USE_THEMES', false);
 	require('../../../../wp-blog-header.php');	
-  
+	echo 'Start IPN';
+	
 	$item_name = $_POST['item_name'];
 	$item_number = $_POST['item_number'];
 	$payment_status = $_POST['payment_status'];
@@ -13,16 +14,17 @@
 	$payer_email = $_POST['payer_email'];
 	$payment_type = $_POST['payment_type'];
 
-	if ($payment_status != 'Completed' && $payment_type != 'echeck') return;
-	if ($payment_type == 'echeck' && $payment_status == 'Completed') return;
+	if ($payment_status != 'Completed' && $payment_type != 'echeck') exit;
+	if ($payment_type == 'echeck' && $payment_status == 'Completed') exit;
 	
 	$price = -1;
 	
-	if(!isset($_GET['id']) || !isset($_GET['purchase_id'])) return;
+	if(!isset($_GET['id']) || !isset($_GET['purchase_id'])) exit;
 	
 	$id = $_GET['id'];
 	$obj = new MSSong($id);
-	if (!isset($obj->price) || $payment_amount != $obj->price) return;
+	if(!isset($obj->ID)) $obj = new MSCollection($id);
+	if (!isset($obj->price) || $payment_amount != $obj->price) exit;
 	
 	$str = "";
 	foreach ($_POST as $item => $value) $str .= $item."=".$value."\r\n";
