@@ -8,10 +8,10 @@
 		$file_path = MS_DOWNLOAD.'/'.$new_file_name;
 		
 		if(file_exists($file_path))
-			return MS_URL.'/ms-downloads/'.$new_file_name;
+			return MS_URL.'/ms-downloads/'.$new_file_name.'?param=nocache';
 		
 		if(file_put_contents($file_path, file_get_contents($file))){
-			return MS_URL.'/ms-downloads/'.$new_file_name;
+			return MS_URL.'/ms-downloads/'.$new_file_name.'?param=nocache';
 		}
 		return false;
 	}
@@ -47,15 +47,27 @@
 		if($purchase){ // Exists the purchase
 			$id = $purchase->product_id;
 			$obj = new MSSong($id);
+			if(!isset($obj->ID)) $obj = new MSCollection($id);
 			if(!isset($obj->ID)) return;
 			
 			$urls = array();
 			
-			$songObj = new stdClass();
-			if(isset($obj->file)){ 
-				$songObj->title = ms_song_title($obj);
-				$songObj->link  = $obj->file;
-				$urls[] = $songObj;
+			if($obj->post_type == 'ms_song'){
+				$songObj = new stdClass();
+				if(isset($obj->file)){ 
+					$songObj->title = ms_song_title($obj);
+					$songObj->link  = $obj->file;
+					$urls[] = $songObj;
+				}	
+			}else{
+				foreach($obj->song as $song){
+					$songObj = new stdClass();
+					if(isset($song->file)){ 
+						$songObj->title = ms_song_title($song);
+						$songObj->link  = $song->file;
+						$urls[] = $songObj;
+					}	
+				}
 			}
 			
 			$download_links_str = '';
