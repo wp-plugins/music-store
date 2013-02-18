@@ -42,7 +42,7 @@
 		
 		ms_remove_download_links();
 		
-		$purchase = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".$wpdb->prefix.MSDB_PURCHASE." WHERE purchase_id=%d", $_GET['purchase_id']));	
+		$purchase = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".$wpdb->prefix.MSDB_PURCHASE." WHERE purchase_id=%s", $_GET['purchase_id']));	
 		
 		if($purchase){ // Exists the purchase
 			$id = $purchase->product_id;
