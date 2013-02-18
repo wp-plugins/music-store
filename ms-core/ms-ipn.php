@@ -40,7 +40,7 @@
 							'amount'	  => $payment_amount,
 							'paypal_data' => $str
 						),
-						array('%d', '%d', '%s', '%s', '%f', '%s')
+						array('%d', '%s', '%s', '%s', '%f', '%s')
 					))
 	{
 		// Increase sales in elements
