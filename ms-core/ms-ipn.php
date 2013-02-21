@@ -22,8 +22,20 @@
 	if(!isset($_GET['id']) || !isset($_GET['purchase_id'])) exit;
 	
 	$id = $_GET['id'];
-	$obj = new MSSong($id);
-	if(!isset($obj->ID)) $obj = new MSCollection($id);
+	$_post = get_post($id);
+	if(is_null($_post)) exit;
+	switch ($_post->post_type){
+		case "ms_song":
+			$obj = new MSSong($id);
+		break;
+		case "ms_collection":
+			$obj = new MSCollection($id);
+		break;
+		default:
+			exit;
+		break;
+	}
+	
 	if (!isset($obj->price) || $payment_amount != $obj->price) exit;
 	
 	$str = "";
