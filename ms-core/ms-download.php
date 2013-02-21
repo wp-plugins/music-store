@@ -46,9 +46,20 @@
 		
 		if($purchase){ // Exists the purchase
 			$id = $purchase->product_id;
-			$obj = new MSSong($id);
-			if(!isset($obj->ID)) $obj = new MSCollection($id);
-			if(!isset($obj->ID)) return;
+			
+			$_post = get_post($id);
+			if(is_null($_post)) return;
+			switch ($_post->post_type){
+				case "ms_song":
+					$obj = new MSSong($id);
+				break;
+				case "ms_collection":
+					$obj = new MSCollection($id);
+				break;
+				default:
+					return;
+				break;
+			}
 			
 			$urls = array();
 			
