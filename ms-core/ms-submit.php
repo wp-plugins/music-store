@@ -2,6 +2,7 @@
 	/* Short and sweet */
 	define('WP_USE_THEMES', false);
 	require('../../../../wp-blog-header.php');	
+	header("HTTP/1.0 200 OK");
 	
 	function make_seed() {
 		list($usec, $sec) = explode(' ', microtime());
