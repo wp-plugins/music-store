@@ -1,6 +1,7 @@
 <?php
 	/* Short and sweet */
 	require('../../../../wp-blog-header.php');	
+	header("HTTP/1.0 200 OK");
 	
 	function ms_copy_download_links($file){
 		$ext  = pathinfo($file, PATHINFO_EXTENSION);
