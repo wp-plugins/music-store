@@ -353,7 +353,7 @@ if(!class_exists('MSSong')){
 						'price' 	=> $_POST['ms_price'],
 						'year'      => $_POST['ms_year']
 					);
-			$format = array('%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s');
+			$format = array('%s', '%s', '%s', '%d', '%s', '%s', '%s', '%s', '%s');
 			$table = $wpdb->prefix.MSDB_POST_DATA;
 			if(0 < $wpdb->get_var( "SELECT COUNT(*) FROM $table WHERE id=$id;") ){
 				// Set an update query
