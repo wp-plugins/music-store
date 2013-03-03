@@ -990,19 +990,42 @@ Description: Music Store is an online store for selling audio files: music, spee
 				$connector = "";
 				if($genre !== 'all'){
 					// Search for genres assigned directly to the posts
-					$_where .= $connector."(taxonomy.taxonomy='ms_genre' AND terms.slug='$genre')";
+					$_where .= $connector."(taxonomy.taxonomy='ms_genre' AND ";
+					
+					if(is_numeric($genre))
+						$_where .= "terms.term_id='$genre'";
+					else
+						$_where .= "terms.slug='$genre'";	
+					
+					$_where .= ")";
+					
 					$connector = " OR ";
 				}
 				
 				if($artist !== 'all'){
 					// Search for artist assigned directly to the posts
-					$_where .= $connector."(taxonomy.taxonomy='ms_artist' AND terms.slug='$artist')";
+					$_where .= $connector."(taxonomy.taxonomy='ms_artist' AND ";
+					
+					if(is_numeric($artist))
+						$_where .= "terms.term_id='$artist'";
+					else
+						$_where .= "terms.slug='$artist'";	
+					
+					$_where .= ")";
+					
 					$connector = " OR ";
 				}
 				
 				if($album !== 'all'){
 					// Search for albums assigned directly to the posts
-					$_where .= $connector."(taxonomy.taxonomy='ms_album' AND terms.slug='$album')";
+					$_where .= $connector."(taxonomy.taxonomy='ms_album' AND ";
+					
+					if(is_numeric($album))
+						$_where .= "terms.term_id='$album'";
+					else
+						$_where .= "terms.slug='$album'";	
+					
+					$_where .= ")";
 				}
 				
 				$_where .= ")";
@@ -1129,18 +1152,14 @@ Description: Music Store is an online store for selling audio files: music, spee
 		* Display content of songs through templates
 		*/
 		function display_content($content){
-			global $post;
-			$tpl = new tpleng(dirname(__FILE__).'/ms-templates/', 'comment');
-			
-			switch($post->post_type){
-				case "ms_song":
-					$song = new MSSong($post->ID);
-					$song->display_content(((is_singular()) ? 'single' : 'multiple'), $tpl);
-				break;
-				default:
-					return $content;
-				break;
-			}
+			global $id, $post;
+			if($id && $post && $post->post_type == 'ms_song'){
+				$tpl = new tpleng(dirname(__FILE__).'/ms-templates/', 'comment');
+				$song = new MSSong($post->ID);
+				$song->display_content(((is_singular()) ? 'single' : 'multiple'), $tpl);
+			}else{
+				return $content;
+			}	
 		} // End display_content
 		
 
