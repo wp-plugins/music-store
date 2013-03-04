@@ -570,7 +570,6 @@ Description: Music Store is an online store for selling audio files: music, spee
 												<td><img src="<?php print MS_URL; ?>/ms-core/images/skin3.png" /></td>
 											</tr>
 										</table>
-										<input type="text" name="ms_items_page" value="<?php echo esc_attr(get_option('ms_items_page', MS_ITEMS_PAGE)); ?>" />
 									</td>
 								</tr>
 								<tr valign="top">
