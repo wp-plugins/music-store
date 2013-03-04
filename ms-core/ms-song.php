@@ -59,6 +59,15 @@ if(!class_exists('MSSong')){
 				case 'album':
 					return $this->album;
 				break;
+				case 'cover':
+				case 'file':
+				case 'demo':
+					if(isset($this->song_data[$name])){
+						return $this->get_file_url($this->song_data[$name]);
+					}else{
+						return null;
+					}
+				break;
 				default:
 					if(isset($this->song_data[$name])){
 						return $this->song_data[$name];
@@ -92,6 +101,13 @@ if(!class_exists('MSSong')){
 		/*
 		* Display content
 		*/
+		function get_file_url($url){
+			if(preg_match('/attachment_id=(\d+)/', $url, $matches)){
+				return wp_get_attachment_url( $matches[1]);
+			}
+			return $url;
+		} // End get_file_url
+		
 		function display_content($mode, $tpl_engine, $output='echo'){
 			$action  = MS_URL.'/ms-core/ms-submit.php';
 			$song_arr = array(
