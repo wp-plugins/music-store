@@ -1,6 +1,6 @@
 === Music Store ===
 Contributors: codepeople
-Tags: ecommerce, e-commerce, audio, paypal, security, music, shop
+Tags: ecommerce, e-commerce, audio, paypal, music, shop
 Requires at least: 3.0.5
 Tested up to: 3.5.1
 Stable tag: 1.0.1
