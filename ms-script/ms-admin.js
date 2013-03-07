@@ -53,7 +53,7 @@
 							c 	= $('#columns'),
 							g   = $('#genre'),
 							l   = $('#load'),
-							sc  = '[music_store ';
+							sc  = '[music_store';
 
 						var v = c.val();
 						if(/\d+/.test(v) && v > 1) sc += ' columns='+v; 

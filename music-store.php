@@ -849,7 +849,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 				wp_enqueue_script('ms-admin-script', plugin_dir_url(__FILE__).'ms-script/ms-admin.js', array('jquery'));
 			}
 			if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
-				wp_enqueue_script('ms-admin-script', plugin_dir_url(__FILE__).'ms-script/ms-admin.js', array('jquery'));
+				wp_enqueue_script('ms-admin-script', plugin_dir_url(__FILE__).'ms-script/ms-admin.js', array('jquery', 'jquery-ui-core', 'jquery-ui-dialog', 'media-upload'));
 				
 				if($post->post_type == "ms_song"){
 					// Scripts and styles required for metaboxs
