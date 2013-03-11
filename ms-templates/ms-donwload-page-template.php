@@ -3,7 +3,7 @@ get_header();
 global $download_links_str;
 ?>
 
-	<div id="primary" class="site-content">
+	<div class="site-content">
 		<div id="content" role="main">
 			<div class="entry-header">
 				<h1 class="entry-title"><?PHP _e('Download the purchased products', MS_TEXT_DOMAIN);	?></h1>

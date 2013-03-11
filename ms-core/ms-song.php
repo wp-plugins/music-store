@@ -110,9 +110,10 @@ if(!class_exists('MSSong')){
 		
 		function display_content($mode, $tpl_engine, $output='echo'){
 			$action  = MS_URL.'/ms-core/ms-submit.php';
+			$currency_symbol = get_option('ms_paypal_currency_symbol', MS_PAYPAL_CURRENCY_SYMBOL);
 			$song_arr = array(
 				'title' => $this->post_title,
-				'price' => $this->price.get_option('ms_paypal_currency', MS_PAYPAL_CURRENCY),
+				'price' => ((!empty($currency_symbol)) ? $currency_symbol.$this->price : $this->price.get_option('ms_paypal_currency', MS_PAYPAL_CURRENCY)),
 				'cover' => $this->cover,
 				'link'	=> $this->guid,
 				'popularity' => $this->plays
