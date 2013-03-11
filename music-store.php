@@ -22,6 +22,7 @@ Description: Music Store is an online store for selling audio files: music, spee
  define( 'MS_PAYPAL_EMAIL', '' );
  define( 'MS_PAYPAL_ENABLED', true );
  define( 'MS_PAYPAL_CURRENCY', 'USD' );
+ define( 'MS_PAYPAL_CURRENCY_SYMBOL', '$' );
  define( 'MS_PAYPAL_LANGUAGE', 'EN' );
  define( 'MS_PAYPAL_BUTTON', 'button_d.gif' );
  
@@ -487,6 +488,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 				update_option('ms_paypal_email', $_POST['ms_paypal_email']);
 				update_option('ms_paypal_button', $_POST['ms_paypal_button']);
 				update_option('ms_paypal_currency', $_POST['ms_paypal_currency']);
+				update_option('ms_paypal_currency_symbol', $_POST['ms_paypal_currency_symbol']);
 				update_option('ms_paypal_language', $_POST['ms_paypal_language']);
 				update_option('ms_paypal_enabled', ((isset($_POST['ms_paypal_enabled'])) ? true : false));
 				update_option('ms_notification_from_email', $_POST['ms_notification_from_email']);
@@ -621,6 +623,11 @@ Description: Music Store is an online store for selling audio files: music, spee
 							</tr>
 							
 							<tr valign="top">
+							<th scope="row"><?php _e('Currency Symbol', MS_TEXT_DOMAIN); ?></th>
+							<td><input type="text" name="ms_paypal_currency_symbol" value="<?php echo esc_attr(get_option('ms_paypal_currency_symbol', MS_PAYPAL_CURRENCY_SYMBOL)); ?>" /></td>
+							</tr>
+							
+							<tr valign="top">
 							<th scope="row"><?php _e('Paypal language', MS_TEXT_DOMAIN); ?></th>
 							<td><input type="text" name="ms_paypal_language" value="<?php echo esc_attr(get_option('ms_paypal_language', MS_PAYPAL_LANGUAGE)); ?>" /></td>
 							</tr>  
@@ -630,11 +637,32 @@ Description: Music Store is an online store for selling audio files: music, spee
 							<td><?php print $this->_paypal_buttons(); ?></td>
 							</tr>  
 							
+                            <tr valign="top">
+							<th scope="row"><?php _e("or use a shopping cart", MS_TEXT_DOMAIN); ?></th>
+							<td>
+								<input type='radio' value='shopping_cart' disabled /> 
+								<img src="<?php echo MS_URL; ?>/paypal_buttons/shopping_cart/button_e.gif" />  
+								<img src="<?php echo MS_URL; ?>/paypal_buttons/shopping_cart/button_f.gif" />
+                                <em style="color:#FF0000;"><?php _e('Only available for commercial version of plugin', MS_TEXT_DOMAIN); ?></em>
+							</td>
+							</tr> 
+							
 							
 							<tr valign="top">
 							<th scope="row"><?php _e('Download link valid for', MS_TEXT_DOMAIN); ?></th>
 							<td><input type="text" name="ms_old_download_link" value="<?php echo esc_attr(get_option('ms_old_download_link', MS_OLD_DOWNLOAD_LINK)); ?>" /> <?php _e('day(s)', MS_TEXT_DOMAIN)?></td>
-							</tr>  
+							</tr>
+
+                            <tr valign="top">
+							<th scope="row"><?php _e('Pack all purchased audio files as a single ZIP file', MS_TEXT_DOMAIN); ?></th>
+							<td><input type="checkbox" disabled >
+                            <em style="color:#FF0000;"><?php _e('Only available for commercial version of plugin', MS_TEXT_DOMAIN); ?></em>
+							<?php
+								if(!class_exists('ZipArchive'))
+									echo '<br /><span class="explain-text">'.__("Your server can't create Zipped files dynamically. Please, contact to your hosting provider for enable ZipArchive in the PHP script", MS_TEXT_DOMAIN).'</span>';
+							?>
+							</td>
+							</tr>    
 						 </table>  
 					  </div>
 					</div>
@@ -848,7 +876,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 			if($hook == "settings_page_music-store"){
 				wp_enqueue_script('ms-admin-script', plugin_dir_url(__FILE__).'ms-script/ms-admin.js', array('jquery'));
 			}
-			if ( $hook == 'post-new.php' || $hook == 'post.php' ) {
+			if ( $hook == 'post-new.php' || $hook == 'post.php' || $hook == 'index.php') {
 				wp_enqueue_script('ms-admin-script', plugin_dir_url(__FILE__).'ms-script/ms-admin.js', array('jquery', 'jquery-ui-core', 'jquery-ui-dialog', 'media-upload'));
 				
 				if($post->post_type == "ms_song"){
@@ -1043,29 +1071,37 @@ Description: Music Store is an online store for selling audio files: music, spee
 			// Create pagination section
 			if($items_page_selector && $items_page){
 				// Checking for page parameter or get page from session variables
-				if(isset($_GET['page_number'])){
+				// Clear the page number if filtering option change
+				if(isset($_POST['filter_by_type'])){
+					$_SESSION['ms_page_number'] = 0;
+				}elseif(isset($_GET['page_number'])){
 					$_SESSION['ms_page_number'] = $_GET['page_number'];
-				}if(!isset($_SESSION['ms_page_number'])){
+				}elseif(!isset($_SESSION['ms_page_number'])){
 					$_SESSION['ms_page_number'] = 0;
 				}
 				
 				$_limit = "LIMIT ".($_SESSION['ms_page_number']*$items_page).", $items_page";
 				
-				// Make page links
-				$page_links .= "<DIV class='music-store-pagination'>";
-				$page_href = '?'.((strlen($_SERVER['QUERY_STRING'])) ? preg_replace('/(&)?page_number=\d+/', '', $_SERVER['QUERY_STRING']).'&' : '');	
-				
 				// Get total records for pagination
 				$query = "SELECT COUNT(DISTINCT posts.ID) ".$_from." ".$_where;
 				$total = $wpdb->get_var($query);
-			
-				for($i=0, $h = ceil($total/max($items_page,1)); $i < $h; $i++){
-					if($_SESSION['ms_page_number'] == $i)
-						$page_links .= "<span class='page-selected'>".($i+1)."</span>";
-					else	
-						$page_links .= "<a class='page-link' href='".$page_href."page_number=".$i."'>".($i+1)."</a>";
-				}
-				$page_links .= "</DIV>";
+				$total_pages = ceil($total/max($items_page,1));
+				
+				if($total_pages > 1){
+				
+					// Make page links
+					$page_links .= "<DIV class='music-store-pagination'>";
+					$page_href = '?'.((strlen($_SERVER['QUERY_STRING'])) ? preg_replace('/(&)?page_number=\d+/', '', $_SERVER['QUERY_STRING']).'&' : '');	
+					
+					
+					for($i=0, $h = $total_pages; $i < $h; $i++){
+						if($_SESSION['ms_page_number'] == $i)
+							$page_links .= "<span class='page-selected'>".($i+1)."</span>";
+						else	
+							$page_links .= "<a class='page-link' href='".$page_href."page_number=".$i."'>".($i+1)."</a>";
+					}
+					$page_links .= "</DIV>";
+				}	
 			}
 			
 			// Create items section
