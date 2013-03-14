@@ -786,7 +786,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 					</div>	
 					<!-- PURCHASE LIST -->
 					<div class="postbox">
-						<h3 class='hndle' style="padding:5px;"><span><?php _e('Store page config', MS_TEXT_DOMAIN); ?></span></h3>
+						<h3 class='hndle' style="padding:5px;"><span><?php _e('Store sales report', MS_TEXT_DOMAIN); ?></span></h3>
 						<div class="inside">
 							<table class="form-table" style="border-bottom:1px solid #CCC;margin-bottom:10px;">
 								<THEAD>
