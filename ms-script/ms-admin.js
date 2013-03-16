@@ -38,7 +38,6 @@
 		}
 		
 		window ['open_insertion_music_store_window'] = function(){
-		
 			var tags = music_store.tags,
 				cont = $(tags.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"'));
 			
@@ -46,6 +45,9 @@
 				dialogClass: 'wp-dialog',
 				modal: true,
 				closeOnEscape: true,
+                close: function(){
+                    $(this).remove();
+                },
 				buttons: [
 					{text: 'OK', click: function() {
 						var a   = $('#artist'),
