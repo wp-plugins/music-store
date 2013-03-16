@@ -873,7 +873,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 		*/
 		function admin_resources($hook){
 			global $post;
-			if($hook == "settings_page_music-store"){
+			if(strpos($hook, "music-store") !== false){
 				wp_enqueue_script('ms-admin-script', plugin_dir_url(__FILE__).'ms-script/ms-admin.js', array('jquery'));
 			}
 			if ( $hook == 'post-new.php' || $hook == 'post.php' || $hook == 'index.php') {
