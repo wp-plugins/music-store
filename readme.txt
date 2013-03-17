@@ -1,5 +1,6 @@
 === Music Store ===
 Contributors: codepeople
+Donate link: http://wordpress.dwbooster.com/content-tools/music-store
 Tags: ecommerce, e-commerce, audio, paypal, music, shop
 Requires at least: 3.0.5
 Tested up to: 3.5.1
