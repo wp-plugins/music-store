@@ -113,7 +113,6 @@ if(!class_exists('MSSong')){
 			$currency_symbol = get_option('ms_paypal_currency_symbol', MS_PAYPAL_CURRENCY_SYMBOL);
 			$song_arr = array(
 				'title' => $this->post_title,
-				'price' => ((!empty($currency_symbol)) ? $currency_symbol.$this->price : $this->price.get_option('ms_paypal_currency', MS_PAYPAL_CURRENCY)),
 				'cover' => $this->cover,
 				'link'	=> $this->guid,
 				'popularity' => $this->plays
@@ -132,11 +131,23 @@ if(!class_exists('MSSong')){
 				$tpl_engine->set_loop('artists', $artists);
 			}
 				
-			if(get_option('ms_paypal_enabled') && get_option('ms_paypal_email') && !empty($this->file) && !empty($this->price)){
-				$paypal_button = MS_URL.'/paypal_buttons/'.get_option('ms_paypal_button', MS_PAYPAL_BUTTON);
-				$song_arr['salesbutton'] = '<form action="'.$action.'" method="post"><input type="hidden" name="ms_product_type" value="single" /><input type="hidden" name="ms_product_id" value="'.$this->id.'" /><input type="image" src="'.$paypal_button.'" style="padding-top:5px;" /></form>';
+            if(get_option('ms_paypal_enabled') && get_option('ms_paypal_email')){
+                $paypal_enabled = true;
+            }else{
+                $paypal_enabled = false;
+            }
+            
+            if(!empty($this->file)){
+                if(get_option('ms_paypal_enabled') && get_option('ms_paypal_email') && !empty($this->price)){
+                    $song_arr['price'] = ((!empty($currency_symbol)) ? $currency_symbol.$this->price : $this->price.get_option('ms_paypal_currency', MS_PAYPAL_CURRENCY));
+				
+                    $paypal_button = MS_URL.'/paypal_buttons/'.get_option('ms_paypal_button', MS_PAYPAL_BUTTON);
+                    $song_arr['salesbutton'] = '<form action="'.$action.'" method="post"><input type="hidden" name="ms_product_type" value="single" /><input type="hidden" name="ms_product_id" value="'.$this->id.'" /><input type="image" src="'.$paypal_button.'" style="padding-top:5px;" /></form>';
+                }else{
+                    $song_arr['salesbutton']  = '<a href="'.$this->file.'" target="_blank">'.__('Download Here', MS_TEXT_DOMAIN).'</a>';
+                }
 			}
-			
+            
 			if($mode == 'store' || $mode == 'multiple'){
 				if($mode == 'store')
 					$tpl_engine->set_file('song', 'song.tpl.html');
@@ -343,13 +354,13 @@ if(!class_exists('MSSong')){
 		*/
 		public static function save_data(){
 			global $wpdb, $post;
-
+var_dump('hreererererereererer');
 			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
 			return;
 
 			if ( !wp_verify_nonce( $_POST['ms_song_box_content_nonce'], plugin_basename( __FILE__ ) ) )
 			return;
-
+var_dump($_POST);
 			if ( 'page' == $_POST['post_type'] ) {
 				if ( !current_user_can( 'edit_page', $post_id ) )
 				return;
