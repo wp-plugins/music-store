@@ -1218,8 +1218,8 @@ Description: Music Store is an online store for selling audio files: music, spee
 		* Remove title from songs
 		*/
 		function display_title($title){
-			global $id, $post;
-			if($id && $post && ($post->post_type == 'ms_song' || $post->post_type == 'ms_collection')){
+			global $post;
+			if(in_the_loop() && $post && ($post->post_type == 'ms_song' || $post->post_type == 'ms_collection')){
 				return '';
 			}else{
 				return $title;
