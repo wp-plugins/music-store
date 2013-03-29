@@ -123,6 +123,8 @@ Description: Music Store is an online store for selling audio files: music, spee
 			add_meta_box('ms_song_metabox', __("Song's data", MS_TEXT_DOMAIN), array(&$this, 'metabox_form'), 'ms_song', 'normal', 'high');
 			add_action('save_post', array(&$this, 'save_data'));
 			
+            add_meta_box('ms_song_metabox_discount', __("Programming Discounts", MS_TEXT_DOMAIN), array(&$this, 'metabox_discount'), 'ms_song', 'normal', 'high');
+            
 			if (current_user_can('delete_posts')) add_action('delete_post', array(&$this, 'delete_post'));
 			
 			// Load admin resources
@@ -394,13 +396,18 @@ Description: Music Store is an online store for selling audio files: music, spee
 		function metabox_form($obj){
 			global $post;
 			
-			switch($obj->post_type){
-				case 'ms_song':
-					MSSong::print_metabox();
-				break;
+			if($obj->post_type == 'ms_song'){
+				MSSong::print_metabox();
 			}
 			
 		} // End metabox_form
+        
+        function metabox_discount($obj){
+			if($obj->post_type == 'ms_song'){
+				MSSong::print_discount_metabox();
+			}
+		} // End metabox_form
+		
 		
 /** SETTINGS PAGE FOR MUSIC STORE CONFIGURATION AND SUBMENUS**/		
 		
@@ -666,7 +673,52 @@ Description: Music Store is an online store for selling audio files: music, spee
 						 </table>  
 					  </div>
 					</div>
-					
+					<?php $currency = get_option('ms_paypal_currency', MS_PAYPAL_CURRENCY); ?>
+                    <!--DISCOUNT BOX -->
+                    <div class="postbox">
+                        <h3 class='hndle' style="padding:5px;"><span><?php _e('Discount Settings', MS_TEXT_DOMAIN); ?></span></h3>
+						<div class="inside">
+                            <em style="color:#FF0000;"><?php _e('The discounts are only available for commercial version of plugin'); ?></em>
+                            <div><input type="checkbox" DISABLED /> <?php _e('Display discount promotions in the music store page', MS_TEXT_DOMAIN)?></div>
+                            <h4><?php _e('Scheduled Discounts', MS_TEXT_DOMAIN);?></h4>
+                            <input type="hidden" name="ms_discount_list" id="ms_discount_list" />
+                            <table class="form-table ms_discount_table" style="border:1px dotted #dfdfdf;">
+                                <tr>
+                                    <td style="font-weight:bold;"><?php _e('Percent of discount', MS_TEXT_DOMAIN); ?></td>
+                                    <td style="font-weight:bold;"><?php _e('In Sales over than ... ', MS_TEXT_DOMAIN); echo($currency); ?></td>
+                                    <td style="font-weight:bold;"><?php _e('Valid from dd/mm/yyyy', MS_TEXT_DOMAIN); ?></td>
+                                    <td style="font-weight:bold;"><?php _e('Valid to dd/mm/yyyy', MS_TEXT_DOMAIN); ?></td>
+                                    <td style="font-weight:bold;"><?php _e('Promotional text', MS_TEXT_DOMAIN); ?></td>
+                                    <td style="font-weight:bold;"><?php _e('Status', MS_TEXT_DOMAIN); ?></td>
+                                    <td></td>
+                                </tr>
+                            </table>
+                            <table class="form-table">
+                                <tr valign="top">
+                                    <th scope="row"><?php _e('Percent of discount (*)', MS_TEXT_DOMAIN); ?></th>
+                                    <td><input type="text" DISABLED /> %</td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?php _e('Valid for sales over than (*)', MS_TEXT_DOMAIN); ?></th>
+                                    <td><input type="text" DISABLED /> <?php echo $currency; ?></td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?php _e('Valid from (dd/mm/yyyy)', MS_TEXT_DOMAIN); ?></th>
+                                    <td><input type="text" DISABLED /></td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?php _e('Valid to (dd/mm/yyyy)', MS_TEXT_DOMAIN); ?></th>
+                                    <td><input type="text" DISABLED /></td>
+                                </tr>
+                                <tr valign="top">
+                                    <th scope="row"><?php _e('Promotional text', MS_TEXT_DOMAIN); ?></th>
+                                    <td><textarea DISABLED cols="60"></textarea></td>
+                                </tr>
+                                <tr><td colspan="2"><input type="button" class="button" value="<?php _e('Add/Update Discount'); ?>" DISABLED /></td></tr>
+                            </table>
+                        </div>
+                    </div>
+                    
 					<!-- NOTIFICATIONS BOX -->
 					<div class="postbox">
 						<h3 class='hndle' style="padding:5px;"><span><?php _e('Notification Settings', MS_TEXT_DOMAIN); ?></span></h3>
