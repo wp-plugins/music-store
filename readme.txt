@@ -26,6 +26,7 @@ Music Store is an online store for selling audio files: music, speeches, narrati
 *	Allows to associate additional information to the products. 
 *	Includes an audio player that supports formats: OGA, MP3, WAV, WMA.
 *	Offers secure Audio Playback that prevents unauthorized downloading of audio files.
+*   Allows to create discounts.
 *	Supports all most popular web browsers: Internet Explorer, Firefox, Chrome, Safari, Opera, and mobile devices such as iPhone, iPad and Android. For older browsers, the media player provides support for Flash and Silverlight.
 *	Includes a module to track sales statistics.
 
@@ -66,6 +67,15 @@ The setup interface  includes the following fields:
 *   Currency: Symbol of the currency in which payments are accepted.
 *   PayPal language: Preferred language of the PayPal interface. 
 *   PayPal button: Select the PayPal button design. 
+
+**Discount Settings**
+
+*   Display discount promotions in the music store page: Allows to display all discounts promotions at the bottom of music store.
+*   Percent of discount: Enter the percent of discount to the sell price.
+*   Valid for sales over than: Condition for apply the discount.
+*   Valid from: First day to apply the discount rules.
+*   Valid to: Last day to apply the discount rules.
+*   Promotional text: Text for promote the discounts.
 
 **Notification Settings**, both for buyers to complete a payment, and the store manager
  
@@ -108,6 +118,13 @@ Note: The album field is purely informative and has no impact on collections for
 *   Publication Year: Enter the year of the song.
 *   Additional Information: URL of a webpage with additional information about the song.
 
+To define discounts in product's price for specific dates.
+
+*   New price: The price of product in discount dates.
+*   Valid from: First day of discounting.
+*   Valid to: Last day of discounting.
+*   Promotional text: Text for promote the discounts.
+
 The column on the right includes a form to enter the song's genre.
 
 **Creating collections**
@@ -126,6 +143,13 @@ Collection setup interface: (screenshot-5):
 *   Cover: URL of the cover image. The button associated with the field displays the WordPress media gallery making it easy to select the file.
 *   Publication Year: Enter the year of the collection in case it represents an album.
 *   Additional Information: URL to a webpage with additional information on the collection.
+
+To define discounts in product's price for specific dates.
+
+*   New price: The price of product in discount dates.
+*   Valid from: First day of discounting.
+*   Valid to: Last day of discounting.
+*   Promotional text: Text for promote the discounts.
 
 The column on the right includes a form to enter the collection’s genre.
 

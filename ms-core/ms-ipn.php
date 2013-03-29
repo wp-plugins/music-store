@@ -37,7 +37,7 @@
 		break;
 	}
 	
-	if (!isset($obj->price) || $payment_amount != $obj->price) exit;
+	if (!isset($obj->price) || abs($payment_amount - $obj->price) > 0.2) exit;
 	
 	$str = "";
 	foreach ($_POST as $item => $value) $str .= $item."=".$value."\r\n";

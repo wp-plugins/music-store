@@ -346,6 +346,43 @@ if(!class_exists('MSSong')){
 			';
 		} // End print_metabox
 		
+        public static function print_discount_metabox(){
+            $currency = get_option('ms_paypal_currency', MS_PAYPAL_CURRENCY);
+?>        
+            <em style="color:#FF0000;"><?php _e('The discounts are only available for commercial version of plugin'); ?></em>
+            <h4><?php _e('Scheduled Discounts', MS_TEXT_DOMAIN);?></h4>
+            <table class="form-table ms_discount_table" style="border:1px dotted #dfdfdf;">
+                <tr>
+                    <td style="font-weight:bold;"><?php _e('New price in '.$currency, MS_TEXT_DOMAIN); ?></td>
+                    <td style="font-weight:bold;"><?php _e('Valid from dd/mm/yyyy', MS_TEXT_DOMAIN); ?></td>
+                    <td style="font-weight:bold;"><?php _e('Valid to dd/mm/yyyy', MS_TEXT_DOMAIN); ?></td>
+                    <td style="font-weight:bold;"><?php _e('Promotional text', MS_TEXT_DOMAIN); ?></td>
+                    <td style="font-weight:bold;"><?php _e('Status', MS_TEXT_DOMAIN); ?></td>
+                    <td></td>
+                </tr>
+            </table>    
+            <table class="form-table">
+                <tr valign="top">
+                    <th scope="row"><?php _e('New price (*)', MS_TEXT_DOMAIN); ?></th>
+                    <td><input type="text" DISABLED /> <?php echo $currency; ?></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row"><?php _e('Valid from (dd/mm/yyyy)', MS_TEXT_DOMAIN); ?></th>
+                    <td><input type="text" DISABLED /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row"><?php _e('Valid to (dd/mm/yyyy)', MS_TEXT_DOMAIN); ?></th>
+                    <td><input type="text" DISABLED /></td>
+                </tr>
+                <tr valign="top">
+                    <th scope="row"><?php _e('Promotional text', MS_TEXT_DOMAIN); ?></th>
+                    <td><textarea DISABLED cols="60"></textarea></td>
+                </tr>
+                <tr><td colspan="2"><input type="button" class="button" value="<?php _e('Add/Update Discount'); ?>" DISABLED /></td></tr>
+            </table>
+<?php            
+        } // End print_discount_metabox
+        
 		/*
 		* Save the song data
 		*
