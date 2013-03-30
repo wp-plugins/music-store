@@ -1239,11 +1239,11 @@ Description: Music Store is an online store for selling audio files: music, spee
 		* Display content of songs through templates
 		*/
 		function display_content($content){
-			global $id, $post;
-			if($id && $post && $post->post_type == 'ms_song'){
+			global $post;
+			if(in_the_loop() && $post && $post->post_type == 'ms_song'){
 				$tpl = new tpleng(dirname(__FILE__).'/ms-templates/', 'comment');
 				$song = new MSSong($post->ID);
-				$song->display_content(((is_singular()) ? 'single' : 'multiple'), $tpl);
+				return $song->display_content(((is_singular()) ? 'single' : 'multiple'), $tpl, 'return');
 			}else{
 				return $content;
 			}	
