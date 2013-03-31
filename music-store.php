@@ -106,7 +106,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 				$this->load_templates(); // Load the music store template for songs display
 				
 				// Load public resources
-				add_action( 'wp_enqueue_scripts', array(&$this, 'public_resources') );
+				add_action( 'wp_enqueue_scripts', array(&$this, 'public_resources'), 99);
 			}
 			// Init action
 			do_action( 'musicstore_init' );
