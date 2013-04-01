@@ -51,7 +51,7 @@ Description: Music Store is an online store for selling audio files: music, spee
  
  include "ms-core/ms-functions.php";
  include "ms-core/ms-song.php";
- include "ms-core/music_store_tpleng.class.php";
+ include "ms-core/tpleng.class.php";
  
  if ( !class_exists( 'MusicStore' ) ) {
  	 /**
