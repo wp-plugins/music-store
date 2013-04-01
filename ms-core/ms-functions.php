@@ -1,6 +1,6 @@
 <?php
 
-function extract_attr_as_str($arr, $attr, $separator){
+function music_store_extract_attr_as_str($arr, $attr, $separator){
 	$result = '';
 	$c = count($arr);
 	if($c){
@@ -13,12 +13,12 @@ function extract_attr_as_str($arr, $attr, $separator){
 	}
 	
 	return $result;
-} // End extract_attr_as_str
+} // End music_store_extract_attr_as_str
 
-function get_img_id($url){
+function music_store_get_img_id($url){
 	global $wpdb;
 	$attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM " . $wpdb->prefix . "posts" . " WHERE guid='%s';", $url )); 
     return $attachment[0];
-} // End get_img_id
+} // End music_store_get_img_id
 
 ?>

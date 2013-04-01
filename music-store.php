@@ -51,7 +51,7 @@ Description: Music Store is an online store for selling audio files: music, spee
  
  include "ms-core/ms-functions.php";
  include "ms-core/ms-song.php";
- include "ms-core/tpleng.class.php";
+ include "ms-core/music_store_tpleng.class.php";
  
  if ( !class_exists( 'MusicStore' ) ) {
  	 /**
@@ -1159,7 +1159,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 			// Create items section
 			$query = $_select." ".$_from." ".$_where." ".$_order_by." ".$_limit;
 			$results = $wpdb->get_results($query);
-			$tpl = new tpleng(dirname(__FILE__).'/ms-templates/', 'comment');
+			$tpl = new music_store_tpleng(dirname(__FILE__).'/ms-templates/', 'comment');
 			
 			$width = floor(100/min($columns, max(count($results),1)));
 			$music_store .= "<div class='music-store-items'>";
@@ -1241,7 +1241,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 		function display_content($content){
 			global $post;
 			if(in_the_loop() && $post && $post->post_type == 'ms_song'){
-				$tpl = new tpleng(dirname(__FILE__).'/ms-templates/', 'comment');
+				$tpl = new music_store_tpleng(dirname(__FILE__).'/ms-templates/', 'comment');
 				$song = new MSSong($post->ID);
 				return $song->display_content(((is_singular()) ? 'single' : 'multiple'), $tpl, 'return');
 			}else{

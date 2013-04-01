@@ -492,13 +492,13 @@ var_dump($_POST);
 			
 			switch ($column){
 				case "artist":
-					echo extract_attr_as_str($obj->artist, 'name', ', ');		
+					echo music_store_extract_attr_as_str($obj->artist, 'name', ', ');		
 				break;
 				case "album":
-					echo extract_attr_as_str($obj->album, 'name', ', ');		
+					echo music_store_extract_attr_as_str($obj->album, 'name', ', ');		
 				break;
 				case "genre":
-					echo extract_attr_as_str($obj->genre, 'name', ', ');
+					echo music_store_extract_attr_as_str($obj->genre, 'name', ', ');
 				break;
 				case "plays":
 					echo $obj->plays;

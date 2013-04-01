@@ -6,7 +6,7 @@
 //
 // author:	Jonas Lasauskas as oryx
 // email:	oryx@mail.lt
-// web:		http://www.tpleng.tk/
+// web:		http://www.music_store_tpleng.tk/
 // varsion:	1.2
 //
 // COPYRIGHT
@@ -40,7 +40,7 @@
 //
 //------------------------------------------------------------------------
 
-class tpleng {
+class music_store_tpleng {
 
 
 	// parameters
@@ -60,7 +60,7 @@ class tpleng {
 	//------------------------------------------------------------------------
 	// initialize template engine
 	//------------------------------------------------------------------------
-	function tpleng ($root = './', $empty = 'empty') {
+	function music_store_tpleng ($root = './', $empty = 'empty') {
 
 		// root
 		$this->root = $root;
@@ -75,7 +75,7 @@ class tpleng {
 
 		} // switch empty
 
-	} // constructor :: tpleng
+	} // constructor :: music_store_tpleng
 
 
 
@@ -440,7 +440,7 @@ class tpleng {
 	//------------------------------------------------------------------------
 	function _error ($text, $type) {
 		if($this->debug)
-			echo("\n<br><code><font color='#FF9000' size='2'>tpleng $type :: $text</font></code><br>\n");
+			echo("\n<br><code><font color='#FF9000' size='2'>music_store_tpleng $type :: $text</font></code><br>\n");
 		if (strtolower($type) == 'fatal') { exit(); }
 
 	} // private :: error
