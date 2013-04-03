@@ -391,13 +391,11 @@ if(!class_exists('MSSong')){
 		*/
 		public static function save_data(){
 			global $wpdb, $post;
-var_dump('hreererererereererer');
 			if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
 			return;
 
 			if ( !wp_verify_nonce( $_POST['ms_song_box_content_nonce'], plugin_basename( __FILE__ ) ) )
 			return;
-var_dump($_POST);
 			if ( 'page' == $_POST['post_type'] ) {
 				if ( !current_user_can( 'edit_page', $post_id ) )
 				return;
