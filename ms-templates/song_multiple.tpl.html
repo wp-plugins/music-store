@@ -11,7 +11,14 @@
 	</div>
 	
 	<div class="right-column">
-		<!-- SONG TITLE -->
+		<!-- SONG DEMO -->
+        <tpl ifset="song.demo">
+        <div class="ms-player multiple">
+        {song.demo}	
+        </div>
+        </tpl ifset="song.demo">
+    
+        <!-- SONG TITLE -->
 		<tpl ifset="song.title">
 		<div class="song-title">
 			<a href="{song.link}">
