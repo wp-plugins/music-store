@@ -24,13 +24,12 @@
 .music-store-song .right-column{	float:left; padding-left:10px; width:-moz-calc(100% - 260px); width:-webkit-calc(100% - 260px);	width:calc(100% - 260px);}
 
 .music-store-song .song-title{font-weight:bold;}
-
 .music-store-song .song-title.single{font-weight:normal; font-size:1.7em;}
 .music-store-song .label{font-weight:normal; font-style:italic;}
 
 .music-store-song .song-artist ul,
 .music-store-song .song-album ul,
-.music-store-song .song-genre ul{padding:0; margin:0;}
+.music-store-song .song-genre ul{padding:0; margin:0;clear:both;}
 
 .music-store-song .song-artist li,
 .music-store-song .song-album li,
@@ -45,6 +44,7 @@
 .music-store-song .song-price{color: #990000; text-transform:lowercase;}
 
 .music-store-song .ms-player{margin-bottom:10px;}
+.music-store-song .ms-player.multiple{width:26px;overflow:hidden;float:left;margin:0 5px 0 0;}
 
 .music-store-song .song-price.single{font-size:0.75em;color: #333;display:inline-block;background-color:#EFEFEF;padding:0 10px;-webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; text-shadow: 1px 1px #FFF;}
 

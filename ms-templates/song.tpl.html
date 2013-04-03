@@ -8,13 +8,20 @@
 	</div>
 	</tpl ifset="song.cover">
 	
+    <!-- SONG DEMO -->
+    <tpl ifset="song.demo">
+        <div class="ms-player multiple">
+        {song.demo}	
+        </div>
+    </tpl ifset="song.demo">
+    
 	<!-- SONG TITLE -->
 	<tpl ifset="song.title">
 	<div class="song-title">
 		<a href="{song.link}">
 		{song.title}
 		</a>
-	</div>
+    </div>
 	</tpl ifset="song.title">
 	
 	<!-- SONG ARTIST -->
@@ -44,7 +51,7 @@
 	
 	<!-- SONG SALES BUTTONS -->
 	<tpl ifset="song.salesbutton">
-		<div class="song-payment-buttons">
+        <div class="song-payment-buttons">
 		{song.salesbutton}
 		</div>
 	</tpl ifset="song.salesbutton">

@@ -148,6 +148,10 @@ if(!class_exists('MSSong')){
                 }
 			}
             
+            $demo = $this->demo;
+			if($demo)
+                $song_arr['demo'] = '<audio preload="none" src="'.$demo.'"></audio>';
+            
 			if($mode == 'store' || $mode == 'multiple'){
 				if($mode == 'store')
 					$tpl_engine->set_file('song', 'song.tpl.html');
@@ -155,7 +159,7 @@ if(!class_exists('MSSong')){
 					$tpl_engine->set_file('song', 'song_multiple.tpl.html');
 					
 				$tpl_engine->set_var('song', $song_arr);
-			}elseif($mode == 'single'){
+            }elseif($mode == 'single'){
 				$this->plays += 1;
 				$tpl_engine->set_file('song', 'song_single.tpl.html');
 				$ms_main_page = get_option('ms_main_page', MS_MAIN_PAGE);
