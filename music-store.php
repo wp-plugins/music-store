@@ -173,7 +173,10 @@ Description: Music Store is an online store for selling audio files: music, spee
 				}
 			}
 			$this->_create_db_structure();
-		
+            
+            // Plugin options
+            update_option('ms_social_buttons', true);
+            
 		}  // End register
 		
 		/*
@@ -382,7 +385,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 		*/
 		function save_data(){
 			global $post;
-			if($post->post_type == 'ms_song'){
+			if(isset($post->post_type) && $post->post_type == 'ms_song'){
 				MSSong::save_data();
 			}
 		} // End save_data
@@ -507,6 +510,8 @@ Description: Music Store is an online store for selling audio files: music, spee
 				update_option('ms_old_download_link', $_POST['ms_old_download_link']);				
 				update_option('ms_secure_playback_text', $_POST['ms_secure_playback_text']);				
 				update_option('ms_file_percent', $_POST['ms_file_percent']);				
+                update_option('ms_social_buttons', ((isset($_POST['ms_social_buttons'])) ? true : false));
+                
 ?>				
 				<div class="updated" style="margin:5px 0;"><strong><?php _e("Settings Updated", MS_TEXT_DOMAIN); ?></strong></div>
 <?php				
@@ -601,6 +606,14 @@ Description: Music Store is an online store for selling audio files: music, spee
 										<em style="color:#FF0000;">
 										<?php _e('Only available for commercial version of plugin', MS_TEXT_DOMAIN); ?>
 										</em>
+										
+									</td>
+								</tr>
+                                <tr valign="top">
+									<th><?php _e('Share in social networks', MS_TEXT_DOMAIN); ?></th>
+									<td>
+										<input type="checkbox" name="ms_social_buttons" <?php echo ((get_option('ms_social_buttons')) ? 'CHECKED' : ''); ?> /><br />
+										<em><?php _e('The option enables the buttons for share the pages of songs and collections in social networks', MS_TEXT_DOMAIN); ?></em>
 										
 									</td>
 								</tr>

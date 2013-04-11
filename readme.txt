@@ -1,7 +1,7 @@
 === Music Store ===
 Contributors: codepeople
 Donate link: http://wordpress.dwbooster.com/content-tools/music-store
-Tags: ecommerce, e-commerce, audio, paypal, music, shop
+Tags: ecommerce,e-commerce,audio,paypal,music,shop,facebook,google,google+,twitter,social,social network
 Requires at least: 3.0.5
 Tested up to: 3.5.1
 Stable tag: 1.0.1
@@ -27,6 +27,8 @@ Music Store is an online store for selling audio files: music, speeches, narrati
 *	Includes an audio player that supports formats: OGA, MP3, WAV, WMA.
 *	Offers secure Audio Playback that prevents unauthorized downloading of audio files.
 *   Allows to create discounts.
+*   Allows to entering discount coupons.
+*   Allows to share the songs and collections in the social networks (like Facebook, Twitter and Google+).
 *	Supports all most popular web browsers: Internet Explorer, Firefox, Chrome, Safari, Opera, and mobile devices such as iPhone, iPad and Android. For older browsers, the media player provides support for Flash and Silverlight.
 *	Includes a module to track sales statistics.
 
@@ -59,6 +61,9 @@ The setup interface  includes the following fields:
 *   Allow multiple pages: Allows paging of music store products.
 *   Items per page: Defines the number of products per page in the Music Store.
 *   Player style: Select the audio player style from the list.
+*   Percent of audio used for protected playbacks: Percent of audio to play in secure mode (advanced version of plugin).
+*   Explain text for protected playbacks: Text displayed below the music player in secure mode (advanced version of plugin).
+*   Share in social networks: Display a group of buttons for sharing the songs and collections in the social networks(like Facebook, Twitter and Google+)
 
 **Payment gateway data**
 
@@ -67,8 +72,10 @@ The setup interface  includes the following fields:
 *   Currency: Symbol of the currency in which payments are accepted.
 *   PayPal language: Preferred language of the PayPal interface. 
 *   PayPal button: Select the PayPal button design. 
+*   or use a shopping cart: Allows to activate a shopping cart, in place of sell each product separately (advanced version of plugin).
+*   Pack all purchased audio files as a single ZIP file: Allows to download all files in the same purchase as only one zipped file. This option may be limited by configurations of the web server (advanced version of plugin).
 
-**Discount Settings**
+**Discount Settings (advanced version of plugin)**
 
 *   Display discount promotions in the music store page: Allows to display all discounts promotions at the bottom of music store.
 *   Percent of discount: Enter the percent of discount to the sell price.
@@ -76,6 +83,13 @@ The setup interface  includes the following fields:
 *   Valid from: First day to apply the discount rules.
 *   Valid to: Last day to apply the discount rules.
 *   Promotional text: Text for promote the discounts.
+
+**Coupon Settings (advanced version of plugin)**
+
+*   Percent of discount: Enter the percent of discount to the sell price.
+*   Coupon: Enter a valid coupon code.
+*   Valid from: The coupon is valid from start date.
+*   Valid to: The coupon is valid until end date.
 
 **Notification Settings**, both for buyers to complete a payment, and the store manager
  
@@ -118,7 +132,7 @@ Note: The album field is purely informative and has no impact on collections for
 *   Publication Year: Enter the year of the song.
 *   Additional Information: URL of a webpage with additional information about the song.
 
-To define discounts in product's price for specific dates.
+To define discounts in product's price for specific dates(advanced version of plugin).
 
 *   New price: The price of product in discount dates.
 *   Valid from: First day of discounting.
@@ -144,7 +158,7 @@ Collection setup interface: (screenshot-5):
 *   Publication Year: Enter the year of the collection in case it represents an album.
 *   Additional Information: URL to a webpage with additional information on the collection.
 
-To define discounts in product's price for specific dates.
+To define discounts in product's price for specific dates(advanced version of plugin).
 
 *   New price: The price of product in discount dates.
 *   Valid from: First day of discounting.
