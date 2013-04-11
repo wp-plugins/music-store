@@ -115,12 +115,18 @@ if(!class_exists('MSSong')){
 				'title' => $this->post_title,
 				'cover' => $this->cover,
 				'link'	=> $this->guid,
-				'popularity' => $this->plays
+				'popularity' => $this->plays,
+                'social' => null
 			);
 			
 			if($this->time) $song_arr['time'] = $this->time;
 			if($this->year) $song_arr['year'] = $this->year;
 			if($this->info) $song_arr['info'] = $this->info;
+            
+            if(get_option('ms_social_buttons')){
+                $song_arr['social'] = get_permalink( $this->id );
+            }
+            
 			
 			if(count($this->artist)){
 				$song_arr['has_artists'] = true;

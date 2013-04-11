@@ -196,7 +196,6 @@ class music_store_tpleng {
 	// parse variables, loops, blocks
 	//------------------------------------------------------------------------
 	function parse ($var_name, $output = 'echo', $file_name = 'output.htm') {
-
 		if (isset($this->vars[$var_name])) {
 			
 			$object = $this->vars[$var_name];
@@ -226,26 +225,15 @@ class music_store_tpleng {
 	// parse variables
 	//------------------------------------------------------------------------
 	function _parse_var ($object) {
-
-		$object_pieces = explode('{', $object);
-		$parsed_object = array_shift($object_pieces);
-		foreach ($object_pieces as $object_piece) {
-
-			list($var_name, $piece_end) = explode('}', $object_piece, 2);
-			if (isset($this->vars[$var_name])) {
-
-				$parsed_object .= $this->_parse_var($this->vars[$var_name]).$piece_end;
-
-			} else {
-
-				$parsed_object .= '{'.$var_name.'}'.$piece_end;
-
-			} // elseif
-
-		} // foreach
-		return($parsed_object);
-
-	} // private :: parse_var
+    	if(preg_match_all("/\{([^\{\}]+)\}/", $object, $matches)){
+            for($i=0; $i < count($matches[0]); $i++){
+                if(isset($this->vars[$matches[1][$i]]))
+                    $object = str_replace($matches[0][$i], $this->_parse_var($this->vars[$matches[1][$i]]), $object);
+            }
+        }
+        
+        return $object;
+    } // private :: parse_var
 
 
 
@@ -367,27 +355,30 @@ class music_store_tpleng {
 	// parse ifset tags
 	//------------------------------------------------------------------------
 	function _parse_ifset ($object, $vars, $loop_name = '') {
-
-		$object_pieces = explode('<tpl ifset="'.$loop_name, $object);
-		$parsed_object = array_shift($object_pieces);
-		foreach ($object_pieces as $object_piece) {
-
-			list($var_name, $end) = explode('">', $object_piece, 2);
-			list($ifset_text, $end) = explode('</tpl ifset="'.$loop_name.$var_name.'">', $end, 2);
-			if ( !isset($vars[$var_name]) ) {
-
-				$parsed_object .= $end;
-
-			} else {
-
-				$parsed_object .= $ifset_text.$end;
-
-			} // elseif
-
-		} // foreach
-		return($parsed_object);
-
-	} // private :: parse_ifset
+        
+        if(!empty($loop_name)) str_replace('.', '\.', $loop_name);
+        
+        while(preg_match('/<tpl\s+ifset=["\']'.$loop_name.'([^"\']+)["\']\s*>/', $object, $matches)){
+            $p = strpos($object, $matches[0]);
+            
+            if(isset($vars[$matches[1]])){
+                $object = substr_replace($object, '', $p, strlen($matches[0]));
+                if(preg_match('/<\/tpl\s+ifset=["\']'.$loop_name.$matches[1].'["\']\s*>/', $object, $matches_end)){
+                    $p = strpos($object, $matches_end[0]);
+                    $object = substr_replace($object, '', $p, strlen($matches_end[0]));
+                }
+            }else{
+                if(preg_match('/<\/tpl\s+ifset=["\']'.$loop_name.$matches[1].'["\']\s*>/', $object, $matches_end)){
+                    $pe = strpos($object, $matches_end[0])+strlen($matches_end[0]);
+                    $object = substr_replace($object, '', $p, $pe-$p);
+                }else{
+                    $object = substr_replace($object, '', $p, strlen($matches[0]));
+                }
+            }
+            
+        }
+        return $object;
+    } // private :: parse_ifset
 
 
 
