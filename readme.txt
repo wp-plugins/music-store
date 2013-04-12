@@ -21,13 +21,13 @@ Music Store is an online store for selling audio files: music, speeches, narrati
 **Features:**
 
 *	Allows selling audio files via PayPal.
-*	Allows selling collections. Audio files can be grouped into collections or albums.
+*	Allows selling collections. Audio files can be grouped into collections or albums (advanced version of plugin).
 *	Allows a custom setup of the online store, with ability to filter products by types of files: Singles or Collections, paging and sorting the results by popularity.
 *	Allows to associate additional information to the products. 
 *	Includes an audio player that supports formats: OGA, MP3, WAV, WMA.
 *	Offers secure Audio Playback that prevents unauthorized downloading of audio files.
-*   Allows to create discounts.
-*   Allows to entering discount coupons.
+*   Allows to create discounts (advanced version of plugin).
+*   Allows to entering discount coupons (advanced version of plugin).
 *   Allows to share the songs and collections in the social networks (like Facebook, Twitter and Google+).
 *	Supports all most popular web browsers: Internet Explorer, Firefox, Chrome, Safari, Opera, and mobile devices such as iPhone, iPad and Android. For older browsers, the media player provides support for Flash and Silverlight.
 *	Includes a module to track sales statistics.
