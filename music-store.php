@@ -1068,7 +1068,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 			// Query clauses 
 			$_select 	= "SELECT DISTINCT posts.ID, posts.post_type";
 			$_from 		= "FROM ".$wpdb->prefix."posts as posts,".$wpdb->prefix.MSDB_POST_DATA." as posts_data"; 
-			$_where 	= "WHERE posts.post_status='publish'";
+			$_where 	= "WHERE posts.ID = posts_data.id AND posts.post_status='publish'";
 			$_order_by 	= "ORDER BY ".(($_SESSION['ms_ordering'] == "post_title") ? "posts" : "posts_data").".".$_SESSION['ms_ordering']." ".(($_SESSION['ms_ordering'] == 'plays') ? "DESC" : "ASC");
 			$_limit 	= "";
 			
@@ -1225,27 +1225,13 @@ Description: Music Store is an online store for selling audio files: music, spee
 			return $header.$music_store.$page_links;
 		} // End load_store
 			
-/** MODIFY TITLE AND CONTENT OF POSTS LOADED **/
-		
-		/**
-		* Remove title from songs
-		*/
-		function display_title($title){
-			global $post;
-			if(in_the_loop() && $post && ($post->post_type == 'ms_song' || $post->post_type == 'ms_collection')){
-				return '';
-			}else{
-				return $title;
-			}
-			
-		} // End display_title
+/** MODIFY CONTENT OF POSTS LOADED **/
 		
 		/*
 		* Load the music store templates for songs display
 		*/
 		function load_templates(){
 			add_filter('the_content', array(&$this, 'display_content'));
-			add_filter('the_title', array(&$this, 'display_title'));
 		} // End load_templates
 		
 		/**

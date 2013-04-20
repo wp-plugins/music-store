@@ -224,7 +224,7 @@ if(!class_exists('MSSong')){
 			wp_nonce_field( plugin_basename( __FILE__ ), 'ms_song_box_content_nonce' );
 			$currency = get_option('ms_paypal_currency', MS_PAYPAL_CURRENCY);
 			echo '
-				<table class="form-table">
+				<table class="form-table product-data">
 					<tr>
 						<td>
 							'.__('Sales price:', MS_TEXT_DOMAIN).'

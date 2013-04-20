@@ -83,18 +83,17 @@
 		var file_path_field;
 		window["send_to_editor_default"] = window.send_to_editor;
 		
-		jQuery('.button_for_upload').live('click', function(){
+        jQuery('.product-data').bind('click', function(evt){
+            if($(evt.target).hasClass('button_for_upload')){
+                file_path_field = $(evt.target).parent().find('.file_path');
 
-			file_path_field = jQuery(this).parent().find('.file_path');
+                formfield = jQuery(file_path_field).attr('name');
 
-			formfield = jQuery(file_path_field).attr('name');
+                window.send_to_editor = window.send_to_download_url;
 
-			window.send_to_editor = window.send_to_download_url;
-
-			tb_show('', 'media-upload.php?post_id=' + music_store.post_id + '&amp;TB_iframe=true');
-			return false;
-		});
-		
-		
+                tb_show('', 'media-upload.php?post_id=' + music_store.post_id + '&amp;TB_iframe=true');
+                return false;
+            }    
+        });
 	})(jQuery)
 })

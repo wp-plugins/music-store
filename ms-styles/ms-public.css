@@ -20,6 +20,8 @@
 .music-store-song .right-column{	float:left; padding-left:10px; width:-moz-calc(100% - 260px); width:-webkit-calc(100% - 260px);	width:calc(100% - 160px);}
 
 /** COLUMNS ON SINGLE PAGES **/
+.ms_song  .entry-title{display:none;}
+
 .music-store-song .left-column{float:left;}
 .music-store-song .right-column{	float:left; padding-left:10px; width:-moz-calc(100% - 260px); width:-webkit-calc(100% - 260px);	width:calc(100% - 260px);}
 
