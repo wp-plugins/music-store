@@ -1,14 +1,14 @@
 === Music Store ===
 Contributors: codepeople
 Donate link: http://wordpress.dwbooster.com/content-tools/music-store
-Tags: ecommerce,e-commerce,audio,paypal,music,shop,facebook,google,google+,twitter,social,social network
+Tags:ecommerce,e-commerce,audio,paypal,music,shop,facebook,google,google+,twitter,social,social network
 Requires at least: 3.0.5
 Tested up to: 3.5.1
 Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. With Music Store your sales will be safe, with all the security PayPal offers.
+Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. In Music Store, secure payments with PayPal.
 
 == Description ==
 
