@@ -128,7 +128,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 			if (current_user_can('delete_posts')) add_action('delete_post', array(&$this, 'delete_post'));
 			
 			// Load admin resources
-			add_action('admin_enqueue_scripts', array(&$this, 'admin_resources'));
+			add_action('admin_enqueue_scripts', array(&$this, 'admin_resources'), 10);
 			
 			// Set a new media button for music store insertion
 			add_action('media_buttons', array(&$this, 'set_music_store_button'), 100);
@@ -930,7 +930,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 			wp_enqueue_style('ms-style', plugin_dir_url(__FILE__).'ms-styles/ms-public.css');
 			
 			wp_enqueue_script('ms-mediacore-script', plugin_dir_url(__FILE__).'ms-script/mediaelement-and-player.min.js', array('jquery'));
-			wp_enqueue_script('ms-media-script', plugin_dir_url(__FILE__).'ms-script/codepeople-plugins.js', array('ms-mediacore-script'), false, true);
+			wp_enqueue_script('ms-media-script', plugin_dir_url(__FILE__).'ms-script/codepeople-plugins.js', array('ms-mediacore-script'), null, true);
 		} // End public_resources
 		
 		/**
@@ -939,10 +939,12 @@ Description: Music Store is an online store for selling audio files: music, spee
 		function admin_resources($hook){
 			global $post;
 			if(strpos($hook, "music-store") !== false){
-				wp_enqueue_script('ms-admin-script', plugin_dir_url(__FILE__).'ms-script/ms-admin.js', array('jquery'));
+				wp_enqueue_script('ms-admin-script', plugin_dir_url(__FILE__).'ms-script/ms-admin.js', array('jquery'), null, true);
 			}
 			if ( $hook == 'post-new.php' || $hook == 'post.php' || $hook == 'index.php') {
-				wp_enqueue_script('ms-admin-script', plugin_dir_url(__FILE__).'ms-script/ms-admin.js', array('jquery', 'jquery-ui-core', 'jquery-ui-dialog', 'media-upload'));
+                wp_enqueue_script('jquery-ui-core');
+                wp_enqueue_script('jquery-ui-dialog');
+				wp_enqueue_script('ms-admin-script', plugin_dir_url(__FILE__).'ms-script/ms-admin.js', array('jquery', 'jquery-ui-core', 'jquery-ui-dialog', 'media-upload'), null, true);
 				
 				if($post->post_type == "ms_song"){
 					// Scripts and styles required for metaboxs
