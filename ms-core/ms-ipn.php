@@ -1,8 +1,4 @@
 <?php
-	/* Short and sweet */
-	define('WP_USE_THEMES', false);
-	require('../../../../wp-blog-header.php');	
-	header("HTTP/1.0 200 OK");
 	echo 'Start IPN';
 	
 	$item_name = $_POST['item_name'];
@@ -73,12 +69,12 @@
 	
 	$information_payer = "Product: {$item_name}\n".
 						 "Amount: {$payment_amount} {$payment_currency}\n".
-						 "Download Link: ".MS_URL."/ms-core/ms-download.php?purchase_id={$_GET['purchase_id']}\n";
+						 "Download Link: ".MS_H_URL."?ms-action=download&purchase_id={$_GET['purchase_id']}\n";
 						 
 	$information_seller = "Product: {$item_name}\n".
 						  "Amount: {$payment_amount} {$payment_currency}\n".
 						  "Buyer Email: {$payer_email}\n".
-						  "Download Link: ".MS_URL."/ms-core/ms-download.php?purchase_id={$_GET['purchase_id']}\n";
+						  "Download Link: ".MS_H_URL."?ms-action=download&purchase_id={$_GET['purchase_id']}\n";
 						 
 	$ms_notification_to_payer_message  = str_replace("%INFORMATION%", $information_payer, $ms_notification_to_payer_message);
 	$ms_notification_to_seller_message = str_replace("%INFORMATION%", $information_seller, $ms_notification_to_seller_message);

@@ -1,39 +1,49 @@
 <?php
-	/* Short and sweet */
-	require('../../../../wp-blog-header.php');	
-	header("HTTP/1.0 200 OK");
-	
+    if( !class_exists( 'WP_Http' ) ){
+        include_once( ABSPATH . WPINC. '/class-http.php' );
+    }    
+    
+    global $htaccess_accepted;
+    $htaccess_accepted = false;
+    
 	function ms_copy_download_links($file){
 		$ext  = pathinfo($file, PATHINFO_EXTENSION);
 		$new_file_name = md5($file).'.'.$ext;
 		$file_path = MS_DOWNLOAD.'/'.$new_file_name;
 		$rand = rand(1000, 1000000);
-		if(file_exists($file_path))
-			return MS_URL.'/ms-downloads/'.$new_file_name.'?param='.$rand;
-		
-		if(file_put_contents($file_path, file_get_contents($file))){
-			return MS_URL.'/ms-downloads/'.$new_file_name.'?param='.$rand;
-		}
+		if(file_exists($file_path)) return MS_URL.'/ms-downloads/'.$new_file_name.'?param='.$rand;
+		$request = new WP_Http;
+        $response = $request->request($file);
+		if($response['response']['code'] == 200 && file_put_contents($file_path, $response['body'])) return MS_URL.'/ms-downloads/'.$new_file_name.'?param='.$rand;
 		return false;
 	}
 	
 	function ms_remove_download_links(){
+        global $htaccess_accepted;
+        
 		$now = time();
 		$dif = get_option('ms_old_download_link', MS_OLD_DOWNLOAD_LINK)*86400;
-		$d = dir(MS_DOWNLOAD);
+		$d = @dir(MS_DOWNLOAD);
 		while (false !== ($entry = $d->read())) {
-			if($entry != '.' && $entry != '..' && $entry != '.htaccess'){
-				$file_name = MS_DOWNLOAD.'/'.$entry;
-				$date = filemtime($file_name);
-				if($now-$date >= $dif){ // Delete file
-					unlink($file_name);
-				}
+            // The music-store-icon.gif file allow to know that htaccess file is supported, so it should not be deleted
+			if($entry != '.' && $entry != '..' && $entry != 'music-store-icon.gif'){
+                if($entry == '.htaccess'){
+                    if(!$htaccess_accepted){ // Remove the htaccess if it is not accepted
+                        @unlink(MS_DOWNLOAD.'/'.$entry);
+                    }
+                }else{
+                    $file_name = MS_DOWNLOAD.'/'.$entry;
+                    $date = filemtime($file_name);
+                    if($now-$date >= $dif){ // Delete file
+                        @unlink($file_name);
+                    }
+                }    
 			}
 		}
 		$d->close();
-	}
+	} // End ms_remove_download_links
 	
-	function ms_song_title($song_obj){
+    function ms_song_title($song_obj){
 		if(isset($song_obj->post_title)) return $song_obj->post_title;
 		return pathinfo($song_obj->file, PATHINFO_FILENAME);
 	}
@@ -114,5 +124,10 @@
 			return $title;
 	}
 	
-	if(isset($_GET['purchase_id'])) ms_generate_downloads();
+	if(isset($_GET['purchase_id'])) {
+        $request = new WP_Http;
+        $response = $request->request(MS_URL.'/ms-downloads/music-store-icon.gif');
+        $htaccess_accepted = ($response['response']['code'] == 200);
+        ms_generate_downloads();
+    }
 ?>

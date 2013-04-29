@@ -1,7 +1,5 @@
 <?php
 	/* Short and sweet */
-	define('WP_USE_THEMES', false);
-	require('../../../../wp-blog-header.php');	
 	header("HTTP/1.0 200 OK");
 	
 	function make_seed() {
@@ -15,7 +13,7 @@
 	
 	$host = $_SERVER['HTTP_REFERER'];
 	if(empty($host))
-		$host = home_url();
+		$host = MS_H_URL;
 		
 	if(isset($_POST['ms_product_id']) && isset($_POST['ms_product_type'])){
 		$obj = new MSSong($_POST['ms_product_id']);
@@ -29,8 +27,8 @@
 			$cost = $obj->price;
 			if($cost > 0){ // Check for a valid cost
 			
-				$baseurl = MS_URL.'/ms-core/ms-ipn.php';
-				$returnurl = MS_URL.'/ms-core/ms-download.php';
+				$baseurl = MS_H_URL.'?ms-action=ipn';
+				$returnurl = MS_H_URL.'?ms-action=download';
 
 				$code = '<form action="https://www.paypal.com/cgi-bin/webscr" name="ppform'.$randval.'" method="post">'.
 				'<input type="hidden" name="business" value="'.$ms_paypal_email.'" />'.
@@ -40,9 +38,9 @@
 				'<input type="hidden" name="currency_code" value="'.$currency.'" />'.
 				'<input type="hidden" name="lc" value="'.$language.'" />'.
 				''.
-				'<input type="hidden" name="return" value="'.$returnurl.'?purchase_id='.$purchase_id.'" />'.
+				'<input type="hidden" name="return" value="'.$returnurl.'&purchase_id='.$purchase_id.'" />'.
 				'<input type="hidden" name="cancel_return" value="'.$host.'" />'.
-				'<input type="hidden" name="notify_url" value="'.$baseurl.'?id='.$obj->ID.'&purchase_id='.$purchase_id.'&rtn_act=purchased_product_music_store" />'.
+				'<input type="hidden" name="notify_url" value="'.$baseurl.'&id='.$obj->ID.'&purchase_id='.$purchase_id.'&rtn_act=purchased_product_music_store" />'.
 				''.
 				'<input type="hidden" name="cmd" value="_xclick" />'.
 				'<input type="hidden" name="page_style" value="Primary" />'.
