@@ -7,9 +7,21 @@ Author: <a href="http://www.codepeople.net">CodePeople</a>
 Description: Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. With Music Store your sales will be safe, with all the security PayPal offers.
  */
 
+if(!function_exists('ms_get_site_url')){
+    function ms_get_site_url(){
+        $url = parse_url(get_site_url());
+        $url = rtrim($url["path"],"/").'/';
+        $pos = strpos($url, "://");
+        if ($pos === false)
+        $url = 'http://'.$_SERVER["HTTP_HOST"].$url;
+        return $url;
+    }
+} 
+ 
  // CONSTANTS
  define( 'MS_FILE_PATH', dirname( __FILE__ ) );
  define( 'MS_URL', plugins_url( '', __FILE__ ) );
+ define( 'MS_H_URL', ms_get_site_url());
  define( 'MS_DOWNLOAD', dirname( __FILE__ ).'/ms-downloads' );
  define( 'MS_OLD_DOWNLOAD_LINK', 3); // Number of days considered old download links
  define( 'MS_CORE_IMAGES_URL',  MS_URL . '/ms-core/images' );
@@ -100,6 +112,22 @@ Description: Music Store is an online store for selling audio files: music, spee
 			
 			if ( ! is_admin()){
 				
+                global $wpdb;
+                if(isset($_REQUEST['ms-action'])){
+                    switch(strtolower($_REQUEST['ms-action'])){
+                        case 'buynow':
+                            include MS_FILE_PATH.'/ms-core/ms-submit.php';
+                        break;
+                        case 'download':
+                            include MS_FILE_PATH.'/ms-core/ms-download.php';
+                        break;
+                        case 'ipn':
+                            include MS_FILE_PATH.'/ms-core/ms-ipn.php';
+                        break;
+                    }
+                    exit;
+                }
+                
 				// Set custom post_types on search result
 				add_filter('pre_get_posts', array(&$this, 'add_post_type_to_results'));
 				add_shortcode('music_store', array(&$this, 'load_store'));
@@ -879,7 +907,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 												<TD>'.$purchase->email.'</TD>
 												<TD>'.$purchase->amount.'</TD>
 												<TD>'.$currency.'</TD>
-												<TD><a href="'.MS_URL.'/ms-core/ms-download.php?purchase_id='.$purchase->purchase_id.'" target="_blank">Download Link</a></TD>
+												<TD><a href="/?ms-action=download&purchase_id='.$purchase->purchase_id.'" target="_blank">Download Link</a></TD>
 												<TD><input type="button" class="button-primary" onclick="delete_purchase('.$purchase->id.');" value="Delete"></TD>
 											</TR>
 										';
