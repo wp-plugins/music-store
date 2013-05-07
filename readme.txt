@@ -12,12 +12,12 @@ Music Store is an online store for selling audio files: music, speeches, narrati
 
 == Description ==
 Music Store features:
-    ♪ Allows selling audio files via PayPal
-    ♪ Allows a custom setup of the online store
-    ♪ Includes an audio player that supports formats: OGA, MP3, WAV, WMA
-    ♪ Allows to share the songs data in the social networks (like Facebook, Twitter and Google+)
-    ♪ Supports all most popular web browsers and mobile devices
-    ♪ Includes a module to track sales statistics
+	♪ Allows selling audio files via PayPal
+	♪ Allows a custom setup of the online store
+	♪ Includes an audio player that supports formats: OGA, MP3, WAV, WMA
+	♪ Allows to share the songs data in the social networks (like Facebook, Twitter and Google+)
+	♪ Supports all most popular web browsers and mobile devices
+	♪ Includes a module to track sales statistics
 
 **Music Store** is an online store for selling audio files: music, speeches, narratives, everything audio. With **Music Store** your sales will be safe, with all the security PayPal offers.
 
