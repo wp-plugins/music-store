@@ -11,7 +11,9 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. In Music Store, secure payments with PayPal.
 
 == Description ==
+
 Music Store features:
+
 	♪ Allows selling audio files via PayPal
 	♪ Allows a custom setup of the online store
 	♪ Includes an audio player that supports formats: OGA, MP3, WAV, WMA
