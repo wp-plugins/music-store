@@ -17,7 +17,7 @@ Music Store features:
 	♪ Allows selling audio files via PayPal
 	♪ Allows a custom setup of the online store
 	♪ Includes an audio player that supports formats: OGA, MP3, WAV, WMA
-	♪ Allows to share the songs data in the social networks (like Facebook, Twitter and Google+)
+	♪ Allows sharing songs in social networks (ex: Facebook, Twitter, Google+)
 	♪ Supports all most popular web browsers and mobile devices
 	♪ Includes a module to track sales statistics
 
