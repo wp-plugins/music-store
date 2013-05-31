@@ -1,14 +1,14 @@
 ﻿<div class="music-store-song">
+	<!-- SONG COVER -->
+	<tpl ifset="song.cover">
 	<div class="left-column">
-		<!-- SONG COVER -->
-		<tpl ifset="song.cover">
 		<div class="song-cover">
 			<a href="{song.link}">
 			<img src="{song.cover}">
 			</a>
 		</div>
-		</tpl ifset="song.cover">
 	</div>
+	</tpl ifset="song.cover">
 	
 	<div class="right-column">
 		<!-- SONG DEMO -->

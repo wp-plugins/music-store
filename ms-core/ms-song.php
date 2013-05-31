@@ -112,13 +112,16 @@ if(!class_exists('MSSong')){
 			$currency_symbol = get_option('ms_paypal_currency_symbol', MS_PAYPAL_CURRENCY_SYMBOL);
 			$song_arr = array(
 				'title' => $this->post_title,
-				'cover' => $this->cover,
 				'link'	=> $this->guid,
 				'popularity' => $this->plays,
                 'social' => null
 			);
 			
-			if($this->time) $song_arr['time'] = $this->time;
+            if(!empty($this->cover)){
+                $song_arr['cover'] = $this->cover;
+            }
+			
+            if($this->time) $song_arr['time'] = $this->time;
 			if($this->year) $song_arr['year'] = $this->year;
 			if($this->info) $song_arr['info'] = $this->info;
             

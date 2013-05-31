@@ -9,15 +9,13 @@ Description: Music Store is an online store for selling audio files: music, spee
 
 if(!function_exists('ms_get_site_url')){
     function ms_get_site_url(){
-        $url = parse_url(get_site_url());
-        $url = rtrim($url["path"],"/").'/';
-        $pos = strpos($url, "://");
-        if ($pos === false)
-        $url = 'http://'.$_SERVER["HTTP_HOST"].$url;
-        return $url;
+        $url_parts = parse_url(get_site_url());
+        return ((!empty($url_parts["scheme"])) ? $url_parts["scheme"] : "http")."://".
+               $_SERVER["HTTP_HOST"].
+               ((!empty($url_parts["path"])) ? rtrim($url_parts["path"],"/")."/" : "");
     }
 } 
- 
+
  // CONSTANTS
  define( 'MS_FILE_PATH', dirname( __FILE__ ) );
  define( 'MS_URL', plugins_url( '', __FILE__ ) );
@@ -518,7 +516,7 @@ if(!function_exists('ms_get_site_url')){
 		function settings_page(){
 			global $wpdb;
 			
-			if ( wp_verify_nonce( $_POST['ms_settings'], plugin_basename( __FILE__ ) ) ){
+			if ( isset( $_POST['ms_settings'] ) && wp_verify_nonce( $_POST['ms_settings'], plugin_basename( __FILE__ ) ) ){
 				update_option('ms_main_page', $_POST['ms_main_page']);
 				update_option('ms_filter_by_genre', ((isset($_POST['ms_filter_by_genre'])) ? true : false));
 				update_option('ms_items_page_selector', ((isset($_POST['ms_items_page_selector'])) ? true : false));
@@ -536,9 +534,7 @@ if(!function_exists('ms_get_site_url')){
 				update_option('ms_notification_to_seller_subject', $_POST['ms_notification_to_seller_subject']);
 				update_option('ms_notification_to_seller_message', $_POST['ms_notification_to_seller_message']);				
 				update_option('ms_old_download_link', $_POST['ms_old_download_link']);				
-				update_option('ms_secure_playback_text', $_POST['ms_secure_playback_text']);				
-				update_option('ms_file_percent', $_POST['ms_file_percent']);				
-                update_option('ms_social_buttons', ((isset($_POST['ms_social_buttons'])) ? true : false));
+				update_option('ms_social_buttons', ((isset($_POST['ms_social_buttons'])) ? true : false));
                 
 ?>				
 				<div class="updated" style="margin:5px 0;"><strong><?php _e("Settings Updated", MS_TEXT_DOMAIN); ?></strong></div>
@@ -974,7 +970,7 @@ if(!function_exists('ms_get_site_url')){
                 wp_enqueue_script('jquery-ui-dialog');
 				wp_enqueue_script('ms-admin-script', plugin_dir_url(__FILE__).'ms-script/ms-admin.js', array('jquery', 'jquery-ui-core', 'jquery-ui-dialog', 'media-upload'), null, true);
 				
-				if($post->post_type == "ms_song"){
+				if(isset($post) && $post->post_type == "ms_song"){
 					// Scripts and styles required for metaboxs
 					wp_enqueue_style('ms-admin-style', plugin_dir_url(__FILE__).'ms-styles/ms-admin.css');
 					wp_localize_script('ms-admin-script', 'music_store', array('post_id'  	=> $post->ID));	
@@ -1285,7 +1281,7 @@ if(!function_exists('ms_get_site_url')){
 		function set_music_store_button(){
 			global $post;
 			
-			if($post->post_type != 'ms_song')
+			if(isset($post) && $post->post_type != 'ms_song')
 			print '<a href="javascript:open_insertion_music_store_window();" title="'.__('Insert Music Store').'"><img src="'.MS_CORE_IMAGES_URL.'/music-store-icon.gif'.'" alt="'.__('Insert Music Store').'" /></a>';
 		} // End set_music_store_button
 		
