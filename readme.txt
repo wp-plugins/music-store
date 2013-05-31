@@ -1,7 +1,7 @@
 === Music Store ===
 Contributors: codepeople
 Donate link: http://wordpress.dwbooster.com/content-tools/music-store
-Tags:ecommerce,e-commerce,audio,paypal,music,shop,facebook,google,google+,twitter,social,social network
+Tags:ecommerce,e-commerce,audio,paypal,music,shop,facebook,google,google+,twitter,social,social network,store,sell music,player,audio player,mp3,html5,songs
 Requires at least: 3.0.5
 Tested up to: 3.5.1
 Stable tag: 1.0.1
@@ -25,7 +25,7 @@ Music Store features:
 
 **Music Store** protects your audio files, preventing them from being downloaded without permission.
 
-**Music Store** includes an audio player compatible with all major browsers: Internet Explorer, Firefox, Opera, Safari, Chrome and mobile devices: iPhone, iPad, Android. The **Music Store** audio player supports the following file formats: MP3, WAV, WMA and OGA.
+**Music Store** includes an audio player compatible with all major browsers: Internet Explorer, Firefox, Opera, Safari, Chrome and mobile devices: iPhone, iPad, Android. The audio player is developed following the html5 standard; in old browsers the music player uses alternative technologies like Flash and Silverlight. The **Music Store** audio player supports the following file formats: MP3, WAV, WMA and OGA.
 
 **More about the Main Features:**
 
