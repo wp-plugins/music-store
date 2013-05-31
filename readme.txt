@@ -30,16 +30,23 @@ Music Store features:
 **More about the Main Features:**
 
 *	Allows selling audio files via PayPal.
-*	Allows selling collections. Audio files can be grouped into collections or albums (advanced version of plugin).
 *	Allows a custom setup of the online store, with ability to filter products by types of files: Singles or Collections, paging and sorting the results by popularity.
 *	Allows to associate additional information to the products. 
 *	Includes an audio player that supports formats: OGA, MP3, WAV, WMA.
-*	Offers secure Audio Playback that prevents unauthorized downloading of audio files.
-*   Allows to create discounts (advanced version of plugin).
-*   Allows to entering discount coupons (advanced version of plugin).
-*   Allows to share the songs and collections in the social networks (like Facebook, Twitter and Google+).
+* Allows to share the songs and collections in the social networks (like Facebook, Twitter and Google+).
 *	Supports all most popular web browsers: Internet Explorer, Firefox, Chrome, Safari, Opera, and mobile devices such as iPhone, iPad and Android. For older browsers, the media player provides support for Flash and Silverlight.
 *	Includes a module to track sales statistics.
+
+The base plugin, available for free from the WordPress Plugin Directory has all the features you need to create an Music Store on your website.
+
+**Premium Features**
+
+*	Allows selling collections. Audio files can be grouped into collections or albums (advanced version of plugin).
+*	Offers secure Audio Playback that prevents unauthorized downloading of audio files.
+* Allows to create discounts.
+* Allows to entering discount coupons.
+* Allows to insert a Song or Album in a post, page or template. In the Free version of plugin, the songs and albums are availables only from the Music Store webpage, in the premium version of plugin is possible to insert the songs and collection directly in a post, page, or template.
+
 
 If you want more information about this plugin or another one don't doubt to visit my website:
 
@@ -182,7 +189,7 @@ The Music Store can be posted on a page or post of WordPress. To insert the Musi
 
 In the editing section of the page/post, press the Music Store insertion button (screenshot-6), the action displays a setup screen (screenshot-7)
 
-**Interface for insertion dialog**
+**Interface for insertion dialog of Music Store**
 
 *   Filter results by products type: by default, displays only products that belong to a specified type.
 *   Columns: Defines the number of columns for the store products.
@@ -192,13 +199,24 @@ In the editing section of the page/post, press the Music Store insertion button 
 
 The insertion process generates a shortcode which will be replaced by the store when it is displayed on the website.
 
+				The shortcode in a post or page has the structure [music_store], if prefere to inser the music store directly in template: <?php print do_shortcode('[music_store]'); ?>
+
 Note: After inserting the store on a page of your WordPress, it is advisable to copy the URL of the relevant page, and enter in the Music Store's setup section, to allow the users to return to the store from the product page.
+
+**Interface for insertion dialof of product (Song or Collection) in a page or post**
+
+*   Enter the Song or Collection ID: the ID of a song or collection appear in the product URL.
+
+The insertion process generates a shortcode which will be replaced by the product data when page is displayed on the website.
+
+				The shortcode in a post or page has the structure [music_store_product id="3"](replace the number 3 by the ID of song or collection), if prefere to inser the product directly in template: <?php print do_shortcode('[music_store_product id="3"]'); ?>
+
 
 **Sale Statistics**
 
-When a sale takes place, a notification email is sent to the Music Store administrator. However, sales can also be reviewed in Sales Reports. To do this, go to the stores' setup page: "Settings / Music Store" and once there, open the section "Sales Reports" (screenshot-8)
+When a sale takes place, a notification email is sent to the Music Store administrator. However, sales can also be reviewed in Sales Reports. To do this, go to the stores' setup page: "Settings / Music Store" and once there, open the section "Sales Reports" (screenshot-9)
 
-The Reports section allows you to filter sales reports over a specific period, by default it shows the current day's sales. It also shows sales' totals for the selected period and the currency of the sales (screenshot-9)
+The Reports section allows you to filter sales reports over a specific period, by default it shows the current day's sales. It also shows sales' totals for the selected period and the currency of the sales (screenshot-10)
 
 You can delete a sales report from the list of sales. This may be useful in case of a refund granted to a buyer, and allows to keep your sales statistics updated with the actual purchases.
 
@@ -224,5 +242,6 @@ A: If you decide to protect the audio file, the audio file is played partially i
 5. Collection Edition Interface
 6. Music Store Insertion Button
 7. Music Store Insertion Interface
-8. Sales Reports
-9. Filtering Sales Report
+8. Product Insertion Interface
+9. Sales Reports
+10. Filtering Sales Report
