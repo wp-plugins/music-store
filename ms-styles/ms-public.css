@@ -16,14 +16,14 @@
 .music-store-song .song-cover img{width:100%;}
 
 /** COLUMNS ON MULTIPLE PAGES **/
-.music-store-song .left-column{float:left;}
-.music-store-song .right-column{	float:left; padding-left:10px; width:-moz-calc(100% - 260px); width:-webkit-calc(100% - 260px);	width:calc(100% - 160px);}
+.music-store-song .left-column{float:left;width:150px;}
+.music-store-song .right-column{	float:left; padding-left:10px; width:-moz-calc(100% - 160px); width:-webkit-calc(100% - 160px);	width:calc(100% - 160px);}
 
 /** COLUMNS ON SINGLE PAGES **/
 .ms_song  .entry-title{display:none;}
 
-.music-store-song .left-column{float:left;}
-.music-store-song .right-column{	float:left; padding-left:10px; width:-moz-calc(100% - 260px); width:-webkit-calc(100% - 260px);	width:calc(100% - 260px);}
+.music-store-song .left-column.single{float:left;width: 250px;}
+.music-store-song .right-column.single{	float:left; padding-left:10px; width:-moz-calc(100% - 260px); width:-webkit-calc(100% - 260px);	width:calc(100% - 260px);}
 
 .music-store-song .song-title{font-weight:bold;}
 .music-store-song .song-title.single{font-weight:normal; font-size:1.7em;}
