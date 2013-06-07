@@ -1,4 +1,5 @@
 <?php
+    error_reporting( E_ERROR || E_PARSE );
     if( !class_exists( 'WP_Http' ) ){
         include_once( ABSPATH . WPINC. '/class-http.php' );
     }    
@@ -53,53 +54,60 @@
 		
 		ms_remove_download_links();
 		
-		$purchase = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".$wpdb->prefix.MSDB_PURCHASE." WHERE purchase_id=%s", $_GET['purchase_id']));	
-		
-		if($purchase){ // Exists the purchase
-			$id = $purchase->product_id;
+        $interval = get_option('ms_old_download_link', MS_OLD_DOWNLOAD_LINK)*86400;
+        $purchase = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".$wpdb->prefix.MSDB_PURCHASE." WHERE purchase_id=%s", $_GET['purchase_id']));	
+		$download_links_str = '';
 			
-			$_post = get_post($id);
-			if(is_null($_post)) return;
-			switch ($_post->post_type){
-				case "ms_song":
-					$obj = new MSSong($id);
-				break;
-				case "ms_collection":
-					$obj = new MSCollection($id);
-				break;
-				default:
-					return;
-				break;
-			}
-			
-			$urls = array();
-			
-			if($obj->post_type == 'ms_song'){
-				$songObj = new stdClass();
-				if(isset($obj->file)){ 
-					$songObj->title = ms_song_title($obj);
-					$songObj->link  = $obj->file;
-					$urls[] = $songObj;
-				}	
-			}else{
-				foreach($obj->song as $song){
-					$songObj = new stdClass();
-					if(isset($song->file)){ 
-						$songObj->title = ms_song_title($song);
-						$songObj->link  = $song->file;
-						$urls[] = $songObj;
-					}	
-				}
-			}
-			
-			$download_links_str = '';
-			foreach($urls as $url){
-				$download_link = ms_copy_download_links($url->link);
-				if($download_link){
-					$download_links_str .= '<div> <a href="'.$download_link.'">'.$url->title.'</a></div>';
-				}
-			}
-			
+        if($purchase){ // Exists the purchase
+			if(!current_user_can( 'manage_options' ) && abs(strtotime($purchase->date)-time()) > $interval){
+                    $download_links_str = __('The download link has expired, please contact to the vendor', MS_TEXT_DOMAIN);
+            }else{    
+                
+                $id = $purchase->product_id;
+                
+                $_post = get_post($id);
+                if(is_null($_post)) return;
+                switch ($_post->post_type){
+                    case "ms_song":
+                        $obj = new MSSong($id);
+                    break;
+                    case "ms_collection":
+                        $obj = new MSCollection($id);
+                    break;
+                    default:
+                        return;
+                    break;
+                }
+                
+                $urls = array();
+                
+                if($obj->post_type == 'ms_song'){
+                    $songObj = new stdClass();
+                    if(isset($obj->file)){ 
+                        $songObj->title = ms_song_title($obj);
+                        $songObj->link  = $obj->file;
+                        $urls[] = $songObj;
+                    }	
+                }else{
+                    foreach($obj->song as $song){
+                        $songObj = new stdClass();
+                        if(isset($song->file)){ 
+                            $songObj->title = ms_song_title($song);
+                            $songObj->link  = $song->file;
+                            $urls[] = $songObj;
+                        }	
+                    }
+                }
+                
+                foreach($urls as $url){
+                    
+                    $download_link = ms_copy_download_links($url->link);
+                    if($download_link){
+                        $download_links_str .= '<div> <a href="'.$download_link.'">'.$url->title.'</a></div>';
+                    }
+                }
+            }
+            
 			if(empty($download_links_str)){
 				$download_links_str = __('The list of purchased products is empty', MS_TEXT_DOMAIN);
 			}
