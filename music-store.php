@@ -41,7 +41,7 @@ if(!function_exists('ms_get_site_url')){
  define( 'MS_NOTIFICATION_TO_EMAIL', 'put_your@email_here.com' );
  define( 'MS_NOTIFICATION_TO_PAYER_SUBJECT', 'Thank you for your purchase...' );
  define( 'MS_NOTIFICATION_TO_SELLER_SUBJECT','New product purchased...' ); 
- define( 'MS_NOTIFICATION_TO_PAYER_MESSAGE', "We have received your purchase notification with the following information:\n\n%INFORMATION%\n\nThank you.\n\nBest regards." ); 
+ define( 'MS_NOTIFICATION_TO_PAYER_MESSAGE', "We have received your purchase notification with the following information:\n\n%INFORMATION%\n\nThe download link is assigned an expiration time, please download the purchased product now.\n\nThank you.\n\nBest regards." ); 
  define( 'MS_NOTIFICATION_TO_SELLER_MESSAGE', "New purchase made with the following information:\n\n%INFORMATION%\n\nBest regards." );
 
  // SAFE PLAYBACK
