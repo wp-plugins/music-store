@@ -30,7 +30,7 @@ Music Store features:
 **More about the Main Features:**
 
 *	Allows selling audio files via PayPal.
-*	Allows a custom setup of the online store, with ability to filter products by types of files: Singles or Collections, paging and sorting the results by popularity.
+*	Allows a custom setup of the online store, with ability to paging and sorting the results by popularity or price.
 *	Allows to associate additional information to the products. 
 *	Includes an audio player that supports formats: OGA, MP3, WAV, WMA.
 * Allows to share the songs and collections in the social networks (like Facebook, Twitter and Google+).
@@ -43,9 +43,10 @@ The base plugin, available for free from the WordPress Plugin Directory has all 
 
 *	Allows selling collections. Audio files can be grouped into collections or albums (advanced version of plugin).
 *	Offers secure Audio Playback that prevents unauthorized downloading of audio files.
-* Allows to create discounts.
-* Allows to entering discount coupons.
-* Allows to insert a Song or Album in a post, page or template. In the Free version of plugin, the songs and albums are availables only from the Music Store webpage, in the premium version of plugin is possible to insert the songs and collection directly in a post, page, or template.
+*	Allows to filter products by types of files: Singles or Collections.
+*   Allows to create discounts.
+*   Allows to entering discount coupons.
+*   Allows to insert a Song or Album in a post, page or template. In the Free version of plugin, the songs and albums are availables only from the Music Store webpage, in the premium version of plugin is possible to insert the songs and collection directly in a post, page, or template.
 
 
 If you want more information about this plugin or another one don't doubt to visit my website:
