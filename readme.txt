@@ -21,11 +21,11 @@ Music Store features:
 	♪ Supports all most popular web browsers and mobile devices
 	♪ Includes a module to track sales statistics
 
-**Music Store** is an online store for selling audio files: music, speeches, narratives, everything audio. With **Music Store** your sales will be safe, with all the security PayPal offers.
+Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. With Music Store your sales will be safe, with all the security PayPal offers.
 
-**Music Store** protects your audio files, preventing them from being downloaded without permission.
+Music Store protects your audio files, preventing them from being downloaded without permission.
 
-**Music Store** includes an audio player compatible with all major browsers: Internet Explorer, Firefox, Opera, Safari, Chrome and mobile devices: iPhone, iPad, Android. The audio player is developed following the html5 standard; in old browsers the music player uses alternative technologies like Flash and Silverlight. The **Music Store** audio player supports the following file formats: MP3, WAV, WMA and OGA.
+Music Store includes an audio player compatible with all major browsers: Internet Explorer, Firefox, Opera, Safari, Chrome and mobile devices: iPhone, iPad, Android. The audio player is developed following the html5 standard; in old browsers the music player uses alternative technologies like Flash and Silverlight. The Music Store audio player supports the following file formats: MP3, WAV, WMA and OGA.
 
 **More about the Main Features:**
 
