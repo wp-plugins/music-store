@@ -10,11 +10,14 @@ Description: Music Store is an online store for selling audio files: music, spee
 if(!function_exists('ms_get_site_url')){
     function ms_get_site_url(){
         $url_parts = parse_url(get_site_url());
-        return ((!empty($url_parts["scheme"])) ? $url_parts["scheme"] : "http")."://".
-               $_SERVER["HTTP_HOST"].
-               ((!empty($url_parts["path"])) ? rtrim($url_parts["path"],"/")."/" : "");
+        return rtrim( 
+                        ((!empty($url_parts["scheme"])) ? $url_parts["scheme"] : "http")."://".
+                        $_SERVER["HTTP_HOST"].
+                        ((!empty($url_parts["path"])) ? $url_parts["path"] : ""),
+                        "/"
+                    )."/";
     }
-} 
+}
 
  // CONSTANTS
  define( 'MS_FILE_PATH', dirname( __FILE__ ) );
