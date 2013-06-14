@@ -150,7 +150,7 @@ if(!class_exists('MSSong')){
                     $song_arr['price'] = ((!empty($currency_symbol)) ? $currency_symbol.sprintf("%.2f", $this->price) : sprintf("%.2f", $this->price).get_option('ms_paypal_currency', MS_PAYPAL_CURRENCY));
 				
                     $paypal_button = MS_URL.'/paypal_buttons/'.get_option('ms_paypal_button', MS_PAYPAL_BUTTON);
-                    $song_arr['salesbutton'] = '<form action="/" method="post"><input type="hidden" name="ms-action" value="buynow" /><input type="hidden" name="ms_product_type" value="single" /><input type="hidden" name="ms_product_id" value="'.$this->id.'" /><input type="image" src="'.$paypal_button.'" style="padding-top:5px;" /></form>';
+                    $song_arr['salesbutton'] = '<form action="'.MS_H_URL.'" method="post"><input type="hidden" name="ms-action" value="buynow" /><input type="hidden" name="ms_product_type" value="single" /><input type="hidden" name="ms_product_id" value="'.$this->id.'" /><input type="image" src="'.$paypal_button.'" style="padding-top:5px;" /></form>';
                 }else{
                     $song_arr['salesbutton']  = '<a href="'.$this->file.'" target="_blank">'.__('Download Here', MS_TEXT_DOMAIN).'</a>';
                 }
