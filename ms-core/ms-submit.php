@@ -1,7 +1,4 @@
 <?php
-	/* Short and sweet */
-	header("HTTP/1.0 200 OK");
-	
 	function make_seed() {
 		list($usec, $sec) = explode(' ', microtime());
 		return (float) $sec + ((float) $usec * 100000);

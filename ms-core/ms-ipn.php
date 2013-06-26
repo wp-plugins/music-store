@@ -1,5 +1,6 @@
 <?php
-	echo 'Start IPN';
+	error_reporting( E_ERROR | E_PARSE );
+    echo 'Start IPN';
 	
 	$item_name = $_POST['item_name'];
 	$item_number = $_POST['item_number'];
