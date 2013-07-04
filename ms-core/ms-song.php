@@ -1,10 +1,4 @@
 <?php
-function debug($mssg){
-	$h = fopen(dirname(__FILE__).'/test.txt', 'a');			
-	fwrite($h, $mssg.'|');
-	fclose($h);
-}
-
 if(!class_exists('MSSong')){
 	class MSSong{
 		/*
