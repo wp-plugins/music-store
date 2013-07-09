@@ -106,7 +106,7 @@ if(!class_exists('MSSong')){
 			$currency_symbol = get_option('ms_paypal_currency_symbol', MS_PAYPAL_CURRENCY_SYMBOL);
 			$song_arr = array(
 				'title' => $this->post_title,
-				'link'	=> $this->guid,
+				'link'	=> get_permalink($this->id),
 				'popularity' => $this->plays,
                 'social' => null
 			);
