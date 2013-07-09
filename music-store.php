@@ -902,7 +902,7 @@ if(!function_exists('ms_get_site_url')){
 										}
 										echo '
 											<TR>
-												<TD><a href="'.$purchase->guid.'" target="_blank">'.$purchase->post_title.'</a></TD>
+												<TD><a href="'.get_permalink($purchase->ID).'" target="_blank">'.$purchase->post_title.'</a></TD>
 												<TD>'.$purchase->email.'</TD>
 												<TD>'.$purchase->amount.'</TD>
 												<TD>'.$currency.'</TD>
