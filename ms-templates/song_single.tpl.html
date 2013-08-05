@@ -124,23 +124,23 @@
 	</div>	
 	<div class="clear"></div>
 	<div>
+        <!-- SONG DESCRIPTION -->
+		<tpl ifset="song.description">
 		<ul class="music-store-tabs">
 			<li class="active-tab">Description</li>
 		</ul>
 		<div class="music-store-tabs-container active-tab">
-			<!-- SONG DESCRIPTION -->
-			<tpl ifset="song.description">
-				<div class="song-description">
-				{song.description}
-				</div>
-			</tpl ifset="song.description">
-			
-			<!-- SONG MORE INFO -->
-			<tpl ifset="song.info">
-				<div class="song-info">
-				<a href="{song.info}" target="_blank">More Info[+]</a>
-				</div>
-			</tpl ifset="song.info">
+		    <div class="song-description">
+            {song.description}
+            </div>
 		</div> <!-- End first tab container -->
+        </tpl ifset="song.description">
+        
+        <!-- SONG MORE INFO -->
+        <tpl ifset="song.info">
+        <div class="song-info">
+            <a href="{song.info}" target="_blank">More Info[+]</a>
+        </div>
+        </tpl ifset="song.info">
 	</div>
 </div>
