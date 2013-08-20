@@ -112,26 +112,25 @@ if(!function_exists('ms_get_site_url')){
 			$this->init_post_types(); // Init MusicStore custom post types
 			
 			if ( ! is_admin()){
-				
-                global $wpdb;
+				global $wpdb;
+                add_filter('get_pages', array( &$this, '_ms_exclude_pages') ); // for download-page
+                
                 if(isset($_REQUEST['ms-action'])){
                     switch(strtolower($_REQUEST['ms-action'])){
                         case 'buynow':
-                            include MS_FILE_PATH.'/ms-core/ms-submit.php';
-                        break;
-                        case 'download':
-                            include MS_FILE_PATH.'/ms-core/ms-download.php';
+                            include MS_FILE_PATH.'/ms-core/ms-submit.php';exit;
                         break;
                         case 'ipn':
-                            include MS_FILE_PATH.'/ms-core/ms-ipn.php';
+                            include MS_FILE_PATH.'/ms-core/ms-ipn.php';exit;
                         break;
                     }
-                    exit;
+                    
                 }
                 
 				// Set custom post_types on search result
 				add_filter('pre_get_posts', array(&$this, 'add_post_type_to_results'));
 				add_shortcode('music_store', array(&$this, 'load_store'));
+                add_filter( 'the_content', array( &$this, '_ms_the_content' ) ); // For download-page
 				$this->load_templates(); // Load the music store template for songs display
 				
 				// Load public resources
@@ -140,7 +139,69 @@ if(!function_exists('ms_get_site_url')){
 			// Init action
 			do_action( 'musicstore_init' );
 		} // End init
-		
+/** CODE REQUIRED FOR DOWNLOAD PAGE **/		
+
+        function _ms_create_pages( $slug, $title ){
+            $page = get_page_by_path( $slug ); 
+            if( is_null( $page ) ){
+                if( wp_insert_post(
+                        array(
+                            'comment_status' => 'closed',
+                            'post_name' => $slug,
+                            'post_title' => __( $title, MS_TEXT_DOMAIN ),
+                            'post_status' => 'publish',
+                            'post_type' => 'page'
+                        )
+                    )    
+                ){
+                    $page = get_page_by_path( $slug ); 
+                }
+            }else{
+                $page->post_status = 'publish';
+                wp_update_post( $page );
+            }
+            
+            return ( !is_null( $page ) ) ? get_permalink($page->ID) : MS_H_URL;
+        }
+        
+        function _ms_exclude_pages( $pages ){
+            
+            $exclude = array();
+            $length = count( $pages );
+            
+            $p = get_page_by_path( 'ms-download-page' );
+            if( !is_null( $p ) ) $exclude[] = $p->ID;
+            
+            for ( $i=0; $i<$length; $i++ ) {
+                $page = & $pages[$i];
+                
+                if ( in_array( $page->ID, $exclude ) ) {
+                    // Finally, delete something(s)
+                    unset( $pages[$i] );
+                }
+            }
+            
+            return $pages;
+        }
+        
+        function _ms_the_content( $the_content  ){
+            global $post;    
+            
+            if( isset( $_REQUEST ) && isset( $_REQUEST[ 'ms-action' ] ) && strtolower( $_REQUEST[ 'ms-action' ] ) == 'download' && isset($_GET['purchase_id']) ){
+                
+                global  $download_links_str;
+                include MS_FILE_PATH.'/ms-core/ms-download.php';
+                $request = new WP_Http;
+                $response = $request->request(MS_URL.'/ms-downloads/music-store-icon.gif');
+                $htaccess_accepted = ($response['response']['code'] == 200);
+                ms_generate_downloads();
+                $the_content .= __('Download Links:', MS_TEXT_DOMAIN).'<div>'.$download_links_str.'</div>';
+                
+            }
+            return $the_content;
+        }
+/** END OF DOWNLOAD PAGE CODE **/		
+        
 		/**
 		* Init MusicStore when the WordPress is open for admin
 		*
@@ -165,6 +226,8 @@ if(!function_exists('ms_get_site_url')){
 			$plugin = plugin_basename(__FILE__);
 			add_filter('plugin_action_links_'.$plugin, array(&$this, 'customizationLink'));
 			
+            $this->_ms_create_pages( 'ms-download-page', 'Download Page' ); // for download-page and download-page
+            
 			// Init action
 			do_action( 'musicstore_admin_init' );
 		} // End init
@@ -649,6 +712,7 @@ if(!function_exists('ms_get_site_url')){
 					</div>
 					
 					<!-- PAYPAL BOX -->
+                    <p class="ms_more_info" style="display:block;">The Music Store uses PayPal only as payment gateway, but depending of your PayPal account, it is possible to charge the purchase directly from the Credit Cards of customers.</p>
 					<div class="postbox">
 						<h3 class='hndle' style="padding:5px;"><span><?php _e('Paypal Payment Configuration', MS_TEXT_DOMAIN); ?></span></h3>
 						<div class="inside">
@@ -661,7 +725,14 @@ if(!function_exists('ms_get_site_url')){
 						
 							<tr valign="top">        
 							<th scope="row"><?php _e('Paypal email', MS_TEXT_DOMAIN); ?></th>
-							<td><input type="text" name="ms_paypal_email" size="40" value="<?php echo esc_attr(get_option('ms_paypal_email', MS_PAYPAL_EMAIL)); ?>" /></td>
+							<td><input type="text" name="ms_paypal_email" size="40" value="<?php echo esc_attr(get_option('ms_paypal_email', MS_PAYPAL_EMAIL)); ?>" />
+                            <span class="ms_more_info_hndl" style="margin-left: 10px;"><a href="javascript:void(0);" onclick="ms_display_more_info( this );">[ + more information]</a></span>
+                            <div class="ms_more_info">
+                                <p>If let empty the email associated to PayPal, the Music Store assumes the product will be distributed for free, and displays a download link in place of the button for purchasing</p>
+                                <a href="javascript:void(0)" onclick="ms_hide_more_info( this );">[ + less information]</a>
+                            </div>
+                            
+                            </td>
 							</tr>
 							 
 							<tr valign="top">
@@ -804,7 +875,7 @@ if(!function_exists('ms_get_site_url')){
 <?php				
 				break;
 				case 'reports':
-					if ( wp_verify_nonce( $_POST['ms_purchase_stats'], plugin_basename( __FILE__ ) ) ){
+					if ( isset($_POST['ms_purchase_stats']) && wp_verify_nonce( $_POST['ms_purchase_stats'], plugin_basename( __FILE__ ) ) ){
 						if(isset($_POST['purchase_id'])){ // Delete the purchase
 							$wpdb->query($wpdb->prepare(
 								"DELETE FROM ".$wpdb->prefix.MSDB_PURCHASE." WHERE id=%d",
@@ -890,6 +961,9 @@ if(!function_exists('ms_get_site_url')){
 								<?php
 								$totals = array('UNDEFINED'=>0);
 								if(count($purchase_list)){	
+                                    $dlurl = $this->_ms_create_pages( 'ms-download-page', 'Download Page' );
+                                    $dlurl .= ( ( strpos( $dlurl, '?' ) === false ) ? '?' : '&' );
+
 									foreach($purchase_list as $purchase){
 										
 										if(preg_match('/mc_currency=([^\s]*)/', $purchase->paypal_data, $matches)){
@@ -900,13 +974,14 @@ if(!function_exists('ms_get_site_url')){
 											$currency = '';
 											$totals['UNDEFINED'] += $purchase->amount;
 										}
-										echo '
+                                        
+                                    	echo '
 											<TR>
 												<TD><a href="'.get_permalink($purchase->ID).'" target="_blank">'.$purchase->post_title.'</a></TD>
 												<TD>'.$purchase->email.'</TD>
 												<TD>'.$purchase->amount.'</TD>
 												<TD>'.$currency.'</TD>
-												<TD><a href="/?ms-action=download&purchase_id='.$purchase->purchase_id.'" target="_blank">Download Link</a></TD>
+												<TD><a href="'.$dlurl.'ms-action=download&purchase_id='.$purchase->purchase_id.'" target="_blank">Download Link</a></TD>
 												<TD><input type="button" class="button-primary" onclick="delete_purchase('.$purchase->id.');" value="Delete"></TD>
 											</TR>
 										';
@@ -967,6 +1042,7 @@ if(!function_exists('ms_get_site_url')){
 			global $post;
 			if(strpos($hook, "music-store") !== false){
 				wp_enqueue_script('ms-admin-script', plugin_dir_url(__FILE__).'ms-script/ms-admin.js', array('jquery'), null, true);
+                wp_enqueue_style('ms-admin-style', plugin_dir_url(__FILE__).'ms-styles/ms-admin.css');
 			}
 			if ( $hook == 'post-new.php' || $hook == 'post.php' || $hook == 'index.php') {
                 wp_enqueue_script('jquery-ui-core');

@@ -25,7 +25,10 @@
 			if($cost > 0){ // Check for a valid cost
 			
 				$baseurl = MS_H_URL.'?ms-action=ipn';
-				$returnurl = MS_H_URL.'?ms-action=download';
+				
+                $returnurl = $GLOBALS['music_store']->_ms_create_pages( 'ms-download-page', 'Download Page' );
+                $returnurl .= ( ( strpos( $returnurl, '?' ) === false ) ? '?' : '&' ).'ms-action=download';
+
 
 				$code = '<form action="https://www.paypal.com/cgi-bin/webscr" name="ppform'.$randval.'" method="post">'.
 				'<input type="hidden" name="business" value="'.$ms_paypal_email.'" />'.
