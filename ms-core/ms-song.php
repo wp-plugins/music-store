@@ -228,6 +228,11 @@ if(!class_exists('MSSong')){
 						<td>
 							<input type="text" name="ms_price" id="ms_price" value="'.(($data && $data->price) ? esc_attr($data->price) : '').'" /> 
 							'.(($currency) ? $currency : '').'
+                            <span class="ms_more_info_hndl" style="margin-left: 10px;"><a href="javascript:void(0);" onclick="ms_display_more_info( this );">[ + more information]</a></span>
+                            <div class="ms_more_info">
+                                <p>If let empty the product\'s price, the Music Store assumes the product will be distributed for free, and displays a download link in place of the button for purchasing</p>
+                                <a href="javascript:void(0)" onclick="ms_hide_more_info( this );">[ + less information]</a>
+                            </div>
 						</td>
 					</tr>
 					<tr>
@@ -283,10 +288,10 @@ if(!class_exists('MSSong')){
 						</td>
 					</tr>
 					<tr>
-						<td valign="top">
+						<td valign="top" style="white-space:nowrap;">
 							'.__('Album including the song:', MS_TEXT_DOMAIN).'
 						</td>
-						<td><div id="ms_album_list">';
+						<td style="width:100%;"><div id="ms_album_list">';
 						if($album_post_list){
 							foreach($album_post_list as $album){
 								echo '<div class="ms-property-container"><input type="hidden" name="ms_album[]" value="'.esc_attr($album->name).'" /><input type="button" onclick="ms_remove(this);" class="button" value="'.esc_attr($album->name).' [x]"></div>';

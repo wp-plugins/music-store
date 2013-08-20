@@ -67,15 +67,18 @@
 	
 	$ms_notification_to_seller_subject  = get_option('ms_notification_to_seller_subject', MS_NOTIFICATION_TO_SELLER_SUBJECT);
 	$ms_notification_to_seller_message  = get_option('ms_notification_to_seller_message', MS_NOTIFICATION_TO_SELLER_MESSAGE);
-	
+    
+    $dlurl = $GLOBALS['music_store']->_ms_create_pages( 'ms-download-page', 'Download Page' ); // for download-page
+    $dlurl .= ( ( strpos( $dlurl, '?' ) === false ) ? '?' : '&' );
+    
 	$information_payer = "Product: {$item_name}\n".
 						 "Amount: {$payment_amount} {$payment_currency}\n".
-						 "Download Link: ".MS_H_URL."?ms-action=download&purchase_id={$_GET['purchase_id']}\n";
+						 "Download Link: ".$dlurl."ms-action=download&purchase_id={$_GET['purchase_id']}\n";
 						 
 	$information_seller = "Product: {$item_name}\n".
 						  "Amount: {$payment_amount} {$payment_currency}\n".
 						  "Buyer Email: {$payer_email}\n".
-						  "Download Link: ".MS_H_URL."?ms-action=download&purchase_id={$_GET['purchase_id']}\n";
+						  "Download Link: ".$dlurl."ms-action=download&purchase_id={$_GET['purchase_id']}\n";
 						 
 	$ms_notification_to_payer_message  = str_replace("%INFORMATION%", $information_payer, $ms_notification_to_payer_message);
 	$ms_notification_to_seller_message = str_replace("%INFORMATION%", $information_seller, $ms_notification_to_seller_message);

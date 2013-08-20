@@ -112,7 +112,6 @@
 				$download_links_str = __('The list of purchased products is empty', MS_TEXT_DOMAIN);
 			}
 			
-			load_template(dirname(__FILE__).'/../ms-templates/ms-donwload-page-template.php');
 		} // End purchase checking	
 	}
 	
@@ -131,11 +130,4 @@
 		else
 			return $title;
 	}
-	
-	if(isset($_GET['purchase_id'])) {
-        $request = new WP_Http;
-        $response = $request->request(MS_URL.'/ms-downloads/music-store-icon.gif');
-        $htaccess_accepted = ($response['response']['code'] == 200);
-        ms_generate_downloads();
-    }
 ?>

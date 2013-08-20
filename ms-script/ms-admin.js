@@ -1,6 +1,16 @@
 ﻿jQuery(function(){
 	(function($){
 		// Methods definition
+        window[ 'ms_display_more_info' ] = function( e ){
+            e = $( e );
+            e.parent().hide().next( '.ms_more_info' ).show();
+        };
+        
+        window[ 'ms_hide_more_info' ] = function( e ){
+            e = $( e );
+            e.parent().hide().prev( '.ms_more_info_hndl' ).show();
+        };
+        
 		window['ms_remove'] = function(e){
 			$(e).parents('.ms-property-container').remove();
 		};
