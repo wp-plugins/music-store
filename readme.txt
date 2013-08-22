@@ -1,7 +1,7 @@
 === Music Store ===
 Contributors: codepeople
 Donate link: http://wordpress.dwbooster.com/content-tools/music-store
-Tags:audio,audio player,e-commerce,ecommerce,facebook,google,google+,html5,mp3,music,paypal,player,sell music,shop,social,social network,songs,store,twitter
+Tags:audio,audio player,e-commerce,ecommerce,facebook,google,google+,html5,mp3,music,paypal,player,sell music,sell,shop,social,social network,songs,store,twitter
 Requires at least: 3.0.5
 Tested up to: 3.6
 Stable tag: 1.0.1
