@@ -175,7 +175,7 @@ if(!function_exists('ms_get_site_url')){
             for ( $i=0; $i<$length; $i++ ) {
                 $page = & $pages[$i];
                 
-                if ( in_array( $page->ID, $exclude ) ) {
+                if ( isset($page) && in_array( $page->ID, $exclude ) ) {
                     // Finally, delete something(s)
                     unset( $pages[$i] );
                 }
@@ -1154,10 +1154,10 @@ if(!function_exists('ms_get_site_url')){
 				$genre = $_SESSION['ms_genre'];
 			}
 			
-			if(isset($_REQUEST['ordering_by']) && in_array($_REQUEST['ordering_by'], array('plays', 'price'))){
+			if(isset($_REQUEST['ordering_by']) && in_array($_REQUEST['ordering_by'], array('plays', 'price', 'post_title'))){
 				$_SESSION['ms_ordering'] = $_REQUEST['ordering_by'];
 			}else{
-				$_SESSION['ms_ordering'] = "post_title";
+				$_SESSION['ms_ordering'] = "post_date";
 			}
 			
 			// Extract info from music_store options
@@ -1174,7 +1174,7 @@ if(!function_exists('ms_get_site_url')){
 			$_select 	= "SELECT DISTINCT posts.ID, posts.post_type";
 			$_from 		= "FROM ".$wpdb->prefix."posts as posts,".$wpdb->prefix.MSDB_POST_DATA." as posts_data"; 
 			$_where 	= "WHERE posts.ID = posts_data.id AND posts.post_status='publish'";
-			$_order_by 	= "ORDER BY ".(($_SESSION['ms_ordering'] == "post_title") ? "posts" : "posts_data").".".$_SESSION['ms_ordering']." ".(($_SESSION['ms_ordering'] == 'plays') ? "DESC" : "ASC");
+			$_order_by 	= "ORDER BY ".(($_SESSION['ms_ordering'] == "post_title" || $_SESSION['ms_ordering'] == "post_date") ? "posts" : "posts_data").".".$_SESSION['ms_ordering']." ".(($_SESSION['ms_ordering'] == "plays" || $_SESSION['ms_ordering'] == "post_date") ? "DESC" : "ASC");
 			$_limit 	= "";
 			
 			
@@ -1317,6 +1317,7 @@ if(!function_exists('ms_get_site_url')){
 			$header .= "<div class='music-store-ordering'>".
 							__('Order by: ', MS_TEXT_DOMAIN).
 							"<select id='ordering_by' name='ordering_by' onchange='this.form.submit();'>
+								<option value='post_date' ".(($_SESSION['ms_ordering'] == 'post_date') ? "SELECTED" : "").">".__('Date', MS_TEXT_DOMAIN)."</option>
 								<option value='post_title' ".(($_SESSION['ms_ordering'] == 'post_title') ? "SELECTED" : "").">".__('Title', MS_TEXT_DOMAIN)."</option>
 								<option value='plays' ".(($_SESSION['ms_ordering'] == 'plays') ? "SELECTED" : "").">".__('Popularity', MS_TEXT_DOMAIN)."</option>
 								<option value='price' ".(($_SESSION['ms_ordering'] == 'price') ? "SELECTED" : "").">".__('Price', MS_TEXT_DOMAIN)."</option>
@@ -1379,7 +1380,7 @@ if(!function_exists('ms_get_site_url')){
 	} // End MusicStore class
 	
 	// Initialize MusicStore class
-	session_start();
+	@session_start();
 	$GLOBALS['music_store'] = new MusicStore;
 	
 	register_activation_hook(__FILE__, array(&$GLOBALS['music_store'], 'register'));
