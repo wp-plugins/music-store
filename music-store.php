@@ -1121,7 +1121,11 @@ if(!function_exists('ms_get_site_url')){
 		*/
 		function load_store($atts, $content, $tag){
 			global $wpdb;
-			
+            
+            $page_id = 'ms_page_'.get_the_ID();
+            
+            if( !isset( $_SESSION[ $page_id ] ) ) $_SESSION[ $page_id ] = array();
+  			
 			// Generated music store
 			$music_store = "";
 			$page_links = "";
@@ -1139,27 +1143,27 @@ if(!function_exists('ms_get_site_url')){
 			
 			// Extract query_string variables correcting music store attributes
 			if(isset($_REQUEST['filter_by_type']) && in_array($_REQUEST['filter_by_type'], array('all', 'singles'))){
-				$_SESSION['ms_post_type'] = $_REQUEST['filter_by_type'];
+				$_SESSION[ $page_id ]['ms_post_type'] = $_REQUEST['filter_by_type'];
 			}
 			
-			if(isset($_SESSION['ms_post_type'])){
-				$load = $_SESSION['ms_post_type'];
+			if(isset($_SESSION[ $page_id ]['ms_post_type'])){
+				$load = $_SESSION[ $page_id ]['ms_post_type'];
 			}
 			
 			if(isset($_REQUEST['filter_by_genre'])){
-				$_SESSION['ms_genre'] = $_REQUEST['filter_by_genre'];
+				$_SESSION[ $page_id ]['ms_genre'] = $_REQUEST['filter_by_genre'];
 			}
 			
-			if(isset($_SESSION['ms_genre'])){
-				$genre = $_SESSION['ms_genre'];
+			if(isset($_SESSION[ $page_id ]['ms_genre'])){
+				$genre = $_SESSION[ $page_id ]['ms_genre'];
 			}
 			
-			if(isset($_REQUEST['ordering_by']) && in_array($_REQUEST['ordering_by'], array('plays', 'price', 'post_title'))){
-				$_SESSION['ms_ordering'] = $_REQUEST['ordering_by'];
-			}else{
-				$_SESSION['ms_ordering'] = "post_date";
+			if(isset($_REQUEST['ordering_by']) && in_array($_REQUEST['ordering_by'], array('plays', 'price', 'post_title', 'post_date'))){
+				$_SESSION[ $page_id ]['ms_ordering'] = $_REQUEST['ordering_by'];
+			}elseif( !isset( $_SESSION[ $page_id ]['ms_ordering'] ) ){
+				$_SESSION[ $page_id ]['ms_ordering'] = "post_date";
 			}
-			
+
 			// Extract info from music_store options
 			$allow_filter_by_type = get_option('ms_filter_by_type', MS_FILTER_BY_TYPE);
 			$allow_filter_by_genre = get_option('ms_filter_by_genre', MS_FILTER_BY_GENRE);
@@ -1174,7 +1178,7 @@ if(!function_exists('ms_get_site_url')){
 			$_select 	= "SELECT DISTINCT posts.ID, posts.post_type";
 			$_from 		= "FROM ".$wpdb->prefix."posts as posts,".$wpdb->prefix.MSDB_POST_DATA." as posts_data"; 
 			$_where 	= "WHERE posts.ID = posts_data.id AND posts.post_status='publish'";
-			$_order_by 	= "ORDER BY ".(($_SESSION['ms_ordering'] == "post_title" || $_SESSION['ms_ordering'] == "post_date") ? "posts" : "posts_data").".".$_SESSION['ms_ordering']." ".(($_SESSION['ms_ordering'] == "plays" || $_SESSION['ms_ordering'] == "post_date") ? "DESC" : "ASC");
+			$_order_by 	= "ORDER BY ".(($_SESSION[ $page_id ]['ms_ordering'] == "post_title" || $_SESSION[ $page_id ]['ms_ordering'] == "post_date") ? "posts" : "posts_data").".".$_SESSION[ $page_id ]['ms_ordering']." ".(($_SESSION[ $page_id ]['ms_ordering'] == "plays" || $_SESSION[ $page_id ]['ms_ordering'] == "post_date") ? "DESC" : "ASC");
 			$_limit 	= "";
 			
 			
@@ -1243,14 +1247,14 @@ if(!function_exists('ms_get_site_url')){
 				// Checking for page parameter or get page from session variables
 				// Clear the page number if filtering option change
 				if(isset($_POST['filter_by_type'])){
-					$_SESSION['ms_page_number'] = 0;
+					$_SESSION[ $page_id ]['ms_page_number'] = 0;
 				}elseif(isset($_GET['page_number'])){
-					$_SESSION['ms_page_number'] = $_GET['page_number'];
-				}elseif(!isset($_SESSION['ms_page_number'])){
-					$_SESSION['ms_page_number'] = 0;
+					$_SESSION[ $page_id ]['ms_page_number'] = $_GET['page_number'];
+				}elseif(!isset($_SESSION[ $page_id ]['ms_page_number'])){
+					$_SESSION[ $page_id ]['ms_page_number'] = 0;
 				}
 				
-				$_limit = "LIMIT ".($_SESSION['ms_page_number']*$items_page).", $items_page";
+				$_limit = "LIMIT ".($_SESSION[ $page_id ]['ms_page_number']*$items_page).", $items_page";
 				
 				// Get total records for pagination
 				$query = "SELECT COUNT(DISTINCT posts.ID) ".$_from." ".$_where;
@@ -1265,7 +1269,7 @@ if(!function_exists('ms_get_site_url')){
 					
 					
 					for($i=0, $h = $total_pages; $i < $h; $i++){
-						if($_SESSION['ms_page_number'] == $i)
+						if($_SESSION[ $page_id ]['ms_page_number'] == $i)
 							$page_links .= "<span class='page-selected'>".($i+1)."</span>";
 						else	
 							$page_links .= "<a class='page-link' href='".$page_href."page_number=".$i."'>".($i+1)."</a>";
@@ -1317,10 +1321,10 @@ if(!function_exists('ms_get_site_url')){
 			$header .= "<div class='music-store-ordering'>".
 							__('Order by: ', MS_TEXT_DOMAIN).
 							"<select id='ordering_by' name='ordering_by' onchange='this.form.submit();'>
-								<option value='post_date' ".(($_SESSION['ms_ordering'] == 'post_date') ? "SELECTED" : "").">".__('Date', MS_TEXT_DOMAIN)."</option>
-								<option value='post_title' ".(($_SESSION['ms_ordering'] == 'post_title') ? "SELECTED" : "").">".__('Title', MS_TEXT_DOMAIN)."</option>
-								<option value='plays' ".(($_SESSION['ms_ordering'] == 'plays') ? "SELECTED" : "").">".__('Popularity', MS_TEXT_DOMAIN)."</option>
-								<option value='price' ".(($_SESSION['ms_ordering'] == 'price') ? "SELECTED" : "").">".__('Price', MS_TEXT_DOMAIN)."</option>
+								<option value='post_date' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'post_date') ? "SELECTED" : "").">".__('Date', MS_TEXT_DOMAIN)."</option>
+								<option value='post_title' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'post_title') ? "SELECTED" : "").">".__('Title', MS_TEXT_DOMAIN)."</option>
+								<option value='plays' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'plays') ? "SELECTED" : "").">".__('Popularity', MS_TEXT_DOMAIN)."</option>
+								<option value='price' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'price') ? "SELECTED" : "").">".__('Price', MS_TEXT_DOMAIN)."</option>
 							</select>
 						</div>";
 						
