@@ -1,5 +1,5 @@
 <?php
-    error_reporting( E_ERROR || E_PARSE );
+    error_reporting( E_ERROR | E_PARSE );
     if( !class_exists( 'WP_Http' ) ){
         include_once( ABSPATH . WPINC. '/class-http.php' );
     }    
