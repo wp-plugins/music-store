@@ -1,9 +1,5 @@
 <?php
     error_reporting( E_ERROR | E_PARSE );
-    if( !class_exists( 'WP_Http' ) ){
-        include_once( ABSPATH . WPINC. '/class-http.php' );
-    }    
-    
     global $htaccess_accepted;
     $htaccess_accepted = false;
     
@@ -13,9 +9,8 @@
 		$file_path = MS_DOWNLOAD.'/'.$new_file_name;
 		$rand = rand(1000, 1000000);
 		if(file_exists($file_path)) return MS_URL.'/ms-downloads/'.$new_file_name.'?param='.$rand;
-		$request = new WP_Http;
-        $response = $request->request($file);
-		if($response['response']['code'] == 200 && file_put_contents($file_path, $response['body'])) return MS_URL.'/ms-downloads/'.$new_file_name.'?param='.$rand;
+		$response = wp_remote_get($file);
+		if( !is_wp_error( $response ) && $response['response']['code'] == 200 && file_put_contents($file_path, $response['body'])) return MS_URL.'/ms-downloads/'.$new_file_name.'?param='.$rand;
 		return false;
 	}
 	

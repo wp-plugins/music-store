@@ -3,6 +3,9 @@
 .music-store-pagination .page-selected{font-weight:bold;}
 
 .music-store-item {float:left;}
+@media screen and (max-width: 600px) {
+    .music-store-item {clear:both;}
+}
 .music-store-items{position:relative;clear:both;}
 
 .music-store-header{width:100%;position:relative;clear:both;}
