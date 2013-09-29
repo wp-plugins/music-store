@@ -190,10 +190,9 @@ if(!function_exists('ms_get_site_url')){
             if( isset( $_REQUEST ) && isset( $_REQUEST[ 'ms-action' ] ) && strtolower( $_REQUEST[ 'ms-action' ] ) == 'download' && isset($_GET['purchase_id']) ){
                 
                 global  $download_links_str;
-                include MS_FILE_PATH.'/ms-core/ms-download.php';
-                $request = new WP_Http;
-                $response = $request->request(MS_URL.'/ms-downloads/music-store-icon.gif');
-                $htaccess_accepted = ($response['response']['code'] == 200);
+                require_once MS_FILE_PATH.'/ms-core/ms-download.php';
+                $response = wp_remote_get(MS_URL.'/ms-downloads/music-store-icon.gif');
+                $htaccess_accepted = ( !is_wp_error( $response ) && $response['response']['code'] == 200);
                 ms_generate_downloads();
                 $the_content .= __('Download Links:', MS_TEXT_DOMAIN).'<div>'.$download_links_str.'</div>';
                 

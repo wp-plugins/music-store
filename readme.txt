@@ -48,6 +48,9 @@ The base plugin, available for free from the WordPress Plugin Directory has all 
 *   Allows to entering discount coupons.
 *   Allows to insert a Song or Album in a post, page or template. In the Free version of plugin, the songs and albums are availables only from the Music Store webpage, in the premium version of plugin is possible to insert the songs and collection directly in a post, page, or template.
 
+**Important**
+
+The theme used in your website, should include the wp_footer function in the footer.php template or the index.php template.
 
 If you want more information about this plugin or another one don't doubt to visit my website:
 
