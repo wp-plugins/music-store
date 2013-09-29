@@ -238,6 +238,10 @@ A: If you want to sale a song as a single, it is required to check the "Sell as 
 
 A: If you decide to protect the audio file, the audio file is played partially in demo to avoid its copy by users and softwares unauthorized.
 
+= Q: Why the music player is not loading on page? =
+
+A: Verify that the theme used in your website, includes the function wp_footer(); in the template file "footer.php" or the template file "index.php"
+
 == Screenshots ==
 1. Music Store Item
 2. Music Store Song Section
