@@ -131,6 +131,7 @@ if(!function_exists('ms_get_site_url')){
 				add_filter('pre_get_posts', array(&$this, 'add_post_type_to_results'));
 				add_shortcode('music_store', array(&$this, 'load_store'));
                 add_filter( 'the_content', array( &$this, '_ms_the_content' ) ); // For download-page
+                add_action( 'wp_head', array( &$this, 'load_meta'));
 				$this->load_templates(); // Load the music store template for songs display
 				
 				// Load public resources
@@ -139,6 +140,22 @@ if(!function_exists('ms_get_site_url')){
 			// Init action
 			do_action( 'musicstore_init' );
 		} // End init
+        
+        function load_meta( ){
+            global $post;
+            if( isset( $post ) ){
+                if( $post->post_type == 'ms_song' ){
+                    $obj = new MSSong( $post->ID );
+                    if( isset($obj->cover) ) echo '<meta property="og:image" content="'.$obj->cover.'" />';
+                }
+                
+                if( $post->post_type == 'ms_collection' ){
+                    $obj = new MSCollection( $post->ID );
+                    if( isset($obj->cover) ) echo '<meta property="og:image" content="'.$obj->cover.'" />';
+                }
+            }
+        }
+        
 /** CODE REQUIRED FOR DOWNLOAD PAGE **/		
 
         function _ms_create_pages( $slug, $title ){
