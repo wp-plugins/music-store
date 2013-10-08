@@ -160,24 +160,25 @@ if(!function_exists('ms_get_site_url')){
 
         function _ms_create_pages( $slug, $title ){
             $page = get_page_by_path( $slug ); 
-            if( is_null( $page ) ){
-                if( wp_insert_post(
-                        array(
-                            'comment_status' => 'closed',
-                            'post_name' => $slug,
-                            'post_title' => __( $title, MS_TEXT_DOMAIN ),
-                            'post_status' => 'publish',
-                            'post_type' => 'page'
-                        )
-                    )    
-                ){
-                    $page = get_page_by_path( $slug ); 
+            if( is_admin() ){
+                if( is_null( $page ) ){
+                    if( wp_insert_post(
+                            array(
+                                'comment_status' => 'closed',
+                                'post_name' => $slug,
+                                'post_title' => __( $title, MS_TEXT_DOMAIN ),
+                                'post_status' => 'publish',
+                                'post_type' => 'page'
+                            )
+                        )    
+                    ){
+                        $page = get_page_by_path( $slug ); 
+                    }
+                }else{
+                    $page->post_status = 'publish';
+                    wp_update_post( $page );
                 }
-            }else{
-                $page->post_status = 'publish';
-                wp_update_post( $page );
-            }
-            
+            }    
             return ( !is_null( $page ) ) ? get_permalink($page->ID) : MS_H_URL;
         }
         
