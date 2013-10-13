@@ -280,7 +280,6 @@ A: Go to the plugins section in WordPress, deactivate the free version of Music 
 
 A: I'm sorry, but the current version of plugin allows PayPal only.
 
-cobrar
 = Q: Can the customers pay directly with its credit cards? =
 
 A: The restriction is imposed by PayPal. Please, check that your PayPal account allow to charge directly from the credit cards of customers.
