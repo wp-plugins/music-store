@@ -3,7 +3,7 @@ Contributors: codepeople
 Donate link: http://wordpress.dwbooster.com/content-tools/music-store
 Tags:audio,audio player,e-commerce,ecommerce,facebook,google,google+,html5,mp3,music,paypal,player,sell music,sell,shop,social,social network,songs,store,twitter
 Requires at least: 3.0.5
-Tested up to: 3.6
+Tested up to: 3.6.1
 Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -46,7 +46,10 @@ The base plugin, available for free from the WordPress Plugin Directory has all 
 *	Allows to filter products by types of files: Singles or Collections.
 *   Allows to create discounts.
 *   Allows to entering discount coupons.
-*   Allows to insert a Song or Album in a post, page or template. In the Free version of plugin, the songs and albums are availables only from the Music Store webpage, in the premium version of plugin is possible to insert the songs and collection directly in a post, page, or template.
+*   Allows to insert a Song or Album in a post, page or template. In the Free version of plugin, the songs and albums are available only from the Music Store webpage, in the premium version of plugin is possible to insert the songs and collection directly in a post, page, or template.
+*   Allows to insert a list of products in a post, page or template. In the Free version of plugin, the songs are available only from the Music Store webpage, but in the premium version Music Store is possible to insert list of products directly in a post, page, or template. The list can load the top rated products, the newest products, or the top selling.
+*   Allows to insert a counter of sold products in your website.
+*   Allows to insert a product, a products list, or a sold products counter, as a widget in the website sidebars.
 
 **Important**
 
@@ -55,6 +58,15 @@ The theme used in your website, should include the wp_footer function in the foo
 If you want more information about this plugin or another one don't doubt to visit my website:
 
 [http://wordpress.dwbooster.com](http://wordpress.dwbooster.com "CodePeople WordPress Repository")
+
+[http://www.youtube.com/watch?v=IIuf2otMFyM]
+Installing and using the free version of the Music Store
+
+[http://www.youtube.com/watch?v=bl5qDtJ4eHo]
+Installing and using the premium version of the Music Store
+
+[http://www.youtube.com/watch?v=hgMCAehy2N0]
+Inserting a product, and product list, on a web page and sidebars. Premium version of plugin.
 
 == Installation ==
 
@@ -69,7 +81,7 @@ If you want more information about this plugin or another one don't doubt to vis
 
 **Setting up Music Store**
 
-Music Store can be set up via the menu: "Settings / Music Store". The setup screen offers general settings for the Music Store, allows to enter PayPal data to process sales, and texts necessary for email notifications.
+Music Store can be set up via the menu: "Settings / Music Store" or the new submenu "Music Store / Store Settings". The setup screen offers general settings for the Music Store, allows to enter PayPal data to process sales, and texts necessary for email notifications.
 
 **Settings Interface**
 
@@ -207,18 +219,36 @@ The insertion process generates a shortcode which will be replaced by the store 
 
 Note: After inserting the store on a page of your WordPress, it is advisable to copy the URL of the relevant page, and enter in the Music Store's setup section, to allow the users to return to the store from the product page.
 
-**Interface for insertion dialof of product (Song or Collection) in a page or post**
+**Interface for insertion dialog of product (Song or Collection) in a page or post (the interface is available as a widget for inserting a product in the website's sidebars) (this option is available only for premium version of Music Store)**
 
 *   Enter the Song or Collection ID: the ID of a song or collection appear in the product URL.
 
 The insertion process generates a shortcode which will be replaced by the product data when page is displayed on the website.
 
-				The shortcode in a post or page has the structure [music_store_product id="3"](replace the number 3 by the ID of song or collection), if prefere to inser the product directly in template: <?php print do_shortcode('[music_store_product id="3"]'); ?>
+The shortcode in a post or page has the structure [music_store_product id="3"](replace the number 3 by the ID of song or collection), if prefere to inser the product directly in template: <?php print do_shortcode('[music_store_product id="3"]'); ?>
 
+**Interface for insertion dialog of product list in a page or post (the interface is available as a widget for inserting the products list in the website's sidebars) (this option is available only for premium version of Music Store)**
+
+*   Select the type of products list (top rated products, the newest products, or the top selling).
+*   Enter the number of products to display on list.
+*   Enter the number of columns(if the products list is inserted in a website's sidebar, it is recommended to use only one column).
+
+The insertion process generates a shortcode which will be replaced by the products list when page is displayed on the website.
+
+The shortcode in a post or page has the structure [music_store_product_list columns="1" number="3" type="top_rated"], if prefere to inser the product directly in template: <?php print do_shortcode('[music_store_product_list columns="1" number="3" type="top_rated"]'); ?>
+                
+**Interface for insertion dialog of sales counter in a page or post (the interface is available as a widget for inserting the counter in the website's sidebars) (this option is available only for premium version of Music Store)**
+
+*   Select the numbers design.
+*   Enter the minimum length of counter number.
+
+The insertion process generates a shortcode which will be replaced by the counter when page is displayed on the website.
+
+The shortcode in a post or page has the structure [music_store_sales_counter min_length="3" style="alt_digits"], if prefere to inser the product directly in template: <?php print do_shortcode('[music_store_sales_counter min_length="3" style="alt_digits"]'); ?>
 
 **Sale Statistics**
 
-When a sale takes place, a notification email is sent to the Music Store administrator. However, sales can also be reviewed in Sales Reports. To do this, go to the stores' setup page: "Settings / Music Store" and once there, open the section "Sales Reports" (screenshot-9)
+When a sale takes place, a notification email is sent to the Music Store administrator. However, sales can also be reviewed in Sales Reports. To do this, go to the stores' setup page: "Settings / Music Store" and once there, open the section "Sales Reports" (screenshot-9), or go to the "Sales Reports" from the "Music Store" submenu: "Music Store / Sales Report"
 
 The Reports section allows you to filter sales reports over a specific period, by default it shows the current day's sales. It also shows sales' totals for the selected period and the currency of the sales (screenshot-10)
 
@@ -242,6 +272,43 @@ A: If you decide to protect the audio file, the audio file is played partially i
 
 A: Verify that the theme used in your website, includes the function wp_footer(); in the template file "footer.php" or the template file "index.php"
 
+= Q: What can I do if the music-store directory exists and the premium versión of plugin cannot be installed? =
+
+A: Go to the plugins section in WordPress, deactivate the free version of Music Store, and delete it ( Don't worry, this process don't modify the songs created with the free version of plugin), and finally install and activate the premium version of plugin.
+
+= Q: Does allow the music store a different payment gateway than PayPal? =
+
+A: I'm sorry, but the current version of plugin allows PayPal only.
+
+cobrar
+= Q: Can the customers pay directly with its credit cards? =
+
+A: The restriction is imposed by PayPal. Please, check that your PayPal account allow to charge directly from the credit cards of customers.
+
+= Q: How to display different numbers design in the sales counter? =
+
+A: To use your own numbers design, you must create a new directory with the name of new style in "/wp-content/plugins/music-store/ms-core/images/counter", and upload to the new folder, an image in gif format, for each digit from 0 to 9.
+
+= Q: Is possible modify the appearance of music store? =
+
+A: The design of each section of Music Store, is determined from templates located in "/wp-content/plugins/music-store/ms-templates".
+
+The "ms-templates" directory contains multiple files, some of them for songs, and others for collections.
+
+The template files: 
+
+- song.tpl.html and collection.tpl.html are used in the Music Store's page.
+- song_single.tpl.html and collection_single.tpl.html are used in particular pages of songs and collections.
+- song_multiple.tpl.html and collection_multipl.tpl.html are used in pages of multiple entries like: archives and search result page.
+
+= Q: Is possible promote a product, or products list? =
+
+A: It is possible promote a product or products list, from the website's sidebars, or directly from the content of pages or posts. 
+
+To promote the products on sidebars, go to the widgets section, and inserts the corresponding widget on sidebar. 
+
+To promote the products from the content of pages and posts, go to the page and press the corresponding icon over the contents editor.
+
 == Screenshots ==
 1. Music Store Item
 2. Music Store Song Section
@@ -251,5 +318,8 @@ A: Verify that the theme used in your website, includes the function wp_footer()
 6. Music Store Insertion Button
 7. Music Store Insertion Interface
 8. Product Insertion Interface
-9. Sales Reports
-10. Filtering Sales Report
+9. Products List Insertion Interface
+10. Insertion Interface for Sales Counter
+11. The Available Widgets for Insert the Products, Products List and Sales Counter in the Website's Sidebars
+12. Filtering Sales Report
+13. Sales Reports

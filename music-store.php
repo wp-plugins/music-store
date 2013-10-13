@@ -131,6 +131,7 @@ if(!function_exists('ms_get_site_url')){
 				add_filter('pre_get_posts', array(&$this, 'add_post_type_to_results'));
 				add_shortcode('music_store', array(&$this, 'load_store'));
                 add_filter( 'the_content', array( &$this, '_ms_the_content' ) ); // For download-page
+                add_filter( 'the_excerpt', array( &$this, '_ms_the_excerpt' ) ); // For search results
                 add_action( 'wp_head', array( &$this, 'load_meta'));
 				$this->load_templates(); // Load the music store template for songs display
 				
@@ -202,14 +203,28 @@ if(!function_exists('ms_get_site_url')){
             return $pages;
         }
         
+		function _ms_the_excerpt( $the_excerpt ){
+			global $post;    
+			if( is_search() && isset( $post) ){
+				if( $post->post_type == 'ms_song' ){
+					$tpl = new music_store_tpleng(dirname(__FILE__).'/ms-templates/', 'comment');
+					$obj = new MSSong( $post->ID );
+					return $obj->display_content( 'multiple', $tpl, 'return');
+				}	
+			}
+				
+			return $the_excerpt;
+		}
+		
         function _ms_the_content( $the_content  ){
+		
             global $post;    
-            
+
             if( isset( $_REQUEST ) && isset( $_REQUEST[ 'ms-action' ] ) && strtolower( $_REQUEST[ 'ms-action' ] ) == 'download' && isset($_GET['purchase_id']) ){
                 
                 global  $download_links_str;
                 require_once MS_FILE_PATH.'/ms-core/ms-download.php';
-                $response = wp_remote_get(MS_URL.'/ms-downloads/music-store-icon.gif');
+                $response = wp_remote_get(MS_URL.'/ms-downloads/music-store-icon.png');
                 $htaccess_accepted = ( !is_wp_error( $response ) && $response['response']['code'] == 200);
                 ms_generate_downloads();
                 $the_content .= __('Download Links:', MS_TEXT_DOMAIN).'<div>'.$download_links_str.'</div>';
@@ -1383,7 +1398,7 @@ if(!function_exists('ms_get_site_url')){
 			global $post;
 			
 			if(isset($post) && $post->post_type != 'ms_song')
-			print '<a href="javascript:open_insertion_music_store_window();" title="'.__('Insert Music Store').'"><img src="'.MS_CORE_IMAGES_URL.'/music-store-icon.gif'.'" alt="'.__('Insert Music Store').'" /></a>';
+			print '<a href="javascript:open_insertion_music_store_window();" title="'.__('Insert Music Store').'"><img src="'.MS_CORE_IMAGES_URL.'/music-store-icon.png'.'" alt="'.__('Insert Music Store').'" /></a>';
 		} // End set_music_store_button
 		
 		
