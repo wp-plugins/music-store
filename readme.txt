@@ -59,15 +59,15 @@ If you want more information about this plugin or another one don't doubt to vis
 
 [http://wordpress.dwbooster.com](http://wordpress.dwbooster.com "CodePeople WordPress Repository")
 
-[http://www.youtube.com/watch?v=IIuf2otMFyM]
+[youtube http://www.youtube.com/watch?v=IIuf2otMFyM]
 
 Installing and using the free version of the Music Store
 
-[http://www.youtube.com/watch?v=bl5qDtJ4eHo]
+[youtube http://www.youtube.com/watch?v=bl5qDtJ4eHo]
 
 Installing and using the premium version of the Music Store
 
-[http://www.youtube.com/watch?v=hgMCAehy2N0]
+[youtube http://www.youtube.com/watch?v=hgMCAehy2N0]
 
 Inserting a product, and product list, on a web page and sidebars. Premium version of plugin.
 
