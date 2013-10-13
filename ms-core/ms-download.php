@@ -9,9 +9,13 @@
 		$file_path = MS_DOWNLOAD.'/'.$new_file_name;
 		$rand = rand(1000, 1000000);
 		if(file_exists($file_path)) return MS_URL.'/ms-downloads/'.$new_file_name.'?param='.$rand;
+        
+        if( !music_store_check_memory( array( $file ) ) ) return $file;
+
 		$response = wp_remote_get($file);
 		if( !is_wp_error( $response ) && $response['response']['code'] == 200 && file_put_contents($file_path, $response['body'])) return MS_URL.'/ms-downloads/'.$new_file_name.'?param='.$rand;
-		return false;
+		
+        return $file;
 	}
 	
 	function ms_remove_download_links(){
@@ -21,8 +25,8 @@
 		$dif = get_option('ms_old_download_link', MS_OLD_DOWNLOAD_LINK)*86400;
 		$d = @dir(MS_DOWNLOAD);
 		while (false !== ($entry = $d->read())) {
-            // The music-store-icon.gif file allow to know that htaccess file is supported, so it should not be deleted
-			if($entry != '.' && $entry != '..' && $entry != 'music-store-icon.gif'){
+            // The music-store-icon.png file allow to know that htaccess file is supported, so it should not be deleted
+			if($entry != '.' && $entry != '..' && $entry != 'music-store-icon.png'){
                 if($entry == '.htaccess'){
                     if(!$htaccess_accepted){ // Remove the htaccess if it is not accepted
                         @unlink(MS_DOWNLOAD.'/'.$entry);
@@ -95,11 +99,8 @@
                 }
                 
                 foreach($urls as $url){
-                    
                     $download_link = ms_copy_download_links($url->link);
-                    if($download_link){
-                        $download_links_str .= '<div> <a href="'.$download_link.'">'.$url->title.'</a></div>';
-                    }
+                    $download_links_str .= '<div> <a href="'.$download_link.'">'.$url->title.'</a></div>';
                 }
             }
             

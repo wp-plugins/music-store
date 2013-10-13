@@ -108,7 +108,8 @@ if(!class_exists('MSSong')){
 				'title' => $this->post_title,
 				'link'	=> get_permalink($this->id),
 				'popularity' => $this->plays,
-                'social' => null
+                'social' => null,
+				'price' => null
 			);
 			
             if(!empty($this->cover)){
