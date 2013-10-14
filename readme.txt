@@ -312,15 +312,15 @@ To promote the products on sidebars, go to the widgets section, and inserts the 
 To promote the products from the content of pages and posts, go to the page and press the corresponding icon over the contents editor.
 
 == Screenshots ==
-1. Music Store Item
-2. Music Store Song Section
-3. Song Edition Interface
-4. Music Store Collection Section
-5. Collection Edition Interface
-6. Music Store Insertion Button
-7. Music Store Insertion Interface
-8. Product Insertion Interface
-9. Products List Insertion Interface
+01. Music Store Item
+02. Music Store Song Section
+03. Song Edition Interface
+04. Music Store Collection Section
+05. Collection Edition Interface
+06. Music Store Insertion Button
+07. Music Store Insertion Interface
+08. Product Insertion Interface
+09. Products List Insertion Interface
 10. Insertion Interface for Sales Counter
 11. The Available Widgets for Insert the Products, Products List and Sales Counter in the Website's Sidebars
 12. Filtering Sales Report
