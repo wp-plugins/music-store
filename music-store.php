@@ -1207,7 +1207,7 @@ if(!function_exists('ms_get_site_url')){
 			$items_page_selector 	= get_option('ms_items_page_selector', MS_ITEMS_PAGE_SELECTOR);
 			
 			// Query clauses 
-			$_select 	= "SELECT DISTINCT posts.ID, posts.post_type";
+			$_select 	= "SELECT SQL_CALC_FOUND_ROWS DISTINCT posts.*, posts_data.*";
 			$_from 		= "FROM ".$wpdb->prefix."posts as posts,".$wpdb->prefix.MSDB_POST_DATA." as posts_data"; 
 			$_where 	= "WHERE posts.ID = posts_data.id AND posts.post_status='publish'";
 			$_order_by 	= "ORDER BY ".(($_SESSION[ $page_id ]['ms_ordering'] == "post_title" || $_SESSION[ $page_id ]['ms_ordering'] == "post_date") ? "posts" : "posts_data").".".$_SESSION[ $page_id ]['ms_ordering']." ".(($_SESSION[ $page_id ]['ms_ordering'] == "plays" || $_SESSION[ $page_id ]['ms_ordering'] == "post_date") ? "DESC" : "ASC");
@@ -1288,8 +1288,12 @@ if(!function_exists('ms_get_site_url')){
 				
 				$_limit = "LIMIT ".($_SESSION[ $page_id ]['ms_page_number']*$items_page).", $items_page";
 				
+				// Create items section
+				$query = $_select." ".$_from." ".$_where." ".$_order_by." ".$_limit;
+				$results = $wpdb->get_results($query);
+				
 				// Get total records for pagination
-				$query = "SELECT COUNT(DISTINCT posts.ID) ".$_from." ".$_where;
+				$query = "SELECT FOUND_ROWS()";
 				$total = $wpdb->get_var($query);
 				$total_pages = ceil($total/max($items_page,1));
 				
@@ -1308,18 +1312,20 @@ if(!function_exists('ms_get_site_url')){
 					}
 					$page_links .= "</DIV>";
 				}	
+			}else{
+				// Create items section
+				$query = $_select." ".$_from." ".$_where." ".$_order_by." ".$_limit;
+				$results = $wpdb->get_results($query);
 			}
 			
-			// Create items section
-			$query = $_select." ".$_from." ".$_where." ".$_order_by." ".$_limit;
-			$results = $wpdb->get_results($query);
+			
 			$tpl = new music_store_tpleng(dirname(__FILE__).'/ms-templates/', 'comment');
 			
 			$width = floor(100/min($columns, max(count($results),1)));
 			$music_store .= "<div class='music-store-items'>";
 			$item_counter = 0;
 			foreach($results as $result){
-				$obj = new MSSong($result->ID);
+				$obj = new MSSong($result->ID, (array)$result);
 				$music_store .= "<div style='width:{$width}%;' class='music-store-item'>".$obj->display_content('store', $tpl, 'return')."</div>";
 				$item_counter++;
 				if($item_counter % $columns == 0)

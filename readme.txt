@@ -228,7 +228,7 @@ Note: After inserting the store on a page of your WordPress, it is advisable to 
 
 The insertion process generates a shortcode which will be replaced by the product data when page is displayed on the website.
 
-The shortcode in a post or page has the structure [music_store_product id="3"](replace the number 3 by the ID of song or collection), if prefere to inser the product directly in template: <?php print do_shortcode('[music_store_product id="3"]'); ?>
+The shortcode in a post or page has the structure [music_store_product id="3"](replace the number 3 by the ID of song or collection), if prefer to insert the product directly in template: <?php print do_shortcode('[music_store_product id="3"]'); ?>
 
 **Interface for insertion dialog of product list in a page or post (the interface is available as a widget for inserting the products list in the website's sidebars) (this option is available only for premium version of Music Store)**
 
@@ -238,7 +238,7 @@ The shortcode in a post or page has the structure [music_store_product id="3"](r
 
 The insertion process generates a shortcode which will be replaced by the products list when page is displayed on the website.
 
-The shortcode in a post or page has the structure [music_store_product_list columns="1" number="3" type="top_rated"], if prefere to inser the product directly in template: <?php print do_shortcode('[music_store_product_list columns="1" number="3" type="top_rated"]'); ?>
+The shortcode in a post or page has the structure [music_store_product_list columns="1" number="3" type="top_rated"], if prefer to insert the product directly in template: <?php print do_shortcode('[music_store_product_list columns="1" number="3" type="top_rated"]'); ?>
                 
 **Interface for insertion dialog of sales counter in a page or post (the interface is available as a widget for inserting the counter in the website's sidebars) (this option is available only for premium version of Music Store)**
 
@@ -247,7 +247,7 @@ The shortcode in a post or page has the structure [music_store_product_list colu
 
 The insertion process generates a shortcode which will be replaced by the counter when page is displayed on the website.
 
-The shortcode in a post or page has the structure [music_store_sales_counter min_length="3" style="alt_digits"], if prefere to inser the product directly in template: <?php print do_shortcode('[music_store_sales_counter min_length="3" style="alt_digits"]'); ?>
+The shortcode in a post or page has the structure [music_store_sales_counter min_length="3" style="alt_digits"], if prefer to insert the product directly in template: <?php print do_shortcode('[music_store_sales_counter min_length="3" style="alt_digits"]'); ?>
 
 **Sale Statistics**
 
@@ -269,7 +269,7 @@ A: If you want to sale a song as a single, it is required to check the "Sell as 
 
 = Q: Why the audio file is played partially? =
 
-A: If you decide to protect the audio file, the audio file is played partially in demo to avoid its copy by users and softwares unauthorized.
+A: If you decide to protect the audio file, the audio file is played partially in demo to avoid its copy by users and software unauthorized.
 
 = Q: Why the music player is not loading on page? =
 
