@@ -21,15 +21,20 @@ if(!class_exists('MSSong')){
 		* @access public
 		* @return void
 		*/
-		function __construct($id){
+		function __construct($id, $data = array() ){
 			global $wpdb;
 			
 			$this->id = $id;
-			// Read general data
-			$data = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".$wpdb->prefix.MSDB_POST_DATA." WHERE id=%d", array($id)));
-			if($data) $this->song_data = (array)$data;
 			
-			$this->post_data = get_post($id, 'ARRAY_A');
+			if( empty( $data ) ){
+				// Read general data
+				$data = $wpdb->get_row($wpdb->prepare("SELECT * FROM ".$wpdb->prefix.MSDB_POST_DATA." WHERE id=%d", array($id)));
+				if($data) $this->song_data = (array)$data;
+				$this->post_data = get_post($id, 'ARRAY_A');
+			}else{
+				$this->song_data = $data;
+				$this->post_data = $data;
+			}	
 			
 			// Read artist list
 			$this->artist = (array)wp_get_object_terms($id, 'ms_artist');
@@ -121,7 +126,7 @@ if(!class_exists('MSSong')){
 			if($this->info) $song_arr['info'] = $this->info;
             
             if(get_option('ms_social_buttons')){
-                $song_arr['social'] = get_permalink( $this->id );
+                $song_arr['social'] = $song_arr[ 'link' ];
             }
             
 			
