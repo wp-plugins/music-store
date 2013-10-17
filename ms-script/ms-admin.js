@@ -101,7 +101,8 @@
 
                 window.send_to_editor = window.send_to_download_url;
 
-                tb_show('', 'media-upload.php?post_id=' + music_store.post_id + '&amp;TB_iframe=true');
+                //tb_show('', 'media-upload.php?post_id=' + music_store.post_id + '&amp;TB_iframe=true');
+                tb_show('', 'media-upload.php?post_id=0&amp;TB_iframe=true');
                 return false;
             }    
         });
