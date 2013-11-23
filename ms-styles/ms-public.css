@@ -83,3 +83,6 @@
 
 .clear {clear: both;}
 .fb_iframe_widget_lift{ max-width:auto; }
+
+.music-store-error-mssg{ border: 1px solid #FF0000; color: #FF0000; text-align:center; width:100%; }
+.music-store-error-mssg ul{ list-style:none; }

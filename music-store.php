@@ -48,8 +48,8 @@ if(!function_exists('ms_get_site_url')){
  define( 'MS_NOTIFICATION_TO_SELLER_MESSAGE', "New purchase made with the following information:\n\n%INFORMATION%\n\nBest regards." );
 
  // SAFE PLAYBACK
- define('MS_FILE_PERCENT', 50);
- 
+ define('MS_SAFE_DOWNLOAD', false);
+
  // DISPLAY CONSTANTS
  define('MS_ITEMS_PAGE', 10);
  define('MS_ITEMS_PAGE_SELECTOR', true);
@@ -118,11 +118,16 @@ if(!function_exists('ms_get_site_url')){
                 if(isset($_REQUEST['ms-action'])){
                     switch(strtolower($_REQUEST['ms-action'])){
                         case 'buynow':
-                            include MS_FILE_PATH.'/ms-core/ms-submit.php';exit;
+                            include_once MS_FILE_PATH.'/ms-core/ms-submit.php';exit;
                         break;
                         case 'ipn':
-                            include MS_FILE_PATH.'/ms-core/ms-ipn.php';exit;
+                            include_once MS_FILE_PATH.'/ms-core/ms-ipn.php';exit;
                         break;
+						case 'f-download':
+							require_once MS_FILE_PATH.'/ms-core/ms-download.php';
+							ms_download_file();
+							exit;
+						break;
                     }
                     
                 }
@@ -221,20 +226,48 @@ if(!function_exists('ms_get_site_url')){
 		}
 		
         function _ms_the_content( $the_content  ){
-		
-            global $post;    
+			global $post, $ms_errors, $download_links_str;
+            
+			if( isset( $_REQUEST ) && isset( $_REQUEST[ 'ms-action' ] ) && strtolower( $_REQUEST[ 'ms-action' ] ) == 'download' ){
+			
+				if( session_id() == "" ) session_start();
+				if( !empty( $_REQUEST[ 'ms_user_email' ] ) ) $_SESSION[ 'ms_user_email' ] =  $_REQUEST[ 'ms_user_email' ];
+				
+				
+				require_once MS_FILE_PATH.'/ms-core/ms-download.php';
+				$response = wp_remote_get(MS_URL.'/ms-downloads/music-store-icon.png');
+				$htaccess_accepted = (  !is_wp_error( $response ) && ( $response['response']['code'] == 200 || $response['response']['code'] == 403 ) );
+				ms_generate_downloads();
 
-            if( isset( $_REQUEST ) && isset( $_REQUEST[ 'ms-action' ] ) && strtolower( $_REQUEST[ 'ms-action' ] ) == 'download' && isset($_GET['purchase_id']) ){
-                
-                global  $download_links_str;
-                require_once MS_FILE_PATH.'/ms-core/ms-download.php';
-                $response = wp_remote_get(MS_URL.'/ms-downloads/music-store-icon.png');
-                $htaccess_accepted = ( !is_wp_error( $response ) && $response['response']['code'] == 200);
-                ms_generate_downloads();
-                $the_content .= __('Download Links:', MS_TEXT_DOMAIN).'<div>'.$download_links_str.'</div>';
-                
-            }
-            return $the_content;
+				if( empty( $ms_errors ) ){
+					$the_content .= __('Download Links:', MS_TEXT_DOMAIN).'<div>'.$download_links_str.'</div>';
+				}else{
+					$error = ( !empty( $_REQUEST[ 'error_mssg' ] ) ) ? $_REQUEST[ 'error_mssg' ] : '';
+					if( !empty( $_SESSION[ 'ms_user_email' ] ) ){
+						$error .= '<li>'.implode( '</li><li>', $ms_errors ).'</li>';
+					}
+					
+					$the_content .= ( !empty( $error ) )  ? '<div class="music-store-error-mssg"><ul>'.$error.'</ul></div>' : '';
+					
+					if( get_option( 'ms_safe_download', MS_SAFE_DOWNLOAD ) ){
+						$dlurl = $GLOBALS['music_store']->_ms_create_pages( 'ms-download-page', 'Download Page' ); 
+						$dlurl .= ( ( strpos( $dlurl, '?' ) === false ) ? '?' : '&' ).'ms-action=download'.( ( isset( $_REQUEST[ 'purchase_id' ] ) ) ? '&purchase_id='.$_REQUEST[ 'purchase_id' ] : '' );	
+						$the_content .= '
+							<form action="'.$dlurl.'" method="POST" >
+								<div style="text-align:center;">
+									<div>
+										'.__( 'Type the email address used to purchase our products', MS_TEXT_DOMAIN ).'
+									</div>
+									<div>
+										<input type="text" name="ms_user_email" /> <input type="submit" value="Get Products" />
+									</div>	
+								</div>
+							</form>
+						';
+					}	
+				}	
+			}
+			return $the_content;
         }
 /** END OF DOWNLOAD PAGE CODE **/		
         
@@ -245,7 +278,31 @@ if(!function_exists('ms_get_site_url')){
 		* @return void
 		*/
 		function admin_init(){
-			// Init the metaboxs for song
+			global $wpdb;
+			if( isset( $_REQUEST[ 'ms-action' ] ) && $_REQUEST[ 'ms-action' ] == 'paypal-data' ){
+				if( isset( $_REQUEST[ 'data' ] ) && isset( $_REQUEST[ 'from' ] ) && isset( $_REQUEST[ 'to' ] ) ){
+					$where = 'DATEDIFF(date, "'.$_REQUEST[ 'from' ].'")>=0 AND DATEDIFF(date, "'.$_REQUEST[ 'to' ].'")<=0';
+					switch( $_REQUEST[ 'data' ] ){
+						case 'residence_country':
+							print music_store_getFromPayPalData( array( 'residence_country' => 'residence_country'), 'COUNT(*) AS count', '', $where, array( 'residence_country' ), array( 'count' => 'DESC' ) );
+						break;	
+						case 'mc_currency':
+							print music_store_getFromPayPalData( array( 'mc_currency' => 'mc_currency'), 'SUM(amount) AS sum', '', $where, array( 'mc_currency' ), array( 'sum' => 'DESC' ) );
+						break;	
+						case 'product_name':
+							$json =  music_store_getFromPayPalData( array( 'mc_currency' => 'mc_currency'), 'SUM(amount) AS sum, post_title', $wpdb->posts.' AS posts', $where.' AND product_id = posts.ID', array( 'product_id', 'mc_currency' ) );
+							$obj = json_decode( $json );
+							foreach( $obj as $key => $value){
+								$obj[ $key ]->post_title .= ' ['.$value->mc_currency.']';
+							}
+							print json_encode( $obj );
+						break;
+					}
+				}
+				exit;
+			}
+            	
+            // Init the metaboxs for song
 			add_meta_box('ms_song_metabox', __("Song's data", MS_TEXT_DOMAIN), array(&$this, 'metabox_form'), 'ms_song', 'normal', 'high');
 			add_action('save_post', array(&$this, 'save_data'));
 			
@@ -636,6 +693,7 @@ if(!function_exists('ms_get_site_url')){
 				update_option('ms_notification_to_seller_subject', $_POST['ms_notification_to_seller_subject']);
 				update_option('ms_notification_to_seller_message', $_POST['ms_notification_to_seller_message']);				
 				update_option('ms_old_download_link', $_POST['ms_old_download_link']);				
+				update_option('ms_safe_download', ((isset($_POST['ms_safe_download'])) ? true : false));
 				update_option('ms_social_buttons', ((isset($_POST['ms_social_buttons'])) ? true : false));
                 
 ?>				
@@ -801,13 +859,17 @@ if(!function_exists('ms_get_site_url')){
 							</td>
 							</tr> 
 							
-							
 							<tr valign="top">
 							<th scope="row"><?php _e('Download link valid for', MS_TEXT_DOMAIN); ?></th>
 							<td><input type="text" name="ms_old_download_link" value="<?php echo esc_attr(get_option('ms_old_download_link', MS_OLD_DOWNLOAD_LINK)); ?>" /> <?php _e('day(s)', MS_TEXT_DOMAIN)?></td>
 							</tr>
-
+							
                             <tr valign="top">
+							<th scope="row"><?php _e('Increase the download page security', MS_TEXT_DOMAIN); ?></th>
+							<td><input type="checkbox" name="ms_safe_download" <?php echo ( ( get_option('ms_safe_download', MS_SAFE_DOWNLOAD)) ? 'CHECKED' : '' ); ?> /> <?php _e('The customers must enter the email address used in the product\'s purchasing to access to the download link. The Music Store verifies the customer\'s data, from the file link too.', MS_TEXT_DOMAIN)?></td>
+							</tr>  
+							
+							<tr valign="top">
 							<th scope="row"><?php _e('Pack all purchased audio files as a single ZIP file', MS_TEXT_DOMAIN); ?></th>
 							<td><input type="checkbox" disabled >
                             <em style="color:#FF0000;"><?php _e('Only available for commercial version of plugin', MS_TEXT_DOMAIN); ?></em>
@@ -965,7 +1027,7 @@ if(!function_exists('ms_get_site_url')){
 								foreach($months_list as $month => $name) print '<option value="'.$month.'"'.(($from_month == $month) ? ' SELECTED' : '').'>'.$name.'</option>';
 							?>
 							</select>
-							<input type="text" name="form_year" value="<?php print $from_year; ?>" />
+							<input type="text" name="from_year" value="<?php print $from_year; ?>" />
 							
 							<label><?php _e('To: ', MS_TEXT_DOMAIN); ?></label>
 							<select name="to_day">
@@ -978,7 +1040,7 @@ if(!function_exists('ms_get_site_url')){
 								foreach($months_list as $month => $name) print '<option value="'.$month.'"'.(($to_month == $month) ? ' SELECTED' : '').'>'.$name.'</option>';
 							?>
 							</select>
-							<input type="text" name="to_year" value="<?php print $from_year; ?>" />
+							<input type="text" name="to_year" value="<?php print $to_year; ?>" />
 							
 							<input type="submit" value="<?php _e('Search', MS_TEXT_DOMAIN); ?>" class="button-primary" />
 						</div>
@@ -987,6 +1049,22 @@ if(!function_exists('ms_get_site_url')){
 					<div class="postbox">
 						<h3 class='hndle' style="padding:5px;"><span><?php _e('Store sales report', MS_TEXT_DOMAIN); ?></span></h3>
 						<div class="inside">
+							<?php 
+								if(count($purchase_list)){	
+									print '
+										<div>
+											<label style="margin-right: 20px;" ><input type="checkbox" onclick="ms_load_report(this, \'sales_by_country\', \''.__( 'Sales by country', MS_TEXT_DOMAIN ).'\', \'residence_country\', \'Pie\', \'residence_country\', \'count\');" /> '.__( 'Sales by country', MS_TEXT_DOMAIN ).'</label>
+											<label style="margin-right: 20px;" ><input type="checkbox" onclick="ms_load_report(this, \'sales_by_currency\', \''.__( 'Sales by currency', MS_TEXT_DOMAIN ).'\', \'mc_currency\', \'Bar\', \'mc_currency\', \'sum\');" /> '.__( 'Sales by currency', MS_TEXT_DOMAIN ).'</label>
+											<label><input type="checkbox" onclick="ms_load_report(this, \'sales_by_product\', \''.__( 'Sales by product', MS_TEXT_DOMAIN ).'\', \'product_name\', \'Bar\', \'post_title\', \'sum\');" /> '.__( 'Sales by product', MS_TEXT_DOMAIN ).'</label>
+										</div>';
+								}
+							?>
+						    <div id="charts_content" >
+								<div id="sales_by_country"></div>
+								<div id="sales_by_currency"></div>
+								<div id="sales_by_product"></div>
+							</div>
+							
 							<table class="form-table" style="border-bottom:1px solid #CCC;margin-bottom:10px;">
 								<THEAD>
 									<TR style="border-bottom:1px solid #CCC;">
@@ -1077,8 +1155,10 @@ if(!function_exists('ms_get_site_url')){
 		function admin_resources($hook){
 			global $post;
 			if(strpos($hook, "music-store") !== false){
-				wp_enqueue_script('ms-admin-script', plugin_dir_url(__FILE__).'ms-script/ms-admin.js', array('jquery'), null, true);
+				wp_enqueue_script('ms-admin-script-chart', plugin_dir_url(__FILE__).'ms-script/Chart.min.js', array('jquery'), null, true);
+                wp_enqueue_script('ms-admin-script', plugin_dir_url(__FILE__).'ms-script/ms-admin.js', array('jquery'), null, true);
                 wp_enqueue_style('ms-admin-style', plugin_dir_url(__FILE__).'ms-styles/ms-admin.css');
+				wp_localize_script('ms-admin-script', 'ms_global', array( 'aurl' => admin_url() ));
 			}
 			if ( $hook == 'post-new.php' || $hook == 'post.php' || $hook == 'index.php') {
                 wp_enqueue_script('jquery-ui-core');
