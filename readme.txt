@@ -3,7 +3,7 @@ Contributors: codepeople
 Donate link: http://wordpress.dwbooster.com/content-tools/music-store
 Tags:audio,audio player,e-commerce,ecommerce,facebook,google,google+,html5,mp3,music,paypal,player,sell music,sell,shop,sidebar,social,social network,songs,store,twitter,widget
 Requires at least: 3.0.5
-Tested up to: 3.7
+Tested up to: 3.7.1
 Stable tag: 1.0.1
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -33,9 +33,9 @@ Music Store includes an audio player compatible with all major browsers: Interne
 *	Allows a custom setup of the online store, with ability to paging and sorting the results by popularity or price.
 *	Allows to associate additional information to the products. 
 *	Includes an audio player that supports formats: OGA, MP3, WAV, WMA.
-* Allows to share the songs and collections in the social networks (like Facebook, Twitter and Google+).
+*   Allows to share the songs and collections in the social networks (like Facebook, Twitter and Google+).
 *	Supports all most popular web browsers: Internet Explorer, Firefox, Chrome, Safari, Opera, and mobile devices such as iPhone, iPad and Android. For older browsers, the media player provides support for Flash and Silverlight.
-*	Includes a module to track sales statistics.
+*	Includes a module to track sales statistics, with animated charts.
 
 The base plugin, available for free from the WordPress Plugin Directory has all the features you need to create an Music Store on your website.
 
@@ -54,6 +54,18 @@ The base plugin, available for free from the WordPress Plugin Directory has all 
 **Important**
 
 The theme used in your website, should include the wp_footer function in the footer.php template or the index.php template.
+
+Are safe the downloads links?
+
+The security in the access to songs files is determined in different ways. 
+
+*	The song files can't be accessed directly. The purchased files are stored in a special directory called ms-downloads, the ms-downloads directory includes a .htaccess file that forbid the access from browser. The file can be accessed only through a server side script that validates the purchase.  
+
+*	The Music Store determines the validity of  download links based in two options, available in the settings page of plugin.
+
+It is possible define a time period, in days, where a download link is considered valid. If a user tries to download a purchased product, the Music Store checks the date of purchasing.
+
+The Music Store may be configured to request the email address used in the purchasing to check the validity of download link.
 
 If you want more information about this plugin or another one don't doubt to visit my website:
 
@@ -108,6 +120,7 @@ The setup interface  includes the following fields:
 *   PayPal language: Preferred language of the PayPal interface. 
 *   PayPal button: Select the PayPal button design. 
 *   or use a shopping cart: Allows to activate a shopping cart, in place of sell each product separately (advanced version of plugin).
+*   Increase the download page security: Requests the email used in product's purchase from the download page.
 *   Pack all purchased audio files as a single ZIP file: Allows to download all files in the same purchase as only one zipped file. This option may be limited by configurations of the web server (advanced version of plugin).
 
 **Discount Settings (advanced version of plugin)**
@@ -255,6 +268,8 @@ When a sale takes place, a notification email is sent to the Music Store adminis
 
 The Reports section allows you to filter sales reports over a specific period, by default it shows the current day's sales. It also shows sales' totals for the selected period and the currency of the sales (screenshot-10)
 
+After select a specific time period it is possible to load some charts with graphical information about sales. For example: Sales by country, sales by currencies and sales by products.
+
 You can delete a sales report from the list of sales. This may be useful in case of a refund granted to a buyer, and allows to keep your sales statistics updated with the actual purchases.
 
 == Frequently Asked Questions ==
@@ -310,6 +325,17 @@ A: It is possible promote a product or products list, from the website's sidebar
 To promote the products on sidebars, go to the widgets section, and inserts the corresponding widget on sidebar. 
 
 To promote the products from the content of pages and posts, go to the page and press the corresponding icon over the contents editor.
+
+= Q: Are safe the products' downloads? =
+
+A: The security in the access to songs files is determined in different ways. 
+
+- The song files can't be accessed directly. The purchased files are stored in a special directory called ms-downloads, the ms-downloads directory includes a .htaccess file that forbid the access from browser. The file can be accessed only through a server side script that validates the purchase.  
+
+- The Music Store determines the validity of  download links based in two options, available in the settings page of plugin.
+-- It is possible define a time period, in days, where a download link is considered valid. If a user tries to download a purchased product, the Music Store checks the date of purchasing.
+
+-- The Music Store may be configured to request the email address used in the purchasing to check the validity of download link.
 
 == Screenshots ==
 01. Music Store Item

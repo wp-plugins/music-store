@@ -1,4 +1,12 @@
 <?php
+
+// Errors management
+$ms_errors = array();
+function music_store_setError($error_text){
+    global $ms_errors;
+    $ms_errors[] = __($error_text, MS_TEXT_DOMAIN);
+}	
+
 // Check if the PHP memory is sufficient
 function music_store_check_memory( $files = array() ){
     $required = 0;
@@ -48,4 +56,61 @@ function music_store_get_img_id($url){
     return $attachment[0];
 } // End music_store_get_img_id
 
+// From PayPal Data RAW
+	/*
+	  $fieldsArr, array( 'fields name' => 'alias', ... )
+	  $selectAdd, used if is required complete the results like: COUNT(*) as count
+	  $groupBy, array( 'alias', ... ) the alias used in the $fieldsArr parameter
+	  $orderBy, array( 'alias' => 'direction', ... ) the alias used in the $fieldsArr parameter, direction = ASC or DESC
+	*/
+	function music_store_getFromPayPalData( $fieldsArr, $selectAdd = '', $from = '', $where = '', $groupBy = array(), $orderBy = array(), $returnAs = 'json' ){
+		global $wpdb;
+		
+		$_select = 'SELECT ';
+		$_from = 'FROM '.$wpdb->prefix.MSDB_PURCHASE.( ( !empty( $from ) ) ? ','.$from : '' );
+		$_where = 'WHERE '.( ( !empty( $where ) ) ? $where : 1 );
+		$_groupBy = ( !empty( $groupBy ) ) ? 'GROUP BY ' : '';
+		$_orderBy = ( !empty( $orderBy ) ) ? 'ORDER BY ' : '';
+		
+		$separator = '';
+		foreach( $fieldsArr as $key => $value ){
+			$length = strlen( $key )+1;
+			$_select .= $separator.' 
+							SUBSTRING(paypal_data, 
+							LOCATE("'.$key.'", paypal_data)+'.$length.', 
+							LOCATE("\r\n", paypal_data, LOCATE("'.$key.'", paypal_data))-(LOCATE("'.$key.'", paypal_data)+'.$length.')) AS '.$value; 
+			$separator = ',';
+		}
+		
+		if( !empty( $selectAdd ) ){
+			$_select .= $separator.$selectAdd; 
+		}
+		
+		$separator = '';
+		foreach( $groupBy as $value ){
+			$_groupBy .= $separator.$value;
+			$separator = ',';
+		}
+		
+		$separator = '';
+		foreach( $orderBy as $key => $value ){
+			$_orderBy .= $separator.$key.' '.$value;
+			$separator = ',';
+		}
+		
+		$query = $_select.' '.$_from.' '.$_where.' '.$_groupBy.' '.$_orderBy;
+
+		$result = $wpdb->get_results( $query );
+		
+		if( !empty( $result ) ){
+			switch( $returnAs ){
+				case 'json':
+					return json_encode( $result );
+				break;
+				default:
+					return $result;
+				break;
+			}
+		}
+	} // End music_store_getFromPayPalData
 ?>
