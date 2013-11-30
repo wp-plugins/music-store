@@ -7,6 +7,22 @@ function music_store_setError($error_text){
     $ms_errors[] = __($error_text, MS_TEXT_DOMAIN);
 }	
 
+// Check if URL is for a local file, and return the relative URL or false
+function music_store_is_local( $file ){
+	if( strpos( $file, MS_H_URL ) !== false ){
+		$parts = explode( '/', str_replace('\\', '/', str_replace( MS_H_URL, '', MS_URL.'/ms-core' ) ) );
+		$file = str_replace( MS_H_URL, '', $file );
+		$path = '';
+		for( $i = 0; $i < count( $parts ); $i++ ){
+			$path .= '../';
+		}
+		$file = dirname( __FILE__ ).'/'.$path.$file;
+		return file_exists( $file ) ? $file : false;
+	}
+	return false;
+	
+}
+
 // Check if the PHP memory is sufficient
 function music_store_check_memory( $files = array() ){
     $required = 0;
@@ -26,11 +42,16 @@ function music_store_check_memory( $files = array() ){
 
     foreach ( $files as $file ){
         $memory_available = $m - memory_get_usage(true);
-        $response = wp_remote_head( $file );
-        if( !is_wp_error( $response ) && $response['response']['code'] == 200 ){
-            $required += $response['headers']['content-length'];
-            if( $required >= $memory_available - 100 ) return false;
-        }else return false;
+		if( ( $relative_path = music_store_is_local( $file ) ) !== false ){
+			$required += filesize( $relative_path );
+			if( $required >= $memory_available - 100 ) return false;
+		}else{
+			$response = wp_remote_head( $file );
+			if( !is_wp_error( $response ) && $response['response']['code'] == 200 ){
+				$required += $response['headers']['content-length'];
+				if( $required >= $memory_available - 100 ) return false;
+			}else return false;
+		}	
     }
     return true;
 } // music_store_check_memory
