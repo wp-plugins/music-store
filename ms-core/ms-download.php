@@ -23,7 +23,7 @@
 			if( empty( $_SESSION[ 'ms_user_email' ] ) ){ 
 				$dlurl = $GLOBALS['music_store']->_ms_create_pages( 'ms-download-page', 'Download Page' ); 
 				$dlurl .= ( ( strpos( $dlurl, '?' ) === false ) ? '?' : '&' ).'ms-action=download&purchase_id='.$_REQUEST[ 'purchase_id' ];
-				music_store_setError( "Please, go to the download page, and enter the email address used in product's purchasing <a href='{$dlurl}'>CLICK HERE</a>" );
+				music_store_setError( "Please, go to the download page, and enter the email address used in products purchasing" );
 				return false;
 			}	
 			$days = $wpdb->get_var( $wpdb->prepare( 'SELECT DATEDIFF(NOW(), date) FROM '.$wpdb->prefix.MSDB_PURCHASE.' WHERE purchase_id=%s AND email=%s', array( $_REQUEST[ 'purchase_id' ], $_SESSION[ 'ms_user_email' ] ) ) );
