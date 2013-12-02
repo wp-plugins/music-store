@@ -230,10 +230,6 @@ if(!function_exists('ms_get_site_url')){
             
 			if( isset( $_REQUEST ) && isset( $_REQUEST[ 'ms-action' ] ) && strtolower( $_REQUEST[ 'ms-action' ] ) == 'download' ){
 			
-				if( session_id() == "" ) session_start();
-				if( !empty( $_REQUEST[ 'ms_user_email' ] ) ) $_SESSION[ 'ms_user_email' ] =  $_REQUEST[ 'ms_user_email' ];
-				
-				
 				require_once MS_FILE_PATH.'/ms-core/ms-download.php';
 				$response = wp_remote_get(MS_URL.'/ms-downloads/music-store-icon.png');
 				$htaccess_accepted = (  !is_wp_error( $response ) && ( $response['response']['code'] == 200 || $response['response']['code'] == 403 ) );

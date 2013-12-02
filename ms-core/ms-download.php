@@ -19,6 +19,10 @@
 		}	
 
 		if( get_option( 'ms_safe_download', MS_SAFE_DOWNLOAD ) ){
+			
+			if( session_id() == "" ) session_start();
+			if( !empty( $_REQUEST[ 'ms_user_email' ] ) ) $_SESSION[ 'ms_user_email' ] =  $_REQUEST[ 'ms_user_email' ];
+			
 			// Check if the user has typed the email used to purchase the product 
 			if( empty( $_SESSION[ 'ms_user_email' ] ) ){ 
 				$dlurl = $GLOBALS['music_store']->_ms_create_pages( 'ms-download-page', 'Download Page' ); 
@@ -123,7 +127,7 @@
 				
 				foreach($urls as $url){
 					$download_link = ms_copy_download_links($url->link);
-					if( $download_link !== $url->link ) $download_link = MS_H_URL.'?ms-action=f-download&f='.$download_link.( ( !empty( $_REQUEST[ 'purchase_id' ] ) ) ?  '&purchase_id='.$_REQUEST[ 'purchase_id' ] : '' );
+					if( $download_link !== $url->link ) $download_link = MS_H_URL.'?ms-action=f-download'.( ( isset( $_SESSION[ 'ms_user_email' ] ) ) ? '&ms_user_email='.$_SESSION[ 'ms_user_email' ] : '' ).'&f='.$download_link.( ( !empty( $_REQUEST[ 'purchase_id' ] ) ) ?  '&purchase_id='.$_REQUEST[ 'purchase_id' ] : '' );
 					$download_links_str .= '<div> <a href="'.$download_link.'">'.$url->title.'</a></div>';
 				}
 				
