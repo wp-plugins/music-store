@@ -8,7 +8,7 @@
 }
 .music-store-items{position:relative;clear:both;}
 
-.music-store-header{width:100%;position:relative;clear:both;}
+.music-store-header{width:100%;position:relative;clear:both; min-width:556px;}
 .music-store-filters{float:left;}
 .music-store-ordering{float:right;}
 
@@ -16,7 +16,7 @@
 
 .music-store-song .song-cover.single{width:250px;}
 
-.music-store-song .song-cover img{width:100%;}
+.music-store-song .song-cover img{width:100%; margin-bottom:5px;}
 
 /** COLUMNS ON MULTIPLE PAGES **/
 .music-store-song .left-column{float:left;width:150px;}
@@ -47,6 +47,9 @@
 .music-store-song a{text-decoration:none;}
 
 .music-store-song .song-price{color: #990000; text-transform:lowercase;}
+
+.music-store-song  .ms-player .mejs-container{ margin:0; }
+
 
 .music-store-song .ms-player{margin-bottom:10px;}
 .music-store-song .ms-player.multiple{width:26px;overflow:hidden;float:left;margin:0 5px 0 0;}
