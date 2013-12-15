@@ -705,7 +705,9 @@ if(!function_exists('ms_get_site_url')){
 ?>
 			<p style="border:1px solid #E6DB55;margin-bottom:10px;padding:5px;background-color: #FFFFE0;">
 				To get commercial version of Music Store, <a href="http://wordpress.dwbooster.com/content-tools/music-store" target="_blank">CLICK HERE</a><br />
-				For reporting an issue or to request a customization, <a href="http://wordpress.dwbooster.com/contact-us" target="_blank">CLICK HERE</a>
+				For reporting an issue or to request a customization, <a href="http://wordpress.dwbooster.com/contact-us" target="_blank">CLICK HERE</a><br />
+				If you want test the premium version of Music Store go to the following links:<br/> <a href="http://www.dreamweaverdownloads.com/demos/music-store/wp-login.php" target="_blank">Administration area: Click to access the administration area demo</a><br/> 
+				<a href="http://www.dreamweaverdownloads.com/demos/music-store/" target="_blank">Public page: Click to access the Store Page</a>
 			</p>
 <?php			
 			switch($current_tab){
