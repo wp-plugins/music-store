@@ -491,13 +491,14 @@ if(!class_exists('MSSong')){
 		public static function columns($columns){
 			return array(
 				'cb'	 => '<input type="checkbox" />',
-				'title'	 => __('Song Name', MS_TEXT_DOMAIN),
-				'artist' => __('Artists', MS_TEXT_DOMAIN),
-				'album'  =>__( 'Albums', MS_TEXT_DOMAIN),
-				'genre'  =>__( 'Genres', MS_TEXT_DOMAIN),
-				'plays'  =>__('Plays', MS_TEXT_DOMAIN),
+				'id'	 => __( 'Song Id', MS_TEXT_DOMAIN),
+				'title'	 => __( 'Song Name', MS_TEXT_DOMAIN),
+				'artist' => __( 'Artists', MS_TEXT_DOMAIN),
+				'album'  => __( 'Albums', MS_TEXT_DOMAIN),
+				'genre'  => __( 'Genres', MS_TEXT_DOMAIN),
+				'plays'  => __( 'Plays', MS_TEXT_DOMAIN),
 				'purchases' => __('Purchases', MS_TEXT_DOMAIN),
-				'date'	 => __('Date', MS_TEXT_DOMAIN)
+				'date'	 => __( 'Date', MS_TEXT_DOMAIN)
 		   );
 		} // End columns
 		
@@ -511,6 +512,9 @@ if(!class_exists('MSSong')){
 			switch ($column){
 				case "artist":
 					echo music_store_extract_attr_as_str($obj->artist, 'name', ', ');		
+				break;
+				case "id":
+					echo $post->ID;
 				break;
 				case "album":
 					echo music_store_extract_attr_as_str($obj->album, 'name', ', ');		
