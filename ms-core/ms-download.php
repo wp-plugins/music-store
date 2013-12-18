@@ -53,11 +53,10 @@
 		$rand = rand(1000, 1000000);
 		if(file_exists($dest)) return $new_file_name;
         
-        if( !music_store_check_memory( array( $file ) ) ) return $file;
-
-		if( ( $path = music_store_is_local( $file ) ) !== false ){
+        if( ( $path = music_store_is_local( $file ) ) !== false ){
 			if( copy( $path, $dest) ) return $new_file_name;
 		}else{	
+			if( !music_store_check_memory( array( $file ) ) ) return $file;
 			$response = wp_remote_get($file);
 			if( !is_wp_error( $response ) && $response['response']['code'] == 200 && file_put_contents($dest, $response['body'])) return $new_file_name;
 		}	
