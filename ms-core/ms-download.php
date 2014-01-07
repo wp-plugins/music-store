@@ -1,10 +1,12 @@
 <?php
     error_reporting( E_ERROR | E_PARSE );
     
-	if (!function_exists('mime_content_type')) {
-		function mime_content_type($filename) {
+    if (!function_exists('ms_mime_content_type')) {
+		function ms_mime_content_type($filename) {
 			$idx = strtolower(end( explode( '.', $filename )) );
 			$mimet = array(	'ai' =>'application/postscript',
+				'3gp' =>'audio/3gpp',
+				'flv' =>'video/x-flv',
 				'aif' =>'audio/x-aiff',
 				'aifc' =>'audio/x-aiff',
 				'aiff' =>'audio/x-aiff',
@@ -58,6 +60,7 @@
 				'mathml' =>'application/mathml+xml',
 				'me' =>'application/x-troff-me',
 				'mesh' =>'model/mesh',
+				'm4a' =>'audio/x-m4a',
 				'mid' =>'audio/midi',
 				'midi' =>'audio/midi',
 				'mif' =>'application/vnd.mif',
@@ -65,6 +68,8 @@
 				'movie' =>'video/x-sgi-movie',
 				'mp2' =>'audio/mpeg',
 				'mp3' =>'audio/mpeg',
+				'mp4' =>'video/mp4',
+				'm4v' =>'video/x-m4v',
 				'mpe' =>'video/mpeg',
 				'mpeg' =>'video/mpeg',
 				'mpg' =>'video/mpeg',
@@ -297,7 +302,7 @@
 		global $wpdb, $ms_errors;
 		
 		if( isset( $_REQUEST[ 'f' ] ) && ms_check_download_permissions() ){
-			header( 'Content-Type: '.mime_content_type( $_REQUEST[ 'f' ] ) );
+			header( 'Content-Type: '.ms_mime_content_type( $_REQUEST[ 'f' ] ) );
 			header( 'Content-Disposition: attachment; filename="'.$_REQUEST[ 'f' ].'"' );
 			
 			if( music_store_check_memory( array( MS_URL.'/ms-downloads/'.$_REQUEST[ 'f' ] ) ) )
