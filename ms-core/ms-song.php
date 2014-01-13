@@ -162,7 +162,11 @@ if(!class_exists('MSSong')){
             
             $demo = $this->demo;
 			if($demo)
+			{
                 $song_arr['demo'] = '<audio preload="none" src="'.$demo.'"></audio>';
+			}else{
+				$song_arr['demo'] = '';
+			}	
             
 			if($mode == 'store' || $mode == 'multiple'){
 				if($mode == 'store')
