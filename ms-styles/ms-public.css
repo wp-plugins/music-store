@@ -9,13 +9,6 @@
 .music-store-filters{float:left;}
 .music-store-ordering{float:right;}
 
-@media screen and (max-width:600px) {
-	.music-store-item {clear:both;}
-    .music-store-header{min-width:0;}
-	.music-store-header span{ display: inline-block;clear:both;float:left;}
-	.music-store-ordering{float:left;}
-}
-
 .music-store-song .song-cover{width:150px;}
 
 .music-store-song .song-cover.single{width:250px;}
@@ -93,3 +86,12 @@
 
 .music-store-error-mssg{ border: 1px solid #FF0000; color: #FF0000; text-align:center; width:100%; }
 .music-store-error-mssg ul{ list-style:none; }
+
+@media screen and (max-width:600px) {
+	.music-store-item {clear:both;}
+    .music-store-header{min-width:0;}
+	.music-store-header span{ display: inline-block;clear:both;float:left;}
+	.music-store-ordering{float:left;}
+	.music-store-song .left-column{width:100%;clear:both;}
+	.music-store-song .right-column.single{float:left; padding-left:0; width:100%;}
+}
