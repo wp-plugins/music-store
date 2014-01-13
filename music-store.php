@@ -1420,9 +1420,9 @@ if(!function_exists('ms_get_site_url')){
 			// Create filter section
 			if($allow_filter_by_genre){
 			
-				$header .= "<div class='music-store-filters'>".__('Filter by', MS_TEXT_DOMAIN);
+				$header .= "<div class='music-store-filters'><span>".__('Filter by', MS_TEXT_DOMAIN)."</span>";
 				if($allow_filter_by_genre){
-					$header .= __(' genre: ', MS_TEXT_DOMAIN).
+					$header .= "<span>".__(' genre: ', MS_TEXT_DOMAIN).
 							"<select id='filter_by_genre' name='filter_by_genre' onchange='this.form.submit();'>
 							<option value='all'>".__('All genres', MS_TEXT_DOMAIN)."</option>
 							";
@@ -1430,7 +1430,7 @@ if(!function_exists('ms_get_site_url')){
 					foreach($genres as $genre_item){
 						$header .= "<option value='".$genre_item->slug."' ".(($genre == $genre_item->slug) ? "SELECTED" : "").">".$genre_item->name."</option>";
 					}
-					$header .= "</select>";
+					$header .= "</select></span>";
 				}
 				$header .="</div>";
 			}
