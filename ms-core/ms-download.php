@@ -216,8 +216,8 @@
 	} // End ms_check_download_permissions
 	
 	function ms_copy_download_links($file){
-		$ext  = pathinfo($file, PATHINFO_EXTENSION);
-		$new_file_name = md5($file).'.'.$ext;
+		$parts  = pathinfo($file);
+		$new_file_name = $parts[ 'basename' ].'_'.md5($file).( ( !empty($parts[ 'extension' ]) ) ? '.'.$parts[ 'extension' ] : '' );
 		$dest = MS_DOWNLOAD.'/'.$new_file_name;
 		$rand = rand(1000, 1000000);
 		if(file_exists($dest)) return $new_file_name;
@@ -302,8 +302,16 @@
 		global $wpdb, $ms_errors;
 		
 		if( isset( $_REQUEST[ 'f' ] ) && ms_check_download_permissions() ){
+		
+			$file_name = $_REQUEST[ 'f' ];
+			$pos = strrpos( $_REQUEST[ 'f' ], '_' );
+			if( $pos !== false )
+			{
+				$file_name = substr( $_REQUEST[ 'f' ], 0, $pos );
+			}
+				
 			header( 'Content-Type: '.ms_mime_content_type( $_REQUEST[ 'f' ] ) );
-			header( 'Content-Disposition: attachment; filename="'.$_REQUEST[ 'f' ].'"' );
+			header( 'Content-Disposition: attachment; filename="'.$file_name.'"' );
 			
 			if( music_store_check_memory( array( MS_URL.'/ms-downloads/'.$_REQUEST[ 'f' ] ) ) )
 			{
