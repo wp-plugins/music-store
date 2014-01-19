@@ -53,9 +53,9 @@ The base plugin, available for free from the WordPress Plugin Directory has all 
 
 **Demo of Premium Version of Plugin**
 
-[http://www.dreamweaverdownloads.com/demos/music-store/wp-login.php](http://www.dreamweaverdownloads.com/demos/music-store/wp-login.php "Click to access the Administration Area demo")
+[http://demos.net-factor.com/music-store/wp-login.php](http://demos.net-factor.com/music-store/wp-login.php "Click to access the Administration Area demo")
 
-[http://www.dreamweaverdownloads.com/demos/music-store/](http://www.dreamweaverdownloads.com/demos/music-store/ "Click to access the Public Page")
+[http://demos.net-factor.com/music-store/](http://demos.net-factor.com/music-store/ "Click to access the Public Page")
 
 **Important**
 
