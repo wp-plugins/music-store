@@ -55,6 +55,7 @@ if(!function_exists('ms_get_site_url')){
  define('MS_ITEMS_PAGE_SELECTOR', true);
  define('MS_FILTER_BY_TYPE', false);
  define('MS_FILTER_BY_GENRE', true);
+ define('MS_FILTER_BY_ARTIST', false);
  define('MS_ORDER_BY_POPULARITY', true);
  define('MS_ORDER_BY_PRICE', true);			
  
@@ -672,6 +673,7 @@ if(!function_exists('ms_get_site_url')){
 			if ( isset( $_POST['ms_settings'] ) && wp_verify_nonce( $_POST['ms_settings'], plugin_basename( __FILE__ ) ) ){
 				update_option('ms_main_page', $_POST['ms_main_page']);
 				update_option('ms_filter_by_genre', ((isset($_POST['ms_filter_by_genre'])) ? true : false));
+				update_option('ms_filter_by_artist', ((isset($_POST['ms_filter_by_artist'])) ? true : false));
 				update_option('ms_items_page_selector', ((isset($_POST['ms_items_page_selector'])) ? true : false));
 				update_option('ms_items_page', $_POST['ms_items_page']);
 				update_option('ms_paypal_email', $_POST['ms_paypal_email']);
@@ -736,6 +738,10 @@ if(!function_exists('ms_get_site_url')){
 								<tr valign="top">
 									<th><?php _e('Allow to filter by genre', MS_TEXT_DOMAIN); ?></th>
 									<td><input type="checkbox" name="ms_filter_by_genre" size="40" value="1" <?php if (get_option('ms_filter_by_genre', MS_FILTER_BY_GENRE)) echo 'checked'; ?> /></td>
+								</tr>
+								<tr valign="top">
+									<th><?php _e('Allow to filter by artist', MS_TEXT_DOMAIN); ?></th>
+									<td><input type="checkbox" name="ms_filter_by_artist" size="40" value="1" <?php if (get_option('ms_filter_by_artist', MS_FILTER_BY_ARTIST)) echo 'checked'; ?> /></td>
 								</tr>
 								<tr valign="top">
 									<th><?php _e('Allow multiple pages', MS_TEXT_DOMAIN); ?></th>
@@ -863,6 +869,18 @@ if(!function_exists('ms_get_site_url')){
                             <tr valign="top">
 							<th scope="row"><?php _e('Increase the download page security', MS_TEXT_DOMAIN); ?></th>
 							<td><input type="checkbox" name="ms_safe_download" <?php echo ( ( get_option('ms_safe_download', MS_SAFE_DOWNLOAD)) ? 'CHECKED' : '' ); ?> /> <?php _e('The customers must enter the email address used in the product\'s purchasing to access to the download link. The Music Store verifies the customer\'s data, from the file link too.', MS_TEXT_DOMAIN)?></td>
+							</tr>  
+							
+							<tr valign="top">
+							<th scope="row"><?php _e('Request for the acceptance of cookies', MS_TEXT_DOMAIN); ?></th>
+							<td><input type="checkbox" DISABLED /> <?php _e('The users should accept store cookies to use of shopping cart.', MS_TEXT_DOMAIN)?>
+							<em style="color:#FF0000;"><?php _e('Only available for commercial version of plugin', MS_TEXT_DOMAIN); ?></em>
+							</td>
+							</tr>  
+							
+							<tr valign="top">
+							<th scope="row"><?php _e('Text to request the acceptance of cookies', MS_TEXT_DOMAIN); ?></th>
+							<td><input type="text" DISABLED size="40" /> <em style="color:#FF0000;"><?php _e('Only available for commercial version of plugin', MS_TEXT_DOMAIN); ?></em></td>
 							</tr>  
 							
 							<tr valign="top">
@@ -1266,8 +1284,16 @@ if(!function_exists('ms_get_site_url')){
 				$_SESSION[ $page_id ]['ms_genre'] = $_REQUEST['filter_by_genre'];
 			}
 			
+			if(isset($_REQUEST['filter_by_artist'])){
+				$_SESSION[ $page_id ]['ms_artist'] = $_REQUEST['filter_by_artist'];
+			}
+			
 			if(isset($_SESSION[ $page_id ]['ms_genre'])){
 				$genre = $_SESSION[ $page_id ]['ms_genre'];
+			}
+			
+			if(isset($_SESSION[ $page_id ]['ms_artist'])){
+				$artist = $_SESSION[ $page_id ]['ms_artist'];
 			}
 			
 			if(isset($_REQUEST['ordering_by']) && in_array($_REQUEST['ordering_by'], array('plays', 'price', 'post_title', 'post_date'))){
@@ -1277,9 +1303,8 @@ if(!function_exists('ms_get_site_url')){
 			}
 
 			// Extract info from music_store options
-			$allow_filter_by_type = get_option('ms_filter_by_type', MS_FILTER_BY_TYPE);
 			$allow_filter_by_genre = get_option('ms_filter_by_genre', MS_FILTER_BY_GENRE);
-			
+			$allow_filter_by_artist = get_option('ms_filter_by_artist', MS_FILTER_BY_ARTIST);
  
 			// Items per page
 			$items_page 			= max(get_option('ms_items_page', MS_ITEMS_PAGE), 1);
@@ -1418,7 +1443,7 @@ if(!function_exists('ms_get_site_url')){
 						<div class='music-store-header'>
 						";
 			// Create filter section
-			if($allow_filter_by_genre){
+			if($allow_filter_by_genre || $allow_filter_by_artist){
 			
 				$header .= "<div class='music-store-filters'><span>".__('Filter by', MS_TEXT_DOMAIN)."</span>";
 				if($allow_filter_by_genre){
@@ -1429,6 +1454,18 @@ if(!function_exists('ms_get_site_url')){
 					$genres = get_terms("ms_genre");
 					foreach($genres as $genre_item){
 						$header .= "<option value='".$genre_item->slug."' ".(($genre == $genre_item->slug) ? "SELECTED" : "").">".$genre_item->name."</option>";
+					}
+					$header .= "</select></span>";
+				}
+				
+				if($allow_filter_by_artist){
+					$header .= "<span>".__(' artist: ', MS_TEXT_DOMAIN).
+							"<select id='filter_by_artist' name='filter_by_artist' onchange='this.form.submit();'>
+							<option value='all'>".__('All artists', MS_TEXT_DOMAIN)."</option>
+							";
+					$artists = get_terms("ms_artist");
+					foreach($artists as $artist_item){
+						$header .= "<option value='".$artist_item->slug."' ".(($artist == $artist_item->slug) ? "SELECTED" : "").">".$artist_item->name."</option>";
 					}
 					$header .= "</select></span>";
 				}
