@@ -187,7 +187,7 @@ if(!class_exists('MSSong')){
 				$song_arr['demo'] 			= ($demo) ? '<audio src="'.$demo.'" style="width:100%;"></audio>' : '';
 				
 				if(strlen($this->post_content)){
-					$song_arr['description'] 	= $this->post_content;
+					$song_arr['description'] 	= '<p>'.preg_replace('/[\n\r]+/', '</p><p>', $this->post_content).'</p>';
 				}	
 				
 				if(count($this->genre)){
