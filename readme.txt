@@ -42,6 +42,8 @@ The base plugin, available for free from the WordPress Plugin Directory has all 
 **Premium Features**
 
 *	Allows selling collections. Audio files can be grouped into collections or albums (advanced version of plugin).
+*   Includes a shopping cart
+*   Allows request to the users the acceptance to save cookies
 *	Offers secure Audio Playback that prevents unauthorized downloading of audio files.
 *	Allows to filter products by types of files: Singles or Collections.
 *   Allows to create discounts.
@@ -127,6 +129,8 @@ The setup interface  includes the following fields:
 *   PayPal button: Select the PayPal button design. 
 *   or use a shopping cart: Allows to activate a shopping cart, in place of sell each product separately (advanced version of plugin).
 *   Increase the download page security: Requests the email used in product's purchase from the download page.
+*   Allows request to the users the acceptance to save cookies. If check the box the customers should accept store cookies to use of shopping cart (advanced version of plugin).
+*   Text for requesting the acceptance of cookies.
 *   Pack all purchased audio files as a single ZIP file: Allows to download all files in the same purchase as only one zipped file. This option may be limited by configurations of the web server (advanced version of plugin).
 
 **Discount Settings (advanced version of plugin)**
