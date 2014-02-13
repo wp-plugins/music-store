@@ -1000,6 +1000,13 @@ if(!function_exists('ms_get_site_url')){
 						}
 					}
 					
+					$group_by_arr = array( 
+										'no_group'  => 'Group by',
+										'ms_artist'    => 'Artist', 
+										'ms_genre' 	=> 'Genre', 
+										'ms_album' 	=> 'Album' 
+									);
+									
 					$from_day = (isset($_POST['from_day'])) ? $_POST['from_day'] : date('j');
 					$from_month = (isset($_POST['from_month'])) ? $_POST['from_month'] : date('m');
 					$from_year = (isset($_POST['from_year'])) ? $_POST['from_year'] : date('Y');
@@ -1008,59 +1015,149 @@ if(!function_exists('ms_get_site_url')){
 					$to_month = (isset($_POST['to_month'])) ? $_POST['to_month'] : date('m');
 					$to_year = (isset($_POST['to_year'])) ? $_POST['to_year'] : date('Y');
 					
-					$purchase_list = $wpdb->get_results("SELECT purchase.*, posts.* FROM ".$wpdb->prefix.MSDB_PURCHASE." AS purchase, ".$wpdb->prefix."posts AS posts WHERE posts.ID = purchase.product_id AND DATEDIFF(purchase.date, '{$from_year}-{$from_month}-{$from_day}')>=0 AND DATEDIFF(purchase.date, '{$to_year}-{$to_month}-{$to_day}')<=0;");
+					$group_by = (isset($_POST['group_by'])) ? $_POST['group_by'] : 'no_group';
+					$to_display = (isset($_POST['to_display'])) ? $_POST['to_display'] : 'sales';
+				
+					$_select = "";
+					$_from 	 = " FROM ".$wpdb->prefix.MSDB_PURCHASE." AS purchase, ".$wpdb->prefix."posts AS posts ";
+					$_where  = " WHERE posts.ID = purchase.product_id 
+									  AND DATEDIFF(purchase.date, '{$from_year}-{$from_month}-{$from_day}')>=0 
+									  AND DATEDIFF(purchase.date, '{$to_year}-{$to_month}-{$to_day}')<=0 ";
+					$_group  = "";
+					$_order  = "";
+					$_date_dif = floor( max( abs( strtotime( $to_year.'-'.$to_month.'-'.$to_day ) - strtotime( $from_year.'-'.$from_month.'-'.$from_day ) ) / ( 60*60*24 ), 1 ) );
+					$_table_header = array( 'Product', 'Buyer', 'Amount', 'Currency', 'Download link', '' );
 					
+					if( $group_by == 'no_group' )	
+					{
+						if( $to_display == 'sales' )
+						{
+							$_select .= "SELECT purchase.*, posts.*";
+						}
+						else
+						{
+							$_select .= "SELECT SUM(purchase.amount)/{$_date_dif} as purchase_average, SUM(purchase.amount) as purchase_total, COUNT(posts.ID) as purchase_count, posts.*";
+							$_group   = " GROUP BY posts.ID";
+							if( $to_display == 'amount' )
+							{
+								$_table_header = array( 'Product', 'Amount of Sales', 'Total' );
+								$_order = " ORDER BY purchase_count DESC";
+							}
+							else
+							{
+								$_table_header = array( 'Product', 'Daily Average', 'Total' );
+								$order =  " ORDER BY purchase_average DESC";
+							}	
+						}
+					}
+					else
+					{
+						$_select .= "SELECT SUM(purchase.amount)/{$_date_dif} as purchase_average, SUM(purchase.amount) as purchase_total, COUNT(posts.ID) as purchase_count, terms.name as term_name, terms.slug as term_slug";
+						
+						$_from   .= ", {$wpdb->prefix}term_taxonomy as taxonomy, 
+								     {$wpdb->prefix}term_relationships as term_relationships, 
+								     {$wpdb->prefix}terms as terms";
+						$_where  .=" AND taxonomy.taxonomy = '{$group_by}'
+									 AND taxonomy.term_taxonomy_id=term_relationships.term_taxonomy_id 
+									 AND term_relationships.object_id=posts.ID 
+									 AND taxonomy.term_id=terms.term_id";
+						$_group  = " GROUP BY terms.term_id";
+						$_order  = " ORDER BY terms.slug;";
+						
+						if( $to_display == 'amount' )
+						{
+							$_order = " ORDER BY purchase_count DESC";
+							$_table_header = array( $group_by_arr[ $group_by ], 'Amount of Sales', 'Total' );
+						}
+						else
+						{
+							$order =  " ORDER BY purchase_average DESC";
+							if( $to_display == 'sales' )
+							{	
+								$_table_header = array( $group_by_arr[ $group_by ], 'Total' );
+							}
+							else
+							{
+								$_table_header = array( $group_by_arr[ $group_by ], 'Daily Average', 'Total' );
+							}
+						}	
+					}
+					$purchase_list = $wpdb->get_results( $_select.$_from.$_where.$_group.$_order );
+
 ?>
 					<form method="post" action="<?php echo $_SERVER['REQUEST_URI']; ?>" id="purchase_form">
 					<?php wp_nonce_field( plugin_basename( __FILE__ ), 'ms_purchase_stats' ); ?>
 					<input type="hidden" name="tab" value="reports" />
 					<!-- FILTER REPORT -->
 					<div class="postbox">
-						<h3 class='hndle' style="padding:5px;"><span><?php _e('Filter from date', MS_TEXT_DOMAIN); ?></span></h3>
+						<h3 class='hndle' style="padding:5px;"><span><?php _e('Filter the sales reports', MS_TEXT_DOMAIN); ?></span></h3>
 						<div class="inside">
-							<?php
-								$months_list = array(
-									'01' => __('January', MS_TEXT_DOMAIN),
-									'02' => __('February', MS_TEXT_DOMAIN),
-									'03' => __('March', MS_TEXT_DOMAIN),
-									'04' => __('April', MS_TEXT_DOMAIN),
-									'05' => __('May', MS_TEXT_DOMAIN),
-									'06' => __('June', MS_TEXT_DOMAIN),
-									'07' => __('July', MS_TEXT_DOMAIN),
-									'08' => __('August', MS_TEXT_DOMAIN),
-									'09' => __('September', MS_TEXT_DOMAIN),
-									'10' => __('October', MS_TEXT_DOMAIN),
-									'11' => __('November', MS_TEXT_DOMAIN),
-									'12' => __('December', MS_TEXT_DOMAIN),
-								);
-							?>
-							<label><?php _e('From: ', MS_TEXT_DOMAIN); ?></label>
-							<select name="from_day">
-							<?php
-								for($i=1; $i <=31; $i++) print '<option value="'.$i.'"'.(($from_day == $i) ? ' SELECTED' : '').'>'.$i.'</option>';
-							?>
-							</select>
-							<select name="from_month">
-							<?php
-								foreach($months_list as $month => $name) print '<option value="'.$month.'"'.(($from_month == $month) ? ' SELECTED' : '').'>'.$name.'</option>';
-							?>
-							</select>
-							<input type="text" name="from_year" value="<?php print $from_year; ?>" />
+							<div>
+								<h4><?php _e('Filter by date', MS_TEXT_DOMAIN); ?></h4>
+								<?php
+									$months_list = array(
+										'01' => __('January', MS_TEXT_DOMAIN),
+										'02' => __('February', MS_TEXT_DOMAIN),
+										'03' => __('March', MS_TEXT_DOMAIN),
+										'04' => __('April', MS_TEXT_DOMAIN),
+										'05' => __('May', MS_TEXT_DOMAIN),
+										'06' => __('June', MS_TEXT_DOMAIN),
+										'07' => __('July', MS_TEXT_DOMAIN),
+										'08' => __('August', MS_TEXT_DOMAIN),
+										'09' => __('September', MS_TEXT_DOMAIN),
+										'10' => __('October', MS_TEXT_DOMAIN),
+										'11' => __('November', MS_TEXT_DOMAIN),
+										'12' => __('December', MS_TEXT_DOMAIN),
+									);
+								?>
+								<label><?php _e('From: ', MS_TEXT_DOMAIN); ?></label>
+								<select name="from_day">
+								<?php
+									for($i=1; $i <=31; $i++) print '<option value="'.$i.'"'.(($from_day == $i) ? ' SELECTED' : '').'>'.$i.'</option>';
+								?>
+								</select>
+								<select name="from_month">
+								<?php
+									foreach($months_list as $month => $name) print '<option value="'.$month.'"'.(($from_month == $month) ? ' SELECTED' : '').'>'.$name.'</option>';
+								?>
+								</select>
+								<input type="text" name="from_year" value="<?php print $from_year; ?>" />
+								
+								<label><?php _e('To: ', MS_TEXT_DOMAIN); ?></label>
+								<select name="to_day">
+								<?php
+									for($i=1; $i <=31; $i++) print '<option value="'.$i.'"'.(($to_day == $i) ? ' SELECTED' : '').'>'.$i.'</option>';
+								?>
+								</select>
+								<select name="to_month">
+								<?php
+									foreach($months_list as $month => $name) print '<option value="'.$month.'"'.(($to_month == $month) ? ' SELECTED' : '').'>'.$name.'</option>';
+								?>
+								</select>
+								<input type="text" name="to_year" value="<?php print $to_year; ?>" />
+								
+								<input type="submit" value="<?php _e('Search', MS_TEXT_DOMAIN); ?>" class="button-primary" />
+							</div>
 							
-							<label><?php _e('To: ', MS_TEXT_DOMAIN); ?></label>
-							<select name="to_day">
-							<?php
-								for($i=1; $i <=31; $i++) print '<option value="'.$i.'"'.(($to_day == $i) ? ' SELECTED' : '').'>'.$i.'</option>';
-							?>
-							</select>
-							<select name="to_month">
-							<?php
-								foreach($months_list as $month => $name) print '<option value="'.$month.'"'.(($to_month == $month) ? ' SELECTED' : '').'>'.$name.'</option>';
-							?>
-							</select>
-							<input type="text" name="to_year" value="<?php print $to_year; ?>" />
-							
-							<input type="submit" value="<?php _e('Search', MS_TEXT_DOMAIN); ?>" class="button-primary" />
+							<div style="float:left;margin-right:20px;">
+								<h4><?php _e('Grouping the sales', MS_TEXT_DOMAIN); ?></h4>
+								<label><?php _e('By: ', MS_TEXT_DOMAIN); ?></label>
+								<select name="group_by">
+								<?php
+									foreach( $group_by_arr as $key => $value ) 
+									{
+										print '<option value="'.$key.'"'.( ( isset( $group_by ) && $group_by == $key ) ? ' SELECTED' : '' ).'>'.$value.'</option>';
+									}
+								?>
+								</select>
+							</div>	
+							<div style="float:left;margin-right:20px;">
+								<h4><?php _e('Display', MS_TEXT_DOMAIN); ?></h4>
+								<label><input type="radio" name="to_display" <?php echo ( ( !isset( $to_display ) || $to_display == 'sales' ) ? 'CHECKED' : '' ); ?> value="sales" /> <?php _e('Sales', MS_TEXT_DOMAIN); ?></label>
+								<label><input type="radio" name="to_display" <?php echo ( ( isset( $to_display ) && $to_display == 'amount' ) ? 'CHECKED' : '' ); ?> value="amount" /> <?php _e('Amount of sales', MS_TEXT_DOMAIN); ?></label>
+								<label><input type="radio" name="to_display" <?php echo ( ( isset( $to_display ) && $to_display == 'average' ) ? 'CHECKED' : '' ); ?> value="average" /> <?php _e('Daily average', MS_TEXT_DOMAIN); ?></label>
+							</div>
+							<div style="clear:both;"></div>
 						</div>
 					</div>	
 					<!-- PURCHASE LIST -->
@@ -1082,47 +1179,106 @@ if(!function_exists('ms_get_site_url')){
 								<div id="sales_by_currency"></div>
 								<div id="sales_by_product"></div>
 							</div>
-							
+							<div class="ms-section-title"><?php _e( 'Products List', MS_TEXT_DOMAIN ); ?></div>
 							<table class="form-table" style="border-bottom:1px solid #CCC;margin-bottom:10px;">
 								<THEAD>
 									<TR style="border-bottom:1px solid #CCC;">
-										<TH>Product</TH><TH>Buyer</TH><TH>Amount</TH><TH>Currency</TH><TH>Download link</TH><TH></TH>
+								<?php 
+									foreach( $_table_header as $_header )
+									{
+										print "<TH>{$_header}</TH>";
+									}
+								?>
 									</TR>
 								</THEAD>
 								<TBODY>
 								<?php
+                                
 								$totals = array('UNDEFINED'=>0);
+                                $dlurl = $this->_ms_create_pages( 'ms-download-page', 'Download Page' );
+                                $dlurl .= ( ( strpos( $dlurl, '?' ) === false ) ? '?' : '&' );
+							
 								if(count($purchase_list)){	
-                                    $dlurl = $this->_ms_create_pages( 'ms-download-page', 'Download Page' );
-                                    $dlurl .= ( ( strpos( $dlurl, '?' ) === false ) ? '?' : '&' );
-
+									
 									foreach($purchase_list as $purchase){
 										
-										if(preg_match('/mc_currency=([^\s]*)/', $purchase->paypal_data, $matches)){
-											$currency = strtoupper($matches[1]);
-											if(!isset($totals[$currency])) $totals[$currency] = $purchase->amount;
-											else $totals[$currency] += $purchase->amount;
-										}else{
-											$currency = '';
-											$totals['UNDEFINED'] += $purchase->amount;
+										if( $group_by == 'no_group' )
+										{
+										
+											if( $to_display == 'sales' )
+											{
+												if(preg_match('/mc_currency=([^\s]*)/', $purchase->paypal_data, $matches)){
+													$currency = strtoupper($matches[1]);
+													if(!isset($totals[$currency])) $totals[$currency] = $purchase->amount;
+														else $totals[$currency] += $purchase->amount;
+												}else{
+													$currency = '';
+													$totals['UNDEFINED'] += $purchase->amount;
+												}
+												
+												echo '
+													<TR>
+														<TD><a href="'.get_permalink($purchase->ID).'" target="_blank">'.$purchase->post_title.'</a></TD>
+														<TD>'.$purchase->email.'</TD>
+														<TD>'.$purchase->amount.'</TD>
+														<TD>'.$currency.'</TD>
+														<TD><a href="'.$dlurl.'ms-action=download&purchase_id='.$purchase->purchase_id.'" target="_blank">Download Link</a></TD>
+														<TD><input type="button" class="button-primary" onclick="delete_purchase('.$purchase->id.');" value="Delete"></TD>
+													</TR>
+												';
+											}elseif( $to_display == 'amount' ){
+												echo '
+													<TR>
+														<TD><a href="'.get_permalink($purchase->ID).'" target="_blank">'.$purchase->post_title.'</a></TD>
+														<TD>'.(round( $purchase->purchase_count*100 )/100).'</TD>
+														<TD>'.(round( $purchase->purchase_total*100)/100).'</TD>
+													</TR>
+												';
+											}else{
+												echo '
+													<TR>
+														<TD><a href="'.get_permalink($purchase->ID).'" target="_blank">'.$purchase->post_title.'</a></TD>
+														<TD>'.$purchase->purchase_average.'</TD>
+														<TD>'.(round($purchase->purchase_total*100)/100).'</TD>
+													</TR>
+												';
+											}
 										}
-                                        
-                                    	echo '
-											<TR>
-												<TD><a href="'.get_permalink($purchase->ID).'" target="_blank">'.$purchase->post_title.'</a></TD>
-												<TD>'.$purchase->email.'</TD>
-												<TD>'.$purchase->amount.'</TD>
-												<TD>'.$currency.'</TD>
-												<TD><a href="'.$dlurl.'ms-action=download&purchase_id='.$purchase->purchase_id.'" target="_blank">Download Link</a></TD>
-												<TD><input type="button" class="button-primary" onclick="delete_purchase('.$purchase->id.');" value="Delete"></TD>
-											</TR>
-										';
+										else
+										{
+
+											if( $to_display == 'sales' ){
+												echo '
+														<TR>
+															<TD><a href="'.get_term_link($purchase->term_slug, $group_by ).'" target="_blank">'.$purchase->term_name.'</a></TD>
+															<TD>'.(round( $purchase->purchase_total*100)/100).'</TD>
+														</TR>
+													';
+											}elseif(  $to_display == 'amount'  ){
+												echo '
+														<TR>
+															<TD><a href="'.get_term_link($purchase->term_slug, $group_by ).'" target="_blank">'.$purchase->term_name.'</a></TD>
+															<TD>'.(round( $purchase->purchase_count*100)/100).'</TD>
+															<TD>'.(round( $purchase->purchase_total*100)/100).'</TD>
+														</TR>
+													';
+											}else{
+												echo '
+														<TR>
+															<TD><a href="'.get_term_link($purchase->term_slug, $group_by ).'" target="_blank">'.$purchase->term_name.'</a></TD>
+															<TD>'.$purchase->purchase_average.'</TD>
+															<TD>'.(round( $purchase->purchase_total*100)/100).'</TD>
+														</TR>
+													';
+											}											
+										}
+										
 									}
 								}else{
 									echo '
 										<TR>
-											<TD COLSPAN="6">
-												'.__('No sales yet', MS_TEXT_DOMAIN).'
+											<TD COLSPAN="'.count( $_table_header ).'">
+												'.__('There are not sales registered with those filter options', MS_TEXT_DOMAIN).'
 											</TD>
 										</TR>
 									';
