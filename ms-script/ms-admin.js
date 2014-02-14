@@ -51,14 +51,13 @@
 												dataObj,
 												legend = '',
 												color,
-												tmp = '',
+												tmp,
 												index = reports.length;
 											
 											
 											for( var i in data ){
 												var v = Math.round( data[ i ][ value ] );
-												
-												if( data[ i ][ label ] != tmp ){
+												if( typeof tmp == 'undefined' || tmp == null || data[ i ][ label ] != tmp ){
 													color 	= get_random_color();
 													tmp 	= data[ i ][ label ];
 													legend 	+= '<div style="float:left;padding-right:5px;"><input type="checkbox" CHECKED chart_type="'+type+'" container="'+id+'" report="'+index+'" item="'+i+'" onclick="ms_reload_report( this );" /></div><div class="ms-legend-color" style="background:'+color+'"></div><div class="ms-legend-text">'+tmp+'</div><br />';
