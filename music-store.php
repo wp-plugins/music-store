@@ -242,7 +242,7 @@ if(!function_exists('ms_get_site_url')){
 					$the_content .= __('Download Links:', MS_TEXT_DOMAIN).'<div>'.$download_links_str.'</div>';
 				}else{
 					$error = ( !empty( $_REQUEST[ 'error_mssg' ] ) ) ? $_REQUEST[ 'error_mssg' ] : '';
-					if( !empty( $_SESSION[ 'ms_user_email' ] ) ){
+					if( ( !get_option( 'ms_safe_download', MS_SAFE_DOWNLOAD ) && !empty( $ms_errors ) ) || !empty( $_SESSION[ 'ms_user_email' ] ) ){
 						$error .= '<li>'.implode( '</li><li>', $ms_errors ).'</li>';
 					}
 					
@@ -394,6 +394,7 @@ if(!function_exists('ms_get_site_url')){
 				product_id mediumint(9) NOT NULL,
 				purchase_id varchar(50) NOT NULL UNIQUE,
 				date DATETIME NOT NULL,
+				checking_date DATETIME,
 				email VARCHAR(255) NOT NULL,
 				amount FLOAT NOT NULL DEFAULT 0,
 				paypal_data TEXT,
@@ -401,7 +402,12 @@ if(!function_exists('ms_get_site_url')){
 			 );";             
 			$wpdb->query($sql); 
 			
-		} // End _create_db_structure 
+			$result = $wpdb->get_results("SHOW COLUMNS FROM ".$wpdb->prefix.MSDB_PURCHASE." LIKE 'checking_date'");
+            if(empty($result)){
+                $sql = "ALTER TABLE ".$wpdb->prefix.MSDB_PURCHASE." ADD checking_date DATETIME";
+                $wpdb->query($sql);
+            }    
+        } // End _create_db_structure 
 		
 /** REGISTER POST TYPES AND TAXONOMIES **/
 		
@@ -992,12 +998,28 @@ if(!function_exists('ms_get_site_url')){
 				break;
 				case 'reports':
 					if ( isset($_POST['ms_purchase_stats']) && wp_verify_nonce( $_POST['ms_purchase_stats'], plugin_basename( __FILE__ ) ) ){
-						if(isset($_POST['purchase_id'])){ // Delete the purchase
+						if(isset($_POST['delete_purchase_id'])){ // Delete the purchase
 							$wpdb->query($wpdb->prepare(
 								"DELETE FROM ".$wpdb->prefix.MSDB_PURCHASE." WHERE id=%d",
-								$_POST['purchase_id']
+								$_POST['delete_purchase_id']
 							));
 						}
+						
+						if(isset($_POST['reset_purchase_id'])){ // Delete the purchase
+							$wpdb->query($wpdb->prepare(
+								"UPDATE ".$wpdb->prefix.MSDB_PURCHASE." SET checking_date = NOW() WHERE id=%d",
+								$_POST['reset_purchase_id']
+							));
+						}
+						
+						if(isset($_POST['show_purchase_id'])){ // Delete the purchase
+							$paypal_data = '<div class="ms-paypal-data"><h3>' . __( 'PayPal data', MS_TEXT_DOMAIN ) . '</h3>' . $wpdb->get_var($wpdb->prepare(
+								"SELECT paypal_data FROM ".$wpdb->prefix.MSDB_PURCHASE." WHERE id=%d",
+								$_POST['show_purchase_id']
+							)) . '</div>';
+							$paypal_data = preg_replace( '/\n+/', '<br />', $paypal_data );
+						}
+						
 					}
 					
 					$group_by_arr = array( 
@@ -1165,6 +1187,7 @@ if(!function_exists('ms_get_site_url')){
 						<h3 class='hndle' style="padding:5px;"><span><?php _e('Store sales report', MS_TEXT_DOMAIN); ?></span></h3>
 						<div class="inside">
 							<?php 
+								if( !empty( $paypal_data ) ) print $paypal_data;
 								if(count($purchase_list)){	
 									print '
 										<div>
@@ -1223,7 +1246,11 @@ if(!function_exists('ms_get_site_url')){
 														<TD>'.$purchase->amount.'</TD>
 														<TD>'.$currency.'</TD>
 														<TD><a href="'.$dlurl.'ms-action=download&purchase_id='.$purchase->purchase_id.'" target="_blank">Download Link</a></TD>
-														<TD><input type="button" class="button-primary" onclick="delete_purchase('.$purchase->id.');" value="Delete"></TD>
+														<TD style="white-space:nowrap;">
+															<input type="button" class="button-primary" onclick="delete_purchase('.$purchase->id.');" value="Delete"> 
+															<input type="button" class="button-primary" onclick="reset_purchase('.$purchase->id.');" value="Reset Time"> 
+															<input type="button" class="button-primary" onclick="show_purchase('.$purchase->id.');" value="PayPal Info">
+														</TD>
 													</TR>
 												';
 											}elseif( $to_display == 'amount' ){
