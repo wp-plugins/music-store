@@ -153,12 +153,12 @@ if(!function_exists('ms_get_site_url')){
             if( isset( $post ) ){
                 if( $post->post_type == 'ms_song' ){
                     $obj = new MSSong( $post->ID );
-                    if( isset($obj->cover) ) echo '<meta property="og:image" content="'.$obj->cover.'" />';
+                    if( isset($obj->cover) ) echo '<link rel="image_src" href="' . $obj->cover . '" />';
                 }
                 
                 if( $post->post_type == 'ms_collection' ){
                     $obj = new MSCollection( $post->ID );
-                    if( isset($obj->cover) ) echo '<meta property="og:image" content="'.$obj->cover.'" />';
+                    if( isset($obj->cover) ) echo '<link rel="image_src" href="' . $obj->cover . '" />';
                 }
             }
         }
