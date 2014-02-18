@@ -163,7 +163,7 @@ if(!class_exists('MSSong')){
             $demo = $this->demo;
 			if($demo)
 			{
-                $song_arr['demo'] = '<audio preload="none" src="'.$demo.'"></audio>';
+                $song_arr['demo'] = '<audio preload="none"><source src="'.$demo.'" type="audio/'.music_store_get_type( $demo ).'" /></audio>';
 			}else{
 				$song_arr['demo'] = '';
 			}	
@@ -184,7 +184,7 @@ if(!class_exists('MSSong')){
 				}
 				
 				$demo = $this->demo;
-				$song_arr['demo'] 			= ($demo) ? '<audio src="'.$demo.'" style="width:100%;"></audio>' : '';
+				$song_arr['demo'] 			= ($demo) ? '<audio style="width:100%;"><source src="'.$demo.'" type="audio/'.music_store_get_type( $demo ).'" /></audio>' : '';
 				
 				if(strlen($this->post_content)){
 					$song_arr['description'] 	= '<p>'.preg_replace('/[\n\r]+/', '</p><p>', $this->post_content).'</p>';
