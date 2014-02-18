@@ -71,6 +71,27 @@ function music_store_extract_attr_as_str($arr, $attr, $separator){
 	return $result;
 } // End music_store_extract_attr_as_str
 
+function music_store_get_type( $file )
+{
+	$type = 'mpeg';
+	$ext  = strtolower(pathinfo($file, PATHINFO_EXTENSION));
+	switch( $ext ){
+		case 'ogg':
+		case 'oga':
+			$type = 'ogg';
+		break;
+		case 'wav':
+			$type = 'wav';
+		break;	
+		case 'wma':
+			$type = 'wma';
+		break;
+		case 'aac':
+			$type = 'mp4';
+	}
+	return $type;
+} // music_store_get_type
+
 function music_store_get_img_id($url){
 	global $wpdb;
 	$attachment = $wpdb->get_col($wpdb->prepare("SELECT ID FROM " . $wpdb->prefix . "posts" . " WHERE guid='%s';", $url )); 
