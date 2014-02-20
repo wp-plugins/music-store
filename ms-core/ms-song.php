@@ -118,7 +118,8 @@ if(!class_exists('MSSong')){
 				'price' => null,
 				'has_albums' => null,
 				'has_artists' => null,
-				'has_genres' => null
+				'has_genres' => null,
+				'demo' => null
 			);
 			
             if(!empty($this->cover)){
