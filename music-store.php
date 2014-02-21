@@ -880,19 +880,6 @@ if(!function_exists('ms_get_site_url')){
 							<th scope="row"><?php _e('Increase the download page security', MS_TEXT_DOMAIN); ?></th>
 							<td><input type="checkbox" name="ms_safe_download" <?php echo ( ( get_option('ms_safe_download', MS_SAFE_DOWNLOAD)) ? 'CHECKED' : '' ); ?> /> <?php _e('The customers must enter the email address used in the product\'s purchasing to access to the download link. The Music Store verifies the customer\'s data, from the file link too.', MS_TEXT_DOMAIN)?></td>
 							</tr>  
-							
-							<tr valign="top">
-							<th scope="row"><?php _e('Request for the acceptance of cookies', MS_TEXT_DOMAIN); ?></th>
-							<td><input type="checkbox" DISABLED /> <?php _e('The users should accept store cookies to use of shopping cart.', MS_TEXT_DOMAIN)?>
-							<em style="color:#FF0000;"><?php _e('Only available for commercial version of plugin', MS_TEXT_DOMAIN); ?></em>
-							</td>
-							</tr>  
-							
-							<tr valign="top">
-							<th scope="row"><?php _e('Text to request the acceptance of cookies', MS_TEXT_DOMAIN); ?></th>
-							<td><input type="text" DISABLED size="40" /> <em style="color:#FF0000;"><?php _e('Only available for commercial version of plugin', MS_TEXT_DOMAIN); ?></em></td>
-							</tr>  
-							
 							<tr valign="top">
 							<th scope="row"><?php _e('Pack all purchased audio files as a single ZIP file', MS_TEXT_DOMAIN); ?></th>
 							<td><input type="checkbox" disabled >
