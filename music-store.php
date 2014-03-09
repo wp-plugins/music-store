@@ -107,7 +107,7 @@ if(!function_exists('ms_get_site_url')){
 		*/
 		function init(){
 			// I18n
-			load_plugin_textdomain(MS_TEXT_DOMAIN, false, dirname(plugin_basename(__FILE__)) . '/../languages/');
+			load_plugin_textdomain(MS_TEXT_DOMAIN, false, dirname(plugin_basename(__FILE__)) . '/languages/');
 			
 			$this->init_taxonomies(); // Init MusicStore taxonomies
 			$this->init_post_types(); // Init MusicStore custom post types
