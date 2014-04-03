@@ -25,6 +25,7 @@ if(!function_exists('ms_get_site_url')){
  define( 'MS_H_URL', ms_get_site_url());
  define( 'MS_DOWNLOAD', dirname( __FILE__ ).'/ms-downloads' );
  define( 'MS_OLD_DOWNLOAD_LINK', 3); // Number of days considered old download links
+ define( 'MS_DOWNLOADS_NUMBER', 3);  // Number of downloads by purchase
  define( 'MS_CORE_IMAGES_URL',  MS_URL . '/ms-core/images' );
  define( 'MS_CORE_IMAGES_PATH', MS_FILE_PATH . '/ms-core/images' );
  define( 'MS_TEXT_DOMAIN', 'MS_TEXT_DOMAIN' );
@@ -278,6 +279,7 @@ if(!function_exists('ms_get_site_url')){
 		*/
 		function admin_init(){
 			global $wpdb;
+			$this->_create_db_structure();
 			if( isset( $_REQUEST[ 'ms-action' ] ) && $_REQUEST[ 'ms-action' ] == 'paypal-data' ){
 				if( isset( $_REQUEST[ 'data' ] ) && isset( $_REQUEST[ 'from' ] ) && isset( $_REQUEST[ 'to' ] ) ){
 					$where = 'DATEDIFF(date, "'.$_REQUEST[ 'from' ].'")>=0 AND DATEDIFF(date, "'.$_REQUEST[ 'to' ].'")<=0';
@@ -372,6 +374,14 @@ if(!function_exists('ms_get_site_url')){
 		private function _create_db_structure(){
 			global $wpdb;
 			
+			if( !empty( $_SESSION[ 'msdb_created_db' ] ) )
+			{
+				return;
+			}	
+			
+			$_SESSION[ 'msdb_created_db' ] = true;
+			
+			
 			$sql = "CREATE TABLE IF NOT EXISTS ".$wpdb->prefix.MSDB_POST_DATA." (
 				id mediumint(9) NOT NULL,
 				time VARCHAR(25) NULL,
@@ -397,10 +407,17 @@ if(!function_exists('ms_get_site_url')){
 				checking_date DATETIME,
 				email VARCHAR(255) NOT NULL,
 				amount FLOAT NOT NULL DEFAULT 0,
+				downloads INT NOT NULL DEFAULT 0,
 				paypal_data TEXT,
 				UNIQUE KEY id (id)
 			 );";             
 			$wpdb->query($sql); 
+			
+			$result = $wpdb->get_results("SHOW COLUMNS FROM ".$wpdb->prefix.MSDB_PURCHASE." LIKE 'downloads'");
+            if(empty($result)){
+                $sql = "ALTER TABLE ".$wpdb->prefix.MSDB_PURCHASE." ADD downloads INT NOT NULL DEFAULT 0";
+                $wpdb->query($sql);
+            }
 			
 			$result = $wpdb->get_results("SHOW COLUMNS FROM ".$wpdb->prefix.MSDB_PURCHASE." LIKE 'checking_date'");
             if(empty($result)){
@@ -699,6 +716,7 @@ if(!function_exists('ms_get_site_url')){
 				update_option('ms_notification_to_seller_subject', $_POST['ms_notification_to_seller_subject']);
 				update_option('ms_notification_to_seller_message', $_POST['ms_notification_to_seller_message']);				
 				update_option('ms_old_download_link', $_POST['ms_old_download_link']);				
+				update_option('ms_downloads_number', $_POST['ms_downloads_number']);				
 				update_option('ms_safe_download', ((isset($_POST['ms_safe_download'])) ? true : false));
 				update_option('ms_social_buttons', ((isset($_POST['ms_social_buttons'])) ? true : false));
                 
@@ -877,6 +895,11 @@ if(!function_exists('ms_get_site_url')){
 							</tr>
 							
                             <tr valign="top">
+							<th scope="row"><?php _e('Number of downloads allowed by purchase', MS_TEXT_DOMAIN); ?></th>
+							<td><input type="text" name="ms_downloads_number" value="<?php echo esc_attr(get_option('ms_downloads_number', MS_DOWNLOADS_NUMBER)); ?>" /></td>
+							</tr>  
+							
+							<tr valign="top">
 							<th scope="row"><?php _e('Increase the download page security', MS_TEXT_DOMAIN); ?></th>
 							<td><input type="checkbox" name="ms_safe_download" <?php echo ( ( get_option('ms_safe_download', MS_SAFE_DOWNLOAD)) ? 'CHECKED' : '' ); ?> /> <?php _e('The customers must enter the email address used in the product\'s purchasing to access to the download link. The Music Store verifies the customer\'s data, from the file link too.', MS_TEXT_DOMAIN)?></td>
 							</tr>  
@@ -994,7 +1017,7 @@ if(!function_exists('ms_get_site_url')){
 						
 						if(isset($_POST['reset_purchase_id'])){ // Delete the purchase
 							$wpdb->query($wpdb->prepare(
-								"UPDATE ".$wpdb->prefix.MSDB_PURCHASE." SET checking_date = NOW() WHERE id=%d",
+								"UPDATE ".$wpdb->prefix.MSDB_PURCHASE." SET checking_date = NOW(),downloads = 0 WHERE id=%d",
 								$_POST['reset_purchase_id']
 							));
 						}
@@ -1235,7 +1258,7 @@ if(!function_exists('ms_get_site_url')){
 														<TD><a href="'.$dlurl.'ms-action=download&purchase_id='.$purchase->purchase_id.'" target="_blank">Download Link</a></TD>
 														<TD style="white-space:nowrap;">
 															<input type="button" class="button-primary" onclick="delete_purchase('.$purchase->id.');" value="Delete"> 
-															<input type="button" class="button-primary" onclick="reset_purchase('.$purchase->id.');" value="Reset Time"> 
+															<input type="button" class="button-primary" onclick="reset_purchase('.$purchase->id.');" value="Reset Time and Downloads"> 
 															<input type="button" class="button-primary" onclick="show_purchase('.$purchase->id.');" value="PayPal Info">
 														</TD>
 													</TR>

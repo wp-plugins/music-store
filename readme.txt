@@ -68,9 +68,11 @@ The security in the access to songs files is determined in different ways.
 
 *	The song files can't be accessed directly. The purchased files are stored in a special directory called ms-downloads, the ms-downloads directory includes a .htaccess file that forbid the access from browser. The file can be accessed only through a server side script that validates the purchase.  
 
-*	The Music Store determines the validity of  download links based in two options, available in the settings page of plugin.
+*	The Music Store determines the validity of  download links based in three options, available in the settings page of plugin.
 
 It is possible define a time period, in days, where a download link is considered valid. If a user tries to download a purchased product, the Music Store checks the date of purchasing.
+
+It is possible define a limit of downloads by purchase. If a user tries to download a product, the Music Store checks how many downloads have been made.
 
 The Music Store may be configured to request the email address used in the purchasing to check the validity of download link.
 
@@ -341,6 +343,8 @@ A: The security in the access to songs files is determined in different ways.
 
 - The Music Store determines the validity of  download links based in two options, available in the settings page of plugin.
 -- It is possible define a time period, in days, where a download link is considered valid. If a user tries to download a purchased product, the Music Store checks the date of purchasing.
+
+-- It is possible define a limit of downloads by purchase. If a user tries to download a product, the Music Store checks how many downloads have been made.
 
 -- The Music Store may be configured to request the email address used in the purchasing to check the validity of download link.
 
