@@ -127,17 +127,6 @@
 			}	
 		};
 		
-		window["send_to_download_url"] = function(html) {
-
-			file_url = jQuery(html).attr('href');
-			if (file_url) {
-				jQuery(file_path_field).val(file_url);
-			}
-			tb_remove();
-			window.send_to_editor = window.send_to_editor_default;
-
-		}
-		
 		window ['open_insertion_music_store_window'] = function(){
 			var tags = music_store.tags,
 				cont = $(tags.replace(/&lt;/g, '<').replace(/&gt;/g, '>').replace(/&quot;/g, '"'));
@@ -193,20 +182,28 @@
 		};
 		
         // Main application
-		var file_path_field;
-		window["send_to_editor_default"] = window.send_to_editor;
-		
-        jQuery('.product-data').bind('click', function(evt){
+		jQuery('.product-data').bind('click', function(evt){
             if($(evt.target).hasClass('button_for_upload')){
-                file_path_field = $(evt.target).parent().find('.file_path');
-
-                formfield = jQuery(file_path_field).attr('name');
-
-                window.send_to_editor = window.send_to_download_url;
-
-                //tb_show('', 'media-upload.php?post_id=' + music_store.post_id + '&amp;TB_iframe=true');
-                tb_show('', 'media-upload.php?post_id=0&amp;TB_iframe=true');
-                return false;
+                var file_path_field = $(evt.target).parent().find('.file_path');
+				var media = wp.media({
+						title: 'Select Media File',
+						library:{
+							type: ( ( file_path_field.attr( 'id' ) == "ms_cover" ) ? 'image' : 'audio' )
+						},
+						button: {
+						text: 'Select Item'
+						},
+						multiple: false
+				}).on('select', 
+					(function( field ){
+						return function() {
+							var attachment = media.state().get('selection').first().toJSON();
+							var url = attachment.url;
+							field.val( url );
+						};
+					})( file_path_field )	
+				).open();
+				return false;
             }    
         });
 	})(jQuery)
