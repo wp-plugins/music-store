@@ -1,4 +1,4 @@
-﻿(function($){
+jQuery(function($){
 	$('.ms-player.single audio').mediaelementplayer({
 		features: ['playpause','current','progress','duration','volume'],
 		videoVolume: 'horizontal',
@@ -11,5 +11,5 @@
 		iPadUseNativeControls: false,
 		iPhoneUseNativeControls: false
 	});
-})(jQuery);
+});
 
