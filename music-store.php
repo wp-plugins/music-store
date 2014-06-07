@@ -1580,7 +1580,7 @@ if(!function_exists('ms_get_site_url')){
 			if($items_page_selector && $items_page){
 				// Checking for page parameter or get page from session variables
 				// Clear the page number if filtering option change
-				if(isset($_POST['filter_by_type'])){
+				if( isset($_POST['filter_by_type']) || isset($_REQUEST['filter_by_genre']) || isset($_REQUEST['filter_by_artist']) ){
 					$_SESSION[ $page_id ]['ms_page_number'] = 0;
 				}elseif(isset($_GET['page_number'])){
 					$_SESSION[ $page_id ]['ms_page_number'] = $_GET['page_number'];
