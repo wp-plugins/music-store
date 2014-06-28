@@ -24,12 +24,13 @@
 				{song.title}
 				
 				<!-- SONG PRICE -->
-				<tpl ifset="song.price">
-					<span class="song-price single">
-						{song.price}
-					</span>
-				</tpl ifset="song.price">
-		
+					<div style="display:inline-block;">
+					<tpl ifset="song.price">
+						<span class="song-price single">
+							{song.price}
+						</span>
+					</tpl ifset="song.price">
+					</div>
 				</div>
 			</tpl ifset="song.title">
 			
@@ -123,7 +124,7 @@
 		</div>
 	</div>	
 	<div class="clear"></div>
-	<div>
+	<div class="bottom-content">
         <!-- SONG DESCRIPTION -->
 		<tpl ifset="song.description">
 		<ul class="music-store-tabs">

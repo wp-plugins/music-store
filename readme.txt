@@ -17,6 +17,7 @@ Music Store features:
 	♪ Allows selling audio files via PayPal
 	♪ Allows a custom setup of the online store
 	♪ Includes an audio player that supports formats: OGA, MP3, WAV, WMA
+	♪ Includes multiple layouts for the Music Store
 	♪ Allows sharing songs in social networks (ex: Facebook, Twitter, Google+)
 	♪ Supports all most popular web browsers and mobile devices
 	♪ Includes a module to track sales statistics
@@ -115,6 +116,7 @@ The setup interface  includes the following fields:
 *   Allow to filter by type: Inserts a field into the Music Store webpage that allows to filter products by type (including Singles, Collections or all products)
 *   Allow to filter by genre: Inserts a field into the Music Store webpage that allows to filter products by their genre.
 *   Allow multiple pages: Allows paging of music store products.
+*   Store layout: Allows select one of the multiple layouts available for the store.
 *   Items per page: Defines the number of products per page in the Music Store.
 *   Player style: Select the audio player style from the list.
 *   Percent of audio used for protected playbacks: Percent of audio to play in secure mode (advanced version of plugin).
@@ -348,6 +350,10 @@ A: The security in the access to songs files is determined in different ways.
 
 -- The Music Store may be configured to request the email address used in the purchasing to check the validity of download link.
 
+= Q: Can I customize the store's design? = 
+
+A: The plugin includes some different designs that can be selected through the settings option "Store Layout", but you can create a new once, duplicating an of available store's layouts, and edit its style.css file
+
 == Screenshots ==
 01. Music Store Item
 02. Music Store Song Section
@@ -362,3 +368,4 @@ A: The security in the access to songs files is determined in different ways.
 11. The Available Widgets for Insert the Products, Products List and Sales Counter in the Website's Sidebars
 12. Filtering Sales Report
 13. Sales Reports
+14. Available layouts
