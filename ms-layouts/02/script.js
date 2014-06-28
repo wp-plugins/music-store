@@ -17,7 +17,6 @@ jQuery( function( $ )
 			};
 		
 		correct_header();
-		$( window ).load( correct_header );
 		
 		// Replace the popularity texts with the stars 
 		var popularity_top = 0;
@@ -60,59 +59,63 @@ jQuery( function( $ )
 		);
 		
 		// Correct the images heights
-		var min_height = Number.MAX_VALUE;
-		
-		$( '.music-store-items .song-cover img, .music-store-items .colllection-cover img' ).each(
-			function()
+		var min_height = Number.MAX_VALUE
+			correct_heights = function()
 			{
-				var e = $( this );
-				min_height = Math.min( e.height(), min_height );
-			}
-		);
+			$( '.music-store-items .song-cover img, .music-store-items .colllection-cover img' ).each(
+				function()
+				{
+					var e = $( this );
+					min_height = Math.min( e.height(), min_height );
+				}
+			);
 
-		if( min_height != Number.MAX_VALUE )
-		{
-			$( '.music-store-items .song-cover, .music-store-items .collection-cover' ).css( { 'height': min_height+'px', 'overflow': 'hidden' } );
-		}	
-		
-		$( '.song-cover, .collection-cover' ).append( $( '<div class="ms-inner-shadow"></div>' ) );
-		
-		// Correct the item heights
-		var	height_arr = [],
-			max_height = 0;
-		$( '.music-store-items' ).children( 'div' ).each(
-			function()
+			if( min_height != Number.MAX_VALUE )
 			{
-				var e = $( this );
-				if( e.hasClass( 'music-store-item' ) )
-				{
-					max_height = Math.max( e.height(), max_height );
-				}
-				else
-				{
-					height_arr.push( max_height );
-					max_height = 0;
-				}
-			}
-		);
-		
-		if( height_arr.length )
-		{
+				$( '.music-store-items .song-cover, .music-store-items .collection-cover' ).css( { 'height': min_height+'px', 'overflow': 'hidden' } );
+			}	
+			
+			$( '.song-cover, .collection-cover' ).append( $( '<div class="ms-inner-shadow"></div>' ) );
+			
+			// Correct the item heights
+			var	height_arr = [],
+				max_height = 0;
 			$( '.music-store-items' ).children( 'div' ).each(
 				function()
 				{
 					var e = $( this );
 					if( e.hasClass( 'music-store-item' ) )
 					{
-						e.height( height_arr[ 0 ] );
+						max_height = Math.max( e.height(), max_height );
 					}
 					else
 					{
-						height_arr.splice( 0, 1 );
+						height_arr.push( max_height );
+						max_height = 0;
 					}
 				}
 			);
-		}	
+			
+			if( height_arr.length )
+			{
+				$( '.music-store-items' ).children( 'div' ).each(
+					function()
+					{
+						var e = $( this );
+						if( e.hasClass( 'music-store-item' ) )
+						{
+							e.height( height_arr[ 0 ] );
+						}
+						else
+						{
+							height_arr.splice( 0, 1 );
+						}
+					}
+				);
+			}	
+		};
+		
+		$( window ).load( function(){ correct_header(); correct_heights(); } );
 		
 		// Modify the price box
 		$( '.song-price' ).each(
