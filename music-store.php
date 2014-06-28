@@ -84,7 +84,9 @@ if(!function_exists('ms_get_site_url')){
 	class MusicStore{
 		
 		var $music_store_slug = 'music-store-menu';
-		
+		var $layouts = array();
+		var $layout = array();
+
 		/**
 		* MusicStore constructor
 		*
@@ -96,6 +98,12 @@ if(!function_exists('ms_get_site_url')){
 			add_action('admin_init', array(&$this, 'admin_init'), 0);
 			// Set the menu link
 			add_action('admin_menu', array(&$this, 'menu_links'), 10);
+			
+			// Load selected layout
+			if ( false !== get_option( 'ms_layout' ) )
+			{
+				$this->layout = get_option( 'ms_layout' );
+			}
 		} // End __constructor
 
 /** INITIALIZE PLUGIN FOR PUBLIC WORDPRESS AND ADMIN SECTION **/
@@ -676,6 +684,26 @@ if(!function_exists('ms_get_site_url')){
 		} // End settings_tabs 	
 		
 		/**
+		* Get the list of available layouts
+		*/
+		function _layouts(){	
+			$tpls_dir = dir( MS_FILE_PATH.'/ms-layouts' );
+			while( false !== ( $entry = $tpls_dir->read() ) ) 
+			{    
+				if ( $entry != '.' && $entry != '..' && is_dir( $tpls_dir->path.'/'.$entry ) && file_exists( $tpls_dir->path.'/'.$entry.'/config.ini' ) )
+				{
+					if( ( $ini_array = parse_ini_file( $tpls_dir->path.'/'.$entry.'/config.ini' ) ) !== false )
+					{
+						if( !empty( $ini_array[ 'style_file' ] ) ) $ini_array[ 'style_file' ] = MS_URL.'/ms-layouts/'.$entry.'/'.$ini_array[ 'style_file' ];
+						if( !empty( $ini_array[ 'script_file' ] ) ) $ini_array[ 'script_file' ] = MS_URL.'/ms-layouts/'.$entry.'/'.$ini_array[ 'script_file' ];
+						if( !empty( $ini_array[ 'thumbnail' ] ) ) $ini_array[ 'thumbnail' ] = MS_URL.'/ms-layouts/'.$entry.'/'.$ini_array[ 'thumbnail' ];
+						$this->layouts[ $ini_array[ 'id' ] ] = $ini_array;
+					}
+				}			
+			}
+		}
+		
+		/**
 		* Get the list of possible paypal butt
 		*/
 		function _paypal_buttons(){
@@ -696,6 +724,7 @@ if(!function_exists('ms_get_site_url')){
 		*/
 		function settings_page(){
 			global $wpdb;
+			$this->_layouts(); // Load the available layouts
 			
 			if ( isset( $_POST['ms_settings'] ) && wp_verify_nonce( $_POST['ms_settings'], plugin_basename( __FILE__ ) ) ){
 				update_option('ms_main_page', $_POST['ms_main_page']);
@@ -703,6 +732,16 @@ if(!function_exists('ms_get_site_url')){
 				update_option('ms_filter_by_artist', ((isset($_POST['ms_filter_by_artist'])) ? true : false));
 				update_option('ms_items_page_selector', ((isset($_POST['ms_items_page_selector'])) ? true : false));
 				update_option('ms_items_page', $_POST['ms_items_page']);
+				if( !empty( $_POST[ 'ms_layout' ] ) )
+				{
+					$this->layout = $this->layouts[ $_POST[ 'ms_layout' ] ];
+					update_option( 'ms_layout', $this->layout );
+				}
+				else
+				{
+					delete_option( 'ms_layout' );
+					$this->layout = array();
+				}
 				update_option('ms_paypal_email', $_POST['ms_paypal_email']);
 				update_option('ms_paypal_button', $_POST['ms_paypal_button']);
 				update_option('ms_paypal_currency', $_POST['ms_paypal_currency']);
@@ -778,6 +817,28 @@ if(!function_exists('ms_get_site_url')){
 								<tr valign="top">
 									<th><?php _e('Items per page', MS_TEXT_DOMAIN); ?></th>
 									<td><input type="text" name="ms_items_page" value="<?php echo esc_attr(get_option('ms_items_page', MS_ITEMS_PAGE)); ?>" /></td>
+								</tr>
+								<tr valign="top">
+									<th><?php _e('Store layout', MS_TEXT_DOMAIN); ?></th>
+									<td>
+										<select name="ms_layout" id="ms_layout">
+											<option value=""><?php _e( 'Default layout', MS_TEXT_DOMAIN ); ?></option>
+										<?php
+											foreach( $this->layouts as $id => $layout )
+											{
+												print '<option value="'.$id.'" '.( ( !empty( $this->layout ) && $id == $this->layout[ 'id' ] ) ? 'SELECTED' : '' ).' thumbnail="'.$layout[ 'thumbnail' ].'">'.$layout[ 'title' ].'</option>';
+											}
+										?>
+										</select>
+										<div id="ms_layout_thumbnail">
+										<?php
+											if( !empty( $this->layout ) )
+											{
+												print '<img src="'.$this->layout[ 'thumbnail' ].'" title="'.$this->layout[ 'title' ].'" />';
+											}
+										?>
+										</div>
+									</td>
 								</tr>
 								<tr valign="top">
 									<th><?php _e('Player style', MS_TEXT_DOMAIN); ?></th>
@@ -1354,10 +1415,19 @@ if(!function_exists('ms_get_site_url')){
 		*/
 		function public_resources(){
 			wp_enqueue_style('ms-mediacore-style', plugin_dir_url(__FILE__).'ms-styles/mediaelementplayer.min.css');
-			wp_enqueue_style('ms-style', plugin_dir_url(__FILE__).'ms-styles/ms-public.css');
+			wp_enqueue_style('ms-style', plugin_dir_url(__FILE__).'ms-styles/ms-public.css', array( 'ms-mediacore-style' ) );
 			
+			wp_enqueue_script('jquery');
 			wp_enqueue_script('ms-mediacore-script', plugin_dir_url(__FILE__).'ms-script/mediaelement-and-player.min.js', array('jquery'));
 			wp_enqueue_script('ms-media-script', plugin_dir_url(__FILE__).'ms-script/codepeople-plugins.js', array('ms-mediacore-script'), null, true);
+			
+			// Load resources of layout
+			if( !empty( $this->layout) )
+			{
+				if( !empty( $this->layout[ 'style_file' ] ) ) wp_enqueue_style('ms-css-layout', $this->layout[ 'style_file' ] , array( 'ms-style' ) );
+				if( !empty( $this->layout[ 'script_file' ] ) ) wp_enqueue_script('ms-js-layout', $this->layout[ 'script_file' ] , array( 'ms-media-script' ), false, true );
+			}
+			
 		} // End public_resources
 		
 		/**
@@ -1623,7 +1693,7 @@ if(!function_exists('ms_get_site_url')){
 			
 			$tpl = new music_store_tpleng(dirname(__FILE__).'/ms-templates/', 'comment');
 			
-			$width = floor(100/min($columns, max(count($results),1)));
+			$width = 100/min($columns, max(count($results),1));
 			$music_store .= "<div class='music-store-items'>";
 			$item_counter = 0;
 			foreach($results as $result){
@@ -1680,7 +1750,7 @@ if(!function_exists('ms_get_site_url')){
 							</select>
 						</div>";
 						
-			$header .= "
+			$header .= "<div style='clear:both;'></div>
 						</div>
 						</form>
 						";

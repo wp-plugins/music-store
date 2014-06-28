@@ -7,7 +7,7 @@
 		</a>
 	</div>
 	</tpl ifset="song.cover">
-	
+	<div class="song-data">
     <!-- SONG DEMO -->
     <tpl ifset="song.demo">
         <div class="ms-player multiple">
@@ -44,9 +44,11 @@
 	
 	<!-- SONG PRICE -->
 	<tpl ifset="song.price">
-		<div class="song-price">
-		{song.price}
-		</div>
+		<div>
+			<div class="song-price">
+			{song.price}
+			</div>
+		</div>	
 	</tpl ifset="song.price">
 	
 	<!-- SONG SALES BUTTONS -->
@@ -55,4 +57,5 @@
 		{song.salesbutton}
 		</div>
 	</tpl ifset="song.salesbutton">
+	</div>
 </div>
