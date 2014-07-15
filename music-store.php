@@ -145,8 +145,8 @@ if(!function_exists('ms_get_site_url')){
 				// Set custom post_types on search result
 				add_filter('pre_get_posts', array(&$this, 'add_post_type_to_results'));
 				add_shortcode('music_store', array(&$this, 'load_store'));
-                add_filter( 'the_content', array( &$this, '_ms_the_content' ) ); // For download-page
-                add_filter( 'the_excerpt', array( &$this, '_ms_the_excerpt' ) ); // For search results
+                add_filter( 'the_content', array( &$this, '_ms_the_content' ), 1 ); // For download-page
+                add_filter( 'the_excerpt', array( &$this, '_ms_the_excerpt' ), 1 ); // For search results
                 add_action( 'wp_head', array( &$this, 'load_meta'));
 				$this->load_templates(); // Load the music store template for songs display
 				
@@ -1763,7 +1763,7 @@ if(!function_exists('ms_get_site_url')){
 		* Load the music store templates for songs display
 		*/
 		function load_templates(){
-			add_filter('the_content', array(&$this, 'display_content'));
+			add_filter('the_content', array(&$this, 'display_content'), 1 );
 		} // End load_templates
 		
 		/**
