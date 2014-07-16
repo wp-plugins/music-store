@@ -1763,6 +1763,7 @@ if(!function_exists('ms_get_site_url')){
 		* Load the music store templates for songs display
 		*/
 		function load_templates(){
+            remove_filter ('the_content', 'wpautop');
 			add_filter('the_content', array(&$this, 'display_content'), 1 );
 		} // End load_templates
 		
