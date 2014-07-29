@@ -37,16 +37,14 @@ background-color:#454444;
 box-shadow:         0px 2px 1px 0px rgba(255, 255, 255, 0.2);
 border:1px solid #000;
 color: #FFF;
-margin:0 10px;
 }
 
 .music-store-items{padding-top:2px;}
 
-.music-store-item .music-store-collection,
-.music-store-item .music-store-song{
+.music-store-item{
 padding:30px 0;
 background:#2A2A2A;
-margin: 1px;
+margin: 0px;
 width:99%;
 }
 

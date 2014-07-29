@@ -6,7 +6,8 @@
 .music-store-items{position:relative;clear:both;padding-top:10px;}
 
 .music-store-header{width:100%;position:relative;clear:both; min-width:556px;}
-.music-store-filters{display:inline-block; padding-right:10px;}
+.music-store-filters{display:inline-block;}
+.music-store-header .music-store-filters span{display:inline-block; padding-right: 5px;}
 .music-store-ordering{display:inline-block;}
 
 .music-store-song .song-cover{width:150px;}

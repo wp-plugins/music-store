@@ -59,7 +59,7 @@ jQuery( function( $ )
 		);
 		
 		// Correct the images heights
-		var min_height = Number.MAX_VALUE
+		var min_height = Number.MAX_VALUE,
 			correct_heights = function()
 			{
 			$( '.music-store-items .song-cover img, .music-store-items .colllection-cover img' ).each(
@@ -90,12 +90,11 @@ jQuery( function( $ )
 					}
 					else
 					{
-						height_arr.push( max_height );
+                        height_arr.push( max_height );
 						max_height = 0;
 					}
 				}
 			);
-			
 			if( height_arr.length )
 			{
 				$( '.music-store-items' ).children( 'div' ).each(

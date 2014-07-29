@@ -109,6 +109,9 @@ if(!class_exists('MSSong')){
 		
 		function display_content($mode, $tpl_engine, $output='echo'){
 			$currency_symbol = get_option('ms_paypal_currency_symbol', MS_PAYPAL_CURRENCY_SYMBOL);
+            $ms_main_page = get_option('ms_main_page', MS_MAIN_PAGE);
+            $url_symbol = ( strpos( $ms_main_page, '?' ) === false ) ? '?' : '&' ;
+
 			$song_arr = array(
 				'title' => $this->post_title,
 				'link'	=> get_permalink($this->id),
@@ -139,7 +142,12 @@ if(!class_exists('MSSong')){
 				$song_arr['has_artists'] = true;
 				$artists = array();
 				foreach($this->artist as $artist){
-					$artists[] = array('data' => '<a href="'.get_term_link($artist).'">'.$artist->name.'</a>');
+                    $link = get_term_link($artist);
+                    if( !empty( $ms_main_page ) )
+                    {
+                        $link = $ms_main_page.$url_symbol.'filter_by_artist='.$artist->slug;
+                    }
+					$artists[] = array('data' => '<a href="'.$link.'">'.$artist->name.'</a>');
 				}
 				$tpl_engine->set_loop('artists', $artists);
 			}
@@ -179,7 +187,6 @@ if(!class_exists('MSSong')){
             }elseif($mode == 'single'){
 				$this->plays += 1;
 				$tpl_engine->set_file('song', 'song_single.tpl.html');
-				$ms_main_page = get_option('ms_main_page', MS_MAIN_PAGE);
 				if($ms_main_page){
 					$song_arr['store_page'] = $ms_main_page;
 				}
@@ -195,7 +202,12 @@ if(!class_exists('MSSong')){
 					$song_arr['has_genres'] = true;
 					$genres = array();
 					foreach($this->genre as $genre){
-						$genres[] = array('data' => '<a href="'.get_term_link($genre).'">'.$genre->name.'</a>');
+                        $link = get_term_link($genre);
+                        if( !empty( $ms_main_page ) )
+                        {
+                            $link = $ms_main_page.$url_symbol.'filter_by_genre='.$genre->slug;
+                        }
+                        $genres[] = array('data' => '<a href="'.$link.'">'.$genre->name.'</a>');
 					}
 					$tpl_engine->set_loop('genres', $genres);
 				}
@@ -204,7 +216,12 @@ if(!class_exists('MSSong')){
 					$song_arr['has_albums'] = true;
 					$albums = array();
 					foreach($this->album as $album){
-						$albums[] = array('data' => '<a href="'.get_term_link($album).'">'.$album->name.'</a>');
+                        $link = get_term_link($album);
+                        if( !empty( $ms_main_page ) )
+                        {
+                            $link = $ms_main_page.$url_symbol.'filter_by_album='.$album->slug;
+                        }					
+						$albums[] = array('data' => '<a href="'.$link.'">'.$album->name.'</a>');
 					}
 					$tpl_engine->set_loop('albums', $albums);
 				}
