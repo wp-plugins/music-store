@@ -113,8 +113,13 @@ Music Store can be set up via the menu: "Settings / Music Store" or the new subm
 The setup interface  includes the following fields:
 
 *   Music Store URL: Enter the URL of the webpage where the Music Store is inserted. The URL of the store will be used to return from the product page to the store page.
+
+Tip: If the Music Store URL is defined, the list of songs that belong to an album, artist or genre, are displayed in the same page of music store, with the corresponding options for filtering.
+
 *   Allow to filter by type: Inserts a field into the Music Store webpage that allows to filter products by type (including Singles, Collections or all products)
 *   Allow to filter by genre: Inserts a field into the Music Store webpage that allows to filter products by their genre.
+*   Allow to filter by artist: Inserts a field into the Music Store webpage that allows to filter products by the artist.
+*   Allow to filter by album: Inserts a field into the Music Store webpage that allows to filter products by the album they belong.
 *   Allow multiple pages: Allows paging of music store products.
 *   Store layout: Allows select one of the multiple layouts available for the store.
 *   Items per page: Defines the number of products per page in the Music Store.

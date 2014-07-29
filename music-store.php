@@ -57,6 +57,7 @@ if(!function_exists('ms_get_site_url')){
  define('MS_FILTER_BY_TYPE', false);
  define('MS_FILTER_BY_GENRE', true);
  define('MS_FILTER_BY_ARTIST', false);
+ define('MS_FILTER_BY_ALBUM', false);
  define('MS_ORDER_BY_POPULARITY', true);
  define('MS_ORDER_BY_PRICE', true);			
  
@@ -730,6 +731,7 @@ if(!function_exists('ms_get_site_url')){
 				update_option('ms_main_page', $_POST['ms_main_page']);
 				update_option('ms_filter_by_genre', ((isset($_POST['ms_filter_by_genre'])) ? true : false));
 				update_option('ms_filter_by_artist', ((isset($_POST['ms_filter_by_artist'])) ? true : false));
+                update_option('ms_filter_by_album', ((isset($_POST['ms_filter_by_album'])) ? true : false));
 				update_option('ms_items_page_selector', ((isset($_POST['ms_items_page_selector'])) ? true : false));
 				update_option('ms_items_page', $_POST['ms_items_page']);
 				if( !empty( $_POST[ 'ms_layout' ] ) )
@@ -809,6 +811,10 @@ if(!function_exists('ms_get_site_url')){
 								<tr valign="top">
 									<th><?php _e('Allow to filter by artist', MS_TEXT_DOMAIN); ?></th>
 									<td><input type="checkbox" name="ms_filter_by_artist" size="40" value="1" <?php if (get_option('ms_filter_by_artist', MS_FILTER_BY_ARTIST)) echo 'checked'; ?> /></td>
+								</tr>
+                                <tr valign="top">
+									<th><?php _e('Allow to filter by album', MS_TEXT_DOMAIN); ?></th>
+									<td><input type="checkbox" name="ms_filter_by_album" value="1" <?php if (get_option('ms_filter_by_album', MS_FILTER_BY_ALBUM)) echo 'checked'; ?> /></td>
 								</tr>
 								<tr valign="top">
 									<th><?php _e('Allow multiple pages', MS_TEXT_DOMAIN); ?></th>
@@ -1539,26 +1545,46 @@ if(!function_exists('ms_get_site_url')){
 			);
 			
 			// Extract query_string variables correcting music store attributes
+            if( 
+                isset( $_REQUEST['filter_by_genre']  ) || 
+                isset( $_REQUEST['filter_by_artist'] ) || 
+                isset( $_REQUEST['filter_by_album']  )
+            )
+            {
+                unset( $_SESSION[ $page_id ]['ms_post_type'] );
+                unset( $_SESSION[ $page_id ]['ms_genre'] );
+                unset( $_SESSION[ $page_id ]['ms_artist'] );
+                unset( $_SESSION[ $page_id ]['ms_album'] );
+            }
+
 			if(isset($_REQUEST['filter_by_type']) && in_array($_REQUEST['filter_by_type'], array('all', 'singles'))){
 				$_SESSION[ $page_id ]['ms_post_type'] = $_REQUEST['filter_by_type'];
-			}
-			
-			if(isset($_SESSION[ $page_id ]['ms_post_type'])){
-				$load = $_SESSION[ $page_id ]['ms_post_type'];
 			}
 			
 			if(isset($_REQUEST['filter_by_genre'])){
 				$_SESSION[ $page_id ]['ms_genre'] = $_REQUEST['filter_by_genre'];
 			}
 			
+            if(isset($_REQUEST['filter_by_album'])){
+				$_SESSION[ $page_id ]['ms_album'] = $_REQUEST['filter_by_album'];
+			}
+
 			if(isset($_REQUEST['filter_by_artist'])){
 				$_SESSION[ $page_id ]['ms_artist'] = $_REQUEST['filter_by_artist'];
 			}
 			
-			if(isset($_SESSION[ $page_id ]['ms_genre'])){
+			if(isset($_SESSION[ $page_id ]['ms_post_type'])){
+				$load = $_SESSION[ $page_id ]['ms_post_type'];
+			}
+			
+            if(isset($_SESSION[ $page_id ]['ms_genre'])){
 				$genre = $_SESSION[ $page_id ]['ms_genre'];
 			}
 			
+            if(isset($_SESSION[ $page_id ]['ms_album'])){
+				$album = $_SESSION[ $page_id ]['ms_album'];
+            }
+
 			if(isset($_SESSION[ $page_id ]['ms_artist'])){
 				$artist = $_SESSION[ $page_id ]['ms_artist'];
 			}
@@ -1572,7 +1598,8 @@ if(!function_exists('ms_get_site_url')){
 			// Extract info from music_store options
 			$allow_filter_by_genre = get_option('ms_filter_by_genre', MS_FILTER_BY_GENRE);
 			$allow_filter_by_artist = get_option('ms_filter_by_artist', MS_FILTER_BY_ARTIST);
- 
+            $allow_filter_by_album  = get_option('ms_filter_by_album', MS_FILTER_BY_ALBUM);
+    
 			// Items per page
 			$items_page 			= max(get_option('ms_items_page', MS_ITEMS_PAGE), 1);
 			// Display pagination
@@ -1693,7 +1720,7 @@ if(!function_exists('ms_get_site_url')){
 			
 			$tpl = new music_store_tpleng(dirname(__FILE__).'/ms-templates/', 'comment');
 			
-			$width = 100/min($columns, max(count($results),1));
+			$width = 100/$columns;
 			$music_store .= "<div class='music-store-items'>";
 			$item_counter = 0;
 			foreach($results as $result){
@@ -1706,16 +1733,16 @@ if(!function_exists('ms_get_site_url')){
 			$music_store .= "<div style='clear:both;'></div>";
 			$music_store .= "</div>";
 			$header .= "
-						<form method='post'>
+						<form method='get'>
 						<div class='music-store-header'>
 						";
 			// Create filter section
-			if($allow_filter_by_genre || $allow_filter_by_artist){
+			if($allow_filter_by_genre || $allow_filter_by_artist || $allow_filter_by_album ){
+
 			
-				$header .= "<div class='music-store-filters'><span>".__('Filter by', MS_TEXT_DOMAIN)."</span>";
+				$header .= "<div class='music-store-filters'><span>".__('Filter by: ', MS_TEXT_DOMAIN)."</span>";
 				if($allow_filter_by_genre){
-					$header .= "<span>".__(' genre: ', MS_TEXT_DOMAIN).
-							"<select id='filter_by_genre' name='filter_by_genre' onchange='this.form.submit();'>
+					$header .= "<span><select id='filter_by_genre' name='filter_by_genre' onchange='this.form.submit();'>
 							<option value='all'>".__('All genres', MS_TEXT_DOMAIN)."</option>
 							";
 					$genres = get_terms("ms_genre");
@@ -1724,10 +1751,20 @@ if(!function_exists('ms_get_site_url')){
 					}
 					$header .= "</select></span>";
 				}
-				
+                
+                if($allow_filter_by_album){
+					$header .= "<span><select id='filter_by_album' name='filter_by_album' onchange='this.form.submit();'>
+							<option value='all'>".__('All albums', MS_TEXT_DOMAIN)."</option>
+							";
+					$albums = get_terms("ms_album");
+					foreach($albums as $album_item){
+						$header .= "<option value='".$album_item->slug."' ".(($album == $album_item->slug) ? "SELECTED" : "").">".$album_item->name."</option>";
+					}
+					$header .= "</select></span>";
+				}
+
 				if($allow_filter_by_artist){
-					$header .= "<span>".__(' artist: ', MS_TEXT_DOMAIN).
-							"<select id='filter_by_artist' name='filter_by_artist' onchange='this.form.submit();'>
+					$header .= "<span><select id='filter_by_artist' name='filter_by_artist' onchange='this.form.submit();'>
 							<option value='all'>".__('All artists', MS_TEXT_DOMAIN)."</option>
 							";
 					$artists = get_terms("ms_artist");
