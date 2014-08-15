@@ -1800,8 +1800,7 @@ if(!function_exists('ms_get_site_url')){
 		* Load the music store templates for songs display
 		*/
 		function load_templates(){
-            remove_filter ('the_content', 'wpautop');
-			add_filter('the_content', array(&$this, 'display_content'), 1 );
+            add_filter('the_content', array(&$this, 'display_content'), 1 );
 		} // End load_templates
 		
 		/**
@@ -1809,6 +1808,9 @@ if(!function_exists('ms_get_site_url')){
 		*/
 		function display_content($content){
 			global $post;
+			remove_filter( 'the_content', 'wpautop' );
+            remove_filter( 'the_excerpt', 'wpautop' );
+            remove_filter( 'comment_text', 'wpautop', 30 );
 			if(in_the_loop() && $post && $post->post_type == 'ms_song'){
 				$tpl = new music_store_tpleng(dirname(__FILE__).'/ms-templates/', 'comment');
 				$song = new MSSong($post->ID);

@@ -133,12 +133,6 @@ jQuery( function( $ )
 			}
 		);
 		
-		// Modify the single pages structure
-		$( '.music-store-song .left-column' ).append( $('<div></div>').html( $( '.music-store-song .right-column' ).html() ) );
-		$( '.music-store-song .right-column' ).html( '' ).append( $( '.music-store-song .bottom-content' ) );
-		$( '.music-store-collection .left-column' ).append( $('<div></div>').html( $( '.music-store-collection .right-column' ).html() ) );
-		$( '.music-store-collection .right-column' ).html( '' ).append( $( '.music-store-collection .bottom-content' ) );
-		
 		// Modify the shopping cart design
 		$( '.ms-shopping-cart-list,.ms-shopping-cart-resume' ).wrap( '<div class="ms-shopping-cart-wrapper"></div>' );
 	} 	
