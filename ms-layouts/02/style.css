@@ -72,6 +72,17 @@ color:#FFF;
 padding: 15px 10px;
 }
 
+.music-store-song .right-column, .music-store-collection .right-column {
+width: -moz-calc(100% - 190px);
+width: -webkit-calc(100% - 190px);
+width: calc(100% - 190px);
+}
+.music-store-song .right-column.single, .music-store-collection .right-column.single {
+width: -moz-calc(100% - 290px);
+width: -webkit-calc(100% - 290px);
+width: calc(100% - 290px);
+}
+
 .song-title,
 .collection-title{
 font-size: 1.7em;
@@ -120,6 +131,8 @@ border-bottom: 0;
 border-left: 0;
 border-right: 0;
 }
+
+.music-store-tabs-container{ padding:0 20px; }
 
 .ms-inner-shadow{ background: url( inner-shadow.png ) 0 0 repeat-x; z-index:9999;position:absolute;height:19px;width:100%;bottom:0;left:0;}
 
