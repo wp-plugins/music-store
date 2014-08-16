@@ -1808,11 +1808,11 @@ if(!function_exists('ms_get_site_url')){
 		*/
 		function display_content($content){
 			global $post;
-			remove_filter( 'the_content', 'wpautop' );
-            remove_filter( 'the_excerpt', 'wpautop' );
-            remove_filter( 'comment_text', 'wpautop', 30 );
 			if(in_the_loop() && $post && $post->post_type == 'ms_song'){
-				$tpl = new music_store_tpleng(dirname(__FILE__).'/ms-templates/', 'comment');
+				remove_filter( 'the_content', 'wpautop' );
+                remove_filter( 'the_excerpt', 'wpautop' );
+                remove_filter( 'comment_text', 'wpautop', 30 );
+                $tpl = new music_store_tpleng(dirname(__FILE__).'/ms-templates/', 'comment');
 				$song = new MSSong($post->ID);
 				return $song->display_content(((is_singular()) ? 'single' : 'multiple'), $tpl, 'return');
 			}else{
