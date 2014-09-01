@@ -95,8 +95,8 @@ if(!function_exists('ms_get_site_url')){
 		* @return void	
 		*/
 		function __construct(){
-			add_action('init', array(&$this, 'init'), 0);
-			add_action('admin_init', array(&$this, 'admin_init'), 0);
+			add_action('init', array(&$this, 'init'), 1);
+			add_action('admin_init', array(&$this, 'admin_init'), 1);
 			// Set the menu link
 			add_action('admin_menu', array(&$this, 'menu_links'), 10);
 			
