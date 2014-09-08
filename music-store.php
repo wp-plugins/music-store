@@ -381,58 +381,63 @@ if(!function_exists('ms_get_site_url')){
 		* @return void
 		*/
 		private function _create_db_structure(){
-			global $wpdb;
-			
-			if( !empty( $_SESSION[ 'msdb_created_db' ] ) )
-			{
-				return;
-			}	
-			
-			$_SESSION[ 'msdb_created_db' ] = true;
-			
-			
-			$sql = "CREATE TABLE IF NOT EXISTS ".$wpdb->prefix.MSDB_POST_DATA." (
-				id mediumint(9) NOT NULL,
-				time VARCHAR(25) NULL,
-				plays mediumint(9) NOT NULL DEFAULT 0,
-				purchases mediumint(9) NOT NULL DEFAULT 0,
-				file VARCHAR(255) NULL,
-				demo VARCHAR(255) NULL,
-				protect TINYINT(1) NOT NULL DEFAULT 0,
-				info VARCHAR(255) NULL,
-				cover VARCHAR(255) NULL,
-				price FLOAT NULL,
-				year VARCHAR(25),
-				as_single TINYINT(1) NOT NULL DEFAULT 0,
-				UNIQUE KEY id (id)
-			 );";             
-			$wpdb->query($sql); 
-			
-			$sql = "CREATE TABLE IF NOT EXISTS ".$wpdb->prefix.MSDB_PURCHASE." (
-				id mediumint(9) NOT NULL AUTO_INCREMENT,
-				product_id mediumint(9) NOT NULL,
-				purchase_id varchar(50) NOT NULL UNIQUE,
-				date DATETIME NOT NULL,
-				checking_date DATETIME,
-				email VARCHAR(255) NOT NULL,
-				amount FLOAT NOT NULL DEFAULT 0,
-				downloads INT NOT NULL DEFAULT 0,
-				paypal_data TEXT,
-				UNIQUE KEY id (id)
-			 );";             
-			$wpdb->query($sql); 
-			
-			$result = $wpdb->get_results("SHOW COLUMNS FROM ".$wpdb->prefix.MSDB_PURCHASE." LIKE 'downloads'");
-            if(empty($result)){
-                $sql = "ALTER TABLE ".$wpdb->prefix.MSDB_PURCHASE." ADD downloads INT NOT NULL DEFAULT 0";
-                $wpdb->query($sql);
+            try{
+                global $wpdb;
+                
+                if( !empty( $_SESSION[ 'msdb_created_db' ] ) )
+                {
+                    return;
+                }	
+                
+                $_SESSION[ 'msdb_created_db' ] = true;
+                
+                
+                $sql = "CREATE TABLE IF NOT EXISTS ".$wpdb->prefix.MSDB_POST_DATA." (
+                    id mediumint(9) NOT NULL,
+                    time VARCHAR(25) NULL,
+                    plays mediumint(9) NOT NULL DEFAULT 0,
+                    purchases mediumint(9) NOT NULL DEFAULT 0,
+                    file VARCHAR(255) NULL,
+                    demo VARCHAR(255) NULL,
+                    protect TINYINT(1) NOT NULL DEFAULT 0,
+                    info VARCHAR(255) NULL,
+                    cover VARCHAR(255) NULL,
+                    price FLOAT NULL,
+                    year VARCHAR(25),
+                    as_single TINYINT(1) NOT NULL DEFAULT 0,
+                    UNIQUE KEY id (id)
+                 );";             
+                $wpdb->query($sql); 
+                
+                $sql = "CREATE TABLE IF NOT EXISTS ".$wpdb->prefix.MSDB_PURCHASE." (
+                    id mediumint(9) NOT NULL AUTO_INCREMENT,
+                    product_id mediumint(9) NOT NULL,
+                    purchase_id varchar(50) NOT NULL UNIQUE,
+                    date DATETIME NOT NULL,
+                    checking_date DATETIME,
+                    email VARCHAR(255) NOT NULL,
+                    amount FLOAT NOT NULL DEFAULT 0,
+                    downloads INT NOT NULL DEFAULT 0,
+                    paypal_data TEXT,
+                    UNIQUE KEY id (id)
+                 );";             
+                $wpdb->query($sql); 
+                
+                $result = $wpdb->get_results("SHOW COLUMNS FROM ".$wpdb->prefix.MSDB_PURCHASE." LIKE 'downloads'");
+                if(empty($result)){
+                    $sql = "ALTER TABLE ".$wpdb->prefix.MSDB_PURCHASE." ADD downloads INT NOT NULL DEFAULT 0";
+                    $wpdb->query($sql);
+                }
+                
+                $result = $wpdb->get_results("SHOW COLUMNS FROM ".$wpdb->prefix.MSDB_PURCHASE." LIKE 'checking_date'");
+                if(empty($result)){
+                    $sql = "ALTER TABLE ".$wpdb->prefix.MSDB_PURCHASE." ADD checking_date DATETIME";
+                    $wpdb->query($sql);
+                }    
             }
-			
-			$result = $wpdb->get_results("SHOW COLUMNS FROM ".$wpdb->prefix.MSDB_PURCHASE." LIKE 'checking_date'");
-            if(empty($result)){
-                $sql = "ALTER TABLE ".$wpdb->prefix.MSDB_PURCHASE." ADD checking_date DATETIME";
-                $wpdb->query($sql);
-            }    
+            catch( Exception $exp )
+            {
+            }
         } // End _create_db_structure 
 		
 /** REGISTER POST TYPES AND TAXONOMIES **/
