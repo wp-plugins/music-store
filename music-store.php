@@ -1682,7 +1682,7 @@ if(!function_exists('ms_get_site_url')){
 			if($items_page_selector && $items_page){
 				// Checking for page parameter or get page from session variables
 				// Clear the page number if filtering option change
-				if( isset($_POST['filter_by_type']) || isset($_REQUEST['filter_by_genre']) || isset($_REQUEST['filter_by_artist']) ){
+				if( isset($_REQUEST['filter_by_type']) || isset($_REQUEST['filter_by_genre']) || isset($_REQUEST['filter_by_artist']) ){
 					$_SESSION[ $page_id ]['ms_page_number'] = 0;
 				}elseif(isset($_GET['page_number'])){
 					$_SESSION[ $page_id ]['ms_page_number'] = $_GET['page_number'];
@@ -1741,7 +1741,16 @@ if(!function_exists('ms_get_site_url')){
 						<form method='get'>
 						<div class='music-store-header'>
 						";
-			// Create filter section
+                        
+			foreach( $_GET as $var => $value )            
+            {
+                if( !in_array( $var , array( 'filter_by_type', 'filter_by_genre', 'filter_by_artist', 'filter_by_album', 'page_number') ) )
+                {
+                    $header .= "<input type='hidden' name='{$var}' value='{$value}' />";
+                }
+            }
+			
+            // Create filter section
 			if($allow_filter_by_genre || $allow_filter_by_artist || $allow_filter_by_album ){
 
 			
