@@ -1744,7 +1744,7 @@ if(!function_exists('ms_get_site_url')){
                         
 			foreach( $_GET as $var => $value )            
             {
-                if( !in_array( $var , array( 'filter_by_type', 'filter_by_genre', 'filter_by_artist', 'filter_by_album', 'page_number') ) )
+                if( !in_array( $var , array( 'filter_by_type', 'filter_by_genre', 'filter_by_artist', 'filter_by_album', 'page_number', 'ordering_by') ) )
                 {
                     $header .= "<input type='hidden' name='{$var}' value='{$value}' />";
                 }
