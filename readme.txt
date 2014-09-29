@@ -294,7 +294,7 @@ You can delete a sales report from the list of sales. This may be useful in case
 
 A: First, go to the settings page of music store and be sure the PayPal checkbox is checked, and has defined the seller's email. Second, in case of collections, be sure the collection has a price defined and songs associated. Third, in case of songs, be sure the song has a price defined and a audio file associated.
 
-= Q: Why the song don't displays on music store? =
+= Q: Why the songs don't displays on music store? =
 
 A: If you want to sale a song as a single, it is required to check the "Sell as a single" checkbox in the song data form.
 
@@ -358,6 +358,35 @@ A: The security in the access to songs files is determined in different ways.
 = Q: Can I customize the store's design? = 
 
 A: The plugin includes some different designs that can be selected through the settings option "Store Layout", but you can create a new once, duplicating an of available store's layouts, and edit its style.css file
+
+= Q: How can be hidden the popularity of the products from the store's page? =
+
+A: To hide the popularity from the store's page you, should edit the template files of store's products, located in the "/wp-content/plugins/music-store/ms-templates":
+
+song.tpl.html
+song_mutiple.tpl.html
+collection.tpl.html
+collection.tpl.html
+
+Note: If you are using the free version of the plugin, your copy of plugin includes only the song templates.
+
+- Open the song.tpl.html and song_multiple.tpl.html files in the text editor your choice, and removes the snippet of code:
+
+<!-- SONG POPULARITY -->
+<tpl ifset="song.popularity">
+<div class="song-popularity">
+<span class="label">popularity: </span> {song.popularity}
+</div>
+</tpl ifset="song.popularity">
+
+- Open the collection.tpl.html and collection_multiple.tpl.html files in the text editor, and removes the snippet of code:
+
+<!-- COLLECTION POPULARITY -->
+<tpl ifset="collection.popularity">
+<div class="collection-popularity">
+<span class="label">popularity: </span> {collection.popularity}
+</div>
+</tpl ifset="collection.popularity">
 
 == Screenshots ==
 01. Music Store Item
