@@ -402,6 +402,43 @@ A: To sell only collections, and not individual songs, you only should uncheck t
 
 In this case the "filtering by type" is not necessary in the store's page, so, to hide this filtering option, you only should go to the store's settings and uncheck the option "Allow to filter by type"
 
+= Q: How can be modified the store's settings  in a specific page? = 
+
+A: The store is inserted in a page through the shortcode [music_store].
+
+The [music_store] shortcode accepts a list of attributes to configure a specific store.
+
+load: With the "load" attribute can be selected the elements to be loaded by default in the store ("singles", for loading only songs, and "collections" to load only the songs collections). If you want sell in the store singles and collections, you don't need to include the "load" attribute.
+
+[music_store load="collections"]
+[music_store load="singles"]
+
+columns: Enter the number of columns to display the products in the store with a grid format. By default the value of "columns" attribute is 1.
+
+[music_store columns="3"]
+
+genre: To display in the store only the songs and collections that belong to a specific genre, should be defined the "genre" attribute with the genre's ID.
+
+[music_store genre="2"]
+
+Note: To determine the genre's ID, go to the menu option "Music Store > Set Genres", press the "edit" link of genre, and pay attention to the URL in the browser, the genre ID is passed as the parameter "tag_ID"
+
+artist: To display only the products of a specific artist, defines the "artist" attribute with the artist's ID.
+
+[music_store artist="3"]
+
+Note: To determine the artist's ID, go to the menu option "Music Store > Set Artists", press the "edit" link of artist, and pay attention to the URL in the browser, the artist's ID is passed as the parameter "tag_ID"
+
+album: To display only the products in a specific album, defines the "album" attribute with the album's ID.
+
+[music_store album="12"]
+
+Note: To determine the album's ID, go to the menu option "Music Store > Set Albums", press the "edit" link of album, and pay attention to the URL in the browser, the album's ID is passed as the parameter "tag_ID"
+
+You can use to a combination of parameters in the same shortcode:
+
+[music_store columns="3" load="collections"]
+
 == Screenshots ==
 01. Music Store Item
 02. Music Store Song Section
