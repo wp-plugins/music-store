@@ -396,6 +396,12 @@ From the settings page of the store is possible define the percentage of the aud
 
 To protect the resources of web server, the music store does not generates the audio files for demo, each time a song is played, the music store uses the files created previously, that are stored in the "ms-temp" directory. So, after modify the percentage of audio file for demo, you should delete the files located in the "/wp-content/plugins/music-store/ms-temp" directory.
 
+= Q: How I can sell only collections, and not individual songs? = 
+
+A: To sell only collections, and not individual songs, you only should uncheck the checkbox: "Sell as a single", from the songs. 
+
+In this case the "filtering by type" is not necessary in the store's page, so, to hide this filtering option, you only should go to the store's settings and uncheck the option "Allow to filter by type"
+
 == Screenshots ==
 01. Music Store Item
 02. Music Store Song Section
