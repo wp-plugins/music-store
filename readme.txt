@@ -439,6 +439,15 @@ You can use to a combination of parameters in the same shortcode:
 
 [music_store columns="3" load="collections"]
 
+= Q: I've inserted a shortcode to insert a particular song in a page; but it is loading with the same layout that the songs in the store. Can be loaded the song or collection with all fields, with the layout used in the particular page of the product? =
+
+A: The shortcode to insert a product has the structure: [music_store_product id="10"]. The "id" attribute represents the product's id. The products' ids are displayed as the first column in the songs or collection lists.
+
+The product's shortcode accepts another attribute, to decide the layout to use: the "single" layout, with all the product's fields, or the "store" layout, with the fields that are displayed in the store's page.
+
+[music_store_product id="10" layout="single"]
+[music_store_product id="10" layout="store"]
+
 == Screenshots ==
 01. Music Store Item
 02. Music Store Song Section
