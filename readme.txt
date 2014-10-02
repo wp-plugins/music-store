@@ -363,30 +363,30 @@ A: The plugin includes some different designs that can be selected through the s
 
 A: To hide the popularity from the store's page you, should edit the template files of store's products, located in the "/wp-content/plugins/music-store/ms-templates":
 
-song.tpl.html
-song_mutiple.tpl.html
-collection.tpl.html
-collection.tpl.html
+        song.tpl.html   
+        song_mutiple.tpl.html   
+        collection.tpl.html      
+        collection.tpl.html     
 
 Note: If you are using the free version of the plugin, your copy of plugin includes only the song templates.
 
 - Open the song.tpl.html and song_multiple.tpl.html files in the text editor your choice, and removes the snippet of code:
 
-<!-- SONG POPULARITY -->
-<tpl ifset="song.popularity">
-<div class="song-popularity">
-<span class="label">popularity: </span> {song.popularity}
-</div>
-</tpl ifset="song.popularity">
+        <!-- SONG POPULARITY -->    
+        <tpl ifset="song.popularity">   
+        <div class="song-popularity">   
+        <span class="label">popularity: </span> {song.popularity}   
+        </div>  
+        </tpl ifset="song.popularity">  
 
 - Open the collection.tpl.html and collection_multiple.tpl.html files in the text editor, and removes the snippet of code:
 
-<!-- COLLECTION POPULARITY -->
-<tpl ifset="collection.popularity">
-<div class="collection-popularity">
-<span class="label">popularity: </span> {collection.popularity}
-</div>
-</tpl ifset="collection.popularity">
+        <!-- COLLECTION POPULARITY -->    
+        <tpl ifset="collection.popularity">     
+        <div class="collection-popularity">     
+        <span class="label">popularity: </span> {collection.popularity}     
+        </div>      
+        </tpl ifset="collection.popularity">        
 
 = Q: How can be modified the size of audio files that are played in safe mode? =
 
@@ -410,34 +410,34 @@ The [music_store] shortcode accepts a list of attributes to configure a specific
 
 load: With the "load" attribute can be selected the elements to be loaded by default in the store ("singles", for loading only songs, and "collections" to load only the songs collections). If you want sell in the store singles and collections, you don't need to include the "load" attribute.
 
-[music_store load="collections"]
-[music_store load="singles"]
+        [music_store load="collections"]        
+        [music_store load="singles"]        
 
 columns: Enter the number of columns to display the products in the store with a grid format. By default the value of "columns" attribute is 1.
 
-[music_store columns="3"]
+        [music_store columns="3"]       
 
 genre: To display in the store only the songs and collections that belong to a specific genre, should be defined the "genre" attribute with the genre's ID.
 
-[music_store genre="2"]
+        [music_store genre="2"]     
 
 Note: To determine the genre's ID, go to the menu option "Music Store > Set Genres", press the "edit" link of genre, and pay attention to the URL in the browser, the genre ID is passed as the parameter "tag_ID"
 
 artist: To display only the products of a specific artist, defines the "artist" attribute with the artist's ID.
 
-[music_store artist="3"]
+        [music_store artist="3"]        
 
 Note: To determine the artist's ID, go to the menu option "Music Store > Set Artists", press the "edit" link of artist, and pay attention to the URL in the browser, the artist's ID is passed as the parameter "tag_ID"
 
 album: To display only the products in a specific album, defines the "album" attribute with the album's ID.
 
-[music_store album="12"]
+        [music_store album="12"]        
 
 Note: To determine the album's ID, go to the menu option "Music Store > Set Albums", press the "edit" link of album, and pay attention to the URL in the browser, the album's ID is passed as the parameter "tag_ID"
 
 You can use to a combination of parameters in the same shortcode:
 
-[music_store columns="3" load="collections"]
+        [music_store columns="3" load="collections"]        
 
 = Q: I've inserted a shortcode to insert a particular song in a page; but it is loading with the same layout that the songs in the store. Can be loaded the song or collection with all fields, with the layout used in the particular page of the product? =
 
@@ -445,8 +445,8 @@ A: The shortcode to insert a product has the structure: [music_store_product id=
 
 The product's shortcode accepts another attribute, to decide the layout to use: the "single" layout, with all the product's fields, or the "store" layout, with the fields that are displayed in the store's page.
 
-[music_store_product id="10" layout="single"]
-[music_store_product id="10" layout="store"]
+        [music_store_product id="10" layout="single"]       
+        [music_store_product id="10" layout="store"]        
 
 = Q: Is there any restriction on the size of the audio files to upload to the server? =
 
@@ -454,6 +454,10 @@ A: The limit in the files sizes to be upload to the server is not imposed by the
 
 If you need additional information about the PHP directives involved in this process, visit the following link:
 http://php.net/manual/en/ini.core.php#ini.post-max-size
+
+= Q: Are there any restriction in the download the purchased files in a zipped file? =
+
+A: The zipped files are created in memory, so the PHP script in your web server, should manage the amount of memory sufficient to create the zipped file with all purchased audio files. To take an idea about the amount of memory required, uses as reference the peak in the sum of size of audio files in the bigger purchase, before enabling the zip option. 
 
 == Screenshots ==
 01. Music Store Item
