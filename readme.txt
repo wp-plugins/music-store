@@ -417,20 +417,23 @@ columns: Enter the number of columns to display the products in the store with a
 
         [music_store columns="3"]       
 
-genre: To display in the store only the songs and collections that belong to a specific genre, should be defined the "genre" attribute with the genre's ID.
+genre: To display in the store only the songs and collections that belong to a specific genre, should be defined the "genre" attribute with the genre's slug, or the genre's ID.
 
+        [music_store genre="pop"]     
         [music_store genre="2"]     
 
 Note: To determine the genre's ID, go to the menu option "Music Store > Set Genres", press the "edit" link of genre, and pay attention to the URL in the browser, the genre ID is passed as the parameter "tag_ID"
 
-artist: To display only the products of a specific artist, defines the "artist" attribute with the artist's ID.
+artist: To display only the products of a specific artist, defines the "artist" attribute with the artist's slug, or the artist's ID.
 
+        [music_store artist="artist-name"]        
         [music_store artist="3"]        
 
 Note: To determine the artist's ID, go to the menu option "Music Store > Set Artists", press the "edit" link of artist, and pay attention to the URL in the browser, the artist's ID is passed as the parameter "tag_ID"
 
-album: To display only the products in a specific album, defines the "album" attribute with the album's ID.
+album: To display only the products in a specific album, defines the "album" attribute with the album's slug, or the album's ID.
 
+        [music_store album="let-it-be"]        
         [music_store album="12"]        
 
 Note: To determine the album's ID, go to the menu option "Music Store > Set Albums", press the "edit" link of album, and pay attention to the URL in the browser, the album's ID is passed as the parameter "tag_ID"
