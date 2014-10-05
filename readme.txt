@@ -462,6 +462,12 @@ http://php.net/manual/en/ini.core.php#ini.post-max-size
 
 A: The zipped files are created in memory, so the PHP script in your web server, should manage the amount of memory sufficient to create the zipped file with all purchased audio files. To take an idea about the amount of memory required, uses as reference the peak in the sum of size of audio files in the bigger purchase, before enabling the zip option. 
 
+= Q: A customer that has purchased a product from the store, has not downloaded the song in the time interval defined in the store's settings. What can I do in this case? =
+
+A: In this case you only should go to the sales reports of the store, through the menu option: "Music Store/Sales Report", and select the time period where the purchase was made. In the product list will be displayed all sales in the time interval selected. Finally, you should press the "Reset Time and Downloads" button corresponding to the customer's purchase. 
+
+Now, your user can download the product by a new time period.
+
 == Screenshots ==
 01. Music Store Item
 02. Music Store Song Section
