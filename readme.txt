@@ -468,6 +468,12 @@ A: In this case you only should go to the sales reports of the store, through th
 
 Now, your user can download the product by a new time period.
 
+= Q: How can be customized the download page? =
+
+A: The download page is a special page, that is populated at runtime. By default the page is empty, but the download links are added at the end of page when it is visited by the users. This page, can be edited like any other page in WordPress. You simply should open the page for edition, and modify its content. 
+
+I suggest you that the last information in your download page, be a text indicating that the links below are the download links to the purchased files.
+
 == Screenshots ==
 01. Music Store Item
 02. Music Store Song Section
