@@ -474,6 +474,12 @@ A: The download page is a special page, that is populated at runtime. By default
 
 I suggest you that the last information in your download page, be a text indicating that the links below are the download links to the purchased files.
 
+= Q: Why the customers are not receiving the download links after purchase the songs? =
+
+A: Please, be sure you have enabled the IPN (Instant Payment Notification) in your PayPal account. If the IPN is not enabled in your PayPal account, the website is not notified after the payments, and the download link is not generated, and the notification email with the download link is not sent to the customers.
+
+PayPal will ask you for the URL of the IPN in the activation process, use the URL to your website's homepage to activate the IPN, because the "Music Store" will send to PayPal the correct IPN's URL.
+
 == Screenshots ==
 01. Music Store Item
 02. Music Store Song Section
