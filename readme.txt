@@ -488,6 +488,10 @@ A: If the IPN is enabled in your PayPal account, and the purchases have been reg
 
 2. The web server allows send emails directly, but the email address entered in the "Notification from email" attribute, is an email address that not belongs to the same domain of the website. In this case, the main email services classify the emails as a possible identity fishing, and delete the email by security. You should enter in this attribute an email address belonging to the same website's domain.
 
+= Q: The download page is displaying a 404 Error, page not found =
+
+A: By default the Music Store generates the page called "Download Page", with its content empty. The content of the "Download Page" is generated dynamically with the download links to purchased products, but sometimes, the websites administrators decide delete this page because think that is not important. If it is the case you only should restore the download page, from the trash list, to the list of published pages. If you have cleared the trash list, you only should create a new page with the slug: ms-download-page
+
 == Screenshots ==
 01. Music Store Item
 02. Music Store Song Section
