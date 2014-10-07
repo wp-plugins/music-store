@@ -480,6 +480,14 @@ A: Please, be sure you have enabled the IPN (Instant Payment Notification) in yo
 
 PayPal will ask you for the URL of the IPN in the activation process, use the URL to your website's homepage to activate the IPN, because the "Music Store" will send to PayPal the correct IPN's URL.
 
+= Q: The IPN is enabled in my PayPal account, but the customers are not receiving the emails with the download links. =
+
+A: If the IPN is enabled in your PayPal account, and the purchases have been registered in the sales report, but your customers are not receiving the emails with the download links, there are two probable reasons:
+
+1. The email should be sent through SMTP. In this case you should install in your WordPress one of the available plugins for SMTP integration, in the WordPress directory.
+
+2. The web server allows send emails directly, but the email address entered in the "Notification from email" attribute, is an email address that not belongs to the same domain of the website. In this case, the main email services classify the emails as a possible identity fishing, and delete the email by security. You should enter in this attribute an email address belonging to the same website's domain.
+
 == Screenshots ==
 01. Music Store Item
 02. Music Store Song Section
