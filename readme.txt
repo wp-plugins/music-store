@@ -490,7 +490,11 @@ A: If the IPN is enabled in your PayPal account, and the purchases have been reg
 
 = Q: The download page is displaying a 404 Error, page not found =
 
-A: By default the Music Store generates the page called "Download Page", with its content empty. The content of the "Download Page" is generated dynamically with the download links to purchased products, but sometimes, the websites administrators decide delete this page because think that is not important. If it is the case you only should restore the download page, from the trash list, to the list of published pages. If you have cleared the trash list, you only should create a new page with the slug: ms-download-page
+A: By default the Music Store generates the page called "Download Page", with its content empty. The content of the "Download Page" is generated dynamically with the download links to purchased products, but sometimes, the websites administrators decide delete this page because think that is not important. If it is the case you only should restore the download page, from the trash list, to the list of published pages. If you have emptied the trash list, you only should create a new page with the slug: ms-download-page
+
+= Q: The shopping cart page is displaying a 404 Error, page not found =
+
+A: By default the Music Store generates the page called "Shopping Cart", with its content empty. The content of the "Shopping Cart" page is generated dynamically, and includes a table with the products selected, a button to continue shopping, a button to complete the payment, and the input box for entering the coupon code, but as its content is empty by default ( its content is generated in execution time ), the websites administrators sometimes decide delete this page because think that is not important. If it is the case you only should restore the shopping cart page, from the trash list, to the list of published pages. if you have emptied the trash list, you only should create a new page with the slug: ms-shopping-cart
 
 == Screenshots ==
 01. Music Store Item
