@@ -511,3 +511,36 @@ A: By default the Music Store generates the page called "Shopping Cart", with it
 12. Filtering Sales Report
 13. Sales Reports
 14. Available layouts
+
+== Changelog ==
+
+= 1.0 =
+
+* First version released.
+
+= 1.0.1 =
+
+* Improves the plugin documentation.
+* Fixes an issue with tabs in pages of songs and collections.
+* Modifies some styles associated to the pages of songs.
+* Increases the security of purchased files.
+* Improves the visualization of products prices.
+* Modifies the design of download page.
+* Allows ordering the products in the store by publication date.
+* Allows to insert multiple pages, with separated music stores.
+* Improves the design of Music Store in mobile devices.
+* Allows sharing the pages of the songs in the social networks.
+* Optimize the queries to database.
+* Modifies the design of the lists of artists, albums and genres, in the music store pages.
+* Includes a column with the IDs of the products, in the products list on admin section.
+* Checks the available memory on web server to avoid errors downloading the purchased files.
+* Corrects the content-type headers, in the download process.
+* Fixes an issue with the covers of the songs.
+* Improves the store visualization in themes with responsive designs.
+* Restores the original file name of purchased file in the download process.
+* Includes new features in the sales reports for filtering the sales for different criteria, and includes charts to follow the sales trend easier.
+* Allows define a limit of downloads by product purchased, and reset the download links.
+* Fixes an issue in the store's pagination.
+* Includes multiple layouts.
+* Includes the option for filtering the songs by album.
+* Set a timeout in the download page if the IPN has not been notified from PayPal.
