@@ -1130,7 +1130,7 @@ if(!function_exists('ms_get_site_url')){
 					$_group  = "";
 					$_order  = "";
 					$_date_dif = floor( max( abs( strtotime( $to_year.'-'.$to_month.'-'.$to_day ) - strtotime( $from_year.'-'.$from_month.'-'.$from_day ) ) / ( 60*60*24 ), 1 ) );
-					$_table_header = array( 'Product', 'Buyer', 'Amount', 'Currency', 'Download link', '' );
+					$_table_header = array( 'Date', 'Product', 'Buyer', 'Amount', 'Currency', 'Download link', '' );
 					
 					if( $group_by == 'no_group' )	
 					{
@@ -1323,6 +1323,7 @@ if(!function_exists('ms_get_site_url')){
 												
 												echo '
 													<TR>
+														<TD>'.$purchase->date.'</TD>
 														<TD><a href="'.get_permalink($purchase->ID).'" target="_blank">'.$purchase->post_title.'</a></TD>
 														<TD>'.$purchase->email.'</TD>
 														<TD>'.$purchase->amount.'</TD>
