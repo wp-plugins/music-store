@@ -1685,9 +1685,11 @@ if(!function_exists('ms_get_site_url')){
 				// Clear the page number if filtering option change
 				if( isset($_REQUEST['filter_by_type']) || isset($_REQUEST['filter_by_genre']) || isset($_REQUEST['filter_by_artist']) ){
 					$_SESSION[ $page_id ]['ms_page_number'] = 0;
-				}elseif(isset($_GET['page_number'])){
+				}
+                if(isset($_GET['page_number'])){
 					$_SESSION[ $page_id ]['ms_page_number'] = $_GET['page_number'];
-				}elseif(!isset($_SESSION[ $page_id ]['ms_page_number'])){
+				}
+                if(!isset($_SESSION[ $page_id ]['ms_page_number'])){
 					$_SESSION[ $page_id ]['ms_page_number'] = 0;
 				}
 				
