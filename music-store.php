@@ -1602,9 +1602,9 @@ if(!function_exists('ms_get_site_url')){
 			}
 
 			// Extract info from music_store options
-			$allow_filter_by_genre = get_option('ms_filter_by_genre', MS_FILTER_BY_GENRE);
-			$allow_filter_by_artist = get_option('ms_filter_by_artist', MS_FILTER_BY_ARTIST);
-            $allow_filter_by_album  = get_option('ms_filter_by_album', MS_FILTER_BY_ALBUM);
+			$allow_filter_by_genre = ( isset( $atts[ 'filter_by_genre' ] ) ) ? $atts[ 'filter_by_genre' ] * 1 : get_option('ms_filter_by_genre', MS_FILTER_BY_GENRE);
+			$allow_filter_by_artist = ( isset( $atts[ 'filter_by_artist' ] ) ) ? $atts[ 'filter_by_artist' ] * 1 : get_option('ms_filter_by_artist', MS_FILTER_BY_ARTIST);
+            $allow_filter_by_album  = ( isset( $atts[ 'filter_by_album' ] ) ) ? $atts[ 'filter_by_album' ] * 1 : get_option('ms_filter_by_album', MS_FILTER_BY_ALBUM);
     
 			// Items per page
 			$items_page 			= max(get_option('ms_items_page', MS_ITEMS_PAGE), 1);
@@ -1794,16 +1794,18 @@ if(!function_exists('ms_get_site_url')){
 			}
 			
 			// Create order filter
-			$header .= "<div class='music-store-ordering'>".
-							__('Order by: ', MS_TEXT_DOMAIN).
-							"<select id='ordering_by' name='ordering_by' onchange='this.form.submit();'>
-								<option value='post_date' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'post_date') ? "SELECTED" : "").">".__('Date', MS_TEXT_DOMAIN)."</option>
-								<option value='post_title' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'post_title') ? "SELECTED" : "").">".__('Title', MS_TEXT_DOMAIN)."</option>
-								<option value='plays' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'plays') ? "SELECTED" : "").">".__('Popularity', MS_TEXT_DOMAIN)."</option>
-								<option value='price' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'price') ? "SELECTED" : "").">".__('Price', MS_TEXT_DOMAIN)."</option>
-							</select>
-						</div>";
-						
+            if( !isset( $atts[ 'order_by' ] ) || $atts[ 'order_by' ] * 1 )
+            {
+                $header .= "<div class='music-store-ordering'>".
+                                __('Order by: ', MS_TEXT_DOMAIN).
+                                "<select id='ordering_by' name='ordering_by' onchange='this.form.submit();'>
+                                    <option value='post_date' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'post_date') ? "SELECTED" : "").">".__('Date', MS_TEXT_DOMAIN)."</option>
+                                    <option value='post_title' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'post_title') ? "SELECTED" : "").">".__('Title', MS_TEXT_DOMAIN)."</option>
+                                    <option value='plays' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'plays') ? "SELECTED" : "").">".__('Popularity', MS_TEXT_DOMAIN)."</option>
+                                    <option value='price' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'price') ? "SELECTED" : "").">".__('Price', MS_TEXT_DOMAIN)."</option>
+                                </select>
+                            </div>";
+            }
 			$header .= "<div style='clear:both;'></div>
 						</div>
 						</form>
