@@ -442,6 +442,28 @@ You can use to a combination of parameters in the same shortcode:
 
         [music_store columns="3" load="collections"]        
 
+From the shortcode it is possible to hide the elements in the header section of the music store's page: the filtering options, or the "order by":
+
+filter_by_type: The values allow are 1 or 0, and shows or hide the filtering by product's type.
+
+        [music_store columns="3" filter_by_type="1"]        
+        
+filter_by_genre: The values allow are 1 or 0, and shows or hide the filtering by genre.
+
+        [music_store columns="3" filter_by_genre="1"]        
+        
+filter_by_album: The values allow are 1 or 0, and shows or hide the filtering by album.
+
+        [music_store columns="3" filter_by_album="1"]        
+        
+filter_by_artist: The values allow are 1 or 0, and shows or hide the filtering by artist.
+
+        [music_store columns="3" filter_by_artist="1"]        
+        
+order_by: The values allow are 1 or 0, and shows or hide the "Order by" options.
+
+        [music_store columns="3" order_by="1"]        
+        
 = Q: I've inserted a shortcode to insert a particular song in a page; but it is loading with the same layout that the songs in the store. Can be loaded the song or collection with all fields, with the layout used in the particular page of the product? =
 
 A: The shortcode to insert a product has the structure: [music_store_product id="10"]. The "id" attribute represents the product's id. The products' ids are displayed as the first column in the songs or collection lists.
