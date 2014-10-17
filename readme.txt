@@ -444,23 +444,23 @@ You can use to a combination of parameters in the same shortcode:
 
 From the shortcode it is possible to hide the elements in the header section of the music store's page: the filtering options, or the "order by":
 
-filter_by_type: The values allow are 1 or 0, and shows or hide the filtering by product's type.
+filter_by_type: The values allowed are 1 or 0, and shows or hide the filtering by product's type.
 
         [music_store columns="3" filter_by_type="1"]        
         
-filter_by_genre: The values allow are 1 or 0, and shows or hide the filtering by genre.
+filter_by_genre: The values allowed are 1 or 0, and shows or hide the filtering by genre.
 
         [music_store columns="3" filter_by_genre="1"]        
         
-filter_by_album: The values allow are 1 or 0, and shows or hide the filtering by album.
+filter_by_album: The values allowed are 1 or 0, and shows or hide the filtering by album.
 
         [music_store columns="3" filter_by_album="1"]        
         
-filter_by_artist: The values allow are 1 or 0, and shows or hide the filtering by artist.
+filter_by_artist: The values allowed are 1 or 0, and shows or hide the filtering by artist.
 
         [music_store columns="3" filter_by_artist="1"]        
         
-order_by: The values allow are 1 or 0, and shows or hide the "Order by" options.
+order_by: The values allowed are 1 or 0, and shows or hide the "Order by" options.
 
         [music_store columns="3" order_by="1"]        
         
