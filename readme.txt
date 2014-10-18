@@ -460,9 +460,9 @@ filter_by_artist: The values allowed are 1 or 0, and shows or hide the filtering
 
         [music_store columns="3" filter_by_artist="1"]        
         
-order_by: The values allowed are 1 or 0, and shows or hide the "Order by" options.
+order_by: The values allowed are: plays, price, post_title, post_date. Allows ordering the products in the store's page by the criteria defined in the attribute.
 
-        [music_store columns="3" order_by="1"]        
+        [music_store columns="3" order_by="post_title"]        
         
 = Q: I've inserted a shortcode to insert a particular song in a page; but it is loading with the same layout that the songs in the store. Can be loaded the song or collection with all fields, with the layout used in the particular page of the product? =
 

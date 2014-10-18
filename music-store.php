@@ -1598,7 +1598,7 @@ if(!function_exists('ms_get_site_url')){
 			if(isset($_REQUEST['ordering_by']) && in_array($_REQUEST['ordering_by'], array('plays', 'price', 'post_title', 'post_date'))){
 				$_SESSION[ $page_id ]['ms_ordering'] = $_REQUEST['ordering_by'];
 			}elseif( !isset( $_SESSION[ $page_id ]['ms_ordering'] ) ){
-				$_SESSION[ $page_id ]['ms_ordering'] = "post_date";
+                $_SESSION[ $page_id ]['ms_ordering'] = ( isset( $atts[ 'order_by' ] ) ) ? $atts[ 'order_by' ] : "post_date";
 			}
 
 			// Extract info from music_store options
@@ -1794,7 +1794,7 @@ if(!function_exists('ms_get_site_url')){
 			}
 			
 			// Create order filter
-            if( !isset( $atts[ 'order_by' ] ) || $atts[ 'order_by' ] * 1 )
+            if( !isset( $atts[ 'show_order_by' ] ) || $atts[ 'show_order_by' ] * 1 )
             {
                 $header .= "<div class='music-store-ordering'>".
                                 __('Order by: ', MS_TEXT_DOMAIN).
