@@ -1115,6 +1115,7 @@ if(!function_exists('ms_get_site_url')){
 					$from_month = (isset($_POST['from_month'])) ? $_POST['from_month'] : date('m');
 					$from_year = (isset($_POST['from_year'])) ? $_POST['from_year'] : date('Y');
 					$buyer = ( !empty( $_POST['buyer'] ) ) ? $_POST[ 'buyer' ] : '';
+                    $buyer = trim( $buyer );
                     
 					$to_day = (isset($_POST['to_day'])) ? $_POST['to_day'] : date('j');
 					$to_month = (isset($_POST['to_month'])) ? $_POST['to_month'] : date('m');
