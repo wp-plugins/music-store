@@ -1114,7 +1114,8 @@ if(!function_exists('ms_get_site_url')){
 					$from_day = (isset($_POST['from_day'])) ? $_POST['from_day'] : date('j');
 					$from_month = (isset($_POST['from_month'])) ? $_POST['from_month'] : date('m');
 					$from_year = (isset($_POST['from_year'])) ? $_POST['from_year'] : date('Y');
-					
+					$buyer = ( !empty( $_POST['buyer'] ) ) ? $_POST[ 'buyer' ] : '';
+                    
 					$to_day = (isset($_POST['to_day'])) ? $_POST['to_day'] : date('j');
 					$to_month = (isset($_POST['to_month'])) ? $_POST['to_month'] : date('m');
 					$to_year = (isset($_POST['to_year'])) ? $_POST['to_year'] : date('Y');
@@ -1127,6 +1128,11 @@ if(!function_exists('ms_get_site_url')){
 					$_where  = " WHERE posts.ID = purchase.product_id 
 									  AND DATEDIFF(purchase.date, '{$from_year}-{$from_month}-{$from_day}')>=0 
 									  AND DATEDIFF(purchase.date, '{$to_year}-{$to_month}-{$to_day}')<=0 ";
+                    if( !empty( $buyer ) )
+                    {
+                        $_where .= "AND purchase.email LIKE '%".mysql_real_escape_string( $buyer )."%'";
+                    }
+                    
 					$_group  = "";
 					$_order  = "";
 					$_date_dif = floor( max( abs( strtotime( $to_year.'-'.$to_month.'-'.$to_day ) - strtotime( $from_year.'-'.$from_month.'-'.$from_day ) ) / ( 60*60*24 ), 1 ) );
@@ -1214,6 +1220,7 @@ if(!function_exists('ms_get_site_url')){
 										'12' => __('December', MS_TEXT_DOMAIN),
 									);
 								?>
+								<label><?php _e('Buyer: ', MS_TEXT_DOMAIN); ?></label><input type="text" name="buyer" id="buyer" value="<?php print esc_attr($buyer); ?>" />
 								<label><?php _e('From: ', MS_TEXT_DOMAIN); ?></label>
 								<select name="from_day">
 								<?php
