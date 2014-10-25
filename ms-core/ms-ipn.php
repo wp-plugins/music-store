@@ -2,7 +2,14 @@
 	error_reporting( E_ERROR | E_PARSE );
     echo 'Start IPN';
 	
-	$item_name = $_POST['item_name'];
+    function music_store_envelope_from( $phpmailer )
+    {
+        $ms_notification_from_email = get_option('ms_notification_from_email', MS_NOTIFICATION_FROM_EMAIL);
+        $phpmailer->Sender = $ms_notification_from_email;
+        $phpmailer->From = $ms_notification_from_email; 
+    }
+    
+    $item_name = $_POST['item_name'];
 	$item_number = $_POST['item_number'];
 	$payment_status = $_POST['payment_status'];
 	$payment_amount = $_POST['mc_gross'];
@@ -83,6 +90,8 @@
 	$ms_notification_to_payer_message  = str_replace("%INFORMATION%", $information_payer, $ms_notification_to_payer_message);
 	$ms_notification_to_seller_message = str_replace("%INFORMATION%", $information_seller, $ms_notification_to_seller_message);
 	
+    add_filter('phpmailer_init','music_store_envelope_from');
+    
 	// Send email to payer
 	wp_mail($payer_email, $ms_notification_to_payer_subject, $ms_notification_to_payer_message,
             "From: \"$ms_notification_from_email\" <$ms_notification_from_email>\r\n".
