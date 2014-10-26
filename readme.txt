@@ -494,6 +494,12 @@ A: In this case you only should go to the sales reports of the store, through th
 
 Now, your user can download the product by a new time period.
 
+= Q: How to know the products purchased for a customer? =
+
+A: Go to the sales reports, and type the customer's email in the input box named "buyer", and select a time interval where could be occurred the sales, and finally press the "Search" button. 
+
+If you are not sure about the customer email, you can use a partial email address ( is not necessary to know the exact email address). About the time interval, if you are not sure about the date where the sales occurred, select as the "From" data a sufficient far away date.
+
 = Q: How can be customized the download page? =
 
 A: The download page is a special page, that is populated at runtime. By default the page is empty, but the download links are added at the end of page when it is visited by the users. This page, can be edited like any other page in WordPress. You simply should open the page for edition, and modify its content. 
