@@ -479,7 +479,7 @@ The product's shortcode accepts another attribute, to decide the layout to use: 
 
 = Q: Is there any restriction on the size of the audio files to upload to the server? =
 
-A: The limit in the files sizes to be upload to the server is not imposed by the plugin. The limits are imposed by directives in the PHP.ini file, directly by your hosting provider.
+A: The limit in the files sizes to be upload to the server is not imposed by the plugin. The Music Store delegates the upload process to the Media Library of WordPress. The limits are imposed by directives in the PHP.ini file, directly by your hosting provider.
 
 If you need additional information about the PHP directives involved in this process, visit the following link:
 http://php.net/manual/en/ini.core.php#ini.post-max-size
