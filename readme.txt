@@ -520,6 +520,16 @@ A: If the IPN is enabled in your PayPal account, and the purchases have been reg
 
 2. The web server allows send emails directly, but the email address entered in the "Notification from email" attribute, is an email address that not belongs to the same domain of the website. In this case, the main email services classify the emails as a possible identity fishing, and delete the email by security. You should enter in this attribute an email address belonging to the same website's domain.
 
+= Q: How the customers can return automatically to the download page after purchase a song? = 
+
+A: This option is related directly with the PayPal settings, and not with the Music Store. Please, follows the indications below:
+
+Note: The description applies for the new interface of PayPal.
+
+From the homepage of your PayPal account, press the "Seller preferences" option. In the seller's profile there is an option titled "Website preferences", with the text "Bring customers back to my website after they pay with PayPal.", please, press the "change" link associated with this option, and set the auto return to "ON". PayPal requires you enter the URL to the return page, use in this case the URL to your website's homepage, because the Music Store sends the correct URL in the sale process.
+
+PayPal notifies the payments to the website asynchronously, so can occur that the user returns to the download page, before the payment notification, so, the sale has not been registered yet. In this case the download page displays a timer, and checks again the validity of purchase.
+
 = Q: The download page is displaying a 404 Error, page not found =
 
 A: By default the Music Store generates the page called "Download Page", with its content empty. The content of the "Download Page" is generated dynamically with the download links to purchased products, but sometimes, the websites administrators decide delete this page because think that is not important. If it is the case you only should restore the download page, from the trash list, to the list of published pages. If you have emptied the trash list, you only should create a new page with the slug: ms-download-page
