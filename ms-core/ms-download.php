@@ -237,7 +237,7 @@
 	
 	function ms_copy_download_links($file){
 		$parts  = pathinfo($file);
-		$new_file_name = $parts[ 'basename' ].'_'.md5($file).( ( !empty($parts[ 'extension' ]) ) ? '.'.$parts[ 'extension' ] : '' );
+		$new_file_name = urlencode( $parts[ 'basename' ] ).'_'.md5($file).( ( !empty($parts[ 'extension' ]) ) ? '.'.$parts[ 'extension' ] : '' );
 		$dest = MS_DOWNLOAD.'/'.$new_file_name;
 		$rand = rand(1000, 1000000);
 		if(file_exists($dest)) return $new_file_name;
