@@ -662,10 +662,10 @@ if(!function_exists('ms_get_site_url')){
 				add_action('parent_file', array(&$this, 'tax_menu_correction'));
 				
 				// Settings Submenu
-				add_submenu_page($this->music_store_slug, 'Music Store Settings', 'Store Settings', 'edit_pages', $this->music_store_slug.'-settings', array(&$this, 'settings_page'));
+				add_submenu_page($this->music_store_slug, __( 'Music Store Settings', MS_TEXT_DOMAIN ), __( 'Store Settings', MS_TEXT_DOMAIN ), 'edit_pages', $this->music_store_slug.'-settings', array(&$this, 'settings_page'));
 				
 				// Sales report submenu
-				add_submenu_page($this->music_store_slug, 'Music Store Sales Report', 'Sales Report', 'edit_pages', $this->music_store_slug.'-reports', array(&$this, 'settings_page'));
+				add_submenu_page($this->music_store_slug, __( 'Music Store Sales Report', MS_TEXT_DOMAIN ), __( 'Sales Report', MS_TEXT_DOMAIN ), 'edit_pages', $this->music_store_slug.'-reports', array(&$this, 'settings_page'));
 				
 			}	
 		} // End menu_links
@@ -674,7 +674,7 @@ if(!function_exists('ms_get_site_url')){
 		*	Create tabs for setting page and payment stats
 		*/
 		function settings_tabs($current = 'reports'){
-			$tabs = array( 'settings' => 'Music Store Settings', 'song' => 'Music Store Songs', 'collection' => 'Music Store Collections','reports' => 'Sales Report');
+			$tabs = array( 'settings' => __( 'Music Store Settings', MS_TEXT_DOMAIN ), 'song' => __( 'Music Store Songs', MS_TEXT_DOMAIN ), 'collection' => __( 'Music Store Collections', MS_TEXT_DOMAIN ),'reports' => __( 'Sales Report', MS_TEXT_DOMAIN ) );
 			echo '<h2 class="nav-tab-wrapper">';
 			foreach( $tabs as $tab => $name ){
 				$class = ( $tab == $current ) ? ' nav-tab-active' : '';
@@ -1137,7 +1137,7 @@ if(!function_exists('ms_get_site_url')){
 					$_group  = "";
 					$_order  = "";
 					$_date_dif = floor( max( abs( strtotime( $to_year.'-'.$to_month.'-'.$to_day ) - strtotime( $from_year.'-'.$from_month.'-'.$from_day ) ) / ( 60*60*24 ), 1 ) );
-					$_table_header = array( 'Date', 'Product', 'Buyer', 'Amount', 'Currency', 'Download link', '' );
+                    $_table_header = array( __( 'Date', MS_TEXT_DOMAIN ), __( 'Product', MS_TEXT_DOMAIN ), __( 'Buyer', MS_TEXT_DOMAIN ), __( 'Amount', MS_TEXT_DOMAIN ), __( 'Currency', MS_TEXT_DOMAIN ), __( 'Download link', MS_TEXT_DOMAIN ), '' );
 					
 					if( $group_by == 'no_group' )	
 					{
