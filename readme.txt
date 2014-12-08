@@ -288,6 +288,14 @@ After select a specific time period it is possible to load some charts with grap
 
 You can delete a sales report from the list of sales. This may be useful in case of a refund granted to a buyer, and allows to keep your sales statistics updated with the actual purchases.
 
+**Translations**
+
+The Music Store uses the English language by default, but includes the following language packages:
+
+* Spanish
+
+Note: The languages packages are generated dynamically. If detects an error in the translation, please, contact us to correct it.
+
 == Frequently Asked Questions ==
 
 = Q: Why the sales button don't show? =
