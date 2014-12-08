@@ -48,7 +48,7 @@
 			<!-- SONG GENRE -->
 			<tpl ifset="song.has_genres">
 				<div class="song-genre">
-					<span class="label">Genre(s): </span>
+					<span class="label">{song.genres_label}: </span>
 					<ul>
 					<tpl loop="genres">
 						<li><span class="arrow">›</span>{genres.data}</li>
@@ -60,7 +60,7 @@
 			<!-- SONG ALBUM -->
 			<tpl ifset="song.has_albums">
 				<div class="song-album">
-					<span class="label">Album(s): </span>
+					<span class="label">{song.albums_label}: </span>
 					<ul>
 					<tpl loop="albums">
 						<li><span class="arrow">›</span>{albums.data}</li>
@@ -71,13 +71,13 @@
 			
 			<!-- SONG TIME -->
 			<tpl ifset="song.time">
-			<span class="label">Duration: </span>
+			<span class="label">{song.duration_label}: </span>
 			<b>{song.time}</b>
 			</tpl ifset="song.time">
 			
 			<!-- SONG YEAR -->
 			<tpl ifset="song.year">
-			<span class="label">Year: </span>
+			<span class="label">{song.year_label}: </span>
 			<b>{song.year}</b>
 			</tpl ifset="song.year">
 			
@@ -91,7 +91,7 @@
 			<!-- MUSIC STORE LINK -->
 			<tpl ifset="song.store_page">
 				<div class="music-store-link">
-					<a href="{song.store_page}"> Go to the store page </a>
+					<a href="{song.store_page}">{song.store_page_label}</a>
 				</div>
 			</tpl ifset="song.store_page">
             
@@ -128,7 +128,7 @@
         <!-- SONG DESCRIPTION -->
 		<tpl ifset="song.description">
 		<ul class="music-store-tabs">
-			<li class="active-tab">Description</li>
+			<li class="active-tab">{song.description_label}</li>
 		</ul>
 		<div class="music-store-tabs-container active-tab">
 		    <div class="song-description">
@@ -140,7 +140,7 @@
         <!-- SONG MORE INFO -->
         <tpl ifset="song.info">
         <div class="song-info">
-            <a href="{song.info}" target="_blank">More Info[+]</a>
+            <a href="{song.info}" target="_blank">{song.more_label}[+]</a>
         </div>
         </tpl ifset="song.info">
 	</div>

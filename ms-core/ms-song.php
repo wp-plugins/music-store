@@ -122,7 +122,19 @@ if(!class_exists('MSSong')){
 				'has_albums' => null,
 				'has_artists' => null,
 				'has_genres' => null,
-				'demo' => null
+				'demo' => null,
+                
+                // Labels
+                'albums_label' => __( 'Album(s)', MS_TEXT_DOMAIN ),
+                'genres_label' => __( 'Genre(s)', MS_TEXT_DOMAIN ),
+                'duration_label' => __( 'Duration', MS_TEXT_DOMAIN ),
+                'year_label' => __( 'Year', MS_TEXT_DOMAIN ),
+                'description_label' => __( 'Description', MS_TEXT_DOMAIN ),
+                'more_label' => __( 'More Info', MS_TEXT_DOMAIN ),
+                'store_page_label' => __( 'Go to the store page', MS_TEXT_DOMAIN ),
+                'get_back_label' => __( 'Get back', MS_TEXT_DOMAIN ),
+                'popularity_label' => __( 'popularity', MS_TEXT_DOMAIN ),
+                'price_label' => __( 'Price', MS_TEXT_DOMAIN )
 			);
 			
             if(!empty($this->cover)){
