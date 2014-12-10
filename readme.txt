@@ -293,6 +293,7 @@ You can delete a sales report from the list of sales. This may be useful in case
 The Music Store uses the English language by default, but includes the following language packages:
 
 * Spanish
+* French
 
 Note: The languages packages are generated dynamically. If detects an error in the translation, please, contact us to correct it.
 
