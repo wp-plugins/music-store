@@ -227,11 +227,12 @@
 			return false;
 		}
 		
-		if( isset( $_REQUEST[ 'f' ] ) )
+		if( isset( $_REQUEST[ 'f' ] ) && !isset( $_SESSION[ 'cpms_donwloads' ] ) )
 		{
-			$wpdb->query( $wpdb->prepare( 'UPDATE '.$wpdb->prefix.MSDB_PURCHASE.' SET downloads=downloads+1 WHERE id=%d', $data->id ) );
-		}
-		
+            $_SESSION[ 'cpms_donwloads' ] = true;
+            $wpdb->query( $wpdb->prepare( 'UPDATE '.$wpdb->prefix.MSDB_PURCHASE.' SET downloads=downloads+1 WHERE id=%d', $data->id ) );
+        }
+        
 		return true;
 	} // End ms_check_download_permissions
 	
