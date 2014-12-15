@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: MS_TEXT_DOMAIN\n"
 "POT-Creation-Date: 2014-12-08 14:50+0100\n"
-"PO-Revision-Date: 2014-12-15 11:36+0100\n"
+"PO-Revision-Date: 2014-12-15 11:47+0100\n"
 "Last-Translator: \n"
 "Language-Team: CodePeople\n"
 "MIME-Version: 1.0\n"
@@ -12,42 +12,40 @@ msgstr ""
 "X-Poedit-KeywordsList: __;gettext;gettext_noop;_e\n"
 "X-Poedit-Basepath: .\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"Language: fr\n"
+"Language: de\n"
 "X-Poedit-SearchPath-0: ..\n"
 
 #: ../music-store.php:331
 msgid "Download Links:"
-msgstr "Les liens de téléchargement :"
+msgstr "Download -Links:"
 
 #: ../music-store.php:347
 msgid "Type the email address used to purchase our products"
-msgstr "Tapez l'adresse email utilisée pour acheter nos produits"
+msgstr "Geben Sie die E-Mail- Adresse an, um unsere Produkte zu kaufen"
 
 #: ../music-store.php:402
 msgid "Song's data"
-msgstr "Les données de Song"
+msgstr "Daten Songs"
 
 #: ../music-store.php:403
 msgid "Collection's data"
-msgstr "Données de Collection"
+msgstr "Daten Collection"
 
 #: ../music-store.php:405 ../music-store.php:406
 msgid "Programming Discounts"
-msgstr "Réductions de programmation"
+msgstr "Programmieren Rabatte"
 
 #: ../music-store.php:429
 msgid "Request custom changes"
-msgstr "Demande modifications personnalisées"
+msgstr "Request benutzerdefinierten Änderungen"
 
 #: ../music-store.php:431
 msgid "Settings"
-msgstr "Paramètres"
+msgstr "Einstellungen"
 
 #: ../music-store.php:613
 msgid "This is where you can add new song to your music store."
-msgstr ""
-"Ce est là que vous pouvez ajouter une nouvelle chanson à votre magasin de "
-"musique ."
+msgstr "Das ist , wo Sie neue Songs , um Ihre Musik Speicher hinzufügen."
 
 #: ../music-store.php:622
 msgid "Songs"
@@ -59,7 +57,7 @@ msgstr "Song"
 
 #: ../music-store.php:624 ../music-store.php:661
 msgid "Add New"
-msgstr "Add New"
+msgstr "Neu"
 
 #: ../music-store.php:625
 msgid "Add New Song"
@@ -67,27 +65,27 @@ msgstr "Add New Song"
 
 #: ../music-store.php:626
 msgid "Edit Song"
-msgstr "Modifier Song"
+msgstr "Edit Song"
 
 #: ../music-store.php:627
 msgid "New Song"
-msgstr "New Song»"
+msgstr "New Song"
 
 #: ../music-store.php:628
 msgid "View Song"
-msgstr "Voir Song"
+msgstr "View Song"
 
 #: ../music-store.php:629
 msgid "Search Songs"
-msgstr "Recherche Songs"
+msgstr "Suche nach Songs"
 
 #: ../music-store.php:630
 msgid "No songs found"
-msgstr "Pas de chansons trouvées"
+msgstr "Keine Songs gefunden"
 
 #: ../music-store.php:631
 msgid "No songs found in Trash"
-msgstr "Pas de chansons trouvées dans la corbeille"
+msgstr "Keine Lieder im Papierkorb gefunden"
 
 #: ../music-store.php:632
 msgid "Songs for Sale"
@@ -95,7 +93,7 @@ msgstr "Songs for Sale"
 
 #: ../music-store.php:659 ../music-store.php:1952
 msgid "Collections"
-msgstr "Collections»"
+msgstr "Sammlungen"
 
 #: ../music-store.php:660
 msgid "Collection"
@@ -103,35 +101,35 @@ msgstr "Collection"
 
 #: ../music-store.php:662
 msgid "Add New Collection"
-msgstr "Ajouter Nouvelle Collection"
+msgstr "Add New Collection"
 
 #: ../music-store.php:663
 msgid "Edit Collection"
-msgstr "Modifier la collection"
+msgstr "Edit Collection"
 
 #: ../music-store.php:664
 msgid "New Collection"
-msgstr "Nouvelle collection"
+msgstr "Neue Kollektion"
 
 #: ../music-store.php:665
 msgid "View Collection"
-msgstr "Voir Collection"
+msgstr "View Collection"
 
 #: ../music-store.php:666
 msgid "Search Collections"
-msgstr "Chercher dans les collections"
+msgstr "Suchen Sammlungen"
 
 #: ../music-store.php:667
 msgid "No collections found"
-msgstr "Aucun collections trouvé"
+msgstr "Keine Kollektionen gefunden"
 
 #: ../music-store.php:668
 msgid "No collections found in Trash"
-msgstr "Aucun collections trouvent dans la corbeille"
+msgstr "Keine Sammlungen in Papierkorb gefunden"
 
 #: ../music-store.php:669
 msgid "Collections for Sale"
-msgstr "Collections à vendre"
+msgstr "Sammlungen zum Verkauf"
 
 #: ../music-store.php:700 ../music-store.php:702 ../music-store.php:710
 #: ../music-store.php:869 ../ms-core/ms-collection.php:651
@@ -141,64 +139,64 @@ msgstr "Genres"
 
 #: ../music-store.php:703
 msgid "Genre"
-msgstr "Genre»"
+msgstr "Genre"
 
 #: ../music-store.php:704
 msgid "Search Genres"
-msgstr "Recherche Genres"
+msgstr "Suche nach Genres"
 
 #: ../music-store.php:705
 msgid "All Genres"
-msgstr "Tous Genres"
+msgstr "Alle Genres"
 
 #: ../music-store.php:706
 msgid "Edit Genre"
-msgstr "Modifier Genre"
+msgstr "Edit Genre"
 
 #: ../music-store.php:707
 msgid "Update Genre"
-msgstr "Mise à jour Genre"
+msgstr "Update Genre"
 
 #: ../music-store.php:708
 msgid "Add New Genre"
-msgstr "Ajouter un nouveau genre"
+msgstr "Add New Genre"
 
 #: ../music-store.php:709
 msgid "New Genre Name"
-msgstr "Nom New Genre"
+msgstr "New Genre Name"
 
 #: ../music-store.php:730 ../music-store.php:732 ../music-store.php:740
 #: ../music-store.php:870 ../ms-core/ms-song.php:575
 msgid "Artists"
-msgstr "Artistes"
+msgstr "Künstler"
 
 #: ../music-store.php:733
 msgid "Artist"
-msgstr "Artiste"
+msgstr "Künstler"
 
 #: ../music-store.php:734
 msgid "Search Artists"
-msgstr "Recherche Artistes"
+msgstr "Suche Künstler"
 
 #: ../music-store.php:735
 msgid "All Artists"
-msgstr "Tous les artistes"
+msgstr "Alle Künstler"
 
 #: ../music-store.php:736
 msgid "Edit Artist"
-msgstr "Modifier Artiste"
+msgstr "Edit Artist"
 
 #: ../music-store.php:737
 msgid "Update Artist"
-msgstr "Mise à jour Artiste"
+msgstr "Update Artist"
 
 #: ../music-store.php:738
 msgid "Add New Artist"
-msgstr "Add New Artist"
+msgstr "New Artist hinzufügen"
 
 #: ../music-store.php:739
 msgid "New Artist Name"
-msgstr "Nom Nouvel Artiste"
+msgstr "Neue Künstlername"
 
 #: ../music-store.php:760 ../music-store.php:762 ../music-store.php:770
 #: ../music-store.php:871 ../ms-core/ms-song.php:576
@@ -211,199 +209,199 @@ msgstr "Album"
 
 #: ../music-store.php:764
 msgid "Search Albums"
-msgstr "Recherche Albums"
+msgstr "Suche Alben"
 
 #: ../music-store.php:765
 msgid "All Albums"
-msgstr "Tous les albums"
+msgstr "Alle Alben"
 
 #: ../music-store.php:766
 msgid "Edit Album"
-msgstr "Modifier l'album"
+msgstr "Album bearbeiten"
 
 #: ../music-store.php:767
 msgid "Update Album"
-msgstr "Mise à jour de l'album"
+msgstr "Album aktualisieren"
 
 #: ../music-store.php:768
 msgid "Add New Album"
-msgstr "Ajouter un nouvel album"
+msgstr "Add New Album"
 
 #: ../music-store.php:769
 msgid "New Album Name"
-msgstr "New Album Name"
+msgstr "Neues Album -Name"
 
 #: ../music-store.php:869
 msgid "Set Genres"
-msgstr "nres \" SET"
+msgstr "Set Genres"
 
 #: ../music-store.php:870
 msgid "Set Artists"
-msgstr "Artistes SET"
+msgstr "Set Artists"
 
 #: ../music-store.php:871
 msgid "Set Albums"
-msgstr "Albums SET"
+msgstr "Set Albums"
 
 #: ../music-store.php:876 ../music-store.php:888
 msgid "Music Store Settings"
-msgstr "Magasin de musique Paramètres"
+msgstr "Music Store -Einstellungen"
 
 #: ../music-store.php:876
 msgid "Store Settings"
-msgstr "Paramètres magasin"
+msgstr "Store Settings"
 
 #: ../music-store.php:879
 msgid "Music Store Sales Report"
-msgstr "Musique Rapport magasin de vente"
+msgstr "Music Store Sales Report"
 
 #: ../music-store.php:879 ../music-store.php:888
 msgid "Sales Report"
-msgstr "Rapport des ventes"
+msgstr "Verkaufsbericht"
 
 #: ../music-store.php:888
 msgid "Music Store Songs"
-msgstr "Titres Music Store"
+msgstr "Music Store Songs"
 
 #: ../music-store.php:888
 msgid "Music Store Collections"
-msgstr "Music Store \" Collections"
+msgstr "Music Store Collections"
 
 #: ../music-store.php:1034
 msgid "Settings Updated"
-msgstr "Paramètres Mise à jour"
+msgstr "Einstellungen aktualisiert"
 
 #: ../music-store.php:1060
 msgid "Store page config"
-msgstr "Cette page magasin config"
+msgstr "Seite Shop config"
 
 #: ../music-store.php:1064
 msgid "URL of store page"
-msgstr "URL de la page de magasin"
+msgstr "URL der Shop-Seite"
 
 #: ../music-store.php:1068
 msgid "Set the URL of page where the music store was inserted"
-msgstr "Définir l'URL de la page où le magasin de musique a été inséré"
+msgstr "Stellen Sie die URL der Seite , wo das Musikgeschäft eingelegt wurde"
 
 #: ../music-store.php:1072
 msgid "Allow to filter by type"
-msgstr "Laisser filtrer par type"
+msgstr "Lassen Sie nach Typ filtern"
 
 #: ../music-store.php:1076
 msgid "Allow to filter by genre"
-msgstr "Laisser filtrer par genre"
+msgstr "Lassen Sie nach Genres filtern"
 
 #: ../music-store.php:1080
 msgid "Allow to filter by artist"
-msgstr "Laisser filtrer par l'artiste"
+msgstr "Lassen Sie die von Künstler filtern"
 
 #: ../music-store.php:1084
 msgid "Allow to filter by album"
-msgstr "Laisser filtrer par album"
+msgstr "Lassen Sie nach Album filtern"
 
 #: ../music-store.php:1088
 msgid "Allow multiple pages"
-msgstr "Autoriser plusieurs pages"
+msgstr "Erlauben Sie mehrere Seiten"
 
 #: ../music-store.php:1092
 msgid "Items per page"
-msgstr "Articles par page"
+msgstr "Artikel pro Seite"
 
 #: ../music-store.php:1096
 msgid "Store layout"
-msgstr "Layout de magasin"
+msgstr "Speicher-Layout"
 
 #: ../music-store.php:1099
 msgid "Default layout"
-msgstr "Mise en page par défaut"
+msgstr "Standard- Layout"
 
 #: ../music-store.php:1118
 msgid "Player style"
-msgstr "Style Player"
+msgstr "Player -Stil"
 
 #: ../music-store.php:1139
 msgid "Percent of audio used for protected playbacks"
-msgstr "Pourcentage de lectures audio utilisé pour protégées"
+msgstr "Für geschützte Playbacks Prozent von Audio verwendet"
 
 #: ../music-store.php:1142
 msgid ""
 "To prevent unauthorized copying of audio files, the files will be partially "
 "accessible."
 msgstr ""
-"Pour empêcher la copie non autorisée de fichiers audio , les fichiers seront "
-"partiellement accessible ."
+"Um das unerlaubte Kopieren von Audio-Dateien zu verhindern , werden die "
+"Dateien teilweise zugänglich sein."
 
 #: ../music-store.php:1147
 msgid "Explain text for protected playbacks"
-msgstr "Expliquer texte pour playbacks protégées"
+msgstr "Text Erklären für geschützte Playbacks"
 
 #: ../music-store.php:1150
 msgid ""
 "The text will be shown below of the music player when secure playback is "
 "checked"
 msgstr ""
-"Le texte se affiche en dessous du lecteur de musique lorsque la lecture "
-"sécurisée est cochée"
+"Der Text wird unterhalb des Musik-Players angezeigt, wenn sichere Wiedergabe "
+"überprüft werden"
 
 #: ../music-store.php:1156
 msgid "Share in social networks"
-msgstr "Partager sur les réseaux sociaux"
+msgstr "Teilen in sozialen Netzwerken"
 
 #: ../music-store.php:1159
 msgid ""
 "The option enables the buttons for share the pages of songs and collections "
 "in social networks"
 msgstr ""
-"L'option active les boutons pour les pages parts de chansons et de "
-"collections dans les réseaux sociaux"
+"Mit dieser Option können Sie die Tasten für die Aktie werden die Seiten von "
+"Songs und Sammlungen in sozialen Netzwerken"
 
 #: ../music-store.php:1170
 msgid "Paypal Payment Configuration"
-msgstr "Configuration de paiement Paypal"
+msgstr "Paypal Zahlung Konfiguration"
 
 #: ../music-store.php:1175
 msgid "Enable Paypal Payments?"
-msgstr "Activer Paypal paiements ?"
+msgstr "Enable Paypal Zahlungen ?"
 
 #: ../music-store.php:1180
 msgid "Paypal email"
-msgstr "Paypal email"
+msgstr "Paypal E-Mail"
 
 #: ../music-store.php:1191 ../music-store.php:1549
 msgid "Currency"
-msgstr "Devise»"
+msgstr "Währung"
 
 #: ../music-store.php:1196
 msgid "Currency Symbol"
-msgstr "Symbole monétaire"
+msgstr "Währungssymbol"
 
 #: ../music-store.php:1201
 msgid "Paypal language"
-msgstr "Langage Paypal"
+msgstr "Paypal Sprache"
 
 #: ../music-store.php:1206
 msgid "Paypal button for instant purchases"
-msgstr "Bouton Paypal pour les achats instantanés"
+msgstr "Paypal -Taste für Sofortkäufe"
 
 #: ../music-store.php:1211
 msgid "or use a shopping cart"
-msgstr "ou utiliser un panier"
+msgstr "oder verwenden Sie einen Einkaufswagen"
 
 #: ../music-store.php:1220
 msgid "Download link valid for"
-msgstr "Le lien de téléchargement valable pour"
+msgstr "Link gültig herunterladen"
 
 #: ../music-store.php:1221
 msgid "day(s)"
-msgstr "jour (s )"
+msgstr "Tag (e)"
 
 #: ../music-store.php:1225
 msgid "Number of downloads allowed by purchase"
-msgstr "Nombre de téléchargements permise par achat"
+msgstr "Durch Kauf Anzahl der Downloads erlaubt"
 
 #: ../music-store.php:1230
 msgid "Increase the download page security"
-msgstr "Augmenter la sécurité page de téléchargement"
+msgstr "Erhöhen Sie die Download-Seite Sicherheit"
 
 #: ../music-store.php:1231
 msgid ""
@@ -411,58 +409,57 @@ msgid ""
 "to access to the download link. The Music Store verifies the customer's "
 "data, from the file link too."
 msgstr ""
-"Les clients doivent entrer l'adresse e-mail utilisée dans le achat du "
-"produit pour accéder au lien de téléchargement. Le Music Store vérifie les "
-"données du client , à partir du lien de fichier trop ."
+"Die Kunden müssen die E-Mail -Adresse in der Beschaffung des Produkts "
+"verwendet werden, um auf den Download-Link zugreifen zu können. Die Music "
+"Store überprüft die Daten des Kunden , aus der Dateiverknüpfung zu ."
 
 #: ../music-store.php:1250
 msgid "Pack all purchased audio files as a single ZIP file"
-msgstr "Emballez tous les fichiers audio achetés comme un seul fichier ZIP"
+msgstr "Alle gekauften Audio-Dateien als ZIP -Datei packen"
 
 #: ../music-store.php:1254
 msgid ""
 "Your server can't create Zipped files dynamically. Please, contact to your "
 "hosting provider for enable ZipArchive in the PHP script"
 msgstr ""
-"Votre serveur ne peut pas créer des fichiers zippés dynamiquement . Se il "
-"vous plaît , contactez votre fournisseur d'hébergement pour permettre "
-"ZipArchive dans le script PHP"
+"Ihr Server kann mit Reißverschluss Dateien dynamisch erstellt werden. "
+"Bitte , wenden Sie sich an Ihren Hosting-Anbieter für ermöglichen ZipArchive "
+"im PHP-Skript"
 
 #: ../music-store.php:1270
 msgid "Discount Settings"
-msgstr "Paramètres \" discount"
+msgstr "Discount -Einstellungen"
 
 #: ../music-store.php:1272
 msgid "Display discount promotions in the music store page"
-msgstr ""
-"Promotions d'actualisation d'affichage dans la page du magasin de musique"
+msgstr "Display Rabattaktionen im Musikgeschäft Seite"
 
 #: ../music-store.php:1273 ../ms-core/ms-product-discount.php:10
 msgid "Scheduled Discounts"
-msgstr "Réductions planifiées"
+msgstr "Geplante Aktionen"
 
 #: ../music-store.php:1277 ../music-store.php:1372
 msgid "Percent of discount"
-msgstr "Pourcentage de réduction"
+msgstr "Prozent der Angebote"
 
 #: ../music-store.php:1278
 msgid "In Sales over than ... "
-msgstr "En plus de ventes que ..."
+msgstr "Im Vertrieb über als ..."
 
 #: ../music-store.php:1279 ../music-store.php:1374
 #: ../ms-core/ms-product-discount.php:15
 msgid "Valid from dd/mm/yyyy"
-msgstr "Valable du jj / mm / aaaa"
+msgstr "Gültig ab TT / MM / JJJJ"
 
 #: ../music-store.php:1280 ../music-store.php:1375
 #: ../ms-core/ms-product-discount.php:16
 msgid "Valid to dd/mm/yyyy"
-msgstr "Valable au jj / mm / aaaa"
+msgstr "Gültig bis dd / mm / yyyy"
 
 #: ../music-store.php:1281 ../music-store.php:1348
 #: ../ms-core/ms-product-discount.php:17 ../ms-core/ms-product-discount.php:77
 msgid "Promotional text"
-msgstr "Texte promotionnel"
+msgstr "Werbetext"
 
 #: ../music-store.php:1282 ../music-store.php:1376
 #: ../ms-core/ms-product-discount.php:18
@@ -471,33 +468,33 @@ msgstr "Status"
 
 #: ../music-store.php:1332 ../music-store.php:1424
 msgid "Percent of discount (*)"
-msgstr "Pourcentage de réduction ( * )"
+msgstr "Prozent der Angebote (*)"
 
 #: ../music-store.php:1336
 msgid "Valid for sales over than (*)"
-msgstr "Valable pour des ventes plus que ( * )"
+msgstr "Gültig für Verkäufe über als (*)"
 
 #: ../music-store.php:1340 ../music-store.php:1432
 #: ../ms-core/ms-product-discount.php:69
 msgid "Valid from (dd/mm/yyyy)"
-msgstr "Valable du ( jj / mm / aaaa )"
+msgstr "Gültig vom (TT / MM / JJJJ)"
 
 #: ../music-store.php:1344 ../music-store.php:1436
 #: ../ms-core/ms-product-discount.php:73
 msgid "Valid to (dd/mm/yyyy)"
-msgstr "Valable jusqu'au ( jj / mm / aaaa )"
+msgstr "Gültig bis (TT / MM / JJJJ)"
 
 #: ../music-store.php:1351 ../ms-core/ms-product-discount.php:80
 msgid "Add/Update Discount"
-msgstr "Ajouter / Mettre à jour Discount"
+msgstr "Hinzufügen / Aktualisieren Discount"
 
 #: ../music-store.php:1366
 msgid "Coupons Settings"
-msgstr "Coupons Paramètres"
+msgstr "Gutscheine Einstellungen"
 
 #: ../music-store.php:1368
 msgid "Coupons List"
-msgstr "Liste des coupons"
+msgstr "Gutscheine List"
 
 #: ../music-store.php:1373
 msgid "Coupon"
@@ -505,96 +502,96 @@ msgstr "Coupon"
 
 #: ../music-store.php:1428
 msgid "Coupon (*)"
-msgstr "Coupon ( * )"
+msgstr "Coupon (*)"
 
 #: ../music-store.php:1439
 msgid "Add/Update Coupon"
-msgstr "Ajouter / Mettre à jour coupon"
+msgstr "Hinzufügen / Aktualisieren Coupon"
 
 #: ../music-store.php:1449
 msgid "Notification Settings"
-msgstr "Paramètres de notification"
+msgstr "Benachrichtigungseinstellungen"
 
 #: ../music-store.php:1454
 msgid "Notification \"from\" email"
-msgstr "Notification \" de \"email"
+msgstr "Meldung \" aus \" E-Mail"
 
 #: ../music-store.php:1459
 msgid "Send notification to email"
-msgstr "Envoyer une notification à l'email"
+msgstr "Benachrichtigung per E-Mail senden an"
 
 #: ../music-store.php:1464
 msgid "Email subject confirmation to user"
-msgstr "Sous réserve de confirmation par email à l'utilisateur"
+msgstr "E-Mail Betreff Bestätigung user"
 
 #: ../music-store.php:1469
 msgid "Email confirmation to user"
-msgstr "Email de confirmation à l'utilisateur"
+msgstr "E-Mail- Bestätigung an Benutzer"
 
 #: ../music-store.php:1474
 msgid "Email subject notification to admin"
-msgstr "Notification Email sous réserve de admin"
+msgstr "E-Mail Betreff Mitteilung an admin"
 
 #: ../music-store.php:1479
 msgid "Email notification to admin"
-msgstr "La notification par email à admin"
+msgstr "E-Mail- Benachrichtigung an admin"
 
 #: ../music-store.php:1486
 msgid "Update Settings"
-msgstr "Mise à Jour"
+msgstr "Update -Einstellungen"
 
 #: ../music-store.php:1508
 msgid "PayPal data"
-msgstr "Données PayPal"
+msgstr "PayPal -Daten"
 
 #: ../music-store.php:1549 ../music-store.php:2420
 #: ../ms-core/ms-collection.php:654 ../ms-core/ms-song.php:580
 msgid "Date"
-msgstr "Date"
+msgstr "Datum"
 
 #: ../music-store.php:1549
 msgid "Product"
-msgstr "Produit»"
+msgstr "Produkt"
 
 #: ../music-store.php:1549
 msgid "Buyer"
-msgstr "Acheteur"
+msgstr "Käufer"
 
 #: ../music-store.php:1549
 msgid "Amount"
-msgstr "Montant"
+msgstr "Betrag"
 
 #: ../music-store.php:1549
 msgid "Download link"
-msgstr "Lien Télécharger"
+msgstr "Download-Link"
 
 #: ../music-store.php:1549
 msgid "Notes"
-msgstr "Notes"
+msgstr "Anmerkungen"
 
 #: ../music-store.php:1613
 msgid "Filter the sales reports"
-msgstr "Filtrez les rapports de ventes"
+msgstr "Die Berichte über die Verkäufe Filter"
 
 #: ../music-store.php:1616
 msgid "Filter by date"
-msgstr "Filtrer par date"
+msgstr "Nach Datum filtern"
 
 #: ../music-store.php:1619
 msgid "January"
-msgstr "Janvier"
+msgstr "Januar"
 
 #: ../music-store.php:1620
 msgid "February"
-msgstr "Février"
+msgstr "Februar"
 
 #: ../music-store.php:1621
 msgid "March"
-msgstr "Mars"
+msgstr "März"
 
 #: ../music-store.php:1622
 msgid "April"
-msgstr "Avril"
+msgstr "April"
 
 #: ../music-store.php:1623
 msgid "May"
@@ -602,135 +599,135 @@ msgstr "Mai"
 
 #: ../music-store.php:1624
 msgid "June"
-msgstr "Juin"
+msgstr "June"
 
 #: ../music-store.php:1625
 msgid "July"
-msgstr "Juillet"
+msgstr "Juli"
 
 #: ../music-store.php:1626
 msgid "August"
-msgstr "Août"
+msgstr "August"
 
 #: ../music-store.php:1627
 msgid "September"
-msgstr "Septembre"
+msgstr "September"
 
 #: ../music-store.php:1628
 msgid "October"
-msgstr "Octobre"
+msgstr "October"
 
 #: ../music-store.php:1629
 msgid "November"
-msgstr "Novembre"
+msgstr "November"
 
 #: ../music-store.php:1630
 msgid "December"
-msgstr "Décembre"
+msgstr "December"
 
 #: ../music-store.php:1633
 msgid "Buyer: "
-msgstr "Acheteur:"
+msgstr "Käufer"
 
 #: ../music-store.php:1634
 msgid "From: "
-msgstr "De:"
+msgstr "Von:"
 
 #: ../music-store.php:1647
 msgid "To: "
-msgstr "Pour :"
+msgstr "An:"
 
 #: ../music-store.php:1660
 msgid "Search"
-msgstr "Rechercher"
+msgstr "Suchen"
 
 #: ../music-store.php:1664
 msgid "Grouping the sales"
-msgstr "Le regroupement des ventes"
+msgstr "Gruppieren der Umsatz"
 
 #: ../music-store.php:1665
 msgid "By: "
-msgstr "Par :"
+msgstr "Von:"
 
 #: ../music-store.php:1676
 msgid "Display"
-msgstr "Affichage"
+msgstr "Display"
 
 #: ../music-store.php:1677
 msgid "Sales"
-msgstr "Ventes"
+msgstr "Vertrieb"
 
 #: ../music-store.php:1678
 msgid "Amount of sales"
-msgstr "Montant des ventes"
+msgstr "Anzahl der Verkäufe"
 
 #: ../music-store.php:1679
 msgid "Daily average"
-msgstr "Moyenne quotidienne"
+msgstr "Tagesdurchschnitt"
 
 #: ../music-store.php:1686
 msgid "Store sales report"
-msgstr "Rapport des ventes des magasins"
+msgstr "Store Sales Report"
 
 #: ../music-store.php:1693
 msgid "Sales by country"
-msgstr "Ventes par pays"
+msgstr "Umsatz nach Land"
 
 #: ../music-store.php:1694
 msgid "Sales by currency"
-msgstr "Les ventes de devises"
+msgstr "Umsatz nach Währungs"
 
 #: ../music-store.php:1695
 msgid "Sales by product"
-msgstr "Ventes par produit"
+msgstr "Umsatz nach Produkt"
 
 #: ../music-store.php:1704
 msgid "Products List"
-msgstr "Liste des produits"
+msgstr "Produktliste"
 
 #: ../music-store.php:1809
 msgid "There are not sales registered with those filter options"
-msgstr "Il ne sont pas les ventes enregistrées avec ces options de filtrage"
+msgstr "Es sind nicht Umsatz mit diesen Filteroptionen registriert"
 
 #: ../music-store.php:1896
 msgid "Insert a Products List"
-msgstr "Insérer une liste de produits"
+msgstr "Legen Sie eine Produktliste"
 
 #: ../music-store.php:1897 ../music-store.php:2602
 msgid "Select the type of list:"
-msgstr "Sélectionnez le type de liste :"
+msgstr "Wählen Sie die Liste"
 
 #: ../music-store.php:1898 ../music-store.php:2611
 msgid "Enter the number of products to show:"
-msgstr "Entrez le nombre de produits à afficher :"
+msgstr "Geben Sie die Anzahl der Produkte , um zu zeigen :"
 
 #: ../music-store.php:1899 ../music-store.php:2616
 msgid "Enter the number of columns:"
-msgstr "Entrez le nombre de colonnes :"
+msgstr "Geben Sie die Anzahl der Spalten :"
 
 #: ../music-store.php:1928
 msgid "Insert the sales counter"
-msgstr "Insérer le comptoir des ventes"
+msgstr "Legen Sie die Verkaufstheke"
 
 #: ../music-store.php:1929 ../music-store.php:2763
 msgid "Select the numbers design:"
-msgstr "Sélectionnez la conception des numéros :"
+msgstr "Wählen Sie die Zahlen Motiv:"
 
 #: ../music-store.php:1930 ../music-store.php:2770
 msgid "Enter minimum length of counter:"
-msgstr "Entrez longueur minimale du compteur :"
+msgstr "Geben Sie Mindestlänge von Gegen :"
 
 #: ../music-store.php:1950 ../music-store.php:2505
 msgid "Insert Music Store"
-msgstr "Insérer Music Store"
+msgstr "Insert Music Store"
 
 #: ../music-store.php:1952
 msgid "Filter results by products type:"
-msgstr "Filtrer les résultats par type de produits :"
+msgstr "Filter nach Produkten geben :"
 
 #: ../music-store.php:1952
 msgid "All types"
-msgstr "Tous types"
+msgstr "Alle Typen"
 
 #: ../music-store.php:1952
 msgid "Singles"
@@ -738,109 +735,109 @@ msgstr "Singles"
 
 #: ../music-store.php:1952
 msgid "Columns:"
-msgstr "Colonnes:"
+msgstr "Spalten"
 
 #: ../music-store.php:1954
 msgid "Filter results by genre:"
-msgstr "Filtrer les résultats par genre:"
+msgstr "Ergebnisse filtern nach Interesse:"
 
 #: ../music-store.php:1954 ../music-store.php:2381
 msgid "All genres"
-msgstr "Tous les genres"
+msgstr "Alle Genres"
 
 #: ../music-store.php:1960
 msgid "-or- filter results by artist:"
-msgstr "Résultats de filtres -ou- par artiste:«"
+msgstr "-oder Filterergebnisse des Künstlers :"
 
 #: ../music-store.php:1960 ../music-store.php:2403
 msgid "All artists"
-msgstr "Tous les artistes"
+msgstr "Alle Künstler"
 
 #: ../music-store.php:1966
 msgid "-or- filter results by album:"
-msgstr "Résultats de filtres -OU- en album:"
+msgstr "-oder Auswahl album:"
 
 #: ../music-store.php:1966 ../music-store.php:2392
 msgid "All albums"
-msgstr "Tous les albums"
+msgstr "Alle Alben"
 
 #: ../music-store.php:1977
 msgid "Insert a Product"
-msgstr "Insérez un produit"
+msgstr "Legen Sie ein Produkt"
 
 #: ../music-store.php:1978
 msgid "Enter the Song or Collection ID:"
-msgstr "Entrez l'ID morceau ou Collection :"
+msgstr "Rufen Sie den Song oder Sammlung ID:"
 
 #: ../music-store.php:2369
 msgid "Filter by: "
-msgstr "Filtrez par:"
+msgstr "Filtern nach:"
 
 #: ../music-store.php:2372
 msgid "All products"
-msgstr "Tous les produits"
+msgstr "Alle Produkte"
 
 #: ../music-store.php:2373
 msgid "Only collections"
-msgstr "Seuls les collections"
+msgstr "Nur Sammlungen"
 
 #: ../music-store.php:2374
 msgid "Only singles"
-msgstr "Seuls les singles"
+msgstr "Nur Singles"
 
 #: ../music-store.php:2418
 msgid "Order by: "
-msgstr "Trier par:"
+msgstr "Sortieren nach :"
 
 #: ../music-store.php:2421
 msgid "Title"
-msgstr "Titre"
+msgstr "Title"
 
 #: ../music-store.php:2422
 msgid "Popularity"
-msgstr "Popularité"
+msgstr "Popularität"
 
 #: ../music-store.php:2423 ../ms-core/ms-collection.php:159
 #: ../ms-core/ms-song.php:136
 msgid "Price"
-msgstr "Prix"
+msgstr "Preis"
 
 #: ../music-store.php:2440 ../ms-core/ms-collection.php:189
 #: ../ms-core/ms-song.php:163
 msgid "items"
-msgstr "items"
+msgstr "Artikel"
 
 #: ../music-store.php:2449
 msgid "Our Promotions"
-msgstr "Nos Promotions"
+msgstr "Unsere Angebote"
 
 #: ../music-store.php:2507
 msgid "Insert a product"
-msgstr "Insérez un produit"
+msgstr "Legen Sie ein Produkt"
 
 #: ../music-store.php:2510
 msgid "Insert a products list"
-msgstr "Insérer une liste de produits"
+msgstr "Legen Sie eine Produktliste"
 
 #: ../music-store.php:2512
 msgid "Insert a sales counter"
-msgstr "Insérer un comptoir de vente"
+msgstr "Legen Sie eine Verkaufstheke"
 
 #: ../music-store.php:2599 ../music-store.php:2677 ../music-store.php:2760
 msgid "Title:"
-msgstr "Titre:"
+msgstr "Titel:"
 
 #: ../music-store.php:2680
 msgid "Enter the product ID:"
-msgstr "Entrez l'ID de produit :"
+msgstr "Geben Sie die Produkt-ID :"
 
 #: ../ms-core/ms-collection.php:152 ../ms-core/ms-song.php:128
 msgid "Genre(s)"
-msgstr "Genre (s )"
+msgstr "Genre ( s )"
 
 #: ../ms-core/ms-collection.php:153 ../ms-core/ms-song.php:130
 msgid "Year"
-msgstr "Année»"
+msgstr "Jahr"
 
 #: ../ms-core/ms-collection.php:154
 msgid "Tracks"
@@ -848,128 +845,128 @@ msgstr "Tracks"
 
 #: ../ms-core/ms-collection.php:155 ../ms-core/ms-song.php:131
 msgid "Description"
-msgstr "Description"
+msgstr "Beschreibung"
 
 #: ../ms-core/ms-collection.php:156 ../ms-core/ms-song.php:132
 msgid "More Info"
-msgstr "Plus d'infos"
+msgstr "Mehr Info"
 
 #: ../ms-core/ms-collection.php:157 ../ms-core/ms-song.php:133
 msgid "Go to the store page"
-msgstr "Allez à la page de la boutique"
+msgstr "Gehen Sie auf die Store-Seite"
 
 #: ../ms-core/ms-collection.php:158 ../ms-core/ms-song.php:135
 msgid "popularity"
-msgstr "popularité»"
+msgstr "Popularität"
 
 #: ../ms-core/ms-collection.php:251 ../ms-core/ms-shopping-cart.php:75
 #: ../ms-core/ms-song.php:222
 msgid "Coupon code:"
-msgstr "Code promo :"
+msgstr "Gutscheincodes"
 
 #: ../ms-core/ms-collection.php:335 ../ms-core/ms-song.php:204
 #: ../ms-core/ms-song.php:228
 msgid "Download Here"
-msgstr "Télécharger ici"
+msgstr "Hier herunterladen"
 
 #: ../ms-core/ms-collection.php:397 ../ms-core/ms-song.php:323
 msgid "Sales price:"
-msgstr "Prix de vente :"
+msgstr "Verkaufspreis"
 
 #: ../ms-core/ms-collection.php:413
 msgid "Songs of collection:"
-msgstr "Titres de la collection :"
+msgstr "Songs of Sammlung:"
 
 #: ../ms-core/ms-collection.php:423
 msgid "Select a Song"
-msgstr "Sélectionner un morceau"
+msgstr "Wählen Sie einen Song"
 
 #: ../ms-core/ms-collection.php:433
 msgid ""
 "Select a Song from the list. It is possible to select songs with status "
 "\"publish\"."
 msgstr ""
-"Sélection d'un morceau de la liste . Il est possible de sélectionner des "
-"chansons avec le statut \" publish \" ."
+"Wählen Sie einen Song aus der Liste. Sie können Songs mit dem Status zu "
+"wählen \"veröffentlicht\"."
 
 #: ../ms-core/ms-collection.php:439 ../ms-core/ms-song.php:363
 msgid "Artist:"
-msgstr "Artiste :"
+msgstr "Interpret:"
 
 #: ../ms-core/ms-collection.php:448 ../ms-core/ms-song.php:373
 msgid "Select an Artist"
-msgstr "Sélectionner un artiste"
+msgstr "Wählen Sie ein Künstler"
 
 #: ../ms-core/ms-collection.php:456 ../ms-core/ms-song.php:381
 msgid "Enter a new artist"
-msgstr "Entrez un nouvel artiste"
+msgstr "Geben Sie einen neuen Künstler"
 
 #: ../ms-core/ms-collection.php:457 ../ms-core/ms-song.php:382
 msgid "Add artist"
-msgstr "Ajouter artiste»"
+msgstr "Künstler hinzufügen"
 
 #: ../ms-core/ms-collection.php:458
 msgid ""
 "Select an Artist from the list or enter new one. If you leave empty the "
 "artists fields, then the artists is determined from songs in collection"
 msgstr ""
-"Sélectionner un artiste dans la liste ou entrer une nouvelle . Si vous "
-"laissez vide les champs d'artistes, puis les artistes est déterminée à "
-"partir des chansons de collection"
+"Wählen Sie einen Künstler aus der Liste oder geben Sie neue ein. Wenn Sie "
+"die Künstler, die leeren Felder ein und die Künstler von Songs in der "
+"Sammlung bestimmt verlassen"
 
 #: ../ms-core/ms-collection.php:465 ../ms-core/ms-song.php:389
 msgid "Album including the song:"
-msgstr "Album dont la chanson :"
+msgstr "Album mit den Songs"
 
 #: ../ms-core/ms-collection.php:474 ../ms-core/ms-song.php:398
 msgid "Select an Album"
-msgstr "Sélectionnez un album"
+msgstr "Wählen Sie ein Album"
 
 #: ../ms-core/ms-collection.php:483 ../ms-core/ms-song.php:407
 msgid "Enter a new album"
-msgstr "Entrez un nouvel album"
+msgstr "Geben Sie ein neues Album"
 
 #: ../ms-core/ms-collection.php:484 ../ms-core/ms-song.php:408
 msgid "Add album"
-msgstr "Ajouter album"
+msgstr "Album hinzufügen"
 
 #: ../ms-core/ms-collection.php:485 ../ms-core/ms-song.php:409
 msgid "Select an Album from the list or enter new one"
-msgstr "Sélectionnez un album dans la liste ou entrez une nouvelle"
+msgstr "Wählen Sie ein Album aus der Liste oder geben Sie neue"
 
 #: ../ms-core/ms-collection.php:492 ../ms-core/ms-song.php:415
 msgid "Cover:"
-msgstr "Couvrir :"
+msgstr "Decken"
 
 #: ../ms-core/ms-collection.php:495 ../ms-core/ms-song.php:348
 #: ../ms-core/ms-song.php:356 ../ms-core/ms-song.php:418
 msgid "File path/URL"
-msgstr "Chemin du fichier / URL"
+msgstr "Dateipfad / URL"
 
 #: ../ms-core/ms-collection.php:495 ../ms-core/ms-song.php:348
 #: ../ms-core/ms-song.php:356 ../ms-core/ms-song.php:418
 msgid "Upload a file"
-msgstr "Ajouter un fichier"
+msgstr "Datei hochladen"
 
 #: ../ms-core/ms-collection.php:500 ../ms-core/ms-song.php:431
 msgid "Publication Year:"
-msgstr "Année de parution:"
+msgstr "Erscheinungsjahr"
 
 #: ../ms-core/ms-collection.php:503 ../ms-core/ms-song.php:434
 msgid "For example 1999"
-msgstr "Par exemple 1999"
+msgstr "Zum Beispiel 1999"
 
 #: ../ms-core/ms-collection.php:508 ../ms-core/ms-song.php:439
 msgid "Additional information:"
-msgstr "Informations Complémentaires :"
+msgstr "Weitere Informationen:"
 
 #: ../ms-core/ms-collection.php:511 ../ms-core/ms-song.php:442
 msgid "Page URL"
-msgstr "URL de la page"
+msgstr "Seiten-URL"
 
 #: ../ms-core/ms-collection.php:511 ../ms-core/ms-song.php:442
 msgid "Different webpage with additional information"
-msgstr "Different page web avec des informations supplémentaires"
+msgstr "Different Website mit zusätzlichen Informationen"
 
 #: ../ms-core/ms-collection.php:648
 msgid "Collection Id"
@@ -977,56 +974,57 @@ msgstr "Collection Id"
 
 #: ../ms-core/ms-collection.php:649
 msgid "Collection Title"
-msgstr "Collection Titre"
+msgstr "Collection Titel"
 
 #: ../ms-core/ms-collection.php:650
 msgid "Songs List"
-msgstr "Liste de chansons"
+msgstr "Songs List"
 
 #: ../ms-core/ms-collection.php:652
 msgid "Visits"
-msgstr "Visites"
+msgstr "Besuche"
 
 #: ../ms-core/ms-collection.php:653 ../ms-core/ms-song.php:579
 msgid "Purchases"
-msgstr "Achats»"
+msgstr "Käufe"
 
 #: ../ms-core/ms-download.php:257
 msgid "The store is processing the purchase. You will be redirected in"
 msgstr ""
-"Le magasin est en train de traiter l'achat . Vous allez être redirigé dans"
+"Der Laden ist die Verarbeitung der Kauf. Sie werden in umgeleitet werden"
 
 #: ../ms-core/ms-download.php:385
 msgid "The product is no longer available in our Music Store"
-msgstr "Le produit ne est plus disponible dans notre magasin de musique"
+msgstr "Das Produkt ist in unserem Music Store nicht mehr erhältlich"
 
 #: ../ms-core/ms-download.php:396
 msgid "The product is not valid"
-msgstr "Le produit ne est pas valide"
+msgstr "Das Produkt ist nicht gültig"
 
 #: ../ms-core/ms-download.php:433
 msgid "CLICK HERE"
-msgstr "Cliquez ici"
+msgstr "Klicken Sie hier"
 
 #: ../ms-core/ms-download.php:448
 msgid "The list of purchased products is empty"
-msgstr "La liste des produits achetés est vide"
+msgstr "Die Liste der gekauften Produkte ist leer"
 
 #: ../ms-core/ms-functions.php:139
 msgid "The Cookies must be accepted to use the Add To Cart"
-msgstr "Les cookies doivent être acceptés à utiliser l' ajouter au panier"
+msgstr ""
+"Die Cookies müssen akzeptiert werden , um das in den Warenkorb zu verwenden"
 
 #: ../ms-core/ms-product-discount.php:14
 msgid "New price in "
-msgstr "Nouveau prix dans"
+msgstr "Neuer Preis im"
 
 #: ../ms-core/ms-product-discount.php:65
 msgid "New price (*)"
-msgstr "Nouveau prix ( * )"
+msgstr "Neuer Preis (*)"
 
 #: ../ms-core/ms-shopping-cart.php:55
 msgid "Delete"
-msgstr "Supprimer"
+msgstr "Löschen"
 
 #: ../ms-core/ms-shopping-cart.php:65
 msgid "Total"
@@ -1034,51 +1032,51 @@ msgstr "Total"
 
 #: ../ms-core/ms-shopping-cart.php:68
 msgid "Continue Shopping"
-msgstr "Continuer vos achats"
+msgstr "Einkauf fortsetzen"
 
 #: ../ms-core/ms-shopping-cart.php:78
 msgid "Purchase Now"
-msgstr "Achetez maintenant"
+msgstr "Jetzt kaufen"
 
 #: ../ms-core/ms-song.php:127
 msgid "Album(s)"
-msgstr "Album (s )"
+msgstr "Album (n)"
 
 #: ../ms-core/ms-song.php:129
 msgid "Duration"
-msgstr "Durée"
+msgstr "Dauer"
 
 #: ../ms-core/ms-song.php:134
 msgid "Get back"
-msgstr "Get back"
+msgstr "Zurück «"
 
 #: ../ms-core/ms-song.php:337
 msgid "Sell as a single:"
-msgstr "Vendre en une seule :"
+msgstr "Verkaufen als eine einzige"
 
 #: ../ms-core/ms-song.php:345
 msgid "Audio file for sale:"
-msgstr "Fichier Audio à vendre :"
+msgstr "Audio -Datei zum Verkauf :"
 
 #: ../ms-core/ms-song.php:353
 msgid "Audio file for demo:"
-msgstr "Fichier audio pour la démo :"
+msgstr "Audio -Datei für Demo :"
 
 #: ../ms-core/ms-song.php:358
 msgid "Protect the file"
-msgstr "Protéger le fichier"
+msgstr "Schützen Sie die Datei"
 
 #: ../ms-core/ms-song.php:383
 msgid "Select an Artist from the list or enter new one"
-msgstr "Sélectionner un artiste dans la liste ou entrez une nouvelle"
+msgstr "Wählen Sie einen Künstler aus der Liste oder geben Sie neue"
 
 #: ../ms-core/ms-song.php:423
 msgid "Duration:"
-msgstr "Durée:"
+msgstr "Dauer"
 
 #: ../ms-core/ms-song.php:426
 msgid "For example 00:00"
-msgstr "Par exemple 00:00"
+msgstr "Zum Beispiel 00:00"
 
 #: ../ms-core/ms-song.php:573
 msgid "Song Id"
@@ -1086,7 +1084,7 @@ msgstr "Song Id"
 
 #: ../ms-core/ms-song.php:574
 msgid "Song Name"
-msgstr "Titre de la chanson"
+msgstr "Song Name"
 
 #: ../ms-core/ms-song.php:578
 msgid "Plays"
