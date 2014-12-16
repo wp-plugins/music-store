@@ -294,6 +294,7 @@ The Music Store uses the English language by default, but includes the following
 
 * Spanish
 * French
+* German
 
 Note: The languages packages are generated dynamically. If detects an error in the translation, please, contact us to correct it.
 
