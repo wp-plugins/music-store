@@ -96,3 +96,6 @@
 	.music-store-song .left-column{width:100%;clear:both;}
 	.music-store-song .right-column.single{float:left; padding-left:0; width:100%;}
 }
+
+.music-store-collection .ms-player .mejs-offscreen,
+.music-store-song .ms-player .mejs-offscreen{display:none;}
