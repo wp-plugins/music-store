@@ -134,6 +134,7 @@ jQuery( function( $ )
 		);
 		
 		// Modify the shopping cart design
-		$( '.ms-shopping-cart-list,.ms-shopping-cart-resume' ).wrap( '<div class="ms-shopping-cart-wrapper"></div>' );
+		$( '.ms-shopping-cart-list,.ms-shopping-cart-resume' ).wrap( '<div class="ms-shopping-cart-wrapper" style="position:relative;"></div>' );
+		$( '.ms-shopping-cart-wrapper' ).prepend( '<div style="clear:both;"></div>' ).append( '<div style="clear:both;"></div>' );
 	} 	
 );
