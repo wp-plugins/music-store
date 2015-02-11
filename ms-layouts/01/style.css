@@ -50,7 +50,7 @@ color:#AAA;
 .ms-shopping-cart-list td:nth-child(3),
 .song-title,
 .collection-title{
-font-size: 1.7em;
+font-size: 1em;
 font-weight: normal !important;
 line-height: 30px;
 }
@@ -61,16 +61,17 @@ color: #2B2B2B;
 }
 
 .music-store-item .song-data,
-.music-store-item .collection-data,
+.music-store-item .collection-data{
+width:90%;
+margin:0 auto 10px auto;
+}
+
+.music-store-song .song-cover,
+.music-store-collection .collection-cover,
 .music-store-item .song-cover,
 .music-store-item .collection-cover{
 width:90%;
-margin:0 auto;
-}
-
-#ms-shopping-cart-thumbnail,
-.song-cover img,
-.collection-cover img{
+margin:0 auto 10px auto;
 -webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
 -moz-box-shadow:    0px 2px 4px 0px rgba(0, 0, 0, 0.4);
 box-shadow:         0px 2px 4px 0px rgba(0, 0, 0, 0.4);
@@ -81,9 +82,16 @@ margin-bottom: 10px;
 border: 1px solid #C9C9C9;
 }
 
-
-.music-store-song input[ type=image ],
-.music-store-collection input[ type=image ]{ border:0; }
+#ms-shopping-cart-thumbnail{
+-webkit-box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+-moz-box-shadow:    0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+box-shadow:         0px 2px 4px 0px rgba(0, 0, 0, 0.4);
+-webkit-border-radius: 10px;
+-moz-border-radius: 10px;
+border-radius: 10px;
+margin-bottom: 10px;
+border: 1px solid #C9C9C9;
+}
 
 .music-store-song .arrow,
 .music-store-collection .arrow{ display: none; }
@@ -92,7 +100,7 @@ border: 1px solid #C9C9C9;
 .star-inactive{ display:inline-block; height: 14px; width: 15px; background: url(star_off.png) 0 0 no-repeat;}
 
 .music-store-song input[ type=image ],
-.music-store-collection input[ type=image ]{ padding: 0; margin: 0; }
+.music-store-collection input[ type=image ]{ padding: 0; margin: 0; border:0;}
 
 .music-store-pagination{ border-top: 1px solid #cbcaca; margin-top: 10px; }
 .music-store-pagination .page-selected{ font-size:1.5em; line-height:1.5em; }
@@ -126,7 +134,6 @@ padding: 5px 20px;
 display:inline-block;
 color: #3C3C3C;
 font-weight:bold;
-font-size:1.1em;	
 text-shadow: 0px 1px 1px rgba(255, 255, 255, 1) !important; 
 text-decoration:none;
 }

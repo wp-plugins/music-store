@@ -7,22 +7,10 @@ Author: <a href="http://www.codepeople.net">CodePeople</a>
 Description: Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. With Music Store your sales will be safe, with all the security PayPal offers.
  */
 
-if(!function_exists('ms_get_site_url')){
-    function ms_get_site_url(){
-        $url_parts = parse_url(get_site_url());
-        return rtrim( 
-                        ((!empty($url_parts["scheme"])) ? $url_parts["scheme"] : "http")."://".
-                        $_SERVER["HTTP_HOST"].
-                        ((!empty($url_parts["path"])) ? $url_parts["path"] : ""),
-                        "/"
-                    )."/";
-    }
-}
-
  // CONSTANTS
  define( 'MS_FILE_PATH', dirname( __FILE__ ) );
  define( 'MS_URL', plugins_url( '', __FILE__ ) );
- define( 'MS_H_URL', ms_get_site_url());
+ define( 'MS_H_URL', rtrim( get_site_url( get_current_blog_id() ), "/" )."/" );
  define( 'MS_DOWNLOAD', dirname( __FILE__ ).'/ms-downloads' );
  define( 'MS_OLD_DOWNLOAD_LINK', 3); // Number of days considered old download links
  define( 'MS_DOWNLOADS_NUMBER', 3);  // Number of downloads by purchase
@@ -1346,7 +1334,7 @@ if(!function_exists('ms_get_site_url')){
 												echo '
 													<TR>
 														<TD>'.$purchase->date.'</TD>
-														<TD><a href="'.get_permalink($purchase->ID).'" target="_blank">'.$purchase->post_title.'</a></TD>
+														<TD><a href="'.get_permalink($purchase->ID).'" target="_blank">'.( ( empty( $purchase->post_title ) ) ? $purchase->ID : $purchase->post_title ).'</a></TD>
 														<TD>'.$purchase->email.'</TD>
 														<TD>'.$purchase->amount.'</TD>
 														<TD>'.$currency.'</TD>
@@ -1776,9 +1764,13 @@ if(!function_exists('ms_get_site_url')){
             }
 			
             // Create filter section
-			if($allow_filter_by_genre || $allow_filter_by_artist || $allow_filter_by_album ){
-
-			
+			if(
+				$allow_filter_by_genre || 
+				$allow_filter_by_artist || 
+				$allow_filter_by_album || 
+				!isset( $atts[ 'show_order_by' ] ) || 
+				$atts[ 'show_order_by' ] * 1
+			){
 				$header .= "<div class='music-store-filters'><span>".__('Filter by: ', MS_TEXT_DOMAIN)."</span>";
 				if($allow_filter_by_genre){
 					$header .= "<span><select id='filter_by_genre' name='filter_by_genre' onchange='this.form.submit();'>
@@ -1812,22 +1804,22 @@ if(!function_exists('ms_get_site_url')){
 					}
 					$header .= "</select></span>";
 				}
+				
+				// Create order filter
+				if( !isset( $atts[ 'show_order_by' ] ) || $atts[ 'show_order_by' ] * 1 )
+				{
+					$header .= "<span class='music-store-ordering'>".
+									__('Order by: ', MS_TEXT_DOMAIN).
+									"<select id='ordering_by' name='ordering_by' onchange='this.form.submit();'>
+										<option value='post_date' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'post_date') ? "SELECTED" : "").">".__('Date', MS_TEXT_DOMAIN)."</option>
+										<option value='post_title' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'post_title') ? "SELECTED" : "").">".__('Title', MS_TEXT_DOMAIN)."</option>
+										<option value='plays' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'plays') ? "SELECTED" : "").">".__('Popularity', MS_TEXT_DOMAIN)."</option>
+										<option value='price' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'price') ? "SELECTED" : "").">".__('Price', MS_TEXT_DOMAIN)."</option>
+									</select>
+								</span>";
+				}
 				$header .="</div>";
 			}
-			
-			// Create order filter
-            if( !isset( $atts[ 'show_order_by' ] ) || $atts[ 'show_order_by' ] * 1 )
-            {
-                $header .= "<div class='music-store-ordering'>".
-                                __('Order by: ', MS_TEXT_DOMAIN).
-                                "<select id='ordering_by' name='ordering_by' onchange='this.form.submit();'>
-                                    <option value='post_date' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'post_date') ? "SELECTED" : "").">".__('Date', MS_TEXT_DOMAIN)."</option>
-                                    <option value='post_title' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'post_title') ? "SELECTED" : "").">".__('Title', MS_TEXT_DOMAIN)."</option>
-                                    <option value='plays' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'plays') ? "SELECTED" : "").">".__('Popularity', MS_TEXT_DOMAIN)."</option>
-                                    <option value='price' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'price') ? "SELECTED" : "").">".__('Price', MS_TEXT_DOMAIN)."</option>
-                                </select>
-                            </div>";
-            }
 			$header .= "<div style='clear:both;'></div>
 						</div>
 						</form>

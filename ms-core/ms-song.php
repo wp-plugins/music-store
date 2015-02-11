@@ -69,8 +69,10 @@ if(!class_exists('MSSong')){
 				break;
 				default:
 					if(isset($this->song_data[$name])){
+						if( $name == 'post_title' && empty($this->song_data[$name]) ) return $this->id;
 						return $this->song_data[$name];
 					}elseif(isset($this->post_data[$name])){
+						if( $name == 'post_title' && empty($this->post_data[$name]) ) return $this->id;
 						return $this->post_data[$name];
 					}else{
 						return null;
