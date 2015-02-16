@@ -239,3 +239,5 @@ tr.track{ border:0 !important; }
 .ms-shopping-cart-list td{ vertical-align:middle; }
 .ms-shopping-cart-list td:nth-child(3){color: #D0379B; font-size:1.5em;}
 .ms-shopping-cart-list td:last-child{text-align:right;}
+
+.music-store-filtering-result{ border:0; }

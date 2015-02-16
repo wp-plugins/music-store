@@ -115,6 +115,7 @@ jQuery( function( $ )
 		};
 		
 		$( window ).load( function(){ correct_header(); correct_heights(); } );
+		$( window ).bind( 'orientationchange resize', correct_header );
 		
 		// Modify the price box
 		$( '.song-price' ).each(

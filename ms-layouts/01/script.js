@@ -18,6 +18,7 @@ jQuery(
 			
 		correct_header();	
 		$( window ).load( correct_header );
+		$( window ).bind( 'orientationchange resize', correct_header );
 		
 		// Replace the popularity texts with the stars 
 		var popularity_top = 0;

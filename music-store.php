@@ -2,7 +2,7 @@
 /*
 Plugin Name: Music Store 
 Plugin URI: http://wordpress.dwbooster.com/content-tools/music-store
-Version: 1.0.1
+Version: 1.0.2
 Author: <a href="http://www.codepeople.net">CodePeople</a>
 Description: Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. With Music Store your sales will be safe, with all the security PayPal offers.
  */
@@ -1549,6 +1549,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 			$music_store = "";
 			$page_links = "";
 			$header = "";
+			$items_summary = "";
 			
 			// Extract the music store attributes
 			extract(shortcode_atts(array(
@@ -1714,6 +1715,14 @@ Description: Music Store is an online store for selling audio files: music, spee
 				$total = $wpdb->get_var($query);
 				$total_pages = ceil($total/max($items_page,1));
 				
+				if( $total )
+				{
+					$min_in_page = ( $_SESSION[ $page_id ][ 'ms_page_number' ] - 1 ) * $items_page + $items_page + 1;
+					$max_in_page = min( $_SESSION[ $page_id ][ 'ms_page_number' ] * $items_page + $items_page, $total );
+					
+					$items_summary = '<div class="music-store-filtering-result">'.$min_in_page.'-'.$max_in_page.' '.__( 'of', MS_TEXT_DOMAIN ).' '.$total.'</div>';
+				}
+				
 				if($total_pages > 1){
 				
 					// Make page links
@@ -1743,7 +1752,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 			$item_counter = 0;
 			foreach($results as $result){
 				$obj = new MSSong($result->ID, (array)$result);
-				$music_store .= "<div style='width:{$width}%;' class='music-store-item'>".$obj->display_content('store', $tpl, 'return')."</div>";
+				$music_store .= "<div style='width:{$width}%;' data-width='{$width}%' class='music-store-item'>".$obj->display_content('store', $tpl, 'return')."</div>";
 				$item_counter++;
 				if($item_counter % $columns == 0)
 					$music_store .= "<div style='clear:both;'></div>";
@@ -1824,7 +1833,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 						</div>
 						</form>
 						";
-			return $header.$music_store.$page_links;
+			return $header.$items_summary.$music_store.$page_links;
 		} // End load_store
 			
 /** MODIFY CONTENT OF POSTS LOADED **/
