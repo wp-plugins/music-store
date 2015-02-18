@@ -2,7 +2,7 @@
 /*
 Plugin Name: Music Store 
 Plugin URI: http://wordpress.dwbooster.com/content-tools/music-store
-Version: 1.0.2
+Version: 1.0.3
 Author: <a href="http://www.codepeople.net">CodePeople</a>
 Description: Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. With Music Store your sales will be safe, with all the security PayPal offers.
  */
@@ -1632,53 +1632,36 @@ Description: Music Store is an online store for selling audio files: music, spee
 			
 			if($artist !== 'all' || $genre !== 'all' || $album !== 'all'){
 				// Load the taxonomy tables
-				$_from .= ", ".$wpdb->prefix."term_taxonomy as taxonomy, ".$wpdb->prefix."term_relationships as term_relationships, ".$wpdb->prefix."terms as terms";
-				
-				$_where .= " AND taxonomy.term_taxonomy_id=term_relationships.term_taxonomy_id AND term_relationships.object_id=posts.ID AND taxonomy.term_id=terms.term_id AND (";
-				
-				$connector = "";
 				if($genre !== 'all'){
+					$_from .= ", ".$wpdb->prefix."term_taxonomy as taxonomy, ".$wpdb->prefix."term_relationships as term_relationships, ".$wpdb->prefix."terms as terms";
+					
+					$_where .= " AND taxonomy.term_taxonomy_id=term_relationships.term_taxonomy_id AND term_relationships.object_id=posts.ID AND taxonomy.term_id=terms.term_id ";
+					
 					// Search for genres assigned directly to the posts
-					$_where .= $connector."(taxonomy.taxonomy='ms_genre' AND ";
-					
-					if(is_numeric($genre))
-						$_where .= "terms.term_id='$genre'";
-					else
-						$_where .= "terms.slug='$genre'";	
-					
-					$_where .= ")";
-					
-					$connector = " OR ";
+					$_where .= "AND taxonomy.taxonomy='ms_genre' AND ";
+					$_where .= "terms.slug='$genre'";	
 				}
 				
 				if($artist !== 'all'){
+					$_from .= ", ".$wpdb->prefix."term_taxonomy as taxonomy1, ".$wpdb->prefix."term_relationships as term_relationships1, ".$wpdb->prefix."terms as terms1";
+					
+					$_where .= " AND taxonomy1.term_taxonomy_id=term_relationships1.term_taxonomy_id AND term_relationships1.object_id=posts.ID AND taxonomy1.term_id=terms1.term_id ";
+					
 					// Search for artist assigned directly to the posts
-					$_where .= $connector."(taxonomy.taxonomy='ms_artist' AND ";
-					
-					if(is_numeric($artist))
-						$_where .= "terms.term_id='$artist'";
-					else
-						$_where .= "terms.slug='$artist'";	
-					
-					$_where .= ")";
-					
-					$connector = " OR ";
+					$_where .= "AND taxonomy1.taxonomy='ms_artist' AND ";
+					$_where .= "terms1.slug='$artist'";	
 				}
 				
 				if($album !== 'all'){
+					$_from .= ", ".$wpdb->prefix."term_taxonomy as taxonomy2, ".$wpdb->prefix."term_relationships as term_relationships2, ".$wpdb->prefix."terms as terms2";
+					
+					$_where .= " AND taxonomy2.term_taxonomy_id=term_relationships2.term_taxonomy_id AND term_relationships2.object_id=posts.ID AND taxonomy2.term_id=terms2.term_id ";
+					
 					// Search for albums assigned directly to the posts
-					$_where .= $connector."(taxonomy.taxonomy='ms_album' AND ";
+					$_where .= "AND taxonomy2.taxonomy='ms_album' AND ";
+					$_where .= "terms2.slug='$album'";	
 					
-					if(is_numeric($album))
-						$_where .= "terms.term_id='$album'";
-					else
-						$_where .= "terms.slug='$album'";	
-					
-					$_where .= ")";
 				}
-				
-				$_where .= ")";
-				
 				// End taxonomies
 			} 
 			
