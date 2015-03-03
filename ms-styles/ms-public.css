@@ -50,7 +50,7 @@
 
 
 .music-store-song .ms-player{margin-bottom:10px;}
-.music-store-song .ms-player.multiple{width:25px;overflow:hidden;position:relative;float:left;margin:0 5px 0 0;}
+.music-store-song .ms-player.multiple{width:25px;overflow:hidden;position:relative;float:left;margin:0 5px 0 0;overflow:hidden;}
 
 
 .music-store-song .song-price.single{font-size:0.75em;color: #333;display:inline-block;background-color:#EFEFEF;padding:0 10px;-webkit-border-radius: 10px; -moz-border-radius: 10px; border-radius: 10px; text-shadow: 1px 1px #FFF;}
