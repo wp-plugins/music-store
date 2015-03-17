@@ -2,7 +2,7 @@
 /*
 Plugin Name: Music Store 
 Plugin URI: http://wordpress.dwbooster.com/content-tools/music-store
-Version: 1.0.6
+Version: 1.0.7
 Author: <a href="http://www.codepeople.net">CodePeople</a>
 Description: Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. With Music Store your sales will be safe, with all the security PayPal offers.
  */
@@ -10,7 +10,7 @@ Description: Music Store is an online store for selling audio files: music, spee
  // CONSTANTS
  define( 'MS_FILE_PATH', dirname( __FILE__ ) );
  define( 'MS_URL', plugins_url( '', __FILE__ ) );
- define( 'MS_H_URL', rtrim( get_home_url( get_current_blog_id() ), "/" )."/" );
+ define( 'MS_H_URL', rtrim( get_home_url( get_current_blog_id() ), "/" ).( ( strpos( get_current_blog_id(), '?' ) === false ) ? "/" : "" ) );
  define( 'MS_DOWNLOAD', dirname( __FILE__ ).'/ms-downloads' );
  define( 'MS_OLD_DOWNLOAD_LINK', 3); // Number of days considered old download links
  define( 'MS_DOWNLOADS_NUMBER', 3);  // Number of downloads by purchase
