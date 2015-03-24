@@ -11,7 +11,6 @@ background: linear-gradient(to bottom,  #696969 1%,#000 100%);
 filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#696969', endColorstr='#000',GradientType=0 );
 
 padding:10px;
-white-space:nowrap;
 display:table;
 text-shadow: 0px 1px 1px rgba(0, 0, 0, 1) !important;
 color: #FFF;

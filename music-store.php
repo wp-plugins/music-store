@@ -2,7 +2,7 @@
 /*
 Plugin Name: Music Store 
 Plugin URI: http://wordpress.dwbooster.com/content-tools/music-store
-Version: 1.0.7
+Version: 1.0.8
 Author: <a href="http://www.codepeople.net">CodePeople</a>
 Description: Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. With Music Store your sales will be safe, with all the security PayPal offers.
  */
@@ -1796,11 +1796,11 @@ Description: Music Store is an online store for selling audio files: music, spee
 					}
 					$header .= "</select></span>";
 				}
-				
+				$header .="</div>";
 				// Create order filter
 				if( !isset( $atts[ 'show_order_by' ] ) || $atts[ 'show_order_by' ] * 1 )
 				{
-					$header .= "<span class='music-store-ordering'>".
+					$header .= "<div class='music-store-ordering'>".
 									__('Order by: ', MS_TEXT_DOMAIN).
 									"<select id='ordering_by' name='ordering_by' onchange='this.form.submit();'>
 										<option value='post_date' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'post_date') ? "SELECTED" : "").">".__('Date', MS_TEXT_DOMAIN)."</option>
@@ -1808,9 +1808,9 @@ Description: Music Store is an online store for selling audio files: music, spee
 										<option value='plays' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'plays') ? "SELECTED" : "").">".__('Popularity', MS_TEXT_DOMAIN)."</option>
 										<option value='price' ".(($_SESSION[ $page_id ]['ms_ordering'] == 'price') ? "SELECTED" : "").">".__('Price', MS_TEXT_DOMAIN)."</option>
 									</select>
-								</span>";
+								</div>";
 				}
-				$header .="</div>";
+				
 			}
 			$header .= "<div style='clear:both;'></div>
 						</div>
