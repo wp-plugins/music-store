@@ -2,7 +2,7 @@
 /*
 Plugin Name: Music Store 
 Plugin URI: http://wordpress.dwbooster.com/content-tools/music-store
-Version: 1.0.8
+Version: 1.0.9
 Author: <a href="http://www.codepeople.net">CodePeople</a>
 Description: Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. With Music Store your sales will be safe, with all the security PayPal offers.
  */
@@ -669,6 +669,8 @@ Description: Music Store is an online store for selling audio files: music, spee
 				// Sales report submenu
 				add_submenu_page($this->music_store_slug, __( 'Music Store Sales Report', MS_TEXT_DOMAIN ), __( 'Sales Report', MS_TEXT_DOMAIN ), 'edit_pages', $this->music_store_slug.'-reports', array(&$this, 'settings_page'));
 				
+				// Importer submenu
+				add_submenu_page($this->music_store_slug, __( 'Songs Importer', MS_TEXT_DOMAIN ), __( 'Songs Importer', MS_TEXT_DOMAIN ), 'edit_pages', $this->music_store_slug.'-importer', array(&$this, 'importer'));
 			}	
 		} // End menu_links
 		
@@ -676,7 +678,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 		*	Create tabs for setting page and payment stats
 		*/
 		function settings_tabs($current = 'reports'){
-			$tabs = array( 'settings' => __( 'Music Store Settings', MS_TEXT_DOMAIN ), 'song' => __( 'Music Store Songs', MS_TEXT_DOMAIN ), 'collection' => __( 'Music Store Collections', MS_TEXT_DOMAIN ),'reports' => __( 'Sales Report', MS_TEXT_DOMAIN ) );
+			$tabs = array( 'settings' => __( 'Music Store Settings', MS_TEXT_DOMAIN ), 'song' => __( 'Music Store Songs', MS_TEXT_DOMAIN ), 'collection' => __( 'Music Store Collections', MS_TEXT_DOMAIN ),'reports' => __( 'Sales Report', MS_TEXT_DOMAIN ), 'importer' => __( 'Songs Importer', MS_TEXT_DOMAIN ) );
 			echo '<h2 class="nav-tab-wrapper">';
 			foreach( $tabs as $tab => $name ){
 				$class = ( $tab == $current ) ? ' nav-tab-active' : '';
@@ -726,6 +728,13 @@ Description: Music Store is an online store for selling audio files: music, spee
 			$d->close();
 			return $str;
 		} // End _paypal_buttons
+		
+		function importer()
+		{
+			$_REQUEST[ 'tab' ] = 'importer';
+			$this->settings_page();
+			
+		} // End Importer
 		
 		/*
 		* Set the music store settings
@@ -1426,6 +1435,13 @@ Description: Music Store is an online store for selling audio files: music, spee
 					</div>
 					</form>
 <?php					
+				break;
+				case 'importer':
+				?>
+					<p style="border:1px solid #E6DB55;margin-bottom:10px;padding:5px;background-color: #FFFFE0;">
+						The feature is only available in the commercial version of Music Store.
+					</p>
+				<?php	
 				break;
 			}	
 		} // End settings_page

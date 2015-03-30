@@ -4,7 +4,7 @@ Donate link: http://wordpress.dwbooster.com/content-tools/music-store
 Tags:audio,audio player,music,music player,e-commerce,ecommerce,facebook,google,google+,html5,mp3,ogg,wav,paypal,player,secure player,sell music,sell,shop,sidebar,social,social network,songs,store,twitter,widget,post,plugin,posts,page,admin,image,images,comments,shortcode
 Requires at least: 3.5.0
 Tested up to: 4.1
-Stable tag: 1.0.8
+Stable tag: 1.0.9
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -52,6 +52,7 @@ The base plugin, available for free from the WordPress Plugin Directory has all 
 *   Allows to insert a list of products in a post, page or template. In the Free version of plugin, the songs are available only from the Music Store webpage, but in the premium version Music Store is possible to insert list of products directly in a post, page, or template. The list can load the top rated products, the newest products, or the top selling.
 *   Allows to insert a counter of sold products in your website.
 *   Allows to insert a product, a products list, or a sold products counter, as a widget in the website sidebars.
+*	Allows to import multiple audio files at once, and extracts the information of the songs, like: title, artist, genres, albums names, and year, from the ID3 tags.
 
 **Demo of Premium Version of Plugin**
 
@@ -636,7 +637,16 @@ A: For selling tangible products, like CDs, DVDs, etc. is required an additional
 
 * Modifies the styles of the filtering section, in the store's page.
 
+= 1.0.9 =
+
+* Implements a new feature in the Music Store plugin, and modifies its interface.
+
 == Upgrade Notice ==
+
+= 1.0.9 =
+* Implements a new feature in the Music Store plugin, and modifies its interface.
+
+Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
 
 = 1.0.8 =
 * Modifies the styles of the filtering section, in the store's page.
