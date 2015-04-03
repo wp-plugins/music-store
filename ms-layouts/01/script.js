@@ -62,8 +62,9 @@ jQuery(
 		
 		// Correct the item heights
 		var height_arr = [],
-			max_height = 0,
-			correct_heights = function()
+			max_height = 0;
+			
+		window[	'ms_correct_heights' ] = function()
 			{
 				$( '.music-store-items' ).children( 'div' ).each(
 					function()
@@ -100,7 +101,8 @@ jQuery(
 				}	
 			};
 		
-		$( window ).load( function(){ correct_heights(); } );	
+		$( window ).load( function(){ ms_correct_heights(); } );	
+		
 		// Modify the price box
 		$( '.song-price' ).each(
 			function()

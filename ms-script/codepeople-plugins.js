@@ -60,13 +60,27 @@ jQuery(function($){
 			{
 				return function()
 				{ 
-					if( getWidth() < min_screen_width ) $( '.music-store-item' ).css( 'width', '100%' );
-					else $( '.music-store-item' ).each( function(){ var e = $(this); e.css( 'width', e.attr( 'data-width' ) ); } );
+					$( '.music-store-item' ).each( function(){
+						var e = $( this ),
+							c = e.find( '.collection-cover,.song-cover' );
+						
+						if( getWidth < minWidth )
+						{	
+							if( c.length ) c.css( { 'height': 'auto' } );
+							e.css( {'width': '100%', 'height': 'auto'} );
+						}	
+						else
+						{	
+							if( c.length ) c.css( { 'height': '' } );
+							e.css( {'width': e.attr( 'data-width' ), 'height': '' } );
+						}	
+					} );
+					if( getWidth >= minWidth && typeof ms_correct_heights != 'undefined' ) 
+						ms_correct_heights();
 				}
-			})( min_screen_width, getWidth ), 
-			500 
+			})( min_screen_width, getWidth() ), 
+			100 
 		);
 	} );
-	
-	$( window ).trigger( 'resize' );
+	$( window ).load( function(){ $( window ).trigger( 'resize' ); } );	
 });

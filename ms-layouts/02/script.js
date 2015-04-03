@@ -59,9 +59,9 @@ jQuery( function( $ )
 		);
 		
 		// Correct the images heights
-		var min_height = Number.MAX_VALUE,
-			correct_heights = function()
-			{
+		window[	'ms_correct_heights' ] = function()
+		{
+			var min_height = Number.MAX_VALUE;
 			$( '.music-store-items .song-cover img, .music-store-items .colllection-cover img' ).each(
 				function()
 				{
@@ -114,7 +114,7 @@ jQuery( function( $ )
 			}	
 		};
 		
-		$( window ).load( function(){ correct_header(); correct_heights(); } );
+		$( window ).load( function(){ correct_header(); ms_correct_heights(); } );
 		$( window ).bind( 'orientationchange resize', correct_header );
 		
 		// Modify the price box

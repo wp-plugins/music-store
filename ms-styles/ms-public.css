@@ -6,7 +6,7 @@
 .music-store-items{position:relative;clear:both;padding-top:10px;}
 
 .music-store-header{width:100%;position:relative;clear:both;margin-bottom:10px;}
-.music-store-filters{ white-space:nowrap; float:left; margin-bottom:5px; }
+.music-store-filters{ /*white-space:nowrap;*/ float:left; margin-bottom:5px; }
 .music-store-header .music-store-filters span{display:inline-block; padding-right: 5px;}
 .music-store-ordering{float:right;}
 
