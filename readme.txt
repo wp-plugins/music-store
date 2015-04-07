@@ -556,6 +556,24 @@ A: By default the Music Store generates the page called "Shopping Cart", with it
 
 A: For selling tangible products, like CDs, DVDs, etc. is required an additional module for asking to the customers its postal address, furthermore will be required add to the products prices the shipping cost, and finally accept the selection of number of copies. With the Music Store, none of these modules are included, because are not needed for selling digital files, this is the reason our plugin is recommended only for selling digital files.
 
+= Q: Can be created multiple products at time, or should be created one by one? =
+
+A: The pro version of the Music Store includes a new section (the importer section) that allows create multiple products at the same time. The better results  are obtained if  the audio files have defined the ID3 tags with the correct information.
+
+To proceed importing multiple songs, follow the steps below:
+
+1. Go to the menu option: "Music Store/Songs Importer"
+
+2. Press the "Upload/Select files" button to display the "Media Library". From the media library it is possible select the files existent in the library, or activate the "Upload Files" tab, and upload new files to the library.
+
+3. Enter a base price that will be applied to all imported songs.
+
+4. Check any of the attributes: artist, albums names, genres, or year, if you want extract the artist name, the album name, the genre, or the year, from the ID3 tags of the MP3 files, and assign these data to the imported products.
+
+5. Finally, press the "Import" button.
+
+The importer will create a new product for each audio file, with the information included in the ID3 tags.
+
 == Screenshots ==
 01. Music Store Item
 02. Music Store Song Section
@@ -571,6 +589,7 @@ A: For selling tangible products, like CDs, DVDs, etc. is required an additional
 12. Filtering Sales Report
 13. Sales Reports
 14. Available layouts
+15. Songs Importer Section
 
 == Changelog ==
 
