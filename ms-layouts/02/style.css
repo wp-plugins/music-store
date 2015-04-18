@@ -85,7 +85,6 @@ width: calc(100% - 290px);
 
 .song-title,
 .collection-title{
-font-size: 1.7em;
 font-weight: normal !important;
 line-height: 30px;
 }
@@ -156,7 +155,7 @@ border-right: 0;
 .collection-price,
 .music-store-song .song-price.single, 
 .music-store-collection .collection-price.single{ 
-font-size:1.5em !important; 
+font-size:1em !important; 
 color:#D0379B !important; 
 background: transparent !important;
 text-shadow: 0px 1px 1px rgba(0, 0, 0, 1) !important;
@@ -228,7 +227,7 @@ display:block;
 
 /** TRACKS **/
 tr.track{ border:0 !important; }
-.track-price{ color:#D0379B !important; font-size:1.3em;}
+.track-price{ color:#D0379B !important; font-size:1.2em;}
 
 
 /** SHOPPING CART **/
@@ -236,7 +235,7 @@ tr.track{ border:0 !important; }
 #ms-shopping-cart-thumbnail {margin:0;}
 
 .ms-shopping-cart-list td{ vertical-align:middle; }
-.ms-shopping-cart-list td:nth-child(3){color: #D0379B; font-size:1.5em;}
+.ms-shopping-cart-list td:nth-child(3){color: #D0379B; font-size:1em;}
 .ms-shopping-cart-list td:last-child{text-align:right;}
 
 .music-store-filtering-result{ border:0; }
