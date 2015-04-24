@@ -416,6 +416,18 @@ A: To sell only collections, and not individual songs, you only should uncheck t
 
 In this case the "filtering by type" is not necessary in the store's page, so, to hide this filtering option, you only should go to the store's settings and uncheck the option "Allow to filter by type"
 
+= Q: It is possible to sell different versions of a song? =
+
+A: In our plugin each song includes only one audio file for selling. If you need sell different versions of a same song, for example, full song, ring tone, etc. each of them with their own price, you should use collections.
+
+First, creates all songs by separated, with its corresponding audio file and price.
+
+Second, for each title, creates a collection, and selects all songs versions, created in the first point, corresponding to the title, and assigns a price to the collection.
+
+Third, use the attribute: load="collections", in the store's shortcode.
+
+Fourth, and finally, the "filtering by type" won't be needed in the store's page, go to the store's settings and untick the option "Allow to filter by type"
+
 = Q: How can be modified the store's settings  in a specific page? = 
 
 A: The store is inserted in a page through the shortcode [music_store].
