@@ -367,6 +367,17 @@ A: The security in the access to songs files is determined in different ways.
 
 -- The Music Store may be configured to request the email address used in the purchasing to check the validity of download link.
 
+= Q: How forcing to the browser to download the songs distributed for free? =
+
+A: If a song is distributed for free, the music store redirects to the user directly to the audio file, and the browser will play the audio file, or download it, depending of  headers sent by the server, and if the audio file is supported by the browser or not. Sometimes the browser plays the audio file, instead of download it.
+
+If you want forcing the file download, you should modify the headers sent by the server. To force it, creates a .htaccess file, in "/wp-content/uploads" directory, with the following content:
+
+		<FilesMatch "\.(?i:mp3|ogv|oga|ogg|wav)$>		
+		AddType application/octet-stream mp3 ogv oga ogg wav		
+		Header set Content-Disposition attachment		
+		</FilesMatch>		
+		
 = Q: Can I customize the store's design? = 
 
 A: The plugin includes some different designs that can be selected through the settings option "Store Layout", but you can create a new once, duplicating an of available store's layouts, and edit its style.css file
