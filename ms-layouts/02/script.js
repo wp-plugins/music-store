@@ -8,7 +8,7 @@ jQuery( function( $ )
 					{
 
 						var e = $( this );
-						if( e.parents( '.widget' ).length == 0 )
+						if( e.parents( '.widget' ).length == 0 && e.siblings( '.music-store-filtering-result' ).length != 0 )
 						{
 							e.css( 'width', $( '.music-store-header' ).outerWidth( ) );
 						}
