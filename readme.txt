@@ -421,6 +421,10 @@ To protect the resources of web server, the music store does not generates the a
 
 **Note:** If you are using the Pro version of the plugin, greater than or equal to 5.0.2, it is not required delete the files in the "ms-temp" directory, the files are deleted dynamically by the plugin, when the percentage of the audio file for demo is modified.
 
+= Q: How to display the tracks list in the collections pages with a predetermined order? =
+
+A: The tracks are associated to the collections through the "Songs of collections" list. Each time a song is selected, the plugin generates a button over the songs list. The order followed in the songs selection, would be the same order in the tracks list on the public webpage.
+
 = Q: How I can sell only collections, and not individual songs? = 
 
 A: To sell only collections, and not individual songs, you only should uncheck the checkbox: "Sell as a single", from the songs. 
