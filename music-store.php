@@ -2,7 +2,7 @@
 /*
 Plugin Name: Music Store 
 Plugin URI: http://wordpress.dwbooster.com/content-tools/music-store
-Version: 1.0.13
+Version: 1.0.14
 Author: <a href="http://www.codepeople.net">CodePeople</a>
 Description: Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. With Music Store your sales will be safe, with all the security PayPal offers.
  */
@@ -1138,6 +1138,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 					$_select = "";
 					$_from 	 = " FROM ".$wpdb->prefix.MSDB_PURCHASE." AS purchase, ".$wpdb->prefix."posts AS posts ";
 					$_where  = " WHERE posts.ID = purchase.product_id 
+									  AND (posts.post_type = 'ms_song' OR posts.post_type = 'ms_collection')
 									  AND DATEDIFF(purchase.date, '{$from_year}-{$from_month}-{$from_day}')>=0 
 									  AND DATEDIFF(purchase.date, '{$to_year}-{$to_month}-{$to_day}')<=0 ";
                     if( !empty( $buyer ) )
