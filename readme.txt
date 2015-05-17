@@ -579,6 +579,10 @@ A: By default the Music Store generates the page called "Download Page", with it
 
 A: By default the Music Store generates the page called "Shopping Cart", with its content empty. The content of the "Shopping Cart" page is generated dynamically, and includes a table with the products selected, a button to continue shopping, a button to complete the payment, and the input box for entering the coupon code, but as its content is empty by default ( its content is generated in execution time ), the websites administrators sometimes decide delete this page because think that is not important. If it is the case you only should restore the shopping cart page, from the trash list, to the list of published pages. if you have emptied the trash list, you only should create a new page with the slug: ms-shopping-cart
 
+= Q: The pages of collections are displaying a 404 Error, page not found =
+
+A: If the pages for collections are displaying a 404 Error (page not found), tries to use a different permalink structure. Visits the menu option: "Settings/Permalinks", and selects a different structure for permalinks.
+
 = Q: Can be sold tangible products with the music store? =
 
 A: For selling tangible products, like CDs, DVDs, etc. is required an additional module for asking to the customers its postal address, furthermore will be required add to the products prices the shipping cost, and finally accept the selection of number of copies. With the Music Store, none of these modules are included, because are not needed for selling digital files, this is the reason our plugin is recommended only for selling digital files.
