@@ -579,9 +579,23 @@ A: By default the Music Store generates the page called "Download Page", with it
 
 A: By default the Music Store generates the page called "Shopping Cart", with its content empty. The content of the "Shopping Cart" page is generated dynamically, and includes a table with the products selected, a button to continue shopping, a button to complete the payment, and the input box for entering the coupon code, but as its content is empty by default ( its content is generated in execution time ), the websites administrators sometimes decide delete this page because think that is not important. If it is the case you only should restore the shopping cart page, from the trash list, to the list of published pages. if you have emptied the trash list, you only should create a new page with the slug: ms-shopping-cart
 
-= Q: The pages of collections are displaying a 404 Error, page not found =
+= Q: The pages of collections and/or songs are displaying a 404 Error, page not found =
 
-A: If the pages for collections are displaying a 404 Error (page not found), tries to use a different permalink structure. Visits the menu option: "Settings/Permalinks", and selects a different structure for permalinks.
+A: If the pages for collections and/or songs are displaying a 404 Error (page not found), tries to use a different permalink structure. Visit the menu option: "Settings/Permalinks", and selects a different structure for permalinks.
+
+If you don't want to modify the structure of the permalinks, please, follows the steps below:
+
+1. Open the "/wp-content/plugins/music-store/music-store.php" file, with the text editor your choice.
+
+2. Go to the snippet of code:
+
+	'rewrite' => true
+	
+and modify it like follow:
+	
+	'rewrite' => false
+
+If you are using the pro version of the plugin, the previous code appears two times in the file's content (in the free version only one time)
 
 = Q: What are the symbols "S" and "C", in front of product's titles in the store's page, and how to hide them? = 
 
