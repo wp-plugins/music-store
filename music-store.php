@@ -1732,9 +1732,9 @@ Description: Music Store is an online store for selling audio files: music, spee
 					
 					for($i=0, $h = $total_pages; $i < $h; $i++){
 						if($_SESSION[ $page_id ]['ms_page_number'] == $i)
-							$page_links .= "<span class='page-selected'>".($i+1)."</span>";
+							$page_links .= "<span class='page-selected'>".($i+1)."</span> ";
 						else	
-							$page_links .= "<a class='page-link' href='".$page_href."page_number=".$i."'>".($i+1)."</a>";
+							$page_links .= "<a class='page-link' href='".$page_href."page_number=".$i."'>".($i+1)."</a> ";
 					}
 					$page_links .= "</DIV>";
 				}	
