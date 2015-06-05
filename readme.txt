@@ -579,36 +579,6 @@ A: By default the Music Store generates the page called "Download Page", with it
 
 A: By default the Music Store generates the page called "Shopping Cart", with its content empty. The content of the "Shopping Cart" page is generated dynamically, and includes a table with the products selected, a button to continue shopping, a button to complete the payment, and the input box for entering the coupon code, but as its content is empty by default ( its content is generated in execution time ), the websites administrators sometimes decide delete this page because think that is not important. If it is the case you only should restore the shopping cart page, from the trash list, to the list of published pages. if you have emptied the trash list, you only should create a new page with the slug: ms-shopping-cart
 
-= Q: The pages of collections and/or songs are displaying a 404 Error, page not found =
-
-A: If the pages for collections and/or songs are displaying a 404 Error (page not found), tries to use a different permalink structure. Visit the menu option: "Settings/Permalinks", and selects a different structure for permalinks.
-
-If you don't want to modify the structure of the permalinks, please, follows the steps below:
-
-1. Open the "/wp-content/plugins/music-store/music-store.php" file, with the text editor your choice.
-
-2. Go to the snippet of code:
-
-	'rewrite' => true
-	
-and modify it like follow:
-	
-	'rewrite' => false
-
-If you are using the pro version of the plugin, the previous code appears two times in the file's content (in the free version only one time)
-
-= Q: What are the symbols "S" and "C", in front of product's titles in the store's page, and how to hide them? = 
-
-A: In the latest update of the Music Store have been added some symbols in front of the titles of products to be identified easily from the store's page. Previously, the users should visit the product's page to know if the product is a song or a collection. Now, the products are identified by the symbols: "S", and "C" ( for songs and collections respectively ).
-
-To hide the symbols: "S" and "C" from the store's page, would be needed to modify some styles in the store. In this case follow the steps below:
-
-1. Open the "/wp-content/plugins/music-store/ms-styles/ms-public.css" file with any text editor.
-
-2. Paste the following style definition at the end of file's content:
-
-.song-icon, .collection-icon{display:none;}
-
 = Q: Can be sold tangible products with the music store? =
 
 A: For selling tangible products, like CDs, DVDs, etc. is required an additional module for asking to the customers its postal address, furthermore will be required add to the products prices the shipping cost, and finally accept the selection of number of copies. With the Music Store, none of these modules are included, because are not needed for selling digital files, this is the reason our plugin is recommended only for selling digital files.
