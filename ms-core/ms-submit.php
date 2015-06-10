@@ -1,4 +1,5 @@
 <?php
+	if( !defined( 'MS_H_URL' ) ) { echo 'Direct access not allowed.';  exit; }	
 	function make_seed() {
 		list($usec, $sec) = explode(' ', microtime());
 		return (float) $sec + ((float) $usec * 100000);
@@ -8,7 +9,7 @@
 	$randval = mt_rand(1,999999);
 	$purchase_id = md5($randval.uniqid('', true));
 	
-	$host = $_SERVER['HTTP_REFERER'];
+	if( preg_match( '/^(http(s)?:\/\/[^\/\n]*)/i', MS_H_URL, $matches ) && strpos( $_SERVER['HTTP_REFERER'], $matches[ 0 ] ) ) $host = $_SERVER['HTTP_REFERER'];
 	if(empty($host))
 		$host = MS_H_URL;
 		

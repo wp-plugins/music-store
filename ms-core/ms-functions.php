@@ -1,5 +1,5 @@
 <?php
-
+if( !defined( 'MS_H_URL' ) ) { echo 'Direct access not allowed.';  exit; }	
 // Errors management
 $ms_errors = array();
 function music_store_setError($error_text){

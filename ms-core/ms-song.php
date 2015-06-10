@@ -1,4 +1,5 @@
 <?php
+if( !defined( 'MS_H_URL' ) ) { echo 'Direct access not allowed.';  exit; }	
 if(!class_exists('MSSong')){
 	class MSSong{
 		/*
