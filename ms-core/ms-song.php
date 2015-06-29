@@ -269,19 +269,35 @@ if(!class_exists('MSSong')){
 			echo '
 				<table class="form-table product-data">
 					<tr>
-						<td>
+						<td valign="top">
 							'.__('Sales price:', MS_TEXT_DOMAIN).'
 						</td>
 						<td>
-							<input type="text" name="ms_price" id="ms_price" value="'.(($data && $data->price) ? esc_attr($data->price) : '').'" /> 
+							<input type="text" name="ms_price" id="ms_price" value="'.(($data && $data->price) ? esc_attr(sprintf("%.2f", $data->price)) : '').'" /> 
 							'.(($currency) ? $currency : '').'
                             <span class="ms_more_info_hndl" style="margin-left: 10px;"><a href="javascript:void(0);" onclick="ms_display_more_info( this );">[ + more information]</a></span>
                             <div class="ms_more_info">
-                                <p>If let empty the product\'s price, the Music Store assumes the product will be distributed for free, and displays a download link in place of the button for purchasing</p>
+                                <p>If leave empty the product\'s prices (standard and exclusive prices), the Music Store assumes the product will be distributed for free, and displays a download link in place of the button for purchasing</p>
                                 <a href="javascript:void(0)" onclick="ms_hide_more_info( this );">[ + less information]</a>
                             </div>
 						</td>
 					</tr>
+					<tr>
+						<td valign="top">
+							'.__('Sales price (Exclusively):', MS_TEXT_DOMAIN).'
+						</td>
+						<td>
+							<input type="text" disabled /> 
+							'.(($currency) ? $currency : '').'
+							<span class="ms_more_info_hndl" style="margin-left: 10px;"><a href="javascript:void(0);" onclick="ms_display_more_info( this );">[ + more information]</a></span>
+                            <div class="ms_more_info">
+                                <p>Allows purchase the product exclusively, removing the product from the store</p>
+                                <a href="javascript:void(0)" onclick="ms_hide_more_info( this );">[ + less information]</a>
+                            </div>
+							<br /><em style="color:#FF0000;">'.__('The exclusive sales are available only in the commercial version of the plugin', MS_TEXT_DOMAIN).'</em>
+						</td>
+					</tr>
+					<tr>
 					<tr>
 						<td>
 							'.__('Sell as a single:', MS_TEXT_DOMAIN).'

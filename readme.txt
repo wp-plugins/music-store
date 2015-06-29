@@ -4,7 +4,7 @@ Donate link: http://wordpress.dwbooster.com/content-tools/music-store
 Tags:audio,audio player,music,music player,e-commerce,ecommerce,facebook,google,google+,html5,mp3,ogg,wav,paypal,player,secure player,sell music,sell,shop,sidebar,social,social network,songs,store,twitter,widget,post,plugin,posts,page,admin,image,images,comments,shortcode
 Requires at least: 3.5.0
 Tested up to: 4.2
-Stable tag: 1.0.15
+Stable tag: 1.0.16
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -46,6 +46,7 @@ The base plugin, available for free from the WordPress Plugin Directory has all 
 *   Includes a shopping cart
 *	Offers secure Audio Playback that prevents unauthorized downloading of audio files.
 *	Allows to filter products by types of files: Singles or Collections.
+*	Allows selling product exclusively.
 *   Allows to create discounts.
 *   Allows to entering discount coupons.
 *   Allows to insert a Song or Album in a post, page or template. In the Free version of plugin, the songs and albums are available only from the Music Store webpage, in the premium version of plugin is possible to insert the songs and collection directly in a post, page, or template.
@@ -180,6 +181,7 @@ The interface for entering data pertaining to a song is described below (screens
 *   Enter Title Here: Enter the title of the song.
 *   Description: Description of the song. This field is optional, but offers the opportunity to provide additional information about the song or the authors.
 *   Sales Price: Retail price of the song.
+*   Sales Price(Exclusively): Price for selling songs in exclusive. A song sold in exclusive is removed from the store's page.
 *   Comes as a single: To allow sale of song as a single, mark the checkbox. If the checkbox is left unchecked, the song can only be sold as part of a collection.
 *   Audio file for sale: URL of the audio file to sell. The button associated with the field displays the WordPress media gallery making it easy to select the file.
 *   Audio file for demo: URL file audio demo. The button associated with the field displays the WordPress media gallery making it easy to select the file.
@@ -217,6 +219,7 @@ Collection setup interface: (screenshot-5):
 *   Enter Title Here: Enter the title of the collection.
 *   Description: Description of the collection. This field is optional, but provides the opportunity to enter additional information on the collection or authors.
 *   Sales Price: Retail price of the collection.
+*	Sales Price(Exclusively): Price for selling collections in exclusive. A collection sold in exclusive is removed from the store's page.
 *   Songs of collection: Select songs to be sold as part of the collection. The songs must have been previously defined in the section of songs and be public. If the song is still being edited,  it can not be added to the collection.
 *   Artist: Select the artist (or artists for the collection) from the artists list or enter a new one if it is not yet on the list.
 *   Cover: URL of the cover image. The button associated with the field displays the WordPress media gallery making it easy to select the file.
@@ -620,6 +623,10 @@ The importer will create a new product for each audio file, with the information
 
 == Changelog ==
 
+= 1.0.16 =
+
+* Includes changes in the store's layouts, and modifies the interface for the songs edition. The premium version of the plugin allows selling products exclusively.
+
 = 1.0.15 =
 
 * Corrects an open redirect vulnerability
@@ -713,74 +720,54 @@ The importer will create a new product for each audio file, with the information
 
 == Upgrade Notice ==
 
+= 1.0.16 =
+
+* Includes changes in the store's layouts, and modifies the interface for the songs edition. The premium version of the plugin allows selling products exclusively.
+
+Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
+
 = 1.0.15 =
 * Corrects an open redirect vulnerability
 
 = 1.0.14 =
 * Corrects a conflict in the sales reports, with the Sell Downloads plugin.
 
-Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
-
 = 1.0.13 =
 * Modifies the store's layouts.
-
-Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
 
 = 1.0.12 =
 * Modifies the styles in the dark layout.
 
-Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
-
 = 1.0.11 =
 * Modifies the way that post types are registered to allow using custom permalinks.
-
-Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
 
 = 1.0.10 =
 * Modifies the appearance of the music store.
 
-Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
-
 = 1.0.9 =
 * Implements a new feature in the Music Store plugin, and modifies its interface.
 
-Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
-
 = 1.0.8 =
 * Modifies the styles of the filtering section, in the store's page.
-
-Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
 
 = 1.0.7 =
 * Improves the extraction of the URL of website in a multisite WordPress installation.
 * The Pro version includes a download link with the collections that are distributed for free, to allow download all audio files in an unique zipped file.
 
-Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
-
 = 1.0.6 =
 * Includes the Featured Image as part of songs, and collections, because some plugins and themes use the featured Images on post types.
 * Uses functions included since WordPress 3.5.0, that modifies the requirements.
 
-Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
-
 = 1.0.5 =
 * Modifies some styles in the store to prevent conflicts with the styles defined by the themes.
 
-Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
-
 = 1.0.4 =
 * Improves the selection of website's URL.
-
-Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
 
 = 1.0.3 =
 * Combines the filtering options in the store with AND, in place of OR, returning more coherent results.
 * Corrects an ambiguity in the filtering options when the name of Album, or the Artist are simple numbers.
 
-Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
-
 = 1.0.2 =
 * Displays the number of products returned by the filtering combinations.
 * Improves the appearance of the store in mobiles devices.
-
-Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support

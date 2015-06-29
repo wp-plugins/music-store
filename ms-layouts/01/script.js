@@ -108,7 +108,7 @@ jQuery(
 			function()
 			{
 				var e = $( this );
-				e.closest( 'div' ).addClass( 'price-box' ).find( 'span:not(.song-price),span.invalid' ).remove();
+				e.closest( 'div' ).addClass( 'price-box' ).find( 'span.invalid,span.label' ).remove();
 			}
 		);
 		
@@ -116,7 +116,7 @@ jQuery(
 			function()
 			{
 				var e = $( this );
-				e.closest( 'div' ).addClass( 'price-box' ).find( 'span:not(.collection-price),span.invalid' ).remove();
+				e.closest( 'div' ).addClass( 'price-box' ).find( 'span.label,span.invalid' ).remove();
 			}
 		);
 		
