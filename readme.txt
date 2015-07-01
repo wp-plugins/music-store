@@ -4,7 +4,7 @@ Donate link: http://wordpress.dwbooster.com/content-tools/music-store
 Tags:audio,audio player,music,music player,e-commerce,ecommerce,facebook,google,google+,html5,mp3,ogg,wav,paypal,player,secure player,sell music,sell,shop,sidebar,social,social network,songs,store,twitter,widget,post,plugin,posts,page,admin,image,images,comments,shortcode
 Requires at least: 3.5.0
 Tested up to: 4.2
-Stable tag: 1.0.16
+Stable tag: 1.0.17
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -123,6 +123,7 @@ Tip: If the Music Store URL is defined, the list of songs that belong to an albu
 *   Allow to filter by artist: Inserts a field into the Music Store webpage that allows to filter products by the artist.
 *   Allow to filter by album: Inserts a field into the Music Store webpage that allows to filter products by the album they belong.
 *   Allow multiple pages: Allows paging of music store products.
+*   Use friendly URLs on products: Allows to use friendly URLs for products pages.
 *   Store layout: Allows select one of the multiple layouts available for the store.
 *   Items per page: Defines the number of products per page in the Music Store.
 *   Player style: Select the audio player style from the list.
@@ -623,6 +624,11 @@ The importer will create a new product for each audio file, with the information
 
 == Changelog ==
 
+= 1.0.17 =
+
+* Allows to use friendly URLs for the products, or not, from the store's settings. 
+* Selects a smaller image as covers of products, to increase the loading speed of pages of the store, and products.
+
 = 1.0.16 =
 
 * Includes changes in the store's layouts, and modifies the interface for the songs edition. The premium version of the plugin allows selling products exclusively.
@@ -720,11 +726,16 @@ The importer will create a new product for each audio file, with the information
 
 == Upgrade Notice ==
 
+= 1.0.17 =
+
+* Allows to use friendly URLs for the products, or not, from the store's settings. 
+* Selects a smaller image as covers of products, to increase the loading speed of pages of the store, and products.
+
+Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
+
 = 1.0.16 =
 
 * Includes changes in the store's layouts, and modifies the interface for the songs edition. The premium version of the plugin allows selling products exclusively.
-
-Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
 
 = 1.0.15 =
 * Corrects an open redirect vulnerability

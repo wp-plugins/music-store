@@ -2,7 +2,7 @@
 /*
 Plugin Name: Music Store 
 Plugin URI: http://wordpress.dwbooster.com/content-tools/music-store
-Version: 1.0.16
+Version: 1.0.17
 Author: <a href="http://www.codepeople.net">CodePeople</a>
 Description: Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. With Music Store your sales will be safe, with all the security PayPal offers.
  */
@@ -482,7 +482,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 					'query_var'            => true,
 					'has_archive'		   => true,	
 					//'register_meta_box_cb' => 'wpsc_meta_boxes',
-					'rewrite'              => true
+					'rewrite'              => get_option( 'ms_friendly_url', false )
 				)
 			);			
 			
@@ -749,6 +749,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 				update_option('ms_filter_by_artist', ((isset($_POST['ms_filter_by_artist'])) ? true : false));
                 update_option('ms_filter_by_album', ((isset($_POST['ms_filter_by_album'])) ? true : false));
 				update_option('ms_items_page_selector', ((isset($_POST['ms_items_page_selector'])) ? true : false));
+				update_option('ms_friendly_url', ((isset($_POST['ms_friendly_url'])) ? true : false));
 				update_option('ms_items_page', $_POST['ms_items_page']);
 				if( !empty( $_POST[ 'ms_layout' ] ) )
 				{
@@ -839,6 +840,10 @@ Description: Music Store is an online store for selling audio files: music, spee
 								<tr valign="top">
 									<th><?php _e('Items per page', MS_TEXT_DOMAIN); ?></th>
 									<td><input type="text" name="ms_items_page" value="<?php echo esc_attr(get_option('ms_items_page', MS_ITEMS_PAGE)); ?>" /></td>
+								</tr>
+								<tr valign="top">
+									<th><?php _e('Use friendly URLs on products', MS_TEXT_DOMAIN); ?></th>
+									<td><input type="checkbox" name="ms_friendly_url" value="1" <?php if (get_option('ms_friendly_url', false)) echo 'checked'; ?> /></td>
 								</tr>
 								<tr valign="top">
 									<th><?php _e('Store layout', MS_TEXT_DOMAIN); ?></th>

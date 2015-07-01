@@ -197,7 +197,14 @@
 				(function( field ){
 					return function() {
 						var attachment = media.state().get('selection').first().toJSON();
-						var url = attachment.url;
+						if( typeof attachment[ 'sizes' ] != 'undefined' && typeof attachment[ 'sizes' ][ 'medium' ] != 'undefined' )
+						{
+							var url = attachment[ 'sizes' ][ 'medium' ].url;
+						}	
+						else
+						{
+							var url = attachment.url;
+						}	
 						field.val( url );
 					};
 				})( file_path_field )	
