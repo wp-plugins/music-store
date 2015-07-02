@@ -334,6 +334,12 @@ A: I'm sorry, but the current version of plugin allows PayPal only.
 
 A: The restriction is imposed by PayPal. Please, check that your PayPal account allow to charge directly from the credit cards of customers.
 
+= Q: Is possible the selling of songs in exclusive? =
+
+A: Yes, from the "Music Store pro" v5.0.16 it is possible to define exclusive prices. The songs that are purchased in exclusive, are removed from the store's page, and are moved in the administration section to a new list of products, the list of products that were sold in exclusive.
+
+Tip: If was defined a discount for a song, it is not applied to the exclusive sales.
+
 = Q: How to display different numbers design in the sales counter? =
 
 A: To use your own numbers design, you must create a new directory with the name of new style in "/wp-content/plugins/music-store/ms-core/images/counter", and upload to the new folder, an image in gif format, for each digit from 0 to 9.
