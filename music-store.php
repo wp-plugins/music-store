@@ -2,7 +2,7 @@
 /*
 Plugin Name: Music Store 
 Plugin URI: http://wordpress.dwbooster.com/content-tools/music-store
-Version: 1.0.17
+Version: 1.0.18
 Author: <a href="http://www.codepeople.net">CodePeople</a>
 Description: Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. With Music Store your sales will be safe, with all the security PayPal offers.
  */
@@ -1661,7 +1661,14 @@ Description: Music Store is an online store for selling audio files: music, spee
 					
 					// Search for genres assigned directly to the posts
 					$_where .= "AND taxonomy.taxonomy='ms_genre' AND ";
-					$_where .= "terms.slug='$genre'";	
+					if( is_numeric( $genre ) )
+					{
+						$_where .= "terms.term_id=$genre";	
+					}
+					else
+					{
+						$_where .= "terms.slug='$genre'";	
+					}
 				}
 				
 				if($artist !== 'all'){
@@ -1671,7 +1678,14 @@ Description: Music Store is an online store for selling audio files: music, spee
 					
 					// Search for artist assigned directly to the posts
 					$_where .= "AND taxonomy1.taxonomy='ms_artist' AND ";
-					$_where .= "terms1.slug='$artist'";	
+					if( is_numeric( $artist ) )
+					{
+						$_where .= "terms1.term_id=$artist";	
+					}	
+					else
+					{
+						$_where .= "terms1.slug='$artist'";	
+					}
 				}
 				
 				if($album !== 'all'){
@@ -1681,8 +1695,14 @@ Description: Music Store is an online store for selling audio files: music, spee
 					
 					// Search for albums assigned directly to the posts
 					$_where .= "AND taxonomy2.taxonomy='ms_album' AND ";
-					$_where .= "terms2.slug='$album'";	
-					
+					if( is_numeric( $album ) )
+					{
+						$_where .= "terms2.term_id=$album";	
+					}	
+					else
+					{
+						$_where .= "terms2.slug='$album'";	
+					}
 				}
 				// End taxonomies
 			} 
@@ -1792,7 +1812,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 							";
 					$genres = get_terms("ms_genre");
 					foreach($genres as $genre_item){
-						$header .= "<option value='".$genre_item->slug."' ".(($genre == $genre_item->slug) ? "SELECTED" : "").">".$genre_item->name."</option>";
+						$header .= "<option value='".$genre_item->slug."' ".(($genre == $genre_item->slug || $genre == $genre_item->term_id) ? "SELECTED" : "").">".$genre_item->name."</option>";
 					}
 					$header .= "</select></span>";
 				}
@@ -1803,7 +1823,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 							";
 					$albums = get_terms("ms_album");
 					foreach($albums as $album_item){
-						$header .= "<option value='".$album_item->slug."' ".(($album == $album_item->slug) ? "SELECTED" : "").">".$album_item->name."</option>";
+						$header .= "<option value='".$album_item->slug."' ".(($album == $album_item->slug || $album == $album_item->term_id ) ? "SELECTED" : "").">".$album_item->name."</option>";
 					}
 					$header .= "</select></span>";
 				}
@@ -1814,7 +1834,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 							";
 					$artists = get_terms("ms_artist");
 					foreach($artists as $artist_item){
-						$header .= "<option value='".$artist_item->slug."' ".(($artist == $artist_item->slug) ? "SELECTED" : "").">".$artist_item->name."</option>";
+						$header .= "<option value='".$artist_item->slug."' ".(($artist == $artist_item->slug || $artist == $artist_item->term_id ) ? "SELECTED" : "").">".$artist_item->name."</option>";
 					}
 					$header .= "</select></span>";
 				}
