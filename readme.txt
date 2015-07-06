@@ -387,7 +387,15 @@ If you want forcing the file download, you should modify the headers sent by the
 		AddType application/octet-stream mp3 ogv oga ogg wav		
 		Header set Content-Disposition attachment		
 		</FilesMatch>		
-		
+
+= Q: How to forbid the access to the audio files in the "uploads" directory, from browsers? =
+
+A: The Music Store uploads the audio files to the subdirectories of "/wp-content/uploads" directory. To protect the audio files in the "uploads" directory, uploads a .htaccess file to the "/wp-content/uploads" directory, whose content would be:
+
+		<FilesMatch "\.(mp3|wav|oga|ogg)$">		
+		Deny from All	
+		</FilesMatch>		
+
 = Q: Can I customize the store's design? = 
 
 A: The plugin includes some different designs that can be selected through the settings option "Store Layout", but you can create a new once, duplicating an of available store's layouts, and edit its style.css file
