@@ -304,7 +304,7 @@
 				$songObj = new stdClass();
 				if(isset($obj->file)){ 
 					$songObj->title = ms_song_title($obj);
-					$songObj->link  = $obj->file;
+					$songObj->link  = str_replace( ' ', '%20', $obj->file );
 					$urls[] = $songObj;
 				}
 				

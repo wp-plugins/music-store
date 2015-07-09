@@ -9,18 +9,32 @@ function music_store_setError($error_text){
 
 // Check if URL is for a local file, and return the relative URL or false
 function music_store_is_local( $file ){
-	if( strpos( $file, MS_H_URL ) !== false ){
-		$parts = explode( '/', str_replace('\\', '/', str_replace( MS_H_URL, '', MS_URL.'/ms-core' ) ) );
-		$file = str_replace( MS_H_URL, '', $file );
-		$path = '';
-		for( $i = 0; $i < count( $parts ); $i++ ){
-			$path .= '../';
-		}
-		$file = urldecode( dirname( __FILE__ ).'/'.$path.$file );
-		return file_exists( $file ) ? $file : false;
+	$url_parts = parse_url( MS_H_URL );
+    if( strpos( $file, MS_H_URL ) !== false )
+	{
+		$site_url = MS_H_URL;
 	}
-	return false;
-	
+	elseif( 
+		!empty( $url_parts ) && 
+		strpos( $file, $url_parts[ 'scheme' ].'://'.$url_parts[ 'host' ] ) !== false 
+	)
+	{
+		$site_url = $url_parts[ 'scheme' ].'://'.$url_parts[ 'host' ].'/';
+	}
+	else
+	{
+		return false;
+	}	
+
+	$parts = explode( '/', str_replace('\\', '/', str_replace( $site_url, '', MS_URL.'/ms-core' ) ) );
+	$file = str_replace( $site_url, '', $file );
+	$path = '';
+	for( $i = 0; $i < count( $parts ); $i++ ){
+		$path .= '../';
+	}
+	$file = urldecode( dirname( __FILE__ ).'/'.$path.$file );		
+
+	return file_exists( $file ) ? $file : false;
 }
 
 // Check if the PHP memory is sufficient
