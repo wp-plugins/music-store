@@ -326,24 +326,24 @@
 		
 		if( isset( $_REQUEST[ 'f' ] ) && ms_check_download_permissions() ){
             $_REQUEST[ 'f' ] = utf8_decode( $_REQUEST[ 'f' ] );
-			$file_name = $_REQUEST[ 'f' ];
-			$pos = strrpos( $_REQUEST[ 'f' ], '_' );
+			$file_name = basename( $_REQUEST[ 'f' ] );
+			$pos = strrpos( $file_name, '_' );
 			if( $pos !== false )
 			{
-				$file_name = substr( $_REQUEST[ 'f' ], 0, $pos );
+				$file_name = substr( $file_name, 0, $pos );
 			}
 				
-			header( 'Content-Type: '.ms_mime_content_type( $_REQUEST[ 'f' ] ) );
+			header( 'Content-Type: '.ms_mime_content_type( $file_name ) );
 			header( 'Content-Disposition: attachment; filename="'.$file_name.'"' );
 
-			if( music_store_check_memory( array( MS_URL.'/ms-downloads/'.$_REQUEST[ 'f' ] ) ) )
+			if( music_store_check_memory( array( MS_URL.'/ms-downloads/'.basename( $_REQUEST[ 'f' ] ) ) ) )
 			{
-                readfile( MS_DOWNLOAD.'/'.$_REQUEST[ 'f' ] );
+                readfile( MS_DOWNLOAD.'/'.basename( $_REQUEST[ 'f' ] ) ) ;
 			}
 			else			
 			{
 				@unlink( MS_DOWNLOAD.'/.htaccess');
-				header( 'location:'.MS_URL.'/ms-downloads/'.$_REQUEST[ 'f' ] );
+				header( 'location:'.MS_URL.'/ms-downloads/'.basename( $_REQUEST[ 'f' ] ) );
 			}
 			
 		}else{
