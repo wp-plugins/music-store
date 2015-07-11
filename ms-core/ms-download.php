@@ -173,7 +173,31 @@
 		}
 	}
 
+	if( !function_exists( 'ms_getIP' ) )
+	{
+		function ms_getIP()
+		{
+			$ip = $_SERVER[ 'REMOTE_ADDR' ];
+			if( !empty( $_SERVER[ 'HTTP_CLIENT_IP' ] ) ) 
+			{
+				$ip = $_SERVER[ 'HTTP_CLIENT_IP' ];
+			}
+			elseif( !empty( $_SERVER[ 'HTTP_X_FORWARDED_FOR' ] ) ) 
+			{
+				$ip = $_SERVER[ 'HTTP_X_FORWARDED_FOR' ];
+			}
+	 
+			return str_replace( array( ':', '.' ), array( '_', '_' ), $ip );
+		}
+	}	
+
 	function ms_check_download_permissions(){
+		if( get_transient( 'ms_penalized_ip_'.ms_getIP() ) !== false )
+		{
+			_e( 'Please, try again in 30 minutes.', MS_TEXT_DOMAIN );
+			exit;
+		}	
+		delete_transient( 'ms_penalized_ip_'.ms_getIP() );
 		global $wpdb;
 		
 		// If not session, create it
@@ -206,6 +230,15 @@
 		}
 		
 		if( is_null( $data ) ){
+			if( get_transient( 'ms_suspect_ip_'.ms_getIP() ) !== false )
+			{
+				delete_transient( 'ms_suspect_ip_'.ms_getIP() );
+				set_transient( 'ms_penalized_ip_'.ms_getIP(), true,  1800 );
+				_e( 'The purchase ID is incorrect, please, try again in 30 minutes.', MS_TEXT_DOMAIN );
+				exit;
+			}
+			set_transient( 'ms_suspect_ip_'.ms_getIP(), true,  1800 );
+			
 			if( !isset( $_REQUEST[ 'timeout' ] ) )
             {
                 music_store_setError(
@@ -221,13 +254,15 @@
             }    
 			return false;
 		}elseif( get_option('ms_old_download_link', MS_OLD_DOWNLOAD_LINK) < $data->days ){ 
+			delete_transient( 'ms_suspect_ip_'.ms_getIP() );
 			music_store_setError( 'The download link has expired, please contact to the vendor' );
 			return false;	
 		}elseif( get_option('ms_downloads_number', MS_DOWNLOADS_NUMBER) > 0 &&  get_option('ms_downloads_number', MS_DOWNLOADS_NUMBER) <= $data->downloads ){
+			delete_transient( 'ms_suspect_ip_'.ms_getIP() );	
 			music_store_setError( 'The number of downloads has reached its limit, please contact to the vendor' );
 			return false;
 		}
-		
+		delete_transient( 'ms_suspect_ip_'.ms_getIP() );
 		if( isset( $_REQUEST[ 'f' ] ) && !isset( $_SESSION[ 'cpms_donwloads' ] ) )
 		{
             $_SESSION[ 'cpms_donwloads' ] = true;

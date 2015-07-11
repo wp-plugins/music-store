@@ -4,7 +4,7 @@ Donate link: http://wordpress.dwbooster.com/content-tools/music-store
 Tags:audio,audio player,music,music player,e-commerce,ecommerce,facebook,google,google+,html5,mp3,ogg,wav,paypal,player,secure player,sell music,sell,shop,sidebar,social,social network,songs,store,twitter,widget,post,plugin,posts,page,admin,image,images,comments,shortcode
 Requires at least: 3.5.0
 Tested up to: 4.2
-Stable tag: 1.0.20
+Stable tag: 1.0.21
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -638,6 +638,10 @@ The importer will create a new product for each audio file, with the information
 
 == Changelog ==
 
+= 1.0.21 =
+
+* Security update to prevent the use of brute force to identify the purchase IDs.
+
 = 1.0.20 =
 
 * Corrects a possible vulnerability in the download process of the purchased files.
@@ -752,11 +756,15 @@ The importer will create a new product for each audio file, with the information
 
 == Upgrade Notice ==
 
+= 1.0.21 =
+
+* Security update to prevent the use of brute force to identify the purchase IDs.
+
+Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
+
 = 1.0.20 =
 
 * Corrects a possible vulnerability in the download process of the purchased files.
-
-Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
 
 = 1.0.19 =
 
