@@ -4,7 +4,7 @@ Donate link: http://wordpress.dwbooster.com/content-tools/music-store
 Tags:audio,audio player,music,music player,e-commerce,ecommerce,facebook,google,google+,html5,mp3,ogg,wav,paypal,player,secure player,sell music,sell,shop,sidebar,social,social network,songs,store,twitter,widget,post,plugin,posts,page,admin,image,images,comments,shortcode
 Requires at least: 3.5.0
 Tested up to: 4.2
-Stable tag: 1.0.21
+Stable tag: 1.0.22
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -638,6 +638,10 @@ The importer will create a new product for each audio file, with the information
 
 == Changelog ==
 
+= 1.0.22 =
+
+* Converts the volume control of music player in the products pages to vertical.
+
 = 1.0.21 =
 
 * Security update to prevent the use of brute force to identify the purchase IDs.
@@ -756,75 +760,8 @@ The importer will create a new product for each audio file, with the information
 
 == Upgrade Notice ==
 
-= 1.0.21 =
+= 1.0.22 =
 
-* Security update to prevent the use of brute force to identify the purchase IDs.
+* Converts the volume control of music player in the products pages to vertical.
 
 Important note: If you are using the Professional version don't update via the WP dashboard but using your personal update link. Contact us if you need further information: http://wordpress.dwbooster.com/support
-
-= 1.0.20 =
-
-* Corrects a possible vulnerability in the download process of the purchased files.
-
-= 1.0.19 =
-
-* Corrects an issue with the spaces in the names of the products' files.
-
-= 1.0.18 =
-
-* Corrects an issue with the different terms for filtering the store's products.
-
-= 1.0.17 =
-
-* Allows to use friendly URLs for the products, or not, from the store's settings. 
-* Selects a smaller image as covers of products, to increase the loading speed of pages of the store, and products.
-
-= 1.0.16 =
-
-* Includes changes in the store's layouts, and modifies the interface for the songs edition. The premium version of the plugin allows selling products exclusively.
-
-= 1.0.15 =
-* Corrects an open redirect vulnerability
-
-= 1.0.14 =
-* Corrects a conflict in the sales reports, with the Sell Downloads plugin.
-
-= 1.0.13 =
-* Modifies the store's layouts.
-
-= 1.0.12 =
-* Modifies the styles in the dark layout.
-
-= 1.0.11 =
-* Modifies the way that post types are registered to allow using custom permalinks.
-
-= 1.0.10 =
-* Modifies the appearance of the music store.
-
-= 1.0.9 =
-* Implements a new feature in the Music Store plugin, and modifies its interface.
-
-= 1.0.8 =
-* Modifies the styles of the filtering section, in the store's page.
-
-= 1.0.7 =
-* Improves the extraction of the URL of website in a multisite WordPress installation.
-* The Pro version includes a download link with the collections that are distributed for free, to allow download all audio files in an unique zipped file.
-
-= 1.0.6 =
-* Includes the Featured Image as part of songs, and collections, because some plugins and themes use the featured Images on post types.
-* Uses functions included since WordPress 3.5.0, that modifies the requirements.
-
-= 1.0.5 =
-* Modifies some styles in the store to prevent conflicts with the styles defined by the themes.
-
-= 1.0.4 =
-* Improves the selection of website's URL.
-
-= 1.0.3 =
-* Combines the filtering options in the store with AND, in place of OR, returning more coherent results.
-* Corrects an ambiguity in the filtering options when the name of Album, or the Artist are simple numbers.
-
-= 1.0.2 =
-* Displays the number of products returned by the filtering combinations.
-* Improves the appearance of the store in mobiles devices.

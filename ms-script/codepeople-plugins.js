@@ -1,17 +1,36 @@
 jQuery(function($){
 	var min_screen_width = 640;
 	
-	$('.ms-player.single audio').mediaelementplayer({
-		features: ['playpause','current','progress','duration','volume'],
-		videoVolume: 'horizontal',
-		iPadUseNativeControls: false,
-		iPhoneUseNativeControls: false
+	var s = $('.ms-player.single audio'),
+		m = $('.ms-player.multiple audio'),
+		c = {
+				iPadUseNativeControls: false,
+				iPhoneUseNativeControls: false,
+				success: function( media, dom ){
+					media.addEventListener( 'timeupdate', function( e ){
+						if( !isNaN( this.currentTime ) && !isNaN( this.duration ) && this.src.indexOf( 'ms-action=secure' ) != -1 )
+						{
+							if( this.duration - this.currentTime < 4 )
+							{
+								this.setVolume( this.volume - this.volume / 3 );
+							}
+							
+						}
+					});
+				}
+			};
+	
+	s.each(function(){
+		var e = $(this);
+		c['audioVolume'] = 'vertical';
+		e.mediaelementplayer(c);
 	});
 	
-	$('.ms-player.multiple audio').mediaelementplayer({
-		features: ['playpause'],
-		iPadUseNativeControls: false,
-		iPhoneUseNativeControls: false
+	
+	m.each(function(){
+		var e = $(this);
+		c['features'] = ['playpause'];
+		e.mediaelementplayer(c);
 	});
     
     timeout_counter = 10;
