@@ -2,7 +2,7 @@
 /*
 Plugin Name: Music Store 
 Plugin URI: http://wordpress.dwbooster.com/content-tools/music-store
-Version: 1.0.23
+Version: 1.0.24
 Author: <a href="http://www.codepeople.net">CodePeople</a>
 Description: Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. With Music Store your sales will be safe, with all the security PayPal offers.
  */
@@ -704,8 +704,8 @@ Description: Music Store is an online store for selling audio files: music, spee
 				{
 					if( ( $ini_array = parse_ini_file( $tpls_dir->path.'/'.$entry.'/config.ini' ) ) !== false )
 					{
-						if( !empty( $ini_array[ 'style_file' ] ) ) $ini_array[ 'style_file' ] = MS_URL.'/ms-layouts/'.$entry.'/'.$ini_array[ 'style_file' ];
-						if( !empty( $ini_array[ 'script_file' ] ) ) $ini_array[ 'script_file' ] = MS_URL.'/ms-layouts/'.$entry.'/'.$ini_array[ 'script_file' ];
+						if( !empty( $ini_array[ 'style_file' ] ) ) $ini_array[ 'style_file' ] = 'ms-layouts/'.$entry.'/'.$ini_array[ 'style_file' ];
+						if( !empty( $ini_array[ 'script_file' ] ) ) $ini_array[ 'script_file' ] = 'ms-layouts/'.$entry.'/'.$ini_array[ 'script_file' ];
 						if( !empty( $ini_array[ 'thumbnail' ] ) ) $ini_array[ 'thumbnail' ] = MS_URL.'/ms-layouts/'.$entry.'/'.$ini_array[ 'thumbnail' ];
 						$this->layouts[ $ini_array[ 'id' ] ] = $ini_array;
 					}
@@ -1468,8 +1468,8 @@ Description: Music Store is an online store for selling audio files: music, spee
 			// Load resources of layout
 			if( !empty( $this->layout) )
 			{
-				if( !empty( $this->layout[ 'style_file' ] ) ) wp_enqueue_style('ms-css-layout', $this->layout[ 'style_file' ] , array( 'ms-style' ) );
-				if( !empty( $this->layout[ 'script_file' ] ) ) wp_enqueue_script('ms-js-layout', $this->layout[ 'script_file' ] , array( 'ms-media-script' ), false, true );
+				if( !empty( $this->layout[ 'style_file' ] ) ) wp_enqueue_style('ms-css-layout', plugin_dir_url(__FILE__).$this->layout[ 'style_file' ] , array( 'ms-style' ) );
+				if( !empty( $this->layout[ 'script_file' ] ) ) wp_enqueue_script('ms-js-layout', plugin_dir_url(__FILE__).$this->layout[ 'script_file' ] , array( 'ms-media-script' ), false, true );
 			}
 			
 		} // End public_resources
