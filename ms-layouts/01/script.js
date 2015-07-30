@@ -127,11 +127,12 @@ jQuery(
 			{
 				var e = $( this ),
 					p = e.position(),
-					w = e.width()/2;
+					w = e.width()/2,
+					container = e.closest( '.music-store-tabs' ).siblings( '.music-store-tabs-container' );
 				
-				if( $( '.music-store-corner' ).length == 0 )
-				$( '.music-store-tabs-container' ).prepend( $( '<div class="music-store-corner"></div>' ) );
-				$( '.music-store-corner' ).css( 'margin-left', ( p.left + w ) + 'px' );
+				if( container.find( '.music-store-corner' ).length == 0 )
+				container.prepend( $( '<div class="music-store-corner"></div>' ) );
+				container.find( '.music-store-corner' ).css( 'margin-left', ( p.left + w ) + 'px' );
 			}
 		);
 		$( 'li.active-tab' ).click();
