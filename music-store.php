@@ -2,7 +2,7 @@
 /*
 Plugin Name: Music Store 
 Plugin URI: http://wordpress.dwbooster.com/content-tools/music-store
-Version: 1.0.26
+Version: 1.0.27
 Author: <a href="http://www.codepeople.net">CodePeople</a>
 Description: Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. With Music Store your sales will be safe, with all the security PayPal offers.
  */
@@ -680,8 +680,14 @@ Description: Music Store is an online store for selling audio files: music, spee
 		function settings_tabs($current = 'reports'){
 			$tabs = array( 'settings' => __( 'Music Store Settings', MS_TEXT_DOMAIN ), 'song' => __( 'Music Store Songs', MS_TEXT_DOMAIN ), 'collection' => __( 'Music Store Collections', MS_TEXT_DOMAIN ),'reports' => __( 'Sales Report', MS_TEXT_DOMAIN ), 'importer' => __( 'Songs Importer', MS_TEXT_DOMAIN ) );
 			echo '<h2 class="nav-tab-wrapper">';
+			$h1 = '';
 			foreach( $tabs as $tab => $name ){
-				$class = ( $tab == $current ) ? ' nav-tab-active' : '';
+				$class = '';
+				if( $tab == $current )
+				{
+					$class = ' nav-tab-active';
+					$h1 = $name;
+				}	
 				if($tab == 'song' )
 					echo "<a class='nav-tab$class' href='edit.php?post_type=ms_$tab'>$name</a>";
 				elseif($tab == 'collection')
@@ -691,6 +697,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 
 			}
 			echo '</h2>';
+			echo '<h1>'.$h1.'</h1>';
 		} // End settings_tabs 	
 		
 		/**
@@ -740,6 +747,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 		* Set the music store settings
 		*/
 		function settings_page(){
+			print '<div class="wrap">'; // Open Wrap
 			global $wpdb;
 			$this->_layouts(); // Load the available layouts
 			
@@ -1450,6 +1458,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 				<?php	
 				break;
 			}	
+			print '</div>'; // Close Wrap
 		} // End settings_page
 
 /** LOADING PUBLIC OR ADMINSITRATION RESOURCES **/		
