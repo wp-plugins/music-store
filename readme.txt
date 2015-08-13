@@ -593,6 +593,15 @@ PayPal notifies the payments to the website asynchronously, so can occur that th
 
 A: By default the Music Store generates the page called "Download Page", with its content empty. The content of the "Download Page" is generated dynamically with the download links to purchased products, but sometimes, the websites administrators decide delete this page because think that is not important. If it is the case you only should restore the download page, from the trash list, to the list of published pages. If you have emptied the trash list, you only should create a new page with the slug: ms-download-page
 
+= Q: How to insert the shopping cart icon in all the website's pages? =
+
+A: There are two ways to insert the shopping cart icon in all pages of website:
+
+1. Inserting the widget of shopping cart on sidebars.
+2. Insert the shortcode of the shopping cart in the website's pages, or directly in a template file of the theme used by all pages of website: [music_store_shopping_cart]
+
+Tip: To prevent the shopping cart be displayed by duplicated in the pages of the store and products, go to the store's settings, and tick the option: "Hide the shopping cart icon from the store and products pages?"
+
 = Q: The shopping cart page is displaying a 404 Error, page not found =
 
 A: By default the Music Store generates the page called "Shopping Cart", with its content empty. The content of the "Shopping Cart" page is generated dynamically, and includes a table with the products selected, a button to continue shopping, a button to complete the payment, and the input box for entering the coupon code, but as its content is empty by default ( its content is generated in execution time ), the websites administrators sometimes decide delete this page because think that is not important. If it is the case you only should restore the shopping cart page, from the trash list, to the list of published pages. if you have emptied the trash list, you only should create a new page with the slug: ms-shopping-cart
