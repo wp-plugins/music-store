@@ -2,7 +2,7 @@
 /*
 Plugin Name: Music Store 
 Plugin URI: http://wordpress.dwbooster.com/content-tools/music-store
-Version: 1.0.27
+Version: 1.0.28
 Author: <a href="http://www.codepeople.net">CodePeople</a>
 Description: Music Store is an online store for selling audio files: music, speeches, narratives, everything audio. With Music Store your sales will be safe, with all the security PayPal offers.
  */
@@ -141,6 +141,14 @@ Description: Music Store is an online store for selling audio files: music, spee
 				
 				// Load public resources
 				add_action( 'wp_enqueue_scripts', array(&$this, 'public_resources'), 99);
+				
+				// Search functions
+				if( get_option( 'ms_search_taxonomy', false ) )
+				{	
+					add_filter( 'posts_where', array( &$this, 'custom_search_where' ) );
+					add_filter( 'posts_join', array( &$this, 'custom_search_join' ) );
+					add_filter( 'posts_groupby', array( &$this, 'custom_search_groupby' ) );
+				}	
 			}
 			// Init action
 			do_action( 'musicstore_init' );
@@ -151,11 +159,6 @@ Description: Music Store is an online store for selling audio files: music, spee
             if( isset( $post ) ){
                 if( $post->post_type == 'ms_song' ){
                     $obj = new MSSong( $post->ID );
-                    if( isset($obj->cover) ) echo '<link rel="image_src" href="' . $obj->cover . '" />';
-                }
-                
-                if( $post->post_type == 'ms_collection' ){
-                    $obj = new MSCollection( $post->ID );
                     if( isset($obj->cover) ) echo '<link rel="image_src" href="' . $obj->cover . '" />';
                 }
             }
@@ -756,6 +759,7 @@ Description: Music Store is an online store for selling audio files: music, spee
 				update_option('ms_filter_by_genre', ((isset($_POST['ms_filter_by_genre'])) ? true : false));
 				update_option('ms_filter_by_artist', ((isset($_POST['ms_filter_by_artist'])) ? true : false));
                 update_option('ms_filter_by_album', ((isset($_POST['ms_filter_by_album'])) ? true : false));
+				update_option('ms_search_taxonomy', ((isset($_POST['ms_search_taxonomy'])) ? true : false));
 				update_option('ms_items_page_selector', ((isset($_POST['ms_items_page_selector'])) ? true : false));
 				update_option('ms_friendly_url', ((isset($_POST['ms_friendly_url'])) ? true : false));
 				update_option('ms_items_page', $_POST['ms_items_page']);
@@ -823,22 +827,28 @@ Description: Music Store is an online store for selling audio files: music, spee
 									</td>
 								</tr>
 								<tr valign="top">
-									<th><?php _e('Allow to filter by type', MS_TEXT_DOMAIN); ?></th>
+									<th><?php _e('Allow searching by taxonomies', MS_TEXT_DOMAIN); ?></th>
+									<td><input type="checkbox" name="ms_search_taxonomy" value="1" <?php if( get_option( 'ms_search_taxonomy', false ) ) echo 'checked'; ?> />
+									<br />Including albums, artists, and genres
+									</td>
+								</tr>
+								<tr valign="top">
+									<th><?php _e('Allow filtering by type', MS_TEXT_DOMAIN); ?></th>
 									<td>
 										<input type="checkbox" name="ms_filter_by_type" disabled  />
 										<em style="color:#FF0000;"><?php _e('Only available for commercial version of plugin', MS_TEXT_DOMAIN); ?></em>
 									</td>
 								</tr>
 								<tr valign="top">
-									<th><?php _e('Allow to filter by genre', MS_TEXT_DOMAIN); ?></th>
+									<th><?php _e('Allow filtering by genre', MS_TEXT_DOMAIN); ?></th>
 									<td><input type="checkbox" name="ms_filter_by_genre" size="40" value="1" <?php if (get_option('ms_filter_by_genre', MS_FILTER_BY_GENRE)) echo 'checked'; ?> /></td>
 								</tr>
 								<tr valign="top">
-									<th><?php _e('Allow to filter by artist', MS_TEXT_DOMAIN); ?></th>
+									<th><?php _e('Allow filtering by artist', MS_TEXT_DOMAIN); ?></th>
 									<td><input type="checkbox" name="ms_filter_by_artist" size="40" value="1" <?php if (get_option('ms_filter_by_artist', MS_FILTER_BY_ARTIST)) echo 'checked'; ?> /></td>
 								</tr>
                                 <tr valign="top">
-									<th><?php _e('Allow to filter by album', MS_TEXT_DOMAIN); ?></th>
+									<th><?php _e('Allow filtering by album', MS_TEXT_DOMAIN); ?></th>
 									<td><input type="checkbox" name="ms_filter_by_album" value="1" <?php if (get_option('ms_filter_by_album', MS_FILTER_BY_ALBUM)) echo 'checked'; ?> /></td>
 								</tr>
 								<tr valign="top">
@@ -1814,7 +1824,14 @@ Description: Music Store is an online store for selling audio files: music, spee
 				!isset( $atts[ 'show_order_by' ] ) || 
 				$atts[ 'show_order_by' ] * 1
 			){
-				$header .= "<div class='music-store-filters'><span>".__('Filter by: ', MS_TEXT_DOMAIN)."</span>";
+				$header .= "<div class='music-store-filters'>";
+				if(
+					$allow_filter_by_genre || 
+					$allow_filter_by_artist || 
+					$allow_filter_by_album
+				){
+					$header .= "<span>".__('Filter by: ', MS_TEXT_DOMAIN)."</span>";
+				}	
 				if($allow_filter_by_genre){
 					$header .= "<span><select id='filter_by_genre' name='filter_by_genre' onchange='this.form.submit();'>
 							<option value='all'>".__('All genres', MS_TEXT_DOMAIN)."</option>
@@ -1918,7 +1935,48 @@ Description: Music Store is an online store for selling audio files: music, spee
 			}
 			return false;
 		} // End delete_post
+		
+		/******* SEARCHING METHODS *******/
+		
+		function custom_search_where($where)
+		{ 
+			global $wpdb;
+			if( is_search() && get_search_query() )
+			{	
+				$where .= "OR ((t.name LIKE '%".get_search_query()."%' OR t.slug LIKE '%".get_search_query()."%') AND {$wpdb->posts}.post_status = 'publish')";
+			}	
+			return $where;
+		}
 
+		function custom_search_join($join)
+		{
+			global $wpdb;
+			if( is_search()&& get_search_query() )
+			{	
+				$join .= "LEFT JOIN {$wpdb->term_relationships} tr ON {$wpdb->posts}.ID = tr.object_id INNER JOIN {$wpdb->term_taxonomy} tt ON tt.term_taxonomy_id=tr.term_taxonomy_id INNER JOIN {$wpdb->terms} t ON t.term_id = tt.term_id";
+			}	
+			return $join;
+		}
+
+		function custom_search_groupby($groupby)
+		{
+			global $wpdb;
+
+			// we need to group on post ID
+			$groupby_id = "{$wpdb->posts}.ID";
+			if( !is_search() || strpos( $groupby, $groupby_id ) !== false || !get_search_query() ) 
+			{	
+				return $groupby;
+			}
+			// groupby was empty, use ours
+			if( !strlen( trim( $groupby ) ) )
+			{	
+				return $groupby_id;
+			}
+			// wasn't empty, append ours
+			return $groupby.", ".$groupby_id;
+		}
+		
 	} // End MusicStore class
 	
 	// Initialize MusicStore class

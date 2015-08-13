@@ -191,6 +191,23 @@
 		}
 	}	
 
+	function ms_include_the_timeout()
+	{
+		if( !isset( $_REQUEST[ 'timeout' ] ) )
+		{
+			music_store_setError(
+				'<div id="music_store_error_mssg"></div>
+				<script>
+					var timeout_text = "'.__( 'The store is processing the purchase. You will be redirected in', MS_TEXT_DOMAIN ).'";
+				</script>'
+			);
+		}
+		else
+		{
+			music_store_setError( 'There is no product associated with the entered data' );
+		}
+	}
+	
 	function ms_check_download_permissions(){
 		if( get_transient( 'ms_penalized_ip_'.ms_getIP() ) !== false )
 		{
@@ -238,20 +255,7 @@
 				exit;
 			}
 			set_transient( 'ms_suspect_ip_'.ms_getIP(), true,  1800 );
-			
-			if( !isset( $_REQUEST[ 'timeout' ] ) )
-            {
-                music_store_setError(
-                    '<div id="music_store_error_mssg"></div>
-                    <script>
-                        var timeout_text = "'.__( 'The store is processing the purchase. You will be redirected in', MS_TEXT_DOMAIN ).'";
-                    </script>'
-                );
-            }
-            else
-            {
-                music_store_setError( 'There is no product associated with the entered data' );
-            }    
+			ms_include_the_timeout();
 			return false;
 		}elseif( get_option('ms_old_download_link', MS_OLD_DOWNLOAD_LINK) < $data->days ){ 
 			delete_transient( 'ms_suspect_ip_'.ms_getIP() );
@@ -353,6 +357,10 @@
 					$download_links_str = __('The list of purchased products is empty', MS_TEXT_DOMAIN);
 				}
 			} // End purchase checking	
+			else
+			{
+				ms_include_the_timeout();
+			}	
 		}	
 	}
 	
